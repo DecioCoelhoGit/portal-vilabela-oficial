@@ -1,1 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel Admin • Portal Prefeitura Vila Bela MT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f4f6f9;color:#222}
+header{background:#0d47a1;color:#fff;padding:18px;text-align:center;font-size:24px;font-weight:bold}
+.container{max-width:1100px;margin:auto;padding:20px}
+.card{
+background:#fff;padding:20px;border-radius:12px;
+box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px
+}
+input,button,select{
+width:100%;padding:12px;margin:8px 0;
+border:1px solid #ccc;border-radius:8px;font-size:16px
+}
+button{
+background:#0d47a1;color:#fff;border:none;
+font-weight:bold;cursor:pointer
+}
+button:hover{background:#1565c0}
+.grid{display:grid;grid-template-columns:1fr;gap:15px}
+.item{
+border:1px solid #ddd;border-radius:10px;
+padding:15px;background:#fafafa
+}
+.topline{
+display:flex;justify-content:space-between;
+gap:10px;flex-wrap:wrap
+}
+.badge{
+padding:5px 10px;border-radius:20px;
+font-size:12px;color:#fff;background:#666
+}
+.novo{background:#2e7d32}
+.analise{background:#ef6c00}
+.resolvido{background:#1565c0}
+.small{font-size:13px;color:#666}
+.actions button{margin-top:8px}
+.hidden{display:none}
+@media(min-width:768px){
+.grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
 
+<header>Painel Admin • Portal Prefeitura Vila Bela MT</header>
+
+<div class="container">
+
+<div class="card" id="loginBox">
+<h2>Login Administrativo</h2>
+<input type="password" id="senha" placeholder="Digite a senha">
+<button onclick="login()">Entrar</button>
+<div id="loginMsg" class="small"></div>
+</div>
+
+<div id="painel" class="hidden">
+
+<div class="card">
+<div class="topline">
+<h2>Mensagens Recebidas</h2>
+<button onclick="logout()" style="max-width:160px">Sair</button>
+</div>
+<p class="small">Gerencie contatos enviados pelo portal.</p>
+</div>
+
+<div id="lista" class="grid"></div>
+
+</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getFirestore,
+collection,
+getDocs,
+doc,
+updateDoc,
+deleteDoc,
+query,
+orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+authDomain: "portal-vilabela-oficial.firebaseapp.com",
+projectId: "portal-vilabela-oficial",
+storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+messagingSenderId: "908975101824",
+appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.login = function(){
+const senha = document.getElementById("senha").value;
+if(senha === "1234"){
+document.getElementById("loginBox").classList.add("hidden");
+document.getElementById("painel").classList.remove("hidden");
+carregar();
+}else{
+document.getElementById("loginMsg").innerText="Senha incorreta.";
+}
+}
+
+window.logout = function(){
+location.reload();
+}
+
+async function carregar(){
+const lista = document.getElementById("lista");
+lista.innerHTML = "Carregando...";
+
+try{
+const q = query(collection(db,"contatos"));
+const snap = await getDocs(q);
+
+if(snap.empty){
+lista.innerHTML = "<div class='card'>Nenhuma mensagem.</div>";
+return;
+}
+
+lista.innerHTML = "";
+
+snap.forEach((docSnap)=>{
+const d = docSnap.data();
+const id = docSnap.id;
+const status = d.status || "novo";
+
+let cls = "novo";
+if(status==="em análise") cls="analise";
+if(status==="resolvido") cls="resolvido";
+
+const div = document.createElement("div");
+div.className="item";
+div.innerHTML = `
+<div class="topline">
+<strong>${d.nome || ""}</strong>
+<span class="badge ${cls}">${status}</span>
+</div>
+
+<div class="small">${d.email || ""}</div>
+<p style="margin:10px 0">${d.mensagem || ""}</p>
+
+<select id="s_${id}">
+<option ${status==="novo"?"selected":""}>novo</option>
+<option ${status==="em análise"?"selected":""}>em análise</option>
+<option ${status==="resolvido"?"selected":""}>resolvido</option>
+</select>
+
+<div class="actions">
+<button onclick="salvarStatus('${id}')">Salvar Status</button>
+<button onclick="excluirMsg('${id}')" style="background:#c62828">Excluir</button>
+</div>
+`;
+lista.appendChild(div);
+});
+
+}catch(err){
+lista.innerHTML = "Erro: " + err.message;
+}
+}
+
+window.salvarStatus = async function(id){
+const valor = document.getElementById("s_"+id).value;
+await updateDoc(doc(db,"contatos",id),{status:valor});
+carregar();
+}
+
+window.excluirMsg = async function(id){
+if(confirm("Deseja excluir esta mensagem?")){
+await deleteDoc(doc(db,"contatos",id));
+carregar();
+}
+}
+</script>
+
+</body>
+</html>
