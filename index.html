@@ -1,1 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portal Prefeitura Vila Bela MT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f4f6f9;color:#222}
+header{background:#0d47a1;color:#fff;padding:18px;text-align:center;font-size:26px;font-weight:bold;position:sticky;top:0}
+nav{background:#1565c0;padding:12px;text-align:center}
+nav a{color:#fff;text-decoration:none;margin:0 12px;font-weight:bold}
+section{padding:30px;max-width:900px;margin:auto}
+.card{background:#fff;padding:25px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.08);margin-bottom:25px}
+h2{margin-bottom:15px;color:#0d47a1}
+input,textarea,button{width:100%;padding:12px;margin-top:10px;border:1px solid #ccc;border-radius:8px;font-size:16px}
+textarea{height:120px}
+button{background:#0d47a1;color:#fff;border:none;font-weight:bold}
+#status{margin-top:15px;font-weight:bold}
+.ok{color:green}.err{color:red}
+footer{background:#0d47a1;color:#fff;text-align:center;padding:18px;margin-top:40px}
+</style>
+</head>
+<body>
 
+<header>Portal Prefeitura Vila Bela MT</header>
+
+<nav>
+<a href="#serv">Serviços</a>
+<a href="#not">Notícias</a>
+<a href="#trans">Transparência</a>
+<a href="#cont">Contato</a>
+</nav>
+
+<section>
+<div class="card" id="serv">
+<h2>Serviços</h2>
+<p>IPTU, protocolos, atendimento e solicitações digitais.</p>
+</div>
+
+<div class="card" id="not">
+<h2>Notícias</h2>
+<p>Comunicados oficiais e ações municipais.</p>
+</div>
+
+<div class="card" id="trans">
+<h2>Transparência</h2>
+<p>Relatórios públicos e prestação de contas.</p>
+</div>
+
+<div class="card" id="cont">
+<h2>Fale Conosco</h2>
+<form id="formContato">
+<input id="nome" placeholder="Seu nome" required>
+<input id="email" type="email" placeholder="Seu e-mail" required>
+<textarea id="mensagem" placeholder="Sua mensagem" required></textarea>
+<button type="submit">Enviar</button>
+</form>
+<div id="status"></div>
+</div>
+</section>
+
+<footer>© 2026 Prefeitura Vila Bela MT</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+authDomain: "portal-vilabela-oficial.firebaseapp.com",
+projectId: "portal-vilabela-oficial",
+storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+messagingSenderId: "908975101824",
+appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const form = document.getElementById("formContato");
+const status = document.getElementById("status");
+
+form.addEventListener("submit", async(e)=>{
+e.preventDefault();
+status.className="";
+status.innerText="Enviando...";
+
+try{
+await addDoc(collection(db,"contatos"),{
+nome:nome.value,
+email:email.value,
+mensagem:mensagem.value,
+status:"novo",
+data:serverTimestamp()
+});
+status.className="ok";
+status.innerText="Mensagem enviada com sucesso!";
+form.reset();
+}catch(err){
+status.className="err";
+status.innerText="Erro: "+err.message;
+}
+});
+</script>
+
+</body>
+</html>
