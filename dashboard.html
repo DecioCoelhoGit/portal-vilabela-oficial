@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard Executivo • Portal Prefeitura Vila Bela MT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#eef2f7;color:#222}
+header{
+background:#0d47a1;color:#fff;
+padding:18px;text-align:center;
+font-size:24px;font-weight:bold
+}
+.container{max-width:1200px;margin:auto;padding:20px}
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:18px
+}
+.card{
+background:#fff;
+padding:22px;
+border-radius:14px;
+box-shadow:0 4px 12px rgba(0,0,0,.08)
+}
+.label{font-size:14px;color:#666;margin-bottom:8px}
+.big{font-size:38px;font-weight:bold;color:#0d47a1}
+.section-title{
+font-size:20px;font-weight:bold;
+margin:25px 0 15px;color:#0d47a1
+}
+.bar{
+height:34px;border-radius:8px;
+margin:10px 0;color:#fff;
+display:flex;align-items:center;
+padding:0 12px;font-weight:bold
+}
+.novo{background:#2e7d32}
+.analise{background:#ef6c00}
+.resolvido{background:#1565c0}
+.footer{
+text-align:center;
+padding:25px;color:#666
+}
+button{
+padding:12px 18px;border:none;
+border-radius:8px;background:#0d47a1;
+color:#fff;font-weight:bold;cursor:pointer
+}
+.top{
+display:flex;justify-content:space-between;
+align-items:center;gap:10px;flex-wrap:wrap;
+margin-bottom:20px
+}
+</style>
+</head>
+<body>
 
+<header>Dashboard Executivo • Portal Prefeitura Vila Bela MT</header>
+
+<div class="container">
+
+<div class="top">
+<div>
+<div style="font-size:22px;font-weight:bold">Indicadores Gerais</div>
+<div style="color:#666">Atualização em tempo real</div>
+</div>
+<button onclick="carregar()">Atualizar</button>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="label">Total de Contatos</div>
+<div class="big" id="total">0</div>
+</div>
+
+<div class="card">
+<div class="label">Novos</div>
+<div class="big" id="novos">0</div>
+</div>
+
+<div class="card">
+<div class="label">Em Análise</div>
+<div class="big" id="analise">0</div>
+</div>
+
+<div class="card">
+<div class="label">Resolvidos</div>
+<div class="big" id="resolvidos">0</div>
+</div>
+
+</div>
+
+<div class="section-title">Status das Demandas</div>
+
+<div class="card">
+<div id="grafico"></div>
+</div>
+
+<div class="footer">
+© 2026 Prefeitura Vila Bela MT • Dashboard Oficial
+</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getFirestore,
+collection,
+getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+authDomain: "portal-vilabela-oficial.firebaseapp.com",
+projectId: "portal-vilabela-oficial",
+storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+messagingSenderId: "908975101824",
+appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.carregar = async function(){
+const snap = await getDocs(collection(db,"contatos"));
+
+let total = 0;
+let novos = 0;
+let analise = 0;
+let resolvidos = 0;
+
+snap.forEach(doc=>{
+total++;
+const s = doc.data().status || "novo";
+
+if(s==="novo") novos++;
+else if(s==="em análise") analise++;
+else if(s==="resolvido") resolvidos++;
+});
+
+document.getElementById("total").innerText = total;
+document.getElementById("novos").innerText = novos;
+document.getElementById("analise").innerText = analise;
+document.getElementById("resolvidos").innerText = resolvidos;
+
+const max = Math.max(total,1);
+
+document.getElementById("grafico").innerHTML = `
+<div class="bar novo" style="width:${(novos/max)*100}%">Novos: ${novos}</div>
+<div class="bar analise" style="width:${(analise/max)*100}%">Em análise: ${analise}</div>
+<div class="bar resolvido" style="width:${(resolvidos/max)*100}%">Resolvidos: ${resolvidos}</div>
+`;
+}
+
+carregar();
+</script>
+
+</body>
+</html>
