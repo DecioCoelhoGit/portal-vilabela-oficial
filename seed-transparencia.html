@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seed Transparência • Vila Bela MT</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef2f7;padding:30px;max-width:800px;margin:auto}
+.card{background:#fff;padding:25px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+button{width:100%;padding:14px;border:none;border-radius:10px;background:#1b5e20;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
+button:hover{opacity:.95}
+#log{margin-top:15px;white-space:pre-line;color:#333}
+small{color:#666}
+</style>
+</head>
+<body>
 
+<div class="card">
+<h1>Seed Transparência</h1>
+<p>Carrega automaticamente massa de teste na coleção <b>transparencia</b>.</p>
+<button onclick="executarSeed()">Inserir Massa de Teste</button>
+<div id="log"></div>
+<small>Use uma vez. Se clicar novamente, duplicará os dados.</small>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getFirestore, collection, addDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+authDomain: "portal-vilabela-oficial.firebaseapp.com",
+projectId: "portal-vilabela-oficial",
+storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+messagingSenderId: "908975101824",
+appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const dados = [
+{tipo:"Receita",titulo:"FPM - Fundo de Participação dos Municípios",valor:450000,setor:"Finanças",dataRef:"2026-04-01",obs:"Repasse federal"},
+{tipo:"Receita",titulo:"ICMS Estadual",valor:320000,setor:"Finanças",dataRef:"2026-04-03",obs:"Transferência estadual"},
+{tipo:"Receita",titulo:"Arrecadação IPTU",valor:85000,setor:"Tributação",dataRef:"2026-04-05",obs:"Exercício 2026"},
+{tipo:"Receita",titulo:"ISSQN Municipal",valor:62000,setor:"Tributação",dataRef:"2026-04-07",obs:"Serviços locais"},
+{tipo:"Receita",titulo:"Convênio Cultura",valor:150000,setor:"Cultura",dataRef:"2026-04-10",obs:"Evento cultural"},
+{tipo:"Despesa",titulo:"Folha de Pagamento Servidores",valor:380000,setor:"Administração",dataRef:"2026-04-05",obs:"Competência abril"},
+{tipo:"Despesa",titulo:"Manutenção de Estradas Vicinais",valor:210000,setor:"Obras",dataRef:"2026-04-08",obs:"Patrolamento"},
+{tipo:"Despesa",titulo:"Medicamentos UBS",valor:95000,setor:"Saúde",dataRef:"2026-04-09",obs:"Compra emergencial"},
+{tipo:"Despesa",titulo:"Merenda Escolar",valor:120000,setor:"Educação",dataRef:"2026-04-11",obs:"Rede municipal"},
+{tipo:"Licitação",titulo:"Reforma da Praça Central",valor:260000,setor:"Obras",dataRef:"2026-04-18",obs:"Concorrência pública"},
+{tipo:"Convênio",titulo:"Turismo Sustentável Regional",valor:300000,setor:"Turismo",dataRef:"2026-04-22",obs:"Governo Estadual"}
+];
+
+window.executarSeed = async function(){
+const log = document.getElementById("log");
+log.innerText = "Iniciando...\n";
+let total = 0;
+
+for(const item of dados){
+await addDoc(collection(db,"transparencia"),{
+...item,
+data: serverTimestamp()
+});
+total++;
+log.innerText += "✔ Registro inserido: " + item.titulo + "\n";
+}
+
+log.innerText += "\n✅ Seed concluída. Total: " + total + " registros.";
+}
+</script>
+
+</body>
+</html>
