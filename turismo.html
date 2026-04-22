@@ -1,1 +1,155 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Módulo Turismo • Vila Bela MT</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#eef7f2;color:#222}
+header{background:#00695c;color:#fff;padding:18px;text-align:center;font-size:24px;font-weight:bold}
+.container{max-width:1200px;margin:auto;padding:20px}
+.card{background:#fff;padding:20px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}
+input,select,textarea,button{
+width:100%;padding:12px;margin:8px 0;
+border:1px solid #ccc;border-radius:8px;font-size:16px
+}
+button{background:#00695c;color:#fff;border:none;font-weight:bold;cursor:pointer}
+.grid{display:grid;gap:15px}
+.item{border:1px solid #ddd;border-radius:10px;padding:15px;background:#fafafa}
+.hidden{display:none}
+.small{font-size:13px;color:#666}
+@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
 
+<header>Módulo Turismo • Portal Prefeitura Vila Bela MT</header>
+
+<div class="container">
+
+<div class="card" id="loginBox">
+<h2>Acesso Administrativo</h2>
+<p class="small">Entrar com Google</p>
+<button onclick="loginGoogle()">Entrar com Google</button>
+<div id="msg"></div>
+</div>
+
+<div id="painel" class="hidden">
+
+<div class="card">
+<h2>Check-in / Agendamento Turístico</h2>
+
+<input id="nome" placeholder="Nome do visitante">
+<input id="origem" placeholder="Cidade / Estado / País">
+<input id="qtd" type="number" placeholder="Quantidade de pessoas">
+
+<select id="atrativo">
+<option>City Tour Histórico</option>
+<option>Cânion do Jatobá</option>
+<option>Cascata dos Namorados</option>
+<option>Cachoeira do Viracopos</option>
+<option>Cânion do Capivary</option>
+<option>Evento Turístico</option>
+</select>
+
+<input id="dataVisita" type="date">
+<input id="guia" placeholder="Guia responsável">
+<textarea id="obs" placeholder="Observações"></textarea>
+
+<button onclick="salvar()">Salvar Check-in</button>
+<div id="status"></div>
+</div>
+
+<div class="card">
+<h2>Registros Turísticos</h2>
+<div id="lista" class="grid"></div>
+</div>
+
+</div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+getAuth, GoogleAuthProvider, signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+authDomain: "portal-vilabela-oficial.firebaseapp.com",
+projectId: "portal-vilabela-oficial",
+storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+messagingSenderId: "908975101824",
+appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+window.loginGoogle = async function(){
+try{
+await signInWithPopup(auth,new GoogleAuthProvider());
+loginBox.classList.add("hidden");
+painel.classList.remove("hidden");
+carregar();
+}catch(e){
+msg.innerText=e.message;
+}
+}
+
+window.salvar = async function(){
+try{
+await addDoc(collection(db,"turismo"),{
+nome:nome.value,
+origem:origem.value,
+qtd:Number(qtd.value||0),
+atrativo:atrativo.value,
+dataVisita:dataVisita.value,
+guia:guia.value,
+obs:obs.value,
+data:serverTimestamp()
+});
+status.innerText="Check-in salvo com sucesso!";
+nome.value="";origem.value="";qtd.value="";
+guia.value="";obs.value="";
+carregar();
+}catch(e){
+status.innerText=e.message;
+}
+}
+
+async function carregar(){
+const snap = await getDocs(collection(db,"turismo"));
+lista.innerHTML="";
+
+snap.forEach(x=>{
+const d=x.data();
+lista.innerHTML += `
+<div class="item">
+<strong>${d.nome}</strong><br>
+<span class="small">${d.origem}</span><br><br>
+Atrativo: ${d.atrativo}<br>
+Data: ${d.dataVisita}<br>
+Qtd: ${d.qtd}<br>
+Guia: ${d.guia}<br><br>
+${d.obs || ""}
+<br><br>
+<button onclick="apagar('${x.id}')">Excluir</button>
+</div>`;
+});
+}
+
+window.apagar = async function(id){
+await deleteDoc(doc(db,"turismo",id));
+carregar();
+}
+</script>
+
+</body>
+</html> 
