@@ -151,4 +151,22 @@ lista.innerHTML="";
 const snap = await getDocs(collection(db,"noticias"));
 
 if(snap.empty){
-lista.innerHTML="Nen
+lista.innerHTML="Nenhuma notícia publicada.";
+return;
+}
+
+snap.forEach((x)=>{
+const d = x.data();
+lista.innerHTML += `
+<div class="noticia">
+<h3>${d.titulo || "Sem título"}</h3>
+<p style="margin-top:10px">${d.texto || ""}</p>
+</div>`;
+});
+}
+
+carregarNoticias();
+</script>
+
+</body>
+</html>
