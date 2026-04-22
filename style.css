@@ -1,1 +1,68 @@
+.hero-capa-oficial{
+  background-image:url("imagens/capa-oficial.jpg");
+  background-size:cover;
+  background-position:center;
+  background-repeat:no-repeat;
+  border-radius:0 0 22px 22px;
+  overflow:hidden;
+}
 
+.hero-overlay{
+  background:linear-gradient(135deg,rgba(13,71,161,.82),rgba(21,101,192,.68));
+  min-height:420px;
+  display:flex;
+  align-items:center;
+}
+
+.hero-conteudo-oficial{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+  background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:22px;
+  padding:30px 24px;
+  backdrop-filter:blur(4px);
+}
+
+.brasao-oficial{
+  width:110px;
+  max-width:100%;
+  margin:0 auto 18px;
+  display:block;
+  background:rgba(255,255,255,.12);
+  padding:10px;
+  border-radius:18px;
+}
+
+.hero-conteudo-oficial h1{
+  font-size:40px;
+  line-height:1.15;
+  margin-bottom:14px;
+}
+
+.hero-conteudo-oficial p{
+  font-size:19px;
+  line-height:1.7;
+  max-width:760px;
+  margin:0 auto;
+}
+
+@media(max-width:768px){
+  .hero-overlay{
+    min-height:360px;
+  }
+
+  .brasao-oficial{
+    width:84px;
+    margin-bottom:14px;
+  }
+
+  .hero-conteudo-oficial h1{
+    font-size:28px;
+  }
+
+  .hero-conteudo-oficial p{
+    font-size:16px;
+  }
+}
