@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Painel Admin Google • Vila Bela MT</title>
+<title>Painel Admin • Notícias + Contatos</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f4f6f9;color:#222}
+body{background:#eef2f7;color:#222}
 header{background:#0d47a1;color:#fff;padding:18px;text-align:center;font-size:24px;font-weight:bold}
-.container{max-width:1100px;margin:auto;padding:20px}
-.card{background:#fff;padding:20px;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}
-button,select{
+.container{max-width:1200px;margin:auto;padding:20px}
+.card{background:#fff;padding:20px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}
+input,textarea,button,select{
 width:100%;padding:12px;margin:8px 0;
 border:1px solid #ccc;border-radius:8px;font-size:16px
 }
-button{background:#0d47a1;color:#fff;border:none;font-weight:bold}
+button{background:#0d47a1;color:#fff;border:none;font-weight:bold;cursor:pointer}
+button:hover{background:#1565c0}
 .grid{display:grid;gap:15px}
 .item{border:1px solid #ddd;border-radius:10px;padding:15px;background:#fafafa}
 .hidden{display:none}
+.small{font-size:13px;color:#666}
 .badge{padding:5px 10px;border-radius:20px;color:#fff;font-size:12px}
 .novo{background:#2e7d32}.analise{background:#ef6c00}.resolvido{background:#1565c0}
-.small{font-size:13px;color:#666}
+@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 
-<header>Painel Admin Google • Portal Prefeitura Vila Bela MT</header>
+<header>Painel Admin • Portal Prefeitura Vila Bela MT</header>
 
 <div class="container">
 
@@ -37,23 +39,36 @@ button{background:#0d47a1;color:#fff;border:none;font-weight:bold}
 </div>
 
 <div id="painel" class="hidden">
+
 <div class="card">
-<h2>Mensagens Recebidas</h2>
-<button onclick="logout()">Sair</button>
-</div>
-<div id="lista" class="grid"></div>
+<h2>Publicar Notícia</h2>
+<input id="titulo" placeholder="Título da notícia">
+<textarea id="texto" placeholder="Conteúdo da notícia"></textarea>
+<button onclick="publicarNoticia()">Publicar Notícia</button>
+<div id="nmsg"></div>
 </div>
 
+<div class="card">
+<h2>Notícias Publicadas</h2>
+<div id="listaNoticias" class="grid"></div>
+</div>
+
+<div class="card">
+<h2>Mensagens Recebidas</h2>
+<div id="listaContatos" class="grid"></div>
+</div>
+
+</div>
 </div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
-getFirestore, collection, getDocs, doc, updateDoc, deleteDoc
+getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 import {
-getAuth, GoogleAuthProvider, signInWithPopup, signOut
+getAuth, GoogleAuthProvider, signInWithPopup
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 const firebaseConfig = {
@@ -72,38 +87,60 @@ const auth = getAuth(app);
 window.loginGoogle = async function(){
 try{
 await signInWithPopup(auth,new GoogleAuthProvider());
-document.getElementById("loginBox").classList.add("hidden");
-document.getElementById("painel").classList.remove("hidden");
-carregar();
-}catch(err){
-document.getElementById("msg").innerText="Erro: "+err.message;
+loginBox.classList.add("hidden");
+painel.classList.remove("hidden");
+carregarNoticias();
+carregarContatos();
+}catch(e){
+msg.innerText="Erro: "+e.message;
 }
 }
 
-window.logout = async function(){
-await signOut(auth);
-location.reload();
+window.publicarNoticia = async function(){
+try{
+await addDoc(collection(db,"noticias"),{
+titulo:titulo.value,
+texto:texto.value,
+data:serverTimestamp()
+});
+nmsg.innerText="Notícia publicada!";
+titulo.value=""; texto.value="";
+carregarNoticias();
+}catch(e){
+nmsg.innerText=e.message;
+}
 }
 
-async function carregar(){
+async function carregarNoticias(){
+const snap = await getDocs(collection(db,"noticias"));
+listaNoticias.innerHTML="";
+snap.forEach(x=>{
+const d=x.data();
+listaNoticias.innerHTML += `
+<div class="item">
+<strong>${d.titulo}</strong><br><br>
+${d.texto}<br><br>
+<button onclick="apagarNoticia('${x.id}')">Excluir</button>
+</div>`;
+});
+}
+
+window.apagarNoticia = async function(id){
+await deleteDoc(doc(db,"noticias",id));
+carregarNoticias();
+}
+
+async function carregarContatos(){
 const snap = await getDocs(collection(db,"contatos"));
-const lista = document.getElementById("lista");
-lista.innerHTML="";
-
-snap.forEach((x)=>{
+listaContatos.innerHTML="";
+snap.forEach(x=>{
 const d=x.data(), id=x.id;
 const st=d.status||"novo";
-let cls="novo";
-if(st==="em análise") cls="analise";
-if(st==="resolvido") cls="resolvido";
-
-lista.innerHTML += `
+listaContatos.innerHTML += `
 <div class="item">
 <strong>${d.nome}</strong><br>
 <span class="small">${d.email}</span><br><br>
 ${d.mensagem}<br><br>
-
-<span class="badge ${cls}">${st}</span>
 
 <select id="s_${id}">
 <option ${st==="novo"?"selected":""}>novo</option>
@@ -111,23 +148,21 @@ ${d.mensagem}<br><br>
 <option ${st==="resolvido"?"selected":""}>resolvido</option>
 </select>
 
-<button onclick="salvar('${id}')">Salvar</button>
-<button onclick="apagar('${id}')" style="background:#c62828">Excluir</button>
+<button onclick="salvarContato('${id}')">Salvar</button>
+<button onclick="apagarContato('${id}')">Excluir</button>
 </div>`;
 });
 }
 
-window.salvar = async function(id){
+window.salvarContato = async function(id){
 const v=document.getElementById("s_"+id).value;
 await updateDoc(doc(db,"contatos",id),{status:v});
-carregar();
+carregarContatos();
 }
 
-window.apagar = async function(id){
-if(confirm("Excluir mensagem?")){
+window.apagarContato = async function(id){
 await deleteDoc(doc(db,"contatos",id));
-carregar();
-}
+carregarContatos();
 }
 </script>
 
