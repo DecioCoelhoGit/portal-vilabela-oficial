@@ -1,1 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Seed Cultura • Vila Bela MT</title>
+<style>
+body{font-family:Arial,sans-serif;background:#eef2f7;padding:30px;max-width:800px;margin:auto}
+.card{background:#fff;padding:25px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
+button{width:100%;padding:14px;border:none;border-radius:10px;background:#6a1b9a;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
+button:hover{opacity:.95}
+#log{margin-top:15px;white-space:pre-line;color:#333}
+small{color:#666}
+</style>
+</head>
+<body>
 
+<div class="card">
+<h1>Seed Cultura</h1>
+<p>Carrega automaticamente registros de teste na coleção <b>cultura</b>.</p>
+<button onclick="executarSeed()">Inserir Massa de Teste</button>
+<div id="log"></div>
+<small>Use uma vez. Se clicar novamente, duplicará os dados.</small>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+getFirestore, collection, addDoc, serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+authDomain: "portal-vilabela-oficial.firebaseapp.com",
+projectId: "portal-vilabela-oficial",
+storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+messagingSenderId: "908975101824",
+appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const dados = [
+{nome:"Escola Estadual Marechal Rondon",cidade:"Cuiabá MT",grupo:"Turma 9º Ano",qtd:42,tipo:"Visita ao Museu",responsavel:"Profª Ana Paula",obs:"Aula de campo sobre história regional"},
+{nome:"Universidade Federal",cidade:"Cáceres MT",grupo:"Curso de História",qtd:18,tipo:"Visita ao Museu",responsavel:"Dr. Carlos Mendes",obs:"Pesquisa acadêmica"},
+{nome:"Grupo Melhor Idade",cidade:"Vila Bela MT",grupo:"Convivência Social",qtd:25,tipo:"Evento Cultural",responsavel:"Maria de Lourdes",obs:"Apresentação cultural"},
+{nome:"Secretaria Municipal",cidade:"Vila Bela MT",grupo:"Atendimento Interno",qtd:6,tipo:"Atendimento Secretaria",responsavel:"Equipe Técnica",obs:"Reunião institucional"},
+{nome:"Turistas SP",cidade:"São Paulo SP",grupo:"Famílias Visitantes",qtd:12,tipo:"Visita ao Museu",responsavel:"Décio Coelho",obs:"Roteiro histórico-cultural"},
+{nome:"Projeto Jovem Arte",cidade:"Pontes e Lacerda MT",grupo:"Oficina de Artes",qtd:30,tipo:"Evento Cultural",responsavel:"João Batista",obs:"Exposição e oficina"},
+{nome:"Equipe Técnica",cidade:"Vila Bela MT",grupo:"Patrimônio Cultural",qtd:8,tipo:"Trabalho de Campo",responsavel:"Ederson Coelho",obs:"Levantamento fotográfico"}
+];
+
+window.executarSeed = async function(){
+const log = document.getElementById("log");
+log.innerText = "Iniciando...\n";
+
+let total = 0;
+
+for(const item of dados){
+await addDoc(collection(db,"cultura"),{
+...item,
+data: serverTimestamp()
+});
+total++;
+log.innerText += "✔ Registro inserido: " + item.nome + "\n";
+}
+
+log.innerText += "\n✅ Seed concluída. Total: " + total + " registros.";
+}
+</script>
+
+</body>
+</html>
