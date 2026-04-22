@@ -1,566 +1,37 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal Oficial • Prefeitura de Vila Bela da Santíssima Trindade MT</title>
   <meta name="description" content="Portal oficial da Prefeitura de Vila Bela da Santíssima Trindade MT com serviços, secretarias, notícias, turismo, cultura, transparência e gestão pública digital." />
-  <style>
-    :root {
-      --azul-900: #071d41;
-      --azul-800: #0c326f;
-      --azul-700: #1351b4;
-      --azul-600: #2670e8;
-      --azul-050: #e8f0ff;
-      --cinza-900: #1f2328;
-      --cinza-700: #50565e;
-      --cinza-500: #8b949e;
-      --cinza-200: #d8dce3;
-      --cinza-100: #f3f6fb;
-      --branco: #ffffff;
-      --verde: #168821;
-      --amarelo: #ffcd07;
-      --vermelho: #c92a2a;
-      --sombra: 0 10px 26px rgba(0,0,0,.08);
-      --raio: 18px;
-      --largura: 1180px;
-    }* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  color: var(--cinza-900);
-  background: var(--cinza-100);
-  line-height: 1.55;
-}
-
-a { color: inherit; }
-
-.barra-topo {
-  background: var(--azul-900);
-  color: var(--branco);
-  font-size: 14px;
-}
-
-.barra-topo .inner,
-.cabecalho .inner,
-.hero .inner,
-.secao .inner,
-.rodape .inner {
-  max-width: var(--largura);
-  margin: 0 auto;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
-.barra-topo .inner {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.cabecalho {
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background: rgba(255,255,255,.96);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid var(--cinza-200);
-}
-
-.cabecalho .inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 14px;
-  padding-bottom: 14px;
-}
-
-.marca {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-width: 0;
-}
-
-.brasao {
-  width: 74px;
-  height: 74px;
-  border-radius: 16px;
-  object-fit: contain;
-  background: var(--branco);
-  padding: 6px;
-  box-shadow: var(--sombra);
-  flex-shrink: 0;
-}
-
-.marca-texto small {
-  display: block;
-  color: var(--azul-700);
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: .05em;
-  margin-bottom: 4px;
-  font-size: 12px;
-}
-
-.marca-texto h1 {
-  margin: 0;
-  font-size: 28px;
-  line-height: 1.05;
-  color: var(--azul-900);
-}
-
-.marca-texto p {
-  margin: 4px 0 0;
-  color: var(--cinza-700);
-  font-size: 14px;
-}
-
-.menu {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-}
-
-.menu a {
-  text-decoration: none;
-  color: var(--azul-900);
-  font-weight: bold;
-  padding: 10px 14px;
-  border-radius: 12px;
-  transition: .2s ease;
-}
-
-.menu a:hover,
-.menu a:focus {
-  background: var(--azul-050);
-  color: var(--azul-700);
-}
-
-.hero {
-  background:
-    linear-gradient(125deg, rgba(7,29,65,.88), rgba(19,81,180,.76)),
-    url('imagens/capa-oficial.jpg') center/cover no-repeat;
-  color: var(--branco);
-}
-
-.hero .inner {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 28px;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 46px;
-}
-
-.hero-box {
-  background: rgba(255,255,255,.10);
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: var(--sombra);
-}
-
-.hero-tag {
-  display: inline-block;
-  background: rgba(255,255,255,.14);
-  border: 1px solid rgba(255,255,255,.18);
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-  margin-bottom: 14px;
-}
-
-.hero h2 {
-  margin: 0 0 16px;
-  font-size: 46px;
-  line-height: 1.08;
-}
-
-.hero p {
-  font-size: 19px;
-  margin: 0 0 22px;
-  max-width: 760px;
-}
-
-.hero-botoes {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.botao,
-.botao-secundario {
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 18px;
-  border-radius: 14px;
-  font-weight: bold;
-  min-width: 180px;
-}
-
-.botao {
-  background: var(--amarelo);
-  color: var(--azul-900);
-}
-
-.botao-secundario {
-  background: transparent;
-  border: 1px solid rgba(255,255,255,.5);
-  color: var(--branco);
-}
-
-.hero-painel {
-  background: rgba(255,255,255,.12);
-  border: 1px solid rgba(255,255,255,.16);
-  border-radius: 22px;
-  padding: 22px;
-  box-shadow: var(--sombra);
-}
-
-.hero-painel h3 {
-  margin: 0 0 16px;
-  font-size: 22px;
-}
-
-.mini-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.mini-card {
-  background: rgba(255,255,255,.14);
-  border-radius: 16px;
-  padding: 16px;
-}
-
-.mini-card strong {
-  display: block;
-  font-size: 28px;
-  margin-bottom: 6px;
-}
-
-.secao {
-  padding-top: 34px;
-  padding-bottom: 6px;
-}
-
-.bloco {
-  background: var(--branco);
-  border-radius: 22px;
-  box-shadow: var(--sombra);
-  padding: 26px;
-  margin-bottom: 24px;
-}
-
-.titulo-secao {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 20px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
-
-.titulo-secao h3 {
-  margin: 0;
-  font-size: 32px;
-  color: var(--azul-900);
-}
-
-.titulo-secao p {
-  margin: 0;
-  color: var(--cinza-700);
-  max-width: 780px;
-}
-
-.atalhos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 18px;
-}
-
-.atalho {
-  display: block;
-  background: linear-gradient(180deg,#ffffff,#f7faff);
-  border: 1px solid #d7e3ff;
-  border-radius: 18px;
-  padding: 20px;
-  text-decoration: none;
-  transition: .2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,.04);
-}
-
-.atalho:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 22px rgba(0,0,0,.08);
-  border-color: #9fc0ff;
-}
-
-.atalho .icone {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 14px;
-  font-size: 24px;
-  font-weight: bold;
-  color: var(--branco);
-}
-
-.i-noticias { background: var(--azul-700); }
-.i-cultura { background: #7b1fa2; }
-.i-turismo { background: #00796b; }
-.i-transp { background: var(--verde); }
-.i-admin { background: #5d4037; }
-.i-dashboard { background: #ef6c00; }
-
-.atalho h4 {
-  margin: 0 0 10px;
-  font-size: 20px;
-  color: var(--azul-900);
-}
-
-.atalho p {
-  margin: 0;
-  color: var(--cinza-700);
-}
-
-.noticias-layout {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  gap: 20px;
-}
-
-.destaque {
-  background: linear-gradient(180deg,#f7fbff,#eef4ff);
-  border: 1px solid #d9e6ff;
-  border-radius: 18px;
-  padding: 22px;
-  min-height: 260px;
-}
-
-.destaque .tag {
-  display: inline-block;
-  background: var(--azul-700);
-  color: var(--branco);
-  padding: 6px 10px;
-  font-size: 12px;
-  font-weight: bold;
-  border-radius: 999px;
-  margin-bottom: 14px;
-}
-
-.destaque h4 {
-  margin: 0 0 12px;
-  font-size: 30px;
-  color: var(--azul-900);
-  line-height: 1.2;
-}
-
-.destaque p {
-  margin: 0 0 14px;
-  font-size: 17px;
-}
-
-.noticia-data {
-  font-size: 12px;
-  color: var(--cinza-500);
-  font-weight: bold;
-  letter-spacing: .03em;
-  text-transform: uppercase;
-}
-
-.noticias-lista {
-  display: grid;
-  gap: 14px;
-}
-
-.noticia-card {
-  border: 1px solid var(--cinza-200);
-  border-radius: 16px;
-  padding: 18px;
-  background: #fafcff;
-}
-
-.noticia-card h5 {
-  margin: 0 0 10px;
-  color: var(--azul-900);
-  font-size: 20px;
-}
-
-.transparencia-box {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 18px;
-}
-
-.info-box {
-  background: linear-gradient(180deg,#fafffb,#f0fff5);
-  border: 1px solid #d3f0da;
-  border-radius: 18px;
-  padding: 20px;
-}
-
-.info-box h4 {
-  margin: 0 0 10px;
-  color: #165d2f;
-  font-size: 22px;
-}
-
-.formulario label {
-  display: block;
-  margin-bottom: 6px;
-  font-weight: bold;
-  color: var(--azul-900);
-}
-
-.campo,
-.campo-area,
-.campo-botao {
-  width: 100%;
-  border: 1px solid var(--cinza-200);
-  border-radius: 14px;
-  font-size: 16px;
-}
-
-.campo,
-.campo-area {
-  padding: 14px;
-  background: #fbfcfe;
-}
-
-.campo-area {
-  min-height: 140px;
-  resize: vertical;
-}
-
-.campo-botao {
-  border: none;
-  background: var(--azul-700);
-  color: var(--branco);
-  padding: 15px 18px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-#status {
-  margin-top: 14px;
-  font-weight: bold;
-}
-
-.grade-rodape {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 18px;
-}
-
-.rodape {
-  background: var(--azul-900);
-  color: var(--branco);
-  margin-top: 30px;
-}
-
-.rodape .inner {
-  padding-top: 28px;
-  padding-bottom: 28px;
-}
-
-.rodape h4 {
-  margin: 0 0 12px;
-  font-size: 18px;
-}
-
-.rodape p,
-.rodape li {
-  color: rgba(255,255,255,.88);
-  font-size: 14px;
-}
-
-.rodape ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: grid;
-  gap: 8px;
-}
-
-.rodape a {
-  color: rgba(255,255,255,.92);
-  text-decoration: none;
-}
-
-.parcerias,
-.creditos {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px solid rgba(255,255,255,.14);
-}
-
-.rodape-final {
-  margin-top: 18px;
-  padding-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.14);
-  font-size: 13px;
-  color: rgba(255,255,255,.82);
-}
-
-.badge-legal {
-  display: inline-block;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.14);
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 12px;
-  margin: 4px 6px 0 0;
-}
-
-@media (max-width: 980px) {
-  .hero .inner,
-  .noticias-layout,
-  .transparencia-box,
-  .grade-rodape {
-    grid-template-columns: 1fr;
-  }
-
-  .hero h2 { font-size: 36px; }
-  .titulo-secao h3 { font-size: 28px; }
-}
-
-@media (max-width: 700px) {
-  .logo-titulo { font-size: 22px; }
-  .hero h2 { font-size: 28px; }
-  .hero p { font-size: 16px; }
-  .titulo-secao h3 { font-size: 24px; }
-  .destaque h4 { font-size: 24px; }
-  .card h2, .bloco h2 { font-size: 24px; }
-  .hero-box, .hero-painel, .bloco { padding: 20px; }
-  .mini-grid { grid-template-columns: 1fr 1fr; }
-}
-
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+  <div class="barra-acessibilidade">
+    <div class="inner">
+      <div class="acessibilidade-links">
+        <a href="#conteudo-principal">Ir para o conteúdo</a>
+        <a href="#menu-principal">Ir para o menu</a>
+        <a href="#contato">Ir para o contato</a>
+      </div>
+      <div class="acessibilidade-acoes">
+        <button type="button" onclick="alterarFonte(1)">A+</button>
+        <button type="button" onclick="alterarFonte(-1)">A-</button>
+        <button type="button" onclick="alternarContraste()">Alto contraste</button>
+      </div>
+    </div>
+  </div>
+
   <div class="barra-topo">
     <div class="inner">
       <div>Portal institucional em evolução • Vila Bela da Santíssima Trindade MT</div>
       <div>Transformação digital • Atendimento ao cidadão • Gestão pública integrada</div>
     </div>
-  </div>  <header class="cabecalho">
+  </div>
+
+  <header class="cabecalho">
     <div class="inner">
       <div class="marca">
         <img class="brasao" src="imagens/brasao.png" alt="Brasão oficial da Prefeitura" />
@@ -569,18 +40,21 @@ a { color: inherit; }
           <h1>Vila Bela da Santíssima Trindade MT</h1>
           <p>Portal oficial com serviços, secretarias, notícias, transparência e gestão digital.</p>
         </div>
-      </div><nav class="menu">
-    <a href="#servicos">Serviços</a>
-    <a href="#secretarias">Secretarias</a>
-    <a href="#noticias">Notícias</a>
-    <a href="#transparencia">Transparência</a>
-    <a href="#contato">Contato</a>
-    <a href="admin.html">Admin</a>
-    <a href="dashboard.html">Dashboard</a>
-  </nav>
-</div>
+      </div>
 
-  </header>  <section class="hero">
+      <nav class="menu" id="menu-principal">
+        <a href="#servicos">Serviços</a>
+        <a href="#secretarias">Secretarias</a>
+        <a href="#noticias">Notícias</a>
+        <a href="#transparencia">Transparência</a>
+        <a href="#contato">Contato</a>
+        <a href="admin.html">Admin</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
     <div class="inner">
       <div class="hero-box">
         <div class="hero-tag">Portal Completo Estilo Gov.br</div>
@@ -593,18 +67,39 @@ a { color: inherit; }
           <a class="botao" href="#secretarias">Acessar módulos</a>
           <a class="botao-secundario" href="noticia.html">Notícias oficiais</a>
         </div>
-      </div><div class="hero-painel">
-    <h3>Painel de acesso rápido</h3>
-    <div class="mini-grid">
-      <div class="mini-card"><strong>Portal</strong><span>Atendimento ao cidadão</span></div>
-      <div class="mini-card"><strong>Cultura</strong><span>Visitas e eventos</span></div>
-      <div class="mini-card"><strong>Turismo</strong><span>Check-in e atrativos</span></div>
-      <div class="mini-card"><strong>Transparência</strong><span>Receitas e despesas</span></div>
-    </div>
-  </div>
-</div>
+      </div>
 
-  </section>  <main class="secao">
+      <div class="hero-painel">
+        <h3>Painel de acesso rápido</h3>
+        <div class="mini-grid">
+          <div class="mini-card"><strong>Portal</strong><span>Atendimento ao cidadão</span></div>
+          <div class="mini-card"><strong>Cultura</strong><span>Visitas e eventos</span></div>
+          <div class="mini-card"><strong>Turismo</strong><span>Check-in e atrativos</span></div>
+          <div class="mini-card"><strong>Transparência</strong><span>Receitas e despesas</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="secao" id="conteudo-principal">
+    <div class="inner">
+      <section class="bloco barra-servicos-publicos" aria-label="Barra de serviços públicos">
+        <div class="titulo-secao">
+          <div>
+            <h3>Barra de serviços</h3>
+            <p>Acesso rápido aos principais serviços e áreas públicas do portal.</p>
+          </div>
+        </div>
+        <div class="servicos-grid">
+          <a class="servico-chip" href="#contato">Ouvidoria</a>
+          <a class="servico-chip" href="transparencia.html">Receitas e despesas</a>
+          <a class="servico-chip" href="noticia.html">Publicações oficiais</a>
+          <a class="servico-chip" href="cultura.html">Agenda cultural</a>
+          <a class="servico-chip" href="turismo.html">Check-in turístico</a>
+          <a class="servico-chip" href="dashboard.html">Indicadores</a>
+        </div>
+      </section>
+
     <div class="inner">
       <section class="bloco" id="servicos">
         <div class="titulo-secao">
@@ -618,122 +113,125 @@ a { color: inherit; }
           operações de turismo, transparência pública e governança de dados. A arquitetura pode evoluir para novas secretarias,
           protocolos digitais, relatórios, automações e aplicação móvel.
         </p>
-      </section><section class="bloco" id="secretarias">
-    <div class="titulo-secao">
-      <div>
-        <h3>Secretarias e módulos</h3>
-        <p>Acesso organizado às áreas estratégicas do portal institucional.</p>
-      </div>
+      </section>
+
+      <section class="bloco" id="secretarias">
+        <div class="titulo-secao">
+          <div>
+            <h3>Secretarias e módulos</h3>
+            <p>Acesso organizado às áreas estratégicas do portal institucional.</p>
+          </div>
+        </div>
+
+        <div class="atalhos">
+          <a class="atalho" href="noticia.html">
+            <div class="icone i-noticias">N</div>
+            <h4>Notícias Oficiais</h4>
+            <p>Comunicados, destaques institucionais, agenda pública e publicações oficiais.</p>
+          </a>
+
+          <a class="atalho" href="cultura.html">
+            <div class="icone i-cultura">C</div>
+            <h4>Secretaria de Cultura</h4>
+            <p>Controle de visitas ao museu, eventos, registros de campo e atendimento cultural.</p>
+          </a>
+
+          <a class="atalho" href="turismo.html">
+            <div class="icone i-turismo">T</div>
+            <h4>Secretaria de Turismo</h4>
+            <p>Check-in turístico, atrativos, agendamentos, city tour e acompanhamento de visitantes.</p>
+          </a>
+
+          <a class="atalho" href="transparencia.html">
+            <div class="icone i-transp">R$</div>
+            <h4>Transparência Real</h4>
+            <p>Receitas, despesas, licitações, convênios e prestação de contas institucional.</p>
+          </a>
+
+          <a class="atalho" href="admin.html">
+            <div class="icone i-admin">A</div>
+            <h4>Painel Administrativo</h4>
+            <p>Gestão de contatos, notícias, publicações e operações internas por módulo.</p>
+          </a>
+
+          <a class="atalho" href="dashboard.html">
+            <div class="icone i-dashboard">D</div>
+            <h4>Dashboard Executivo</h4>
+            <p>Indicadores multissecretarias com visão geral dos dados públicos e operacionais.</p>
+          </a>
+        </div>
+      </section>
+
+      <section class="bloco" id="noticias">
+        <div class="titulo-secao">
+          <div>
+            <h3>Notícias oficiais</h3>
+            <p>Publicações dinâmicas carregadas diretamente da base de dados institucional.</p>
+          </div>
+          <div><a href="noticia.html">Ver página completa de notícias</a></div>
+        </div>
+
+        <div class="noticias-layout">
+          <div id="noticiaPrincipal" class="destaque">
+            <div class="tag">DESTAQUE</div>
+            <h4>Carregando notícia principal...</h4>
+            <p>Aguarde o carregamento das publicações oficiais.</p>
+            <div class="noticia-data"></div>
+          </div>
+
+          <div id="listaNoticias" class="noticias-lista"></div>
+        </div>
+      </section>
+
+      <section class="bloco" id="transparencia">
+        <div class="titulo-secao">
+          <div>
+            <h3>Transparência pública</h3>
+            <p>Estrutura para evolução de receitas, despesas, convênios, licitações e evidências documentais.</p>
+          </div>
+        </div>
+
+        <div class="transparencia-box">
+          <div class="info-box">
+            <h4>Consulta pública</h4>
+            <p>O módulo de transparência pode concentrar registros financeiros, documentos públicos, painéis comparativos e relatórios por secretaria.</p>
+            <p style="margin-top:12px;"><a href="transparencia.html">Acessar módulo de transparência</a></p>
+          </div>
+
+          <div class="info-box">
+            <h4>Base de governança</h4>
+            <p>Com a arquitetura atual, o portal está preparado para incorporar prestação de contas, anexos, filtros, relatórios executivos e rotinas de auditoria institucional.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco" id="contato">
+        <div class="titulo-secao">
+          <div>
+            <h3>Fale conosco</h3>
+            <p>Canal inicial de relacionamento digital com o cidadão.</p>
+          </div>
+        </div>
+
+        <form id="formContato" class="formulario">
+          <label for="nome">Seu nome</label>
+          <input id="nome" class="campo" placeholder="Seu nome" required />
+
+          <label for="email">Seu e-mail</label>
+          <input id="email" class="campo" type="email" placeholder="Seu e-mail" required />
+
+          <label for="mensagem">Sua mensagem</label>
+          <textarea id="mensagem" class="campo-area" placeholder="Descreva sua solicitação" required></textarea>
+
+          <button class="campo-botao" type="submit">Enviar mensagem</button>
+        </form>
+
+        <div id="status"></div>
+      </section>
     </div>
+  </main>
 
-    <div class="atalhos">
-      <a class="atalho" href="noticia.html">
-        <div class="icone i-noticias">N</div>
-        <h4>Notícias Oficiais</h4>
-        <p>Comunicados, destaques institucionais, agenda pública e publicações oficiais.</p>
-      </a>
-
-      <a class="atalho" href="cultura.html">
-        <div class="icone i-cultura">C</div>
-        <h4>Secretaria de Cultura</h4>
-        <p>Controle de visitas ao museu, eventos, registros de campo e atendimento cultural.</p>
-      </a>
-
-      <a class="atalho" href="turismo.html">
-        <div class="icone i-turismo">T</div>
-        <h4>Secretaria de Turismo</h4>
-        <p>Check-in turístico, atrativos, agendamentos, city tour e acompanhamento de visitantes.</p>
-      </a>
-
-      <a class="atalho" href="transparencia.html">
-        <div class="icone i-transp">R$</div>
-        <h4>Transparência Real</h4>
-        <p>Receitas, despesas, licitações, convênios e prestação de contas institucional.</p>
-      </a>
-
-      <a class="atalho" href="admin.html">
-        <div class="icone i-admin">A</div>
-        <h4>Painel Administrativo</h4>
-        <p>Gestão de contatos, notícias, publicações e operações internas por módulo.</p>
-      </a>
-
-      <a class="atalho" href="dashboard.html">
-        <div class="icone i-dashboard">D</div>
-        <h4>Dashboard Executivo</h4>
-        <p>Indicadores multissecretarias com visão geral dos dados públicos e operacionais.</p>
-      </a>
-    </div>
-  </section>
-
-  <section class="bloco" id="noticias">
-    <div class="titulo-secao">
-      <div>
-        <h3>Notícias oficiais</h3>
-        <p>Publicações dinâmicas carregadas diretamente da base de dados institucional.</p>
-      </div>
-      <div><a href="noticia.html">Ver página completa de notícias</a></div>
-    </div>
-
-    <div class="noticias-layout">
-      <div id="noticiaPrincipal" class="destaque">
-        <div class="tag">DESTAQUE</div>
-        <h4>Carregando notícia principal...</h4>
-        <p>Aguarde o carregamento das publicações oficiais.</p>
-        <div class="noticia-data"></div>
-      </div>
-
-      <div id="listaNoticias" class="noticias-lista"></div>
-    </div>
-  </section>
-
-  <section class="bloco" id="transparencia">
-    <div class="titulo-secao">
-      <div>
-        <h3>Transparência pública</h3>
-        <p>Estrutura para evolução de receitas, despesas, convênios, licitações e evidências documentais.</p>
-      </div>
-    </div>
-
-    <div class="transparencia-box">
-      <div class="info-box">
-        <h4>Consulta pública</h4>
-        <p>O módulo de transparência pode concentrar registros financeiros, documentos públicos, painéis comparativos e relatórios por secretaria.</p>
-        <p style="margin-top:12px;"><a href="transparencia.html">Acessar módulo de transparência</a></p>
-      </div>
-
-      <div class="info-box">
-        <h4>Base de governança</h4>
-        <p>Com a arquitetura atual, o portal está preparado para incorporar prestação de contas, anexos, filtros, relatórios executivos e rotinas de auditoria institucional.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="bloco" id="contato">
-    <div class="titulo-secao">
-      <div>
-        <h3>Fale conosco</h3>
-        <p>Canal inicial de relacionamento digital com o cidadão.</p>
-      </div>
-    </div>
-
-    <form id="formContato" class="formulario">
-      <label for="nome">Seu nome</label>
-      <input id="nome" class="campo" placeholder="Seu nome" required />
-
-      <label for="email">Seu e-mail</label>
-      <input id="email" class="campo" type="email" placeholder="Seu e-mail" required />
-
-      <label for="mensagem">Sua mensagem</label>
-      <textarea id="mensagem" class="campo-area" placeholder="Descreva sua solicitação" required></textarea>
-
-      <button class="campo-botao" type="submit">Enviar mensagem</button>
-    </form>
-
-    <div id="status"></div>
-  </section>
-</div>
-
-  </main>  <footer class="rodape">
+  <footer class="rodape">
     <div class="inner">
       <div class="grade-rodape">
         <div>
@@ -741,65 +239,79 @@ a { color: inherit; }
           <p>
             Plataforma digital institucional em evolução para informação pública,
             atendimento, secretarias, cultura, turismo, transparência e gestão executiva.
-          </p><div class="parcerias">
-        <h4>Parcerias tecnológicas e estratégicas</h4>
-        <p>Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.</p>
-        <span class="badge-legal">GitHub Pages</span>
-        <span class="badge-legal">Firebase</span>
-        <span class="badge-legal">Cloud Firestore</span>
-        <span class="badge-legal">Firebase Auth</span>
-        <span class="badge-legal">OpenAI / ChatGPT</span>
+          </p>
+
+          <div class="parcerias">
+            <h4>Parcerias tecnológicas e estratégicas</h4>
+            <p>Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.</p>
+            <span class="badge-legal">GitHub Pages</span>
+            <span class="badge-legal">Firebase</span>
+            <span class="badge-legal">Cloud Firestore</span>
+            <span class="badge-legal">Firebase Auth</span>
+            <span class="badge-legal">OpenAI / ChatGPT</span>
+          </div>
+        </div>
+
+        <div>
+          <h4>Tecnologias</h4>
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript ES Modules</li>
+            <li>Firebase Web SDK</li>
+            <li>Cloud Firestore</li>
+            <li>GitHub Pages</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Referências e bases</h4>
+          <ul>
+            <li>Documentação Firebase</li>
+            <li>Boas práticas de arquitetura web</li>
+            <li>Diretrizes de acessibilidade digital</li>
+            <li>Curadoria histórica e institucional local</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Direitos e créditos</h4>
+          <ul>
+            <li>Conteúdo institucional sujeito à curadoria pública</li>
+            <li>Imagens e brasão sob uso oficial autorizado</li>
+            <li>Créditos editoriais e técnicos conforme publicação</li>
+            <li>Citações e bibliografia conforme seções específicas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="creditos">
+        <h4>Notas bibliográficas e citações</h4>
+        <p>
+          Esta estrutura prevê campos próprios para créditos, referências bibliográficas, autoria de imagens, atos administrativos,
+          notas técnicas e direitos autorais institucionais. Recomenda-se consolidar uma política editorial para identificar fonte,
+          autoria, data e natureza de cada publicação oficial.
+        </p>
+      </div>
+
+      <div class="rodape-final">
+        © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Portal oficial em evolução • Direitos reservados conforme normativas e publicações institucionais.
       </div>
     </div>
+  </footer>
 
-    <div>
-      <h4>Tecnologias</h4>
-      <ul>
-        <li>HTML5</li>
-        <li>CSS3</li>
-        <li>JavaScript ES Modules</li>
-        <li>Firebase Web SDK</li>
-        <li>Cloud Firestore</li>
-        <li>GitHub Pages</li>
-      </ul>
-    </div>
+  <script>
+    let fonteBase = 100;
+    function alterarFonte(delta){
+      fonteBase = Math.max(90, Math.min(130, fonteBase + (delta * 10)));
+      document.documentElement.style.fontSize = fonteBase + '%';
+    }
+    function alternarContraste(){
+      document.body.classList.toggle('alto-contraste');
+    }
+  </script>
 
-    <div>
-      <h4>Referências e bases</h4>
-      <ul>
-        <li>Documentação Firebase</li>
-        <li>Boas práticas de arquitetura web</li>
-        <li>Diretrizes de acessibilidade digital</li>
-        <li>Curadoria histórica e institucional local</li>
-      </ul>
-    </div>
-
-    <div>
-      <h4>Direitos e créditos</h4>
-      <ul>
-        <li>Conteúdo institucional sujeito à curadoria pública</li>
-        <li>Imagens e brasão sob uso oficial autorizado</li>
-        <li>Créditos editoriais e técnicos conforme publicação</li>
-        <li>Citações e bibliografia conforme seções específicas</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="creditos">
-    <h4>Notas bibliográficas e citações</h4>
-    <p>
-      Esta estrutura prevê campos próprios para créditos, referências bibliográficas, autoria de imagens, atos administrativos,
-      notas técnicas e direitos autorais institucionais. Recomenda-se consolidar uma política editorial para identificar fonte,
-      autoria, data e natureza de cada publicação oficial.
-    </p>
-  </div>
-
-  <div class="rodape-final">
-    © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Portal oficial em evolução • Direitos reservados conforme normativas e publicações institucionais.
-  </div>
-</div>
-
-  </footer>  <script type="module">
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
     import {
       getFirestore,
@@ -896,8 +408,11 @@ a { color: inherit; }
     }
 
     carregarNoticias();
-  </script></body>
+  </script>
+</body>
 </html>
-```Próximo passo recomendado
+```
 
-Agora o melhor salto é: 👉 VERSÃO GOV.BR COM ACESSIBILIDADE E BARRA DE SERVIÇOS
+## Próximo passo recomendado
+Agora o melhor salto é:
+**👉 VERSÃO GOV.BR COM ACESSIBILIDADE E BARRA DE SERVIÇOS**
