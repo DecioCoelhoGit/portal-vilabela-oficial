@@ -1,165 +1,665 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Transparência Real • Vila Bela MT</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#eef2f7;color:#222}
-header{
-background:#1b5e20;color:#fff;
-padding:18px;text-align:center;
-font-size:26px;font-weight:bold
-}
-.container{max-width:1200px;margin:auto;padding:20px}
-.card{
-background:#fff;padding:20px;border-radius:14px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-margin-bottom:20px
-}
-input,select,textarea,button{
-width:100%;padding:12px;margin:8px 0;
-border:1px solid #ccc;border-radius:8px;font-size:16px
-}
-button{
-background:#1b5e20;color:#fff;border:none;
-font-weight:bold;cursor:pointer
-}
-button:hover{opacity:.92}
-.grid{display:grid;gap:15px}
-.item{
-border:1px solid #ddd;border-radius:10px;
-padding:15px;background:#fafafa
-}
-.hidden{display:none}
-.small{font-size:13px;color:#666}
-@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Executivo • Prefeitura de Vila Bela da Santíssima Trindade MT</title>
+  <meta name="description" content="Dashboard executivo do Portal Prefeitura Vila Bela MT com indicadores multissecretarias." />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .kpis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .kpi-card {
+      background: linear-gradient(180deg, #ffffff, #f7fbff);
+      border: 1px solid #d7e3ff;
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 4px 10px rgba(0,0,0,.04);
+    }
+
+    .kpi-label {
+      font-size: 14px;
+      color: var(--cinza-700);
+      margin-bottom: 8px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .03em;
+    }
+
+    .kpi-value {
+      font-size: 42px;
+      line-height: 1;
+      font-weight: bold;
+      color: var(--azul-900);
+      word-break: break-word;
+    }
+
+    .grafico-box {
+      display: grid;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    .barra-item {
+      display: grid;
+      gap: 6px;
+    }
+
+    .barra-topo-linha {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 15px;
+      font-weight: bold;
+      color: var(--cinza-900);
+    }
+
+    .barra-fundo {
+      width: 100%;
+      height: 18px;
+      background: #e9eef7;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .barra-preenchimento {
+      height: 100%;
+      border-radius: 999px;
+    }
+
+    .cor-contatos { background: #1351b4; }
+    .cor-noticias { background: #2670e8; }
+    .cor-cultura { background: #7b1fa2; }
+    .cor-turismo { background: #00796b; }
+    .cor-transparencia { background: #168821; }
+
+    .acoes-dashboard {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+
+    .acoes-dashboard .botao,
+    .acoes-dashboard .botao-secundario {
+      min-width: 190px;
+    }
+
+    .status-dashboard {
+      margin-top: 12px;
+      font-weight: bold;
+      color: var(--azul-700);
+    }
+
+    @media (max-width: 700px) {
+      .kpi-value {
+        font-size: 34px;
+      }
+
+      .acoes-dashboard {
+        flex-direction: column;
+      }
+
+      .acoes-dashboard .botao,
+      .acoes-dashboard .botao-secundario {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
 
-<header>Transparência Real • Portal Prefeitura Vila Bela MT</header>
+  <div class="barra-acessibilidade">
+    <div class="inner">
+      <div class="acessibilidade-links">
+        <a href="#conteudo-principal">Ir para o conteúdo</a>
+        <a href="#menu-principal">Ir para o menu</a>
+        <a href="#indicadores">Ir para os indicadores</a>
+      </div>
+      <div class="acessibilidade-acoes">
+        <button type="button" onclick="alterarFonte(1)">A+</button>
+        <button type="button" onclick="alterarFonte(-1)">A-</button>
+        <button type="button" onclick="alternarContraste()">Alto contraste</button>
+        <button type="button" onclick="definirIdioma('pt')">Português</button>
+        <button type="button" onclick="definirIdioma('en')">English</button>
+        <button type="button" onclick="definirIdioma('es')">Español</button>
+      </div>
+    </div>
+  </div>
 
-<div class="container">
+  <div class="barra-topo">
+    <div class="inner">
+      <div data-i18n="topo_1">Dashboard executivo • Prefeitura de Vila Bela da Santíssima Trindade MT</div>
+      <div data-i18n="topo_2">Indicadores integrados • Gestão pública digital • Monitoramento multissecretarias</div>
+    </div>
+  </div>
 
-<div class="card" id="loginBox">
-<h2>Acesso Administrativo</h2>
-<p class="small">Entrar com Google</p>
-<button onclick="loginGoogle()">Entrar com Google</button>
-<div id="msg"></div>
-</div>
+  <header class="cabecalho">
+    <div class="inner">
+      <div class="marca">
+        <img class="brasao" src="imagens/brasao.png" alt="Brasão oficial da Prefeitura" />
+        <div class="marca-texto">
+          <small data-i18n="marca_small">Prefeitura Municipal</small>
+          <h1>Vila Bela da Santíssima Trindade MT</h1>
+          <p data-i18n="marca_p">Painel executivo com dados integrados do portal institucional.</p>
+        </div>
+      </div>
 
-<div id="painel" class="hidden">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" onclick="alternarMenu()">☰ Menu</button>
 
-<div class="card">
-<h2>Lançar Receita / Despesa</h2>
+      <nav class="menu" id="menu-principal">
+        <a href="index.html" data-i18n="menu_inicio">Início</a>
+        <a href="#indicadores" data-i18n="menu_indicadores">Indicadores</a>
+        <a href="#comparativo" data-i18n="menu_comparativo">Comparativo</a>
+        <a href="noticias.html" data-i18n="menu_noticias">Notícias</a>
+        <a href="transparencia.html" data-i18n="menu_transparencia">Transparência</a>
+        <a href="admin.html">Admin</a>
+      </nav>
+    </div>
+  </header>
 
-<select id="tipo">
-<option>Receita</option>
-<option>Despesa</option>
-<option>Licitação</option>
-<option>Convênio</option>
-</select>
+  <section class="hero">
+    <div class="inner">
+      <div class="hero-box">
+        <div class="hero-tag" data-i18n="hero_tag">Dashboard Executivo</div>
+        <h2 data-i18n="hero_titulo">Visão geral dos dados públicos e operacionais do portal municipal.</h2>
+        <p data-i18n="hero_texto">
+          Acompanhe indicadores de contatos, notícias, cultura, turismo, transparência e total geral em um painel consolidado para apoio à gestão.
+        </p>
+        <div class="acoes-dashboard">
+          <a class="botao" href="#indicadores" data-i18n="hero_botao_1">Ver indicadores</a>
+          <a class="botao-secundario" href="index.html" data-i18n="hero_botao_2">Voltar ao portal</a>
+        </div>
+      </div>
 
-<input id="titulo" placeholder="Título / Descrição">
-<input id="valor" type="number" step="0.01" placeholder="Valor (R$)">
-<input id="setor" placeholder="Secretaria / Setor">
-<input id="dataRef" type="date">
-<textarea id="obs" placeholder="Observações"></textarea>
+      <div class="hero-painel">
+        <h3 data-i18n="painel_titulo">Resumo rápido</h3>
+        <div class="mini-grid">
+          <div class="mini-card"><strong id="miniTotal">0</strong><span data-i18n="mini_total">Total geral</span></div>
+          <div class="mini-card"><strong id="miniNoticias">0</strong><span data-i18n="mini_noticias">Notícias</span></div>
+          <div class="mini-card"><strong id="miniTurismo">0</strong><span data-i18n="mini_turismo">Turismo</span></div>
+          <div class="mini-card"><strong id="miniTransparencia">0</strong><span data-i18n="mini_transparencia">Transparência</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<button onclick="salvar()">Salvar Registro</button>
-<div id="status"></div>
-</div>
+  <main class="secao" id="conteudo-principal">
+    <div class="inner">
+      <section class="bloco" id="indicadores">
+        <div class="titulo-secao">
+          <div>
+            <h3 data-i18n="indicadores_titulo">Indicadores gerais</h3>
+            <p data-i18n="indicadores_texto">Contagem consolidada das coleções operacionais do sistema.</p>
+          </div>
+          <div>
+            <a href="admin.html" data-i18n="link_admin">Ir para o painel administrativo</a>
+          </div>
+        </div>
 
-<div class="card">
-<h2>Registros Publicados</h2>
-<div id="lista" class="grid"></div>
-</div>
+        <div class="acoes-dashboard">
+          <button class="campo-botao" type="button" onclick="carregarDashboard()" data-i18n="botao_atualizar">Atualizar dashboard</button>
+        </div>
 
-</div>
-</div>
+        <div id="statusDashboard" class="status-dashboard"></div>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+        <div class="kpis-grid">
+          <div class="kpi-card">
+            <div class="kpi-label" data-i18n="kpi_contatos">Contatos</div>
+            <div class="kpi-value" id="valorContatos">0</div>
+          </div>
 
-import {
-getAuth, GoogleAuthProvider, signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+          <div class="kpi-card">
+            <div class="kpi-label" data-i18n="kpi_noticias">Notícias</div>
+            <div class="kpi-value" id="valorNoticias">0</div>
+          </div>
 
-const firebaseConfig = {
-apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-authDomain: "portal-vilabela-oficial.firebaseapp.com",
-projectId: "portal-vilabela-oficial",
-storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-messagingSenderId: "908975101824",
-appId: "1:908975101824:web:f986598784403493721365"
-};
+          <div class="kpi-card">
+            <div class="kpi-label" data-i18n="kpi_cultura">Cultura</div>
+            <div class="kpi-value" id="valorCultura">0</div>
+          </div>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+          <div class="kpi-card">
+            <div class="kpi-label" data-i18n="kpi_turismo">Turismo</div>
+            <div class="kpi-value" id="valorTurismo">0</div>
+          </div>
 
-window.loginGoogle = async function(){
-try{
-await signInWithPopup(auth,new GoogleAuthProvider());
-loginBox.classList.add("hidden");
-painel.classList.remove("hidden");
-carregar();
-}catch(e){
-msg.innerText=e.message;
-}
-}
+          <div class="kpi-card">
+            <div class="kpi-label" data-i18n="kpi_transparencia">Transparência</div>
+            <div class="kpi-value" id="valorTransparencia">0</div>
+          </div>
 
-window.salvar = async function(){
-try{
-await addDoc(collection(db,"transparencia"),{
-tipo:tipo.value,
-titulo:titulo.value,
-valor:Number(valor.value||0),
-setor:setor.value,
-dataRef:dataRef.value,
-obs:obs.value,
-data:serverTimestamp()
-});
-status.innerText="Registro salvo com sucesso!";
-titulo.value="";valor.value="";setor.value="";
-dataRef.value="";obs.value="";
-carregar();
-}catch(e){
-status.innerText=e.message;
-}
-}
+          <div class="kpi-card">
+            <div class="kpi-label" data-i18n="kpi_total">Total geral</div>
+            <div class="kpi-value" id="valorTotal">0</div>
+          </div>
+        </div>
+      </section>
 
-async function carregar(){
-const snap = await getDocs(collection(db,"transparencia"));
-lista.innerHTML="";
+      <section class="bloco" id="comparativo">
+        <div class="titulo-secao">
+          <div>
+            <h3 data-i18n="comparativo_titulo">Comparativo por coleção</h3>
+            <p data-i18n="comparativo_texto">Distribuição visual das principais áreas do portal institucional.</p>
+          </div>
+        </div>
 
-snap.forEach(x=>{
-const d=x.data();
+        <div class="grafico-box">
+          <div class="barra-item">
+            <div class="barra-topo-linha">
+              <span data-i18n="kpi_contatos">Contatos</span>
+              <span id="textoContatos">0</span>
+            </div>
+            <div class="barra-fundo">
+              <div id="barraContatos" class="barra-preenchimento cor-contatos" style="width:0%"></div>
+            </div>
+          </div>
 
-lista.innerHTML += `
-<div class="item">
-<strong>${d.tipo}</strong><br><br>
-${d.titulo}<br>
-Valor: R$ ${Number(d.valor||0).toFixed(2)}<br>
-Setor: ${d.setor}<br>
-Data: ${d.dataRef}<br><br>
-${d.obs || ""}
-<br><br>
-<button onclick="apagar('${x.id}')">Excluir</button>
-</div>`;
-});
-}
+          <div class="barra-item">
+            <div class="barra-topo-linha">
+              <span data-i18n="kpi_noticias">Notícias</span>
+              <span id="textoNoticias">0</span>
+            </div>
+            <div class="barra-fundo">
+              <div id="barraNoticias" class="barra-preenchimento cor-noticias" style="width:0%"></div>
+            </div>
+          </div>
 
-window.apagar = async function(id){
-await deleteDoc(doc(db,"transparencia",id));
-carregar();
-}
-</script>
+          <div class="barra-item">
+            <div class="barra-topo-linha">
+              <span data-i18n="kpi_cultura">Cultura</span>
+              <span id="textoCultura">0</span>
+            </div>
+            <div class="barra-fundo">
+              <div id="barraCultura" class="barra-preenchimento cor-cultura" style="width:0%"></div>
+            </div>
+          </div>
 
+          <div class="barra-item">
+            <div class="barra-topo-linha">
+              <span data-i18n="kpi_turismo">Turismo</span>
+              <span id="textoTurismo">0</span>
+            </div>
+            <div class="barra-fundo">
+              <div id="barraTurismo" class="barra-preenchimento cor-turismo" style="width:0%"></div>
+            </div>
+          </div>
+
+          <div class="barra-item">
+            <div class="barra-topo-linha">
+              <span data-i18n="kpi_transparencia">Transparência</span>
+              <span id="textoTransparencia">0</span>
+            </div>
+            <div class="barra-fundo">
+              <div id="barraTransparencia" class="barra-preenchimento cor-transparencia" style="width:0%"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="inner">
+      <div class="grade-rodape">
+        <div>
+          <h4 data-i18n="rodape_titulo">Dashboard Executivo</h4>
+          <p data-i18n="rodape_texto">
+            Painel de indicadores estratégicos para monitoramento das áreas integradas ao portal institucional.
+          </p>
+
+          <div class="parcerias">
+            <h4 data-i18n="parcerias_titulo">Parcerias tecnológicas e estratégicas</h4>
+            <p data-i18n="parcerias_texto">Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.</p>
+            <span class="badge-legal">GitHub Pages</span>
+            <span class="badge-legal">Firebase</span>
+            <span class="badge-legal">Cloud Firestore</span>
+            <span class="badge-legal">OpenAI / ChatGPT</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 data-i18n="tecnologias_titulo">Tecnologias</h4>
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript ES Modules</li>
+            <li>Firebase Web SDK</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="referencias_titulo">Referências</h4>
+          <ul>
+            <li data-i18n="ref_1">Documentação Firebase</li>
+            <li data-i18n="ref_2">Arquitetura web responsiva</li>
+            <li data-i18n="ref_3">Acessibilidade digital</li>
+            <li data-i18n="ref_4">Curadoria institucional</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="direitos_titulo">Direitos e créditos</h4>
+          <ul>
+            <li data-i18n="dir_1">Conteúdo institucional</li>
+            <li data-i18n="dir_2">Créditos editoriais conforme publicação</li>
+            <li data-i18n="dir_3">Direitos reservados conforme normativas</li>
+            <li data-i18n="dir_4">Citações e bibliografia por seção</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-final" data-i18n="rodape_final">
+        © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Dashboard executivo • Direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function alternarMenu(){
+      const menu = document.getElementById('menu-principal');
+      const botao = document.querySelector('.menu-toggle');
+      menu.classList.toggle('menu-aberto');
+      const aberto = menu.classList.contains('menu-aberto');
+      botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    }
+
+    document.addEventListener('click', function(e){
+      const menu = document.getElementById('menu-principal');
+      const botao = document.querySelector('.menu-toggle');
+      if(!menu || !botao) return;
+      if(window.innerWidth > 700) return;
+      if(!menu.contains(e.target) && !botao.contains(e.target)){
+        menu.classList.remove('menu-aberto');
+        botao.setAttribute('aria-expanded','false');
+      }
+    });
+
+    let fonteBase = 100;
+
+    function alterarFonte(delta){
+      fonteBase = Math.max(90, Math.min(130, fonteBase + (delta * 10)));
+      document.documentElement.style.fontSize = fonteBase + '%';
+    }
+
+    function alternarContraste(){
+      document.body.classList.toggle('alto-contraste');
+    }
+
+    const traducoes = {
+      pt: {
+        topo_1: 'Dashboard executivo • Prefeitura de Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Indicadores integrados • Gestão pública digital • Monitoramento multissecretarias',
+        marca_small: 'Prefeitura Municipal',
+        marca_p: 'Painel executivo com dados integrados do portal institucional.',
+        menu_inicio: 'Início',
+        menu_indicadores: 'Indicadores',
+        menu_comparativo: 'Comparativo',
+        menu_noticias: 'Notícias',
+        menu_transparencia: 'Transparência',
+        hero_tag: 'Dashboard Executivo',
+        hero_titulo: 'Visão geral dos dados públicos e operacionais do portal municipal.',
+        hero_texto: 'Acompanhe indicadores de contatos, notícias, cultura, turismo, transparência e total geral em um painel consolidado para apoio à gestão.',
+        hero_botao_1: 'Ver indicadores',
+        hero_botao_2: 'Voltar ao portal',
+        painel_titulo: 'Resumo rápido',
+        mini_total: 'Total geral',
+        mini_noticias: 'Notícias',
+        mini_turismo: 'Turismo',
+        mini_transparencia: 'Transparência',
+        indicadores_titulo: 'Indicadores gerais',
+        indicadores_texto: 'Contagem consolidada das coleções operacionais do sistema.',
+        link_admin: 'Ir para o painel administrativo',
+        botao_atualizar: 'Atualizar dashboard',
+        kpi_contatos: 'Contatos',
+        kpi_noticias: 'Notícias',
+        kpi_cultura: 'Cultura',
+        kpi_turismo: 'Turismo',
+        kpi_transparencia: 'Transparência',
+        kpi_total: 'Total geral',
+        comparativo_titulo: 'Comparativo por coleção',
+        comparativo_texto: 'Distribuição visual das principais áreas do portal institucional.',
+        rodape_titulo: 'Dashboard Executivo',
+        rodape_texto: 'Painel de indicadores estratégicos para monitoramento das áreas integradas ao portal institucional.',
+        parcerias_titulo: 'Parcerias tecnológicas e estratégicas',
+        parcerias_texto: 'Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.',
+        tecnologias_titulo: 'Tecnologias',
+        referencias_titulo: 'Referências',
+        ref_1: 'Documentação Firebase',
+        ref_2: 'Arquitetura web responsiva',
+        ref_3: 'Acessibilidade digital',
+        ref_4: 'Curadoria institucional',
+        direitos_titulo: 'Direitos e créditos',
+        dir_1: 'Conteúdo institucional',
+        dir_2: 'Créditos editoriais conforme publicação',
+        dir_3: 'Direitos reservados conforme normativas',
+        dir_4: 'Citações e bibliografia por seção',
+        rodape_final: '© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Dashboard executivo • Direitos reservados.',
+        carregando: 'Carregando indicadores...',
+        atualizado: 'Dashboard atualizado com sucesso.',
+        erro: 'Erro ao carregar indicadores'
+      },
+      en: {
+        topo_1: 'Executive dashboard • Vila Bela da Santíssima Trindade MT City Hall',
+        topo_2: 'Integrated indicators • Digital public management • Multi-department monitoring',
+        marca_small: 'City Hall',
+        marca_p: 'Executive panel with integrated data from the institutional portal.',
+        menu_inicio: 'Home',
+        menu_indicadores: 'Indicators',
+        menu_comparativo: 'Comparison',
+        menu_noticias: 'News',
+        menu_transparencia: 'Transparency',
+        hero_tag: 'Executive Dashboard',
+        hero_titulo: 'Overview of public and operational data from the municipal portal.',
+        hero_texto: 'Track indicators for contacts, news, culture, tourism, transparency and total volume in a consolidated panel for management support.',
+        hero_botao_1: 'View indicators',
+        hero_botao_2: 'Back to portal',
+        painel_titulo: 'Quick summary',
+        mini_total: 'Grand total',
+        mini_noticias: 'News',
+        mini_turismo: 'Tourism',
+        mini_transparencia: 'Transparency',
+        indicadores_titulo: 'General indicators',
+        indicadores_texto: 'Consolidated count of the operational collections in the system.',
+        link_admin: 'Go to administrative panel',
+        botao_atualizar: 'Refresh dashboard',
+        kpi_contatos: 'Contacts',
+        kpi_noticias: 'News',
+        kpi_cultura: 'Culture',
+        kpi_turismo: 'Tourism',
+        kpi_transparencia: 'Transparency',
+        kpi_total: 'Grand total',
+        comparativo_titulo: 'Collection comparison',
+        comparativo_texto: 'Visual distribution of the main areas of the institutional portal.',
+        rodape_titulo: 'Executive Dashboard',
+        rodape_texto: 'Strategic indicator panel for monitoring the areas integrated into the institutional portal.',
+        parcerias_titulo: 'Technological and strategic partnerships',
+        parcerias_texto: 'Local institutional curation • Digital strategy • Information architecture • Artificial intelligence applied to planning.',
+        tecnologias_titulo: 'Technologies',
+        referencias_titulo: 'References',
+        ref_1: 'Firebase documentation',
+        ref_2: 'Responsive web architecture',
+        ref_3: 'Digital accessibility',
+        ref_4: 'Institutional curation',
+        direitos_titulo: 'Rights and credits',
+        dir_1: 'Institutional content',
+        dir_2: 'Editorial credits according to publication',
+        dir_3: 'Rights reserved according to regulations',
+        dir_4: 'Citations and bibliography by section',
+        rodape_final: '© 2026 Vila Bela da Santíssima Trindade MT City Hall • Executive dashboard • All rights reserved.',
+        carregando: 'Loading indicators...',
+        atualizado: 'Dashboard updated successfully.',
+        erro: 'Error loading indicators'
+      },
+      es: {
+        topo_1: 'Panel ejecutivo • Ayuntamiento de Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Indicadores integrados • Gestión pública digital • Monitoreo multisecretarías',
+        marca_small: 'Ayuntamiento Municipal',
+        marca_p: 'Panel ejecutivo con datos integrados del portal institucional.',
+        menu_inicio: 'Inicio',
+        menu_indicadores: 'Indicadores',
+        menu_comparativo: 'Comparativo',
+        menu_noticias: 'Noticias',
+        menu_transparencia: 'Transparencia',
+        hero_tag: 'Panel Ejecutivo',
+        hero_titulo: 'Visión general de los datos públicos y operativos del portal municipal.',
+        hero_texto: 'Acompañe indicadores de contactos, noticias, cultura, turismo, transparencia y total general en un panel consolidado para apoyo a la gestión.',
+        hero_botao_1: 'Ver indicadores',
+        hero_botao_2: 'Volver al portal',
+        painel_titulo: 'Resumen rápido',
+        mini_total: 'Total general',
+        mini_noticias: 'Noticias',
+        mini_turismo: 'Turismo',
+        mini_transparencia: 'Transparencia',
+        indicadores_titulo: 'Indicadores generales',
+        indicadores_texto: 'Conteo consolidado de las colecciones operativas del sistema.',
+        link_admin: 'Ir al panel administrativo',
+        botao_atualizar: 'Actualizar panel',
+        kpi_contatos: 'Contactos',
+        kpi_noticias: 'Noticias',
+        kpi_cultura: 'Cultura',
+        kpi_turismo: 'Turismo',
+        kpi_transparencia: 'Transparencia',
+        kpi_total: 'Total general',
+        comparativo_titulo: 'Comparativo por colección',
+        comparativo_texto: 'Distribución visual de las principales áreas del portal institucional.',
+        rodape_titulo: 'Panel Ejecutivo',
+        rodape_texto: 'Panel de indicadores estratégicos para monitoreo de las áreas integradas al portal institucional.',
+        parcerias_titulo: 'Alianzas tecnológicas y estratégicas',
+        parcerias_texto: 'Curaduría institucional local • Estrategia digital • Arquitectura de información • Inteligencia artificial aplicada a la planificación.',
+        tecnologias_titulo: 'Tecnologías',
+        referencias_titulo: 'Referencias',
+        ref_1: 'Documentación Firebase',
+        ref_2: 'Arquitectura web responsiva',
+        ref_3: 'Accesibilidad digital',
+        ref_4: 'Curaduría institucional',
+        direitos_titulo: 'Derechos y créditos',
+        dir_1: 'Contenido institucional',
+        dir_2: 'Créditos editoriales según publicación',
+        dir_3: 'Derechos reservados según normativas',
+        dir_4: 'Citas y bibliografía por sección',
+        rodape_final: '© 2026 Ayuntamiento de Vila Bela da Santíssima Trindade MT • Panel ejecutivo • Derechos reservados.',
+        carregando: 'Cargando indicadores...',
+        atualizado: 'Panel actualizado con éxito.',
+        erro: 'Error al cargar indicadores'
+      }
+    };
+
+    function idiomaAtual() {
+      return localStorage.getItem('portal_idioma') || 'pt';
+    }
+
+    function t(chave) {
+      const idioma = idiomaAtual();
+      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    }
+
+    function definirIdioma(idioma){
+      const mapa = traducoes[idioma] || traducoes.pt;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (mapa[chave]) el.textContent = mapa[chave];
+      });
+
+      document.documentElement.lang =
+        idioma === 'en' ? 'en' :
+        idioma === 'es' ? 'es' :
+        'pt-BR';
+
+      localStorage.setItem('portal_idioma', idioma);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      definirIdioma(idiomaAtual());
+    });
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function contarColecao(nome) {
+      const snap = await getDocs(collection(db, nome));
+      return snap.size;
+    }
+
+    function definirBarra(id, valor, maximo) {
+      const percentual = maximo > 0 ? (valor / maximo) * 100 : 0;
+      document.getElementById(id).style.width = percentual + '%';
+    }
+
+    function escreverValor(id, valor) {
+      document.getElementById(id).textContent = valor;
+    }
+
+    window.carregarDashboard = async function () {
+      const status = document.getElementById('statusDashboard');
+      status.textContent = t('carregando');
+
+      try {
+        const contatos = await contarColecao('contatos');
+        const noticias = await contarColecao('noticias');
+        const cultura = await contarColecao('cultura');
+        const turismo = await contarColecao('turismo');
+        const transparencia = await contarColecao('transparencia');
+
+        const total = contatos + noticias + cultura + turismo + transparencia;
+        const maximo = Math.max(contatos, noticias, cultura, turismo, transparencia, 1);
+
+        escreverValor('valorContatos', contatos);
+        escreverValor('valorNoticias', noticias);
+        escreverValor('valorCultura', cultura);
+        escreverValor('valorTurismo', turismo);
+        escreverValor('valorTransparencia', transparencia);
+        escreverValor('valorTotal', total);
+
+        escreverValor('miniTotal', total);
+        escreverValor('miniNoticias', noticias);
+        escreverValor('miniTurismo', turismo);
+        escreverValor('miniTransparencia', transparencia);
+
+        escreverValor('textoContatos', contatos);
+        escreverValor('textoNoticias', noticias);
+        escreverValor('textoCultura', cultura);
+        escreverValor('textoTurismo', turismo);
+        escreverValor('textoTransparencia', transparencia);
+
+        definirBarra('barraContatos', contatos, maximo);
+        definirBarra('barraNoticias', noticias, maximo);
+        definirBarra('barraCultura', cultura, maximo);
+        definirBarra('barraTurismo', turismo, maximo);
+        definirBarra('barraTransparencia', transparencia, maximo);
+
+        status.textContent = t('atualizado');
+      } catch (erro) {
+        status.textContent = t('erro') + ': ' + erro.message;
+      }
+    };
+
+    window.addEventListener('DOMContentLoaded', carregarDashboard);
+  </script>
 </body>
-</html>
+  </html>
