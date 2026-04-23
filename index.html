@@ -423,46 +423,74 @@
       const principal = document.getElementById("noticiaPrincipal");
       const lista = document.getElementById("listaNoticias");
 
-      const q = query(collection(db, "noticias"), orderBy("data", "desc"));
-      const snap = await getDocs(q);
+      try {
+        const q = query(collection(db, "noticias"), orderBy("data", "desc"));
+        const snap = await getDocs(q);
 
-      if (snap.empty) {
+        if (snap.empty) {
+          principal.innerHTML = `
+            <div class="tag">DESTAQUE</div>
+            <h4>Nenhuma notícia publicada no momento</h4>
+            <p>Assim que novas publicações forem cadastradas, elas aparecerão aqui automaticamente.</p>
+            <div class="noticia-data"></div>
+          `;
+          lista.innerHTML = `
+            <div class="noticia-card">
+              <h5>Nenhuma notícia publicada no momento</h5>
+              <p>Use o painel administrativo para cadastrar novas notícias.</p>
+              <div class="noticia-data"></div>
+            </div>
+          `;
+          return;
+        }
+
+        const docs = [];
+        snap.forEach(doc => docs.push(doc.data()));
+
+        const destaque = docs[0];
+        const outras = docs.slice(1, 4);
+
         principal.innerHTML = `
           <div class="tag">DESTAQUE</div>
-          <h4>Nenhuma notícia publicada no momento</h4>
-          <p>Assim que novas publicações forem cadastradas, elas aparecerão aqui automaticamente.</p>
+          <h4>${destaque.titulo || "Sem título"}</h4>
+          <p>${destaque.texto || ""}</p>
+          <div class="noticia-data">${formatarData(destaque.data)}</div>
+        `;
+
+        lista.innerHTML = "";
+
+        if (outras.length === 0) {
+          lista.innerHTML = `
+            <div class="noticia-card">
+              <h5>Sem outras notícias no momento</h5>
+              <p>Há apenas uma notícia publicada na base.</p>
+              <div class="noticia-data">${formatarData(destaque.data)}</div>
+            </div>
+          `;
+          return;
+        }
+
+        outras.forEach(n => {
+          lista.innerHTML += `
+            <div class="noticia-card">
+              <h5>${n.titulo || "Sem título"}</h5>
+              <p>${n.texto || ""}</p>
+              <div class="noticia-data">${formatarData(n.data)}</div>
+            </div>
+          `;
+        });
+      } catch (erro) {
+        principal.innerHTML = `
+          <div class="tag">ERRO</div>
+          <h4>Não foi possível carregar as notícias</h4>
+          <p>${erro.message}</p>
           <div class="noticia-data"></div>
         `;
         lista.innerHTML = "";
-        return;
       }
-
-      const docs = [];
-      snap.forEach(doc => docs.push(doc.data()));
-
-      const destaque = docs[0];
-      const outras = docs.slice(1, 4);
-
-      principal.innerHTML = `
-        <div class="tag">DESTAQUE</div>
-        <h4>${destaque.titulo || "Sem título"}</h4>
-        <p>${destaque.texto || ""}</p>
-        <div class="noticia-data">${formatarData(destaque.data)}</div>
-      `;
-
-      lista.innerHTML = "";
-      outras.forEach(n => {
-        lista.innerHTML += `
-          <div class="noticia-card">
-            <h5>${n.titulo || "Sem título"}</h5>
-            <p>${n.texto || ""}</p>
-            <div class="noticia-data">${formatarData(n.data)}</div>
-          </div>
-        `;
-      });
     }
 
     carregarNoticias();
   </script>
 </body>
-</html>
+  </html>
