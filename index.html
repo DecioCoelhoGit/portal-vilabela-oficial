@@ -23,14 +23,15 @@
         <button type="button" onclick="alternarContraste()">Alto contraste</button>
         <button type="button" onclick="definirIdioma('pt')">Português</button>
         <button type="button" onclick="definirIdioma('en')">English</button>
+        <button type="button" onclick="definirIdioma('es')">Español</button>
       </div>
     </div>
   </div>
 
   <div class="barra-topo">
     <div class="inner">
-      <div>Portal institucional em evolução • Vila Bela da Santíssima Trindade MT</div>
-      <div>Transformação digital • Atendimento ao cidadão • Gestão pública integrada</div>
+      <div data-i18n="topo_1">Portal institucional em evolução • Vila Bela da Santíssima Trindade MT</div>
+      <div data-i18n="topo_2">Transformação digital • Atendimento ao cidadão • Gestão pública integrada</div>
     </div>
   </div>
 
@@ -39,9 +40,9 @@
       <div class="marca">
         <img class="brasao" src="imagens/brasao.png" alt="Brasão oficial da Prefeitura" />
         <div class="marca-texto">
-          <small>Prefeitura Municipal</small>
+          <small data-i18n="marca_small">Prefeitura Municipal</small>
           <h1>Vila Bela da Santíssima Trindade MT</h1>
-          <p>Portal oficial com serviços, secretarias, notícias, transparência e gestão digital.</p>
+          <p data-i18n="marca_p">Portal oficial com serviços, secretarias, notícias, transparência e gestão digital.</p>
         </div>
       </div>
 
@@ -62,25 +63,25 @@
   <section class="hero">
     <div class="inner">
       <div class="hero-box">
-        <div class="hero-tag">Portal Completo Estilo Gov.br</div>
-        <h2>Gestão pública digital com identidade institucional, acesso cidadão e módulos estratégicos.</h2>
-        <p>
+        <div class="hero-tag" data-i18n="hero_tag">Portal Completo Estilo Gov.br</div>
+        <h2 data-i18n="hero_titulo">Gestão pública digital com identidade institucional, acesso cidadão e módulos estratégicos.</h2>
+        <p data-i18n="hero_texto">
           Uma estrutura integrada para informação pública, notícias oficiais, cultura, turismo, transparência,
           atendimento e indicadores executivos. Base concebida para crescimento modular e governança digital.
         </p>
         <div class="hero-botoes">
-          <a class="botao" href="#secretarias">Acessar módulos</a>
-          <a class="botao-secundario" href="noticias.html">Notícias oficiais</a>
+          <a class="botao" href="#secretarias" data-i18n="hero_botao_1">Acessar módulos</a>
+          <a class="botao-secundario" href="noticias.html" data-i18n="hero_botao_2">Notícias oficiais</a>
         </div>
       </div>
 
       <div class="hero-painel">
-        <h3>Painel de acesso rápido</h3>
+        <h3 data-i18n="painel_titulo">Painel de acesso rápido</h3>
         <div class="mini-grid">
-          <div class="mini-card"><strong>Portal</strong><span>Atendimento ao cidadão</span></div>
-          <div class="mini-card"><strong>Cultura</strong><span>Visitas e eventos</span></div>
-          <div class="mini-card"><strong>Turismo</strong><span>Check-in e atrativos</span></div>
-          <div class="mini-card"><strong>Transparência</strong><span>Receitas e despesas</span></div>
+          <div class="mini-card"><strong data-i18n="painel_1_t">Portal</strong><span data-i18n="painel_1">Atendimento ao cidadão</span></div>
+          <div class="mini-card"><strong data-i18n="painel_2_t">Cultura</strong><span data-i18n="painel_2">Visitas e eventos</span></div>
+          <div class="mini-card"><strong data-i18n="painel_3_t">Turismo</strong><span data-i18n="painel_3">Check-in e atrativos</span></div>
+          <div class="mini-card"><strong data-i18n="painel_4_t">Transparência</strong><span data-i18n="painel_4">Receitas e despesas</span></div>
         </div>
       </div>
     </div>
@@ -91,28 +92,28 @@
       <section class="bloco barra-servicos-publicos" aria-label="Barra de serviços públicos">
         <div class="titulo-secao">
           <div>
-            <h3>Barra de serviços</h3>
-            <p>Acesso rápido aos principais serviços e áreas públicas do portal.</p>
+            <h3 data-i18n="barra_titulo">Barra de serviços</h3>
+            <p data-i18n="barra_texto">Acesso rápido aos principais serviços e áreas públicas do portal.</p>
           </div>
         </div>
         <div class="servicos-grid">
-          <a class="servico-chip" href="#contato">Ouvidoria</a>
-          <a class="servico-chip" href="transparencia.html">Receitas e despesas</a>
-          <a class="servico-chip" href="noticias.html">Publicações oficiais</a>
-          <a class="servico-chip" href="cultura.html">Agenda cultural</a>
-          <a class="servico-chip" href="turismo.html">Check-in turístico</a>
-          <a class="servico-chip" href="dashboard.html">Indicadores</a>
+          <a class="servico-chip" href="#contato" data-i18n="chip_ouvidoria">Ouvidoria</a>
+          <a class="servico-chip" href="transparencia.html" data-i18n="chip_receitas">Receitas e despesas</a>
+          <a class="servico-chip" href="noticias.html" data-i18n="chip_publicacoes">Publicações oficiais</a>
+          <a class="servico-chip" href="cultura.html" data-i18n="chip_cultura">Agenda cultural</a>
+          <a class="servico-chip" href="turismo.html" data-i18n="chip_turismo">Check-in turístico</a>
+          <a class="servico-chip" href="dashboard.html" data-i18n="chip_indicadores">Indicadores</a>
         </div>
       </section>
 
       <section class="bloco" id="servicos">
         <div class="titulo-secao">
           <div>
-            <h3>Serviços digitais e atendimento</h3>
-            <p>Portal projetado para reunir módulos públicos e administrativos com navegação simples, identidade institucional e base tecnológica escalável.</p>
+            <h3 data-i18n="servicos_titulo">Serviços digitais e atendimento</h3>
+            <p data-i18n="servicos_subtitulo">Portal projetado para reunir módulos públicos e administrativos com navegação simples, identidade institucional e base tecnológica escalável.</p>
           </div>
         </div>
-        <p>
+        <p data-i18n="servicos_texto">
           Nesta estrutura cabem atendimento ao cidadão, contatos oficiais, notícias dinâmicas, registros culturais,
           operações de turismo, transparência pública e governança de dados. A arquitetura pode evoluir para novas secretarias,
           protocolos digitais, relatórios, automações e aplicação móvel.
@@ -122,46 +123,46 @@
       <section class="bloco" id="secretarias">
         <div class="titulo-secao">
           <div>
-            <h3>Secretarias e módulos</h3>
-            <p>Acesso organizado às áreas estratégicas do portal institucional.</p>
+            <h3 data-i18n="secretarias_titulo">Secretarias e módulos</h3>
+            <p data-i18n="secretarias_subtitulo">Acesso organizado às áreas estratégicas do portal institucional.</p>
           </div>
         </div>
 
         <div class="atalhos">
           <a class="atalho" href="noticias.html">
             <div class="icone i-noticias">N</div>
-            <h4>Notícias Oficiais</h4>
-            <p>Comunicados, destaques institucionais, agenda pública e publicações oficiais.</p>
+            <h4 data-i18n="card_noticias_titulo">Notícias Oficiais</h4>
+            <p data-i18n="card_noticias_texto">Comunicados, destaques institucionais, agenda pública e publicações oficiais.</p>
           </a>
 
           <a class="atalho" href="cultura.html">
             <div class="icone i-cultura">C</div>
-            <h4>Secretaria de Cultura</h4>
-            <p>Controle de visitas ao museu, eventos, registros de campo e atendimento cultural.</p>
+            <h4 data-i18n="card_cultura_titulo">Secretaria de Cultura</h4>
+            <p data-i18n="card_cultura_texto">Controle de visitas ao museu, eventos, registros de campo e atendimento cultural.</p>
           </a>
 
           <a class="atalho" href="turismo.html">
             <div class="icone i-turismo">T</div>
-            <h4>Secretaria de Turismo</h4>
-            <p>Check-in turístico, atrativos, agendamentos, city tour e acompanhamento de visitantes.</p>
+            <h4 data-i18n="card_turismo_titulo">Secretaria de Turismo</h4>
+            <p data-i18n="card_turismo_texto">Check-in turístico, atrativos, agendamentos, city tour e acompanhamento de visitantes.</p>
           </a>
 
           <a class="atalho" href="transparencia.html">
             <div class="icone i-transp">R$</div>
-            <h4>Transparência Real</h4>
-            <p>Receitas, despesas, licitações, convênios e prestação de contas institucional.</p>
+            <h4 data-i18n="card_transparencia_titulo">Transparência Real</h4>
+            <p data-i18n="card_transparencia_texto">Receitas, despesas, licitações, convênios e prestação de contas institucional.</p>
           </a>
 
           <a class="atalho" href="admin.html">
             <div class="icone i-admin">A</div>
-            <h4>Painel Administrativo</h4>
-            <p>Gestão de contatos, notícias, publicações e operações internas por módulo.</p>
+            <h4 data-i18n="card_admin_titulo">Painel Administrativo</h4>
+            <p data-i18n="card_admin_texto">Gestão de contatos, notícias, publicações e operações internas por módulo.</p>
           </a>
 
           <a class="atalho" href="dashboard.html">
             <div class="icone i-dashboard">D</div>
-            <h4>Dashboard Executivo</h4>
-            <p>Indicadores multissecretarias com visão geral dos dados públicos e operacionais.</p>
+            <h4 data-i18n="card_dashboard_titulo">Dashboard Executivo</h4>
+            <p data-i18n="card_dashboard_texto">Indicadores multissecretarias com visão geral dos dados públicos e operacionais.</p>
           </a>
         </div>
       </section>
@@ -169,17 +170,17 @@
       <section class="bloco" id="noticias">
         <div class="titulo-secao">
           <div>
-            <h3>Notícias oficiais</h3>
-            <p>Publicações dinâmicas carregadas diretamente da base de dados institucional.</p>
+            <h3 data-i18n="noticias_titulo">Notícias oficiais</h3>
+            <p data-i18n="noticias_subtitulo">Publicações dinâmicas carregadas diretamente da base de dados institucional.</p>
           </div>
-          <div><a href="#noticias">Ir para notícias</a> • <a href="noticias.html">Página completa</a></div>
+          <div><a href="#noticias" data-i18n="noticias_ir">Ir para notícias</a> • <a href="noticias.html" data-i18n="noticias_pagina">Página completa</a></div>
         </div>
 
         <div class="noticias-layout">
           <div id="noticiaPrincipal" class="destaque">
             <div class="tag">DESTAQUE</div>
-            <h4>Carregando notícia principal...</h4>
-            <p>Aguarde o carregamento das publicações oficiais.</p>
+            <h4 data-i18n="noticia_loading_titulo">Carregando notícia principal...</h4>
+            <p data-i18n="noticia_loading_texto">Aguarde o carregamento das publicações oficiais.</p>
             <div class="noticia-data"></div>
           </div>
 
@@ -190,21 +191,21 @@
       <section class="bloco" id="transparencia">
         <div class="titulo-secao">
           <div>
-            <h3>Transparência pública</h3>
-            <p>Estrutura para evolução de receitas, despesas, convênios, licitações e evidências documentais.</p>
+            <h3 data-i18n="transp_titulo">Transparência pública</h3>
+            <p data-i18n="transp_subtitulo">Estrutura para evolução de receitas, despesas, convênios, licitações e evidências documentais.</p>
           </div>
         </div>
 
         <div class="transparencia-box">
           <div class="info-box">
-            <h4>Consulta pública</h4>
-            <p>O módulo de transparência pode concentrar registros financeiros, documentos públicos, painéis comparativos e relatórios por secretaria.</p>
-            <p style="margin-top:12px;"><a href="transparencia.html">Acessar módulo de transparência</a></p>
+            <h4 data-i18n="transp_box1_titulo">Consulta pública</h4>
+            <p data-i18n="transp_box1_texto">O módulo de transparência pode concentrar registros financeiros, documentos públicos, painéis comparativos e relatórios por secretaria.</p>
+            <p style="margin-top:12px;"><a href="transparencia.html" data-i18n="transp_box1_link">Acessar módulo de transparência</a></p>
           </div>
 
           <div class="info-box">
-            <h4>Base de governança</h4>
-            <p>Com a arquitetura atual, o portal está preparado para incorporar prestação de contas, anexos, filtros, relatórios executivos e rotinas de auditoria institucional.</p>
+            <h4 data-i18n="transp_box2_titulo">Base de governança</h4>
+            <p data-i18n="transp_box2_texto">Com a arquitetura atual, o portal está preparado para incorporar prestação de contas, anexos, filtros, relatórios executivos e rotinas de auditoria institucional.</p>
           </div>
         </div>
       </section>
@@ -212,22 +213,22 @@
       <section class="bloco" id="contato">
         <div class="titulo-secao">
           <div>
-            <h3>Fale conosco</h3>
-            <p>Canal inicial de relacionamento digital com o cidadão.</p>
+            <h3 data-i18n="contato_titulo">Fale conosco</h3>
+            <p data-i18n="contato_subtitulo">Canal inicial de relacionamento digital com o cidadão.</p>
           </div>
         </div>
 
         <form id="formContato" class="formulario">
-          <label for="nome">Seu nome</label>
+          <label for="nome" data-i18n="label_nome">Seu nome</label>
           <input id="nome" class="campo" placeholder="Seu nome" required />
 
-          <label for="email">Seu e-mail</label>
+          <label for="email" data-i18n="label_email">Seu e-mail</label>
           <input id="email" class="campo" type="email" placeholder="Seu e-mail" required />
 
-          <label for="mensagem">Sua mensagem</label>
+          <label for="mensagem" data-i18n="label_mensagem">Sua mensagem</label>
           <textarea id="mensagem" class="campo-area" placeholder="Descreva sua solicitação" required></textarea>
 
-          <button class="campo-botao" type="submit">Enviar mensagem</button>
+          <button class="campo-botao" type="submit" data-i18n="botao_enviar">Enviar mensagem</button>
         </form>
 
         <div id="status"></div>
@@ -239,15 +240,15 @@
     <div class="inner">
       <div class="grade-rodape">
         <div>
-          <h4>Portal Prefeitura Vila Bela MT</h4>
-          <p>
+          <h4 data-i18n="rodape_titulo">Portal Prefeitura Vila Bela MT</h4>
+          <p data-i18n="rodape_texto">
             Plataforma digital institucional em evolução para informação pública,
             atendimento, secretarias, cultura, turismo, transparência e gestão executiva.
           </p>
 
           <div class="parcerias">
-            <h4>Parcerias tecnológicas e estratégicas</h4>
-            <p>Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.</p>
+            <h4 data-i18n="parcerias_titulo">Parcerias tecnológicas e estratégicas</h4>
+            <p data-i18n="parcerias_texto">Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.</p>
             <span class="badge-legal">GitHub Pages</span>
             <span class="badge-legal">Firebase</span>
             <span class="badge-legal">Cloud Firestore</span>
@@ -257,7 +258,7 @@
         </div>
 
         <div>
-          <h4>Tecnologias</h4>
+          <h4 data-i18n="tecnologias_titulo">Tecnologias</h4>
           <ul>
             <li>HTML5</li>
             <li>CSS3</li>
@@ -269,36 +270,36 @@
         </div>
 
         <div>
-          <h4>Referências e bases</h4>
+          <h4 data-i18n="referencias_titulo">Referências e bases</h4>
           <ul>
-            <li>Documentação Firebase</li>
-            <li>Boas práticas de arquitetura web</li>
-            <li>Diretrizes de acessibilidade digital</li>
-            <li>Curadoria histórica e institucional local</li>
+            <li data-i18n="ref_1">Documentação Firebase</li>
+            <li data-i18n="ref_2">Boas práticas de arquitetura web</li>
+            <li data-i18n="ref_3">Diretrizes de acessibilidade digital</li>
+            <li data-i18n="ref_4">Curadoria histórica e institucional local</li>
           </ul>
         </div>
 
         <div>
-          <h4>Direitos e créditos</h4>
+          <h4 data-i18n="direitos_titulo">Direitos e créditos</h4>
           <ul>
-            <li>Conteúdo institucional sujeito à curadoria pública</li>
-            <li>Imagens e brasão sob uso oficial autorizado</li>
-            <li>Créditos editoriais e técnicos conforme publicação</li>
-            <li>Citações e bibliografia conforme seções específicas</li>
+            <li data-i18n="dir_1">Conteúdo institucional sujeito à curadoria pública</li>
+            <li data-i18n="dir_2">Imagens e brasão sob uso oficial autorizado</li>
+            <li data-i18n="dir_3">Créditos editoriais e técnicos conforme publicação</li>
+            <li data-i18n="dir_4">Citações e bibliografia conforme seções específicas</li>
           </ul>
         </div>
       </div>
 
       <div class="creditos">
-        <h4>Notas bibliográficas e citações</h4>
-        <p>
+        <h4 data-i18n="notas_titulo">Notas bibliográficas e citações</h4>
+        <p data-i18n="notas_texto">
           Esta estrutura prevê campos próprios para créditos, referências bibliográficas, autoria de imagens, atos administrativos,
           notas técnicas e direitos autorais institucionais. Recomenda-se consolidar uma política editorial para identificar fonte,
           autoria, data e natureza de cada publicação oficial.
         </p>
       </div>
 
-      <div class="rodape-final">
+      <div class="rodape-final" data-i18n="rodape_final">
         © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Portal oficial em evolução • Direitos reservados conforme normativas e publicações institucionais.
       </div>
     </div>
@@ -325,6 +326,7 @@
     });
 
     let fonteBase = 100;
+
     function alterarFonte(delta){
       fonteBase = Math.max(90, Math.min(130, fonteBase + (delta * 10)));
       document.documentElement.style.fontSize = fonteBase + '%';
@@ -336,18 +338,265 @@
 
     const traducoes = {
       pt: {
+        topo_1: 'Portal institucional em evolução • Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Transformação digital • Atendimento ao cidadão • Gestão pública integrada',
+        marca_small: 'Prefeitura Municipal',
+        marca_p: 'Portal oficial com serviços, secretarias, notícias, transparência e gestão digital.',
         menu_servicos: 'Serviços',
         menu_secretarias: 'Secretarias',
         menu_noticias: 'Notícias',
         menu_transparencia: 'Transparência',
-        menu_contato: 'Contato'
+        menu_contato: 'Contato',
+        hero_tag: 'Portal Completo Estilo Gov.br',
+        hero_titulo: 'Gestão pública digital com identidade institucional, acesso cidadão e módulos estratégicos.',
+        hero_texto: 'Uma estrutura integrada para informação pública, notícias oficiais, cultura, turismo, transparência, atendimento e indicadores executivos. Base concebida para crescimento modular e governança digital.',
+        hero_botao_1: 'Acessar módulos',
+        hero_botao_2: 'Notícias oficiais',
+        painel_titulo: 'Painel de acesso rápido',
+        painel_1_t: 'Portal',
+        painel_1: 'Atendimento ao cidadão',
+        painel_2_t: 'Cultura',
+        painel_2: 'Visitas e eventos',
+        painel_3_t: 'Turismo',
+        painel_3: 'Check-in e atrativos',
+        painel_4_t: 'Transparência',
+        painel_4: 'Receitas e despesas',
+        barra_titulo: 'Barra de serviços',
+        barra_texto: 'Acesso rápido aos principais serviços e áreas públicas do portal.',
+        chip_ouvidoria: 'Ouvidoria',
+        chip_receitas: 'Receitas e despesas',
+        chip_publicacoes: 'Publicações oficiais',
+        chip_cultura: 'Agenda cultural',
+        chip_turismo: 'Check-in turístico',
+        chip_indicadores: 'Indicadores',
+        servicos_titulo: 'Serviços digitais e atendimento',
+        servicos_subtitulo: 'Portal projetado para reunir módulos públicos e administrativos com navegação simples, identidade institucional e base tecnológica escalável.',
+        servicos_texto: 'Nesta estrutura cabem atendimento ao cidadão, contatos oficiais, notícias dinâmicas, registros culturais, operações de turismo, transparência pública e governança de dados. A arquitetura pode evoluir para novas secretarias, protocolos digitais, relatórios, automações e aplicação móvel.',
+        secretarias_titulo: 'Secretarias e módulos',
+        secretarias_subtitulo: 'Acesso organizado às áreas estratégicas do portal institucional.',
+        card_noticias_titulo: 'Notícias Oficiais',
+        card_noticias_texto: 'Comunicados, destaques institucionais, agenda pública e publicações oficiais.',
+        card_cultura_titulo: 'Secretaria de Cultura',
+        card_cultura_texto: 'Controle de visitas ao museu, eventos, registros de campo e atendimento cultural.',
+        card_turismo_titulo: 'Secretaria de Turismo',
+        card_turismo_texto: 'Check-in turístico, atrativos, agendamentos, city tour e acompanhamento de visitantes.',
+        card_transparencia_titulo: 'Transparência Real',
+        card_transparencia_texto: 'Receitas, despesas, licitações, convênios e prestação de contas institucional.',
+        card_admin_titulo: 'Painel Administrativo',
+        card_admin_texto: 'Gestão de contatos, notícias, publicações e operações internas por módulo.',
+        card_dashboard_titulo: 'Dashboard Executivo',
+        card_dashboard_texto: 'Indicadores multissecretarias com visão geral dos dados públicos e operacionais.',
+        noticias_titulo: 'Notícias oficiais',
+        noticias_subtitulo: 'Publicações dinâmicas carregadas diretamente da base de dados institucional.',
+        noticias_ir: 'Ir para notícias',
+        noticias_pagina: 'Página completa',
+        noticia_loading_titulo: 'Carregando notícia principal...',
+        noticia_loading_texto: 'Aguarde o carregamento das publicações oficiais.',
+        transp_titulo: 'Transparência pública',
+        transp_subtitulo: 'Estrutura para evolução de receitas, despesas, convênios, licitações e evidências documentais.',
+        transp_box1_titulo: 'Consulta pública',
+        transp_box1_texto: 'O módulo de transparência pode concentrar registros financeiros, documentos públicos, painéis comparativos e relatórios por secretaria.',
+        transp_box1_link: 'Acessar módulo de transparência',
+        transp_box2_titulo: 'Base de governança',
+        transp_box2_texto: 'Com a arquitetura atual, o portal está preparado para incorporar prestação de contas, anexos, filtros, relatórios executivos e rotinas de auditoria institucional.',
+        contato_titulo: 'Fale conosco',
+        contato_subtitulo: 'Canal inicial de relacionamento digital com o cidadão.',
+        label_nome: 'Seu nome',
+        label_email: 'Seu e-mail',
+        label_mensagem: 'Sua mensagem',
+        botao_enviar: 'Enviar mensagem',
+        rodape_titulo: 'Portal Prefeitura Vila Bela MT',
+        rodape_texto: 'Plataforma digital institucional em evolução para informação pública, atendimento, secretarias, cultura, turismo, transparência e gestão executiva.',
+        parcerias_titulo: 'Parcerias tecnológicas e estratégicas',
+        parcerias_texto: 'Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.',
+        tecnologias_titulo: 'Tecnologias',
+        referencias_titulo: 'Referências e bases',
+        ref_1: 'Documentação Firebase',
+        ref_2: 'Boas práticas de arquitetura web',
+        ref_3: 'Diretrizes de acessibilidade digital',
+        ref_4: 'Curadoria histórica e institucional local',
+        direitos_titulo: 'Direitos e créditos',
+        dir_1: 'Conteúdo institucional sujeito à curadoria pública',
+        dir_2: 'Imagens e brasão sob uso oficial autorizado',
+        dir_3: 'Créditos editoriais e técnicos conforme publicação',
+        dir_4: 'Citações e bibliografia conforme seções específicas',
+        notas_titulo: 'Notas bibliográficas e citações',
+        notas_texto: 'Esta estrutura prevê campos próprios para créditos, referências bibliográficas, autoria de imagens, atos administrativos, notas técnicas e direitos autorais institucionais. Recomenda-se consolidar uma política editorial para identificar fonte, autoria, data e natureza de cada publicação oficial.',
+        rodape_final: '© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Portal oficial em evolução • Direitos reservados conforme normativas e publicações institucionais.'
       },
       en: {
+        topo_1: 'Institutional portal in development • Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Digital transformation • Citizen service • Integrated public management',
+        marca_small: 'City Hall',
+        marca_p: 'Official portal with services, departments, news, transparency and digital management.',
         menu_servicos: 'Services',
         menu_secretarias: 'Departments',
         menu_noticias: 'News',
         menu_transparencia: 'Transparency',
-        menu_contato: 'Contact'
+        menu_contato: 'Contact',
+        hero_tag: 'Complete Gov.br Style Portal',
+        hero_titulo: 'Digital public management with institutional identity, citizen access and strategic modules.',
+        hero_texto: 'An integrated structure for public information, official news, culture, tourism, transparency, service and executive indicators. Built for modular growth and digital governance.',
+        hero_botao_1: 'Access modules',
+        hero_botao_2: 'Official news',
+        painel_titulo: 'Quick access panel',
+        painel_1_t: 'Portal',
+        painel_1: 'Citizen service',
+        painel_2_t: 'Culture',
+        painel_2: 'Visits and events',
+        painel_3_t: 'Tourism',
+        painel_3: 'Check-in and attractions',
+        painel_4_t: 'Transparency',
+        painel_4: 'Revenue and expenses',
+        barra_titulo: 'Service bar',
+        barra_texto: 'Quick access to the main public services and areas of the portal.',
+        chip_ouvidoria: 'Ombudsman',
+        chip_receitas: 'Revenue and expenses',
+        chip_publicacoes: 'Official publications',
+        chip_cultura: 'Cultural agenda',
+        chip_turismo: 'Tourism check-in',
+        chip_indicadores: 'Indicators',
+        servicos_titulo: 'Digital services and support',
+        servicos_subtitulo: 'Portal designed to gather public and administrative modules with simple navigation, institutional identity and scalable technology.',
+        servicos_texto: 'This structure supports citizen service, official contacts, dynamic news, cultural records, tourism operations, public transparency and data governance. The architecture can evolve to new departments, digital protocols, reports, automations and mobile applications.',
+        secretarias_titulo: 'Departments and modules',
+        secretarias_subtitulo: 'Organized access to the strategic areas of the institutional portal.',
+        card_noticias_titulo: 'Official News',
+        card_noticias_texto: 'Announcements, institutional highlights, public agenda and official publications.',
+        card_cultura_titulo: 'Department of Culture',
+        card_cultura_texto: 'Museum visit control, events, field records and cultural service.',
+        card_turismo_titulo: 'Department of Tourism',
+        card_turismo_texto: 'Tourism check-in, attractions, scheduling, city tour and visitor follow-up.',
+        card_transparencia_titulo: 'Real Transparency',
+        card_transparencia_texto: 'Revenue, expenses, bids, agreements and institutional accountability.',
+        card_admin_titulo: 'Administrative Panel',
+        card_admin_texto: 'Management of contacts, news, publications and internal module operations.',
+        card_dashboard_titulo: 'Executive Dashboard',
+        card_dashboard_texto: 'Multi-department indicators with an overall view of public and operational data.',
+        noticias_titulo: 'Official news',
+        noticias_subtitulo: 'Dynamic publications loaded directly from the institutional database.',
+        noticias_ir: 'Go to news',
+        noticias_pagina: 'Full page',
+        noticia_loading_titulo: 'Loading main news...',
+        noticia_loading_texto: 'Please wait while official publications are loaded.',
+        transp_titulo: 'Public transparency',
+        transp_subtitulo: 'Structure for evolving revenue, expenses, agreements, bids and documentary evidence.',
+        transp_box1_titulo: 'Public consultation',
+        transp_box1_texto: 'The transparency module can concentrate financial records, public documents, comparative panels and reports by department.',
+        transp_box1_link: 'Access transparency module',
+        transp_box2_titulo: 'Governance base',
+        transp_box2_texto: 'With the current architecture, the portal is prepared to incorporate accountability, attachments, filters, executive reports and institutional audit routines.',
+        contato_titulo: 'Contact us',
+        contato_subtitulo: 'Initial digital relationship channel with citizens.',
+        label_nome: 'Your name',
+        label_email: 'Your email',
+        label_mensagem: 'Your message',
+        botao_enviar: 'Send message',
+        rodape_titulo: 'Vila Bela MT City Hall Portal',
+        rodape_texto: 'Institutional digital platform under development for public information, service, departments, culture, tourism, transparency and executive management.',
+        parcerias_titulo: 'Technological and strategic partnerships',
+        parcerias_texto: 'Local institutional curation • Digital strategy • Information architecture • Artificial intelligence applied to planning.',
+        tecnologias_titulo: 'Technologies',
+        referencias_titulo: 'References and bases',
+        ref_1: 'Firebase documentation',
+        ref_2: 'Web architecture best practices',
+        ref_3: 'Digital accessibility guidelines',
+        ref_4: 'Local historical and institutional curation',
+        direitos_titulo: 'Rights and credits',
+        dir_1: 'Institutional content subject to public curation',
+        dir_2: 'Images and coat of arms under authorized official use',
+        dir_3: 'Editorial and technical credits according to publication',
+        dir_4: 'Citations and bibliography according to specific sections',
+        notas_titulo: 'Bibliographic notes and citations',
+        notas_texto: 'This structure provides specific fields for credits, bibliographic references, image authorship, administrative acts, technical notes and institutional copyrights. It is recommended to consolidate an editorial policy to identify source, authorship, date and nature of each official publication.',
+        rodape_final: '© 2026 Vila Bela da Santíssima Trindade MT City Hall • Official portal under development • All rights reserved according to institutional rules and publications.'
+      },
+      es: {
+        topo_1: 'Portal institucional en evolución • Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Transformación digital • Atención al ciudadano • Gestión pública integrada',
+        marca_small: 'Ayuntamiento Municipal',
+        marca_p: 'Portal oficial con servicios, secretarías, noticias, transparencia y gestión digital.',
+        menu_servicos: 'Servicios',
+        menu_secretarias: 'Secretarías',
+        menu_noticias: 'Noticias',
+        menu_transparencia: 'Transparencia',
+        menu_contato: 'Contacto',
+        hero_tag: 'Portal Completo Estilo Gov.br',
+        hero_titulo: 'Gestión pública digital con identidad institucional, acceso ciudadano y módulos estratégicos.',
+        hero_texto: 'Una estructura integrada para información pública, noticias oficiales, cultura, turismo, transparencia, atención e indicadores ejecutivos. Concebida para crecimiento modular y gobernanza digital.',
+        hero_botao_1: 'Acceder a módulos',
+        hero_botao_2: 'Noticias oficiales',
+        painel_titulo: 'Panel de acceso rápido',
+        painel_1_t: 'Portal',
+        painel_1: 'Atención al ciudadano',
+        painel_2_t: 'Cultura',
+        painel_2: 'Visitas y eventos',
+        painel_3_t: 'Turismo',
+        painel_3: 'Check-in y atractivos',
+        painel_4_t: 'Transparencia',
+        painel_4: 'Ingresos y gastos',
+        barra_titulo: 'Barra de servicios',
+        barra_texto: 'Acceso rápido a los principales servicios y áreas públicas del portal.',
+        chip_ouvidoria: 'Defensoría',
+        chip_receitas: 'Ingresos y gastos',
+        chip_publicacoes: 'Publicaciones oficiales',
+        chip_cultura: 'Agenda cultural',
+        chip_turismo: 'Check-in turístico',
+        chip_indicadores: 'Indicadores',
+        servicos_titulo: 'Servicios digitales y atención',
+        servicos_subtitulo: 'Portal proyectado para reunir módulos públicos y administrativos con navegación simple, identidad institucional y base tecnológica escalable.',
+        servicos_texto: 'Esta estructura permite atención al ciudadano, contactos oficiales, noticias dinámicas, registros culturales, operaciones de turismo, transparencia pública y gobernanza de datos. La arquitectura puede evolucionar hacia nuevas secretarías, protocolos digitales, informes, automatizaciones y aplicación móvil.',
+        secretarias_titulo: 'Secretarías y módulos',
+        secretarias_subtitulo: 'Acceso organizado a las áreas estratégicas del portal institucional.',
+        card_noticias_titulo: 'Noticias Oficiales',
+        card_noticias_texto: 'Comunicados, destaques institucionales, agenda pública y publicaciones oficiales.',
+        card_cultura_titulo: 'Secretaría de Cultura',
+        card_cultura_texto: 'Control de visitas al museo, eventos, registros de campo y atención cultural.',
+        card_turismo_titulo: 'Secretaría de Turismo',
+        card_turismo_texto: 'Check-in turístico, atractivos, agendamiento, city tour y seguimiento de visitantes.',
+        card_transparencia_titulo: 'Transparencia Real',
+        card_transparencia_texto: 'Ingresos, gastos, licitaciones, convenios y rendición de cuentas institucional.',
+        card_admin_titulo: 'Panel Administrativo',
+        card_admin_texto: 'Gestión de contactos, noticias, publicaciones y operaciones internas por módulo.',
+        card_dashboard_titulo: 'Panel Ejecutivo',
+        card_dashboard_texto: 'Indicadores multisecretarías con visión general de los datos públicos y operativos.',
+        noticias_titulo: 'Noticias oficiales',
+        noticias_subtitulo: 'Publicaciones dinámicas cargadas directamente desde la base de datos institucional.',
+        noticias_ir: 'Ir a noticias',
+        noticias_pagina: 'Página completa',
+        noticia_loading_titulo: 'Cargando noticia principal...',
+        noticia_loading_texto: 'Espere mientras se cargan las publicaciones oficiales.',
+        transp_titulo: 'Transparencia pública',
+        transp_subtitulo: 'Estructura para evolución de ingresos, gastos, convenios, licitaciones y evidencias documentales.',
+        transp_box1_titulo: 'Consulta pública',
+        transp_box1_texto: 'El módulo de transparencia puede concentrar registros financieros, documentos públicos, paneles comparativos e informes por secretaría.',
+        transp_box1_link: 'Acceder al módulo de transparencia',
+        transp_box2_titulo: 'Base de gobernanza',
+        transp_box2_texto: 'Con la arquitectura actual, el portal está preparado para incorporar rendición de cuentas, anexos, filtros, informes ejecutivos y rutinas de auditoría institucional.',
+        contato_titulo: 'Contáctenos',
+        contato_subtitulo: 'Canal inicial de relación digital con el ciudadano.',
+        label_nome: 'Su nombre',
+        label_email: 'Su correo electrónico',
+        label_mensagem: 'Su mensaje',
+        botao_enviar: 'Enviar mensaje',
+        rodape_titulo: 'Portal Ayuntamiento Vila Bela MT',
+        rodape_texto: 'Plataforma digital institucional en evolución para información pública, atención, secretarías, cultura, turismo, transparencia y gestión ejecutiva.',
+        parcerias_titulo: 'Alianzas tecnológicas y estratégicas',
+        parcerias_texto: 'Curaduría institucional local • Estrategia digital • Arquitectura de información • Inteligencia artificial aplicada a la planificación.',
+        tecnologias_titulo: 'Tecnologías',
+        referencias_titulo: 'Referencias y bases',
+        ref_1: 'Documentación Firebase',
+        ref_2: 'Buenas prácticas de arquitectura web',
+        ref_3: 'Directrices de accesibilidad digital',
+        ref_4: 'Curaduría histórica e institucional local',
+        direitos_titulo: 'Derechos y créditos',
+        dir_1: 'Contenido institucional sujeto a curaduría pública',
+        dir_2: 'Imágenes y escudo bajo uso oficial autorizado',
+        dir_3: 'Créditos editoriales y técnicos según publicación',
+        dir_4: 'Citas y bibliografía según secciones específicas',
+        notas_titulo: 'Notas bibliográficas y citas',
+        notas_texto: 'Esta estructura prevé campos propios para créditos, referencias bibliográficas, autoría de imágenes, actos administrativos, notas técnicas y derechos de autor institucionales. Se recomienda consolidar una política editorial para identificar fuente, autoría, fecha y naturaleza de cada publicación oficial.',
+        rodape_final: '© 2026 Ayuntamiento de Vila Bela da Santíssima Trindade MT • Portal oficial en evolución • Derechos reservados conforme a normativas y publicaciones institucionales.'
       }
     };
 
@@ -357,7 +606,10 @@
         const chave = el.getAttribute('data-i18n');
         if(mapa[chave]) el.textContent = mapa[chave];
       });
-      document.documentElement.lang = idioma === 'en' ? 'en' : 'pt-BR';
+      document.documentElement.lang =
+        idioma === 'en' ? 'en' :
+        idioma === 'es' ? 'es' :
+        'pt-BR';
       localStorage.setItem('portal_idioma', idioma);
     }
 
@@ -434,13 +686,7 @@
             <p>Assim que novas publicações forem cadastradas, elas aparecerão aqui automaticamente.</p>
             <div class="noticia-data"></div>
           `;
-          lista.innerHTML = `
-            <div class="noticia-card">
-              <h5>Nenhuma notícia publicada no momento</h5>
-              <p>Use o painel administrativo para cadastrar novas notícias.</p>
-              <div class="noticia-data"></div>
-            </div>
-          `;
+          lista.innerHTML = "";
           return;
         }
 
@@ -458,18 +704,6 @@
         `;
 
         lista.innerHTML = "";
-
-        if (outras.length === 0) {
-          lista.innerHTML = `
-            <div class="noticia-card">
-              <h5>Sem outras notícias no momento</h5>
-              <p>Há apenas uma notícia publicada na base.</p>
-              <div class="noticia-data">${formatarData(destaque.data)}</div>
-            </div>
-          `;
-          return;
-        }
-
         outras.forEach(n => {
           lista.innerHTML += `
             <div class="noticia-card">
@@ -493,4 +727,4 @@
     carregarNoticias();
   </script>
 </body>
-  </html>
+            </html>
