@@ -1,1 +1,921 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Gabinete • Prefeitura Vila Bela MT</title>
+  <meta name="description" content="Painel administrativo do Gabinete do Prefeito com gestão de agenda, demandas estratégicas, prioridades e status." />
+  <style>
+    * { box-sizing: border-box; }
 
+    :root{
+      --azul:#0c326f;
+      --azul-escuro:#071d41;
+      --dourado:#ffcd07;
+      --cinza:#1f2937;
+      --cinza-borda:#475569;
+      --fundo:#07111f;
+      --card:#101826;
+      --texto:#ffffff;
+      --muted:#cbd5e1;
+      --verde:#168821;
+      --vermelho:#b91c1c;
+      --amarelo:#b45309;
+      --cinza2:#374151;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+    }
+
+    header {
+      background: linear-gradient(90deg, var(--azul-escuro), var(--azul));
+      padding: 22px 18px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .barra-idiomas {
+      background: #000;
+      padding: 10px 16px;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .barra-idiomas button {
+      border: 1px solid rgba(255,255,255,.25);
+      background: transparent;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--cinza-borda);
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.22);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 30px;
+      color: #f8fafc;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #dbeafe;
+    }
+
+    p, .small, label {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--cinza-borda);
+      background: var(--cinza);
+      color: #ffffff;
+      padding: 14px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      background: var(--azul);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      filter: brightness(1.06);
+    }
+
+    .dourado {
+      background: #8a5a00 !important;
+      color: #fff !important;
+    }
+
+    .verde {
+      background: #0b6b57 !important;
+    }
+
+    .logout {
+      background: var(--cinza2) !important;
+    }
+
+    .danger {
+      background: var(--vermelho) !important;
+    }
+
+    .warning {
+      background: var(--amarelo) !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .duas-colunas {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1fr;
+    }
+
+    .top-actions {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+      margin-top: 12px;
+    }
+
+    .status-msg {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #86efac;
+      word-break: break-word;
+    }
+
+    .item {
+      background: #0f172a;
+      border: 1px solid var(--cinza-borda);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .item h4 {
+      margin: 0 0 10px;
+      color: #f8fafc;
+      font-size: 20px;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .item p {
+      margin: 8px 0;
+      color: var(--muted);
+      word-break: break-word;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+      word-break: break-word;
+    }
+
+    .badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .tipo-agenda { background: #1d4ed8; }
+    .tipo-demanda { background: #7c3aed; }
+
+    .prioridade-alta { background: #b91c1c; }
+    .prioridade-media { background: #b45309; }
+    .prioridade-baixa { background: #168821; }
+
+    .status-planejado { background: #2563eb; }
+    .status-andamento { background: #d97706; }
+    .status-concluido { background: #15803d; }
+    .status-arquivado { background: #6b7280; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .linha-acoes {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+    }
+
+    .kpi {
+      background: #0f172a;
+      border: 1px solid var(--cinza-borda);
+      border-radius: 16px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .kpi strong {
+      display: block;
+      font-size: 34px;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+
+    .kpi span {
+      color: #cbd5e1;
+      font-size: 13px;
+      text-transform: uppercase;
+      font-weight: bold;
+      letter-spacing: .03em;
+    }
+
+    @media (min-width: 900px) {
+      .duas-colunas {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .top-actions {
+        grid-template-columns: repeat(3, 180px);
+        justify-content: end;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .form-grid .full {
+        grid-column: 1 / -1;
+      }
+
+      .linha-acoes {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="barra-idiomas">
+    <button type="button" onclick="definirIdioma('pt')">Português</button>
+    <button type="button" onclick="definirIdioma('en')">English</button>
+    <button type="button" onclick="definirIdioma('es')">Español</button>
+  </div>
+
+  <header data-i18n="header_titulo">Admin Gabinete • Portal Prefeitura Vila Bela MT</header>
+
+  <div class="container">
+    <div class="card" id="loginBox">
+      <h2 data-i18n="login_titulo">Acesso Administrativo</h2>
+      <p data-i18n="login_texto">Entrar com conta Google autorizada.</p>
+      <button class="dourado" onclick="loginGoogle()" data-i18n="login_botao">Entrar com Google</button>
+      <div id="loginMsg" class="status-msg"></div>
+    </div>
+
+    <div id="painel" class="hidden">
+      <div class="card">
+        <h2 data-i18n="painel_titulo">Administração do Gabinete</h2>
+        <p data-i18n="painel_texto">Gerencie agenda oficial, demandas estratégicas, prioridades e andamento das ações do gabinete.</p>
+
+        <div class="top-actions">
+          <button class="dourado" onclick="abrirGabinete()" data-i18n="btn_modulo">Abrir Módulo</button>
+          <button class="verde" onclick="recarregarTudo()" data-i18n="btn_atualizar">Atualizar</button>
+          <button class="logout" onclick="logout()" data-i18n="btn_sair">Sair</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="kpis_titulo">Indicadores rápidos</h3>
+        <div class="kpis">
+          <div class="kpi"><strong id="kpiTotal">0</strong><span data-i18n="kpi_total">Total</span></div>
+          <div class="kpi"><strong id="kpiAgenda">0</strong><span data-i18n="kpi_agenda">Agenda</span></div>
+          <div class="kpi"><strong id="kpiDemandas">0</strong><span data-i18n="kpi_demandas">Demandas</span></div>
+          <div class="kpi"><strong id="kpiAndamento">0</strong><span data-i18n="kpi_andamento">Em andamento</span></div>
+          <div class="kpi"><strong id="kpiConcluido">0</strong><span data-i18n="kpi_concluido">Concluídos</span></div>
+        </div>
+      </div>
+
+      <div class="duas-colunas">
+        <div class="card">
+          <h3 data-i18n="cadastro_titulo">Novo registro</h3>
+
+          <div class="form-grid">
+            <div>
+              <label for="tipo" data-i18n="label_tipo">Tipo</label>
+              <select id="tipo">
+                <option value="Agenda Oficial">Agenda Oficial</option>
+                <option value="Demanda Estratégica">Demanda Estratégica</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="prioridade" data-i18n="label_prioridade">Prioridade</label>
+              <select id="prioridade">
+                <option value="Alta">Alta</option>
+                <option value="Média">Média</option>
+                <option value="Baixa">Baixa</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="titulo" data-i18n="label_titulo">Título</label>
+              <input id="titulo" placeholder="Título do compromisso ou demanda" />
+            </div>
+
+            <div>
+              <label for="responsavel" data-i18n="label_responsavel">Responsável</label>
+              <input id="responsavel" placeholder="Responsável" />
+            </div>
+
+            <div>
+              <label for="setor" data-i18n="label_setor">Setor / Secretaria</label>
+              <input id="setor" placeholder="Gabinete / Secretaria..." />
+            </div>
+
+            <div>
+              <label for="dataAgenda" data-i18n="label_data">Data</label>
+              <input id="dataAgenda" type="date" />
+            </div>
+
+            <div>
+              <label for="statusRegistro" data-i18n="label_status">Status</label>
+              <select id="statusRegistro">
+                <option value="Planejado">Planejado</option>
+                <option value="Em andamento">Em andamento</option>
+                <option value="Concluído">Concluído</option>
+                <option value="Arquivado">Arquivado</option>
+              </select>
+            </div>
+
+            <div class="full">
+              <label for="descricao" data-i18n="label_descricao">Descrição</label>
+              <textarea id="descricao" placeholder="Descrição detalhada"></textarea>
+            </div>
+          </div>
+
+          <button onclick="salvarNovoRegistro()" data-i18n="btn_salvar">Salvar registro</button>
+          <div id="msgCadastro" class="status-msg"></div>
+        </div>
+
+        <div class="card">
+          <h3 data-i18n="filtros_titulo">Filtros rápidos</h3>
+
+          <label for="filtroTipo" data-i18n="filtro_tipo">Filtrar por tipo</label>
+          <select id="filtroTipo" onchange="renderizarRegistros()">
+            <option value="">Todos</option>
+            <option value="Agenda Oficial">Agenda Oficial</option>
+            <option value="Demanda Estratégica">Demanda Estratégica</option>
+          </select>
+
+          <label for="filtroPrioridade" data-i18n="filtro_prioridade">Filtrar por prioridade</label>
+          <select id="filtroPrioridade" onchange="renderizarRegistros()">
+            <option value="">Todas</option>
+            <option value="Alta">Alta</option>
+            <option value="Média">Média</option>
+            <option value="Baixa">Baixa</option>
+          </select>
+
+          <label for="filtroStatus" data-i18n="filtro_status">Filtrar por status</label>
+          <select id="filtroStatus" onchange="renderizarRegistros()">
+            <option value="">Todos</option>
+            <option value="Planejado">Planejado</option>
+            <option value="Em andamento">Em andamento</option>
+            <option value="Concluído">Concluído</option>
+            <option value="Arquivado">Arquivado</option>
+          </select>
+
+          <div class="linha-acoes">
+            <button class="warning" onclick="limparFiltros()" data-i18n="btn_limpar">Limpar filtros</button>
+            <button class="verde" onclick="renderizarRegistros()" data-i18n="btn_aplicar">Aplicar</button>
+            <button class="dourado" onclick="abrirGabinete()" data-i18n="btn_visualizar">Visualizar módulo</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 data-i18n="lista_titulo">Registros do Gabinete</h3>
+        <div id="listaRegistros" class="grid"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const traducoes = {
+      pt: {
+        header_titulo: 'Admin Gabinete • Portal Prefeitura Vila Bela MT',
+        login_titulo: 'Acesso Administrativo',
+        login_texto: 'Entrar com conta Google autorizada.',
+        login_botao: 'Entrar com Google',
+        painel_titulo: 'Administração do Gabinete',
+        painel_texto: 'Gerencie agenda oficial, demandas estratégicas, prioridades e andamento das ações do gabinete.',
+        btn_modulo: 'Abrir Módulo',
+        btn_atualizar: 'Atualizar',
+        btn_sair: 'Sair',
+        kpis_titulo: 'Indicadores rápidos',
+        kpi_total: 'Total',
+        kpi_agenda: 'Agenda',
+        kpi_demandas: 'Demandas',
+        kpi_andamento: 'Em andamento',
+        kpi_concluido: 'Concluídos',
+        cadastro_titulo: 'Novo registro',
+        label_tipo: 'Tipo',
+        label_prioridade: 'Prioridade',
+        label_titulo: 'Título',
+        label_responsavel: 'Responsável',
+        label_setor: 'Setor / Secretaria',
+        label_data: 'Data',
+        label_status: 'Status',
+        label_descricao: 'Descrição',
+        btn_salvar: 'Salvar registro',
+        filtros_titulo: 'Filtros rápidos',
+        filtro_tipo: 'Filtrar por tipo',
+        filtro_prioridade: 'Filtrar por prioridade',
+        filtro_status: 'Filtrar por status',
+        btn_limpar: 'Limpar filtros',
+        btn_aplicar: 'Aplicar',
+        btn_visualizar: 'Visualizar módulo',
+        lista_titulo: 'Registros do Gabinete',
+        tipo_agenda: 'Agenda Oficial',
+        tipo_demanda: 'Demanda Estratégica',
+        prioridade_alta: 'Alta',
+        prioridade_media: 'Média',
+        prioridade_baixa: 'Baixa',
+        status_planejado: 'Planejado',
+        status_andamento: 'Em andamento',
+        status_concluido: 'Concluído',
+        status_arquivado: 'Arquivado',
+        salvar_ok: 'Registro salvo com sucesso!',
+        salvar_erro: 'Preencha os campos obrigatórios.',
+        carregando: 'Carregando registros...',
+        nenhum: 'Nenhum registro encontrado.',
+        excluir: 'Excluir',
+        salvar_edicao: 'Salvar alterações',
+        confirmar_excluir: 'Deseja excluir este registro?',
+        erro_prefixo: 'Erro: ',
+        meta_setor: 'Setor',
+        meta_responsavel: 'Responsável',
+        meta_data: 'Data',
+        meta_status: 'Status',
+        meta_prioridade: 'Prioridade'
+      },
+      en: {
+        header_titulo: 'Office Admin • Vila Bela MT City Hall Portal',
+        login_titulo: 'Administrative Access',
+        login_texto: 'Sign in with an authorized Google account.',
+        login_botao: 'Sign in with Google',
+        painel_titulo: 'Office Administration',
+        painel_texto: 'Manage official agenda, strategic demands, priorities and action progress.',
+        btn_modulo: 'Open Module',
+        btn_atualizar: 'Refresh',
+        btn_sair: 'Sign out',
+        kpis_titulo: 'Quick indicators',
+        kpi_total: 'Total',
+        kpi_agenda: 'Agenda',
+        kpi_demandas: 'Demands',
+        kpi_andamento: 'In progress',
+        kpi_concluido: 'Completed',
+        cadastro_titulo: 'New record',
+        label_tipo: 'Type',
+        label_prioridade: 'Priority',
+        label_titulo: 'Title',
+        label_responsavel: 'Responsible',
+        label_setor: 'Department / Area',
+        label_data: 'Date',
+        label_status: 'Status',
+        label_descricao: 'Description',
+        btn_salvar: 'Save record',
+        filtros_titulo: 'Quick filters',
+        filtro_tipo: 'Filter by type',
+        filtro_prioridade: 'Filter by priority',
+        filtro_status: 'Filter by status',
+        btn_limpar: 'Clear filters',
+        btn_aplicar: 'Apply',
+        btn_visualizar: 'View module',
+        lista_titulo: 'Office records',
+        tipo_agenda: 'Official Agenda',
+        tipo_demanda: 'Strategic Demand',
+        prioridade_alta: 'High',
+        prioridade_media: 'Medium',
+        prioridade_baixa: 'Low',
+        status_planejado: 'Planned',
+        status_andamento: 'In progress',
+        status_concluido: 'Completed',
+        status_arquivado: 'Archived',
+        salvar_ok: 'Record saved successfully!',
+        salvar_erro: 'Fill in the required fields.',
+        carregando: 'Loading records...',
+        nenhum: 'No records found.',
+        excluir: 'Delete',
+        salvar_edicao: 'Save changes',
+        confirmar_excluir: 'Do you want to delete this record?',
+        erro_prefixo: 'Error: ',
+        meta_setor: 'Department',
+        meta_responsavel: 'Responsible',
+        meta_data: 'Date',
+        meta_status: 'Status',
+        meta_prioridade: 'Priority'
+      },
+      es: {
+        header_titulo: 'Admin Gabinete • Portal Ayuntamiento Vila Bela MT',
+        login_titulo: 'Acceso Administrativo',
+        login_texto: 'Entrar con cuenta Google autorizada.',
+        login_botao: 'Entrar con Google',
+        painel_titulo: 'Administración del Gabinete',
+        painel_texto: 'Gestione agenda oficial, demandas estratégicas, prioridades y avance de las acciones.',
+        btn_modulo: 'Abrir Módulo',
+        btn_atualizar: 'Actualizar',
+        btn_sair: 'Salir',
+        kpis_titulo: 'Indicadores rápidos',
+        kpi_total: 'Total',
+        kpi_agenda: 'Agenda',
+        kpi_demandas: 'Demandas',
+        kpi_andamento: 'En curso',
+        kpi_concluido: 'Concluidos',
+        cadastro_titulo: 'Nuevo registro',
+        label_tipo: 'Tipo',
+        label_prioridade: 'Prioridad',
+        label_titulo: 'Título',
+        label_responsavel: 'Responsable',
+        label_setor: 'Sector / Secretaría',
+        label_data: 'Fecha',
+        label_status: 'Estado',
+        label_descricao: 'Descripción',
+        btn_salvar: 'Guardar registro',
+        filtros_titulo: 'Filtros rápidos',
+        filtro_tipo: 'Filtrar por tipo',
+        filtro_prioridade: 'Filtrar por prioridad',
+        filtro_status: 'Filtrar por estado',
+        btn_limpar: 'Limpiar filtros',
+        btn_aplicar: 'Aplicar',
+        btn_visualizar: 'Ver módulo',
+        lista_titulo: 'Registros del Gabinete',
+        tipo_agenda: 'Agenda Oficial',
+        tipo_demanda: 'Demanda Estratégica',
+        prioridade_alta: 'Alta',
+        prioridade_media: 'Media',
+        prioridade_baixa: 'Baja',
+        status_planejado: 'Planificado',
+        status_andamento: 'En curso',
+        status_concluido: 'Concluido',
+        status_arquivado: 'Archivado',
+        salvar_ok: '¡Registro guardado con éxito!',
+        salvar_erro: 'Complete los campos obligatorios.',
+        carregando: 'Cargando registros...',
+        nenhum: 'No se encontraron registros.',
+        excluir: 'Eliminar',
+        salvar_edicao: 'Guardar cambios',
+        confirmar_excluir: '¿Desea eliminar este registro?',
+        erro_prefixo: 'Error: ',
+        meta_setor: 'Sector',
+        meta_responsavel: 'Responsable',
+        meta_data: 'Fecha',
+        meta_status: 'Estado',
+        meta_prioridade: 'Prioridad'
+      }
+    };
+
+    let registrosGabinete = [];
+
+    function idiomaAtual() {
+      return localStorage.getItem('portal_idioma') || 'pt';
+    }
+
+    function t(chave) {
+      const idioma = idiomaAtual();
+      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    }
+
+    function definirIdioma(idioma) {
+      const mapa = traducoes[idioma] || traducoes.pt;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (mapa[chave]) el.textContent = mapa[chave];
+      });
+
+      const selects = {
+        tipo: document.getElementById('tipo'),
+        prioridade: document.getElementById('prioridade'),
+        statusRegistro: document.getElementById('statusRegistro'),
+        filtroTipo: document.getElementById('filtroTipo'),
+        filtroPrioridade: document.getElementById('filtroPrioridade'),
+        filtroStatus: document.getElementById('filtroStatus')
+      };
+
+      if (selects.tipo) {
+        selects.tipo.options[0].text = mapa.tipo_agenda;
+        selects.tipo.options[1].text = mapa.tipo_demanda;
+      }
+      if (selects.prioridade) {
+        selects.prioridade.options[0].text = mapa.prioridade_alta;
+        selects.prioridade.options[1].text = mapa.prioridade_media;
+        selects.prioridade.options[2].text = mapa.prioridade_baixa;
+      }
+      if (selects.statusRegistro) {
+        selects.statusRegistro.options[0].text = mapa.status_planejado;
+        selects.statusRegistro.options[1].text = mapa.status_andamento;
+        selects.statusRegistro.options[2].text = mapa.status_concluido;
+        selects.statusRegistro.options[3].text = mapa.status_arquivado;
+      }
+      if (selects.filtroTipo) {
+        selects.filtroTipo.options[0].text = idioma === 'en' ? 'All' : idioma === 'es' ? 'Todos' : 'Todos';
+        selects.filtroTipo.options[1].text = mapa.tipo_agenda;
+        selects.filtroTipo.options[2].text = mapa.tipo_demanda;
+      }
+      if (selects.filtroPrioridade) {
+        selects.filtroPrioridade.options[0].text = idioma === 'en' ? 'All' : idioma === 'es' ? 'Todas' : 'Todas';
+        selects.filtroPrioridade.options[1].text = mapa.prioridade_alta;
+        selects.filtroPrioridade.options[2].text = mapa.prioridade_media;
+        selects.filtroPrioridade.options[3].text = mapa.prioridade_baixa;
+      }
+      if (selects.filtroStatus) {
+        selects.filtroStatus.options[0].text = idioma === 'en' ? 'All' : idioma === 'es' ? 'Todos' : 'Todos';
+        selects.filtroStatus.options[1].text = mapa.status_planejado;
+        selects.filtroStatus.options[2].text = mapa.status_andamento;
+        selects.filtroStatus.options[3].text = mapa.status_concluido;
+        selects.filtroStatus.options[4].text = mapa.status_arquivado;
+      }
+
+      document.documentElement.lang =
+        idioma === 'en' ? 'en' :
+        idioma === 'es' ? 'es' : 'pt-BR';
+
+      localStorage.setItem('portal_idioma', idioma);
+      if (registrosGabinete.length) renderizarRegistros();
+    }
+
+    function classeTipo(v){
+      return (v || '').toLowerCase().includes('agenda') ? 'tipo-agenda' : 'tipo-demanda';
+    }
+    function classePrioridade(v){
+      const s = (v || '').toLowerCase();
+      if (s.includes('alta') || s.includes('high')) return 'prioridade-alta';
+      if (s.includes('média') || s.includes('media') || s.includes('medium')) return 'prioridade-media';
+      return 'prioridade-baixa';
+    }
+    function classeStatus(v){
+      const s = (v || '').toLowerCase();
+      if (s.includes('planejado') || s.includes('planned') || s.includes('planificado')) return 'status-planejado';
+      if (s.includes('andamento') || s.includes('progress') || s.includes('curso')) return 'status-andamento';
+      if (s.includes('concluído') || s.includes('completed') || s.includes('concluido')) return 'status-concluido';
+      return 'status-arquivado';
+    }
+
+    function formatarDataLocal(data){
+      if (!data) return '';
+      const idioma = idiomaAtual();
+      const locale = idioma === 'en' ? 'en-US' : idioma === 'es' ? 'es-ES' : 'pt-BR';
+      return new Date(data + 'T00:00:00').toLocaleDateString(locale);
+    }
+
+    function abrirGabinete() {
+      location.href = 'gabinete.html';
+    }
+
+    function limparFiltros() {
+      document.getElementById('filtroTipo').value = '';
+      document.getElementById('filtroPrioridade').value = '';
+      document.getElementById('filtroStatus').value = '';
+      renderizarRegistros();
+    }
+
+    function atualizarKPIs(lista) {
+      const total = lista.length;
+      const agenda = lista.filter(x => (x.tipo || '').toLowerCase().includes('agenda')).length;
+      const demandas = total - agenda;
+      const andamento = lista.filter(x => {
+        const s = (x.status || '').toLowerCase();
+        return s.includes('andamento') || s.includes('progress') || s.includes('curso');
+      }).length;
+      const concluido = lista.filter(x => {
+        const s = (x.status || '').toLowerCase();
+        return s.includes('concluído') || s.includes('completed') || s.includes('concluido');
+      }).length;
+
+      document.getElementById('kpiTotal').textContent = total;
+      document.getElementById('kpiAgenda').textContent = agenda;
+      document.getElementById('kpiDemandas').textContent = demandas;
+      document.getElementById('kpiAndamento').textContent = andamento;
+      document.getElementById('kpiConcluido').textContent = concluido;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      definirIdioma(idiomaAtual());
+    });
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      updateDoc,
+      deleteDoc,
+      doc,
+      query,
+      orderBy,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
+
+    window.loginGoogle = async function () {
+      const loginMsg = document.getElementById("loginMsg");
+      try {
+        await signInWithPopup(auth, new GoogleAuthProvider());
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("painel").classList.remove("hidden");
+        loginMsg.innerText = "";
+        await recarregarTudo();
+      } catch (erro) {
+        loginMsg.innerText = t('erro_prefixo') + erro.message;
+      }
+    };
+
+    window.logout = async function () {
+      await signOut(auth);
+      location.reload();
+    };
+
+    window.salvarNovoRegistro = async function () {
+      const msg = document.getElementById('msgCadastro');
+
+      const dados = {
+        tipo: document.getElementById('tipo').value,
+        prioridade: document.getElementById('prioridade').value,
+        titulo: document.getElementById('titulo').value.trim(),
+        responsavel: document.getElementById('responsavel').value.trim(),
+        setor: document.getElementById('setor').value.trim(),
+        dataAgenda: document.getElementById('dataAgenda').value,
+        status: document.getElementById('statusRegistro').value,
+        descricao: document.getElementById('descricao').value.trim()
+      };
+
+      if (!dados.titulo || !dados.responsavel || !dados.setor || !dados.dataAgenda || !dados.descricao) {
+        msg.innerText = t('salvar_erro');
+        return;
+      }
+
+      try {
+        await addDoc(collection(db, 'gabinete'), {
+          ...dados,
+          data: serverTimestamp()
+        });
+
+        msg.innerText = t('salvar_ok');
+        document.getElementById('titulo').value = '';
+        document.getElementById('responsavel').value = '';
+        document.getElementById('setor').value = '';
+        document.getElementById('dataAgenda').value = '';
+        document.getElementById('descricao').value = '';
+        await recarregarTudo();
+      } catch (erro) {
+        msg.innerText = t('erro_prefixo') + erro.message;
+      }
+    };
+
+    window.recarregarTudo = async function () {
+      const lista = document.getElementById('listaRegistros');
+      lista.innerHTML = t('carregando');
+
+      const q = query(collection(db, 'gabinete'), orderBy('data', 'desc'));
+      const snap = await getDocs(q);
+
+      registrosGabinete = [];
+      snap.forEach((r) => {
+        registrosGabinete.push({ id: r.id, ...r.data() });
+      });
+
+      renderizarRegistros();
+    };
+
+    window.renderizarRegistros = function () {
+      const lista = document.getElementById('listaRegistros');
+
+      const filtroTipo = document.getElementById('filtroTipo').value;
+      const filtroPrioridade = document.getElementById('filtroPrioridade').value;
+      const filtroStatus = document.getElementById('filtroStatus').value;
+
+      const filtrados = registrosGabinete.filter(item => {
+        const okTipo = !filtroTipo || item.tipo === filtroTipo;
+        const okPrioridade = !filtroPrioridade || item.prioridade === filtroPrioridade;
+        const okStatus = !filtroStatus || item.status === filtroStatus;
+        return okTipo && okPrioridade && okStatus;
+      });
+
+      atualizarKPIs(filtrados);
+
+      if (!filtrados.length) {
+        lista.innerHTML = `<div class="item"><h4>${t('nenhum')}</h4></div>`;
+        return;
+      }
+
+      lista.innerHTML = '';
+
+      filtrados.forEach((item) => {
+        lista.innerHTML += `
+          <div class="item">
+            <div class="badges">
+              <span class="badge ${classeTipo(item.tipo)}">${item.tipo || ''}</span>
+              <span class="badge ${classePrioridade(item.prioridade)}">${item.prioridade || ''}</span>
+              <span class="badge ${classeStatus(item.status)}">${item.status || ''}</span>
+            </div>
+
+            <h4>${item.titulo || ''}</h4>
+
+            <div class="meta"><strong>${t('meta_setor')}:</strong> ${item.setor || ''}</div>
+            <div class="meta"><strong>${t('meta_responsavel')}:</strong> ${item.responsavel || ''}</div>
+            <div class="meta"><strong>${t('meta_data')}:</strong> ${formatarDataLocal(item.dataAgenda)}</div>
+
+            <p>${item.descricao || ''}</p>
+
+            <label>${t('label_prioridade')}</label>
+            <select id="prioridade_${item.id}">
+              <option value="Alta" ${item.prioridade === 'Alta' ? 'selected' : ''}>${traducoes[idiomaAtual()].prioridade_alta}</option>
+              <option value="Média" ${item.prioridade === 'Média' ? 'selected' : ''}>${traducoes[idiomaAtual()].prioridade_media}</option>
+              <option value="Baixa" ${item.prioridade === 'Baixa' ? 'selected' : ''}>${traducoes[idiomaAtual()].prioridade_baixa}</option>
+            </select>
+
+            <label>${t('label_status')}</label>
+            <select id="status_${item.id}">
+              <option value="Planejado" ${item.status === 'Planejado' ? 'selected' : ''}>${traducoes[idiomaAtual()].status_planejado}</option>
+              <option value="Em andamento" ${item.status === 'Em andamento' ? 'selected' : ''}>${traducoes[idiomaAtual()].status_andamento}</option>
+              <option value="Concluído" ${item.status === 'Concluído' ? 'selected' : ''}>${traducoes[idiomaAtual()].status_concluido}</option>
+              <option value="Arquivado" ${item.status === 'Arquivado' ? 'selected' : ''}>${traducoes[idiomaAtual()].status_arquivado}</option>
+            </select>
+
+            <div class="linha-acoes">
+              <button class="verde" onclick="salvarEdicao('${item.id}')">${t('salvar_edicao')}</button>
+              <button class="danger" onclick="excluirRegistro('${item.id}')">${t('excluir')}</button>
+            </div>
+          </div>
+        `;
+      });
+    };
+
+    window.salvarEdicao = async function (id) {
