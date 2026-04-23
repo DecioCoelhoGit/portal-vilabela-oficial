@@ -1,1 +1,407 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seed Master • Prefeitura Vila Bela MT</title>
+  <style>
+    * { box-sizing: border-box; }
 
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08111f;
+      color: #ffffff;
+      padding: 24px;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+
+    .idiomas {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .idiomas button {
+      border: 1px solid rgba(255,255,255,.2);
+      background: transparent;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 34px;
+      color: #facc15;
+    }
+
+    p {
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+
+    .grid-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 12px;
+      margin: 18px 0 8px;
+    }
+
+    .mini {
+      background: #0b1220;
+      border: 1px solid #374151;
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .mini strong {
+      display: block;
+      font-size: 22px;
+      color: #f8fafc;
+      margin-bottom: 4px;
+    }
+
+    .mini span {
+      color: #cbd5e1;
+      font-size: 14px;
+    }
+
+    button.acao {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 18px;
+      background: #ca8a04;
+      color: #111827;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 14px;
+    }
+
+    button.acao:hover {
+      background: #eab308;
+    }
+
+    #log {
+      margin-top: 18px;
+      white-space: pre-line;
+      background: #0b1220;
+      border: 1px solid #374151;
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 180px;
+      color: #e5f9e7;
+      font-size: 14px;
+    }
+
+    .info {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #9ca3af;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="idiomas">
+        <button type="button" onclick="definirIdioma('pt')">Português</button>
+        <button type="button" onclick="definirIdioma('en')">English</button>
+        <button type="button" onclick="definirIdioma('es')">Español</button>
+      </div>
+
+      <h1 data-i18n="titulo">Seed Master</h1>
+
+      <p data-i18n="texto_1">
+        Esta página insere automaticamente uma massa de teste completa no Firestore.
+      </p>
+      <p data-i18n="texto_2">
+        Ela popula as coleções de notícias, cultura, turismo e transparência de uma só vez.
+      </p>
+
+      <div class="grid-info">
+        <div class="mini">
+          <strong>6</strong>
+          <span data-i18n="mini_noticias">Notícias</span>
+        </div>
+        <div class="mini">
+          <strong>6</strong>
+          <span data-i18n="mini_cultura">Cultura</span>
+        </div>
+        <div class="mini">
+          <strong>6</strong>
+          <span data-i18n="mini_turismo">Turismo</span>
+        </div>
+        <div class="mini">
+          <strong>6</strong>
+          <span data-i18n="mini_transparencia">Transparência</span>
+        </div>
+      </div>
+
+      <p data-i18n="texto_3">
+        Use apenas quando quiser popular rapidamente a base. Se clicar novamente, os registros serão duplicados.
+      </p>
+
+      <button class="acao" onclick="executarSeedMaster()" data-i18n="botao">
+        Inserir Seed Master
+      </button>
+
+      <div id="log">Aguardando execução...</div>
+
+      <div class="info">
+        Link esperado:
+        https://deciocoelhogit.github.io/portal-vilabela-oficial/seed-master.html
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const traducoes = {
+      pt: {
+        titulo: 'Seed Master',
+        texto_1: 'Esta página insere automaticamente uma massa de teste completa no Firestore.',
+        texto_2: 'Ela popula as coleções de notícias, cultura, turismo e transparência de uma só vez.',
+        texto_3: 'Use apenas quando quiser popular rapidamente a base. Se clicar novamente, os registros serão duplicados.',
+        mini_noticias: 'Notícias',
+        mini_cultura: 'Cultura',
+        mini_turismo: 'Turismo',
+        mini_transparencia: 'Transparência',
+        botao: 'Inserir Seed Master',
+        aguardando: 'Aguardando execução...',
+        iniciando: 'Iniciando seed master...',
+        bloco_noticias: '📢 Inserindo notícias...',
+        bloco_cultura: '🎭 Inserindo cultura...',
+        bloco_turismo: '🌿 Inserindo turismo...',
+        bloco_transparencia: '💰 Inserindo transparência...',
+        item_inserido: '✔ Inserido: ',
+        sucesso: '✅ Seed master concluída com sucesso.',
+        resumo_1: 'Notícias: ',
+        resumo_2: 'Cultura: ',
+        resumo_3: 'Turismo: ',
+        resumo_4: 'Transparência: ',
+        resumo_total: 'Total geral: ',
+        erro: '❌ Erro ao executar seed master:'
+      },
+      en: {
+        titulo: 'Master Seed',
+        texto_1: 'This page automatically inserts a complete test dataset into Firestore.',
+        texto_2: 'It populates the news, culture, tourism and transparency collections at once.',
+        texto_3: 'Use it only when you want to quickly populate the database. If you click again, the records will be duplicated.',
+        mini_noticias: 'News',
+        mini_cultura: 'Culture',
+        mini_turismo: 'Tourism',
+        mini_transparencia: 'Transparency',
+        botao: 'Insert Master Seed',
+        aguardando: 'Waiting for execution...',
+        iniciando: 'Starting master seed...',
+        bloco_noticias: '📢 Inserting news...',
+        bloco_cultura: '🎭 Inserting culture...',
+        bloco_turismo: '🌿 Inserting tourism...',
+        bloco_transparencia: '💰 Inserting transparency...',
+        item_inserido: '✔ Inserted: ',
+        sucesso: '✅ Master seed completed successfully.',
+        resumo_1: 'News: ',
+        resumo_2: 'Culture: ',
+        resumo_3: 'Tourism: ',
+        resumo_4: 'Transparency: ',
+        resumo_total: 'Grand total: ',
+        erro: '❌ Error while running master seed:'
+      },
+      es: {
+        titulo: 'Seed Master',
+        texto_1: 'Esta página inserta automáticamente una masa de prueba completa en Firestore.',
+        texto_2: 'Puebla las colecciones de noticias, cultura, turismo y transparencia al mismo tiempo.',
+        texto_3: 'Úsela solo cuando quiera poblar rápidamente la base. Si hace clic nuevamente, los registros se duplicarán.',
+        mini_noticias: 'Noticias',
+        mini_cultura: 'Cultura',
+        mini_turismo: 'Turismo',
+        mini_transparencia: 'Transparencia',
+        botao: 'Insertar Seed Master',
+        aguardando: 'Esperando ejecución...',
+        iniciando: 'Iniciando seed master...',
+        bloco_noticias: '📢 Insertando noticias...',
+        bloco_cultura: '🎭 Insertando cultura...',
+        bloco_turismo: '🌿 Insertando turismo...',
+        bloco_transparencia: '💰 Insertando transparencia...',
+        item_inserido: '✔ Insertado: ',
+        sucesso: '✅ Seed master concluida con éxito.',
+        resumo_1: 'Noticias: ',
+        resumo_2: 'Cultura: ',
+        resumo_3: 'Turismo: ',
+        resumo_4: 'Transparencia: ',
+        resumo_total: 'Total general: ',
+        erro: '❌ Error al ejecutar seed master:'
+      }
+    };
+
+    function idiomaAtual() {
+      return localStorage.getItem('portal_idioma') || 'pt';
+    }
+
+    function t(chave) {
+      const idioma = idiomaAtual();
+      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    }
+
+    function definirIdioma(idioma) {
+      localStorage.setItem('portal_idioma', idioma);
+      document.documentElement.lang =
+        idioma === 'en' ? 'en' :
+        idioma === 'es' ? 'es' :
+        'pt-BR';
+
+      const mapa = traducoes[idioma] || traducoes.pt;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (mapa[chave]) el.textContent = mapa[chave];
+      });
+
+      document.getElementById('log').innerText = t('aguardando');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      definirIdioma(idiomaAtual());
+    });
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const noticias = [
+      {
+        titulo: "Feira Municipal fortalece a agricultura familiar em Vila Bela",
+        texto: "A feira municipal segue como importante espaço de comercialização de produtos frescos, artesanato e alimentos regionais, promovendo renda para pequenos produtores e convivência comunitária.",
+        imagem: ""
+      },
+      {
+        titulo: "Secretaria de Cultura amplia agenda de visitas e ações educativas",
+        texto: "A Secretaria de Cultura intensificou o atendimento a escolas, grupos organizados e visitantes interessados no patrimônio histórico e cultural do município.",
+        imagem: ""
+      },
+      {
+        titulo: "Turismo registra movimentação positiva nos atrativos naturais",
+        texto: "Check-ins e visitas guiadas indicam crescimento do fluxo turístico em atrativos como city tour histórico, cânions e cachoeiras do município.",
+        imagem: ""
+      },
+      {
+        titulo: "Transparência pública avança com novos registros digitais",
+        texto: "A gestão municipal amplia a organização de receitas, despesas, licitações e convênios em ambiente digital, fortalecendo o acesso público à informação.",
+        imagem: ""
+      },
+      {
+        titulo: "Portal institucional evolui com módulos integrados de gestão",
+        texto: "A plataforma digital municipal passa a reunir notícias, cultura, turismo, transparência, contatos e painéis executivos em uma estrutura integrada.",
+        imagem: ""
+      },
+      {
+        titulo: "Patrimônio histórico-cultural ganha mais visibilidade digital",
+        texto: "A divulgação institucional do patrimônio local reforça o reconhecimento de Vila Bela da Santíssima Trindade como referência histórica, cultural e turística.",
+        imagem: ""
+      }
+    ];
+
+    const cultura = [
+      { nome: "Escola Estadual Marechal Rondon", cidade: "Cuiabá MT", grupo: "Turma 9º Ano", qtd: 42, tipo: "Visita ao Museu", responsavel: "Profª Ana Paula", obs: "Aula de campo sobre história regional" },
+      { nome: "Universidade Federal", cidade: "Cáceres MT", grupo: "Curso de História", qtd: 18, tipo: "Visita ao Museu", responsavel: "Dr. Carlos Mendes", obs: "Pesquisa acadêmica" },
+      { nome: "Grupo Melhor Idade", cidade: "Vila Bela MT", grupo: "Convivência Social", qtd: 25, tipo: "Evento Cultural", responsavel: "Maria de Lourdes", obs: "Apresentação cultural" },
+      { nome: "Secretaria Municipal", cidade: "Vila Bela MT", grupo: "Atendimento Interno", qtd: 6, tipo: "Atendimento Secretaria", responsavel: "Equipe Técnica", obs: "Reunião institucional" },
+      { nome: "Turistas SP", cidade: "São Paulo SP", grupo: "Famílias Visitantes", qtd: 12, tipo: "Visita ao Museu", responsavel: "Décio Coelho", obs: "Roteiro histórico-cultural" },
+      { nome: "Projeto Jovem Arte", cidade: "Pontes e Lacerda MT", grupo: "Oficina de Artes", qtd: 30, tipo: "Evento Cultural", responsavel: "João Batista", obs: "Exposição e oficina" }
+    ];
+
+    const turismo = [
+      { nome: "Família Souza", origem: "Cuiabá MT", qtd: 4, atrativo: "City Tour Histórico", dataVisita: "2026-05-02", guia: "Décio Coelho", obs: "Pacote família" },
+      { nome: "Grupo Trilheiros", origem: "Rondonópolis MT", qtd: 12, atrativo: "Cânion do Jatobá", dataVisita: "2026-05-03", guia: "Ederson Coelho", obs: "Trilha guiada" },
+      { nome: "Turistas SP", origem: "São Paulo SP", qtd: 6, atrativo: "Cascata dos Namorados", dataVisita: "2026-05-05", guia: "Mizael Leite", obs: "Passeio ecológico" },
+      { nome: "Excursão Escolar", origem: "Cáceres MT", qtd: 28, atrativo: "City Tour Histórico", dataVisita: "2026-05-06", guia: "Jamiro", obs: "Aula externa" },
+      { nome: "Casal Visitante", origem: "Brasília DF", qtd: 2, atrativo: "Cachoeira do Viracopos", dataVisita: "2026-05-07", guia: "Vanilson", obs: "Lua de mel" },
+      { nome: "Grupo Empresarial", origem: "Campo Grande MS", qtd: 10, atrativo: "Cânion do Capivary", dataVisita: "2026-05-08", guia: "Décio Coelho", obs: "Turismo corporativo" }
+    ];
+
+    const transparencia = [
+      { tipo: "Receita", titulo: "FPM - Fundo de Participação dos Municípios", valor: 450000, setor: "Finanças", dataRef: "2026-04-01", obs: "Repasse federal" },
+      { tipo: "Receita", titulo: "ICMS Estadual", valor: 320000, setor: "Finanças", dataRef: "2026-04-03", obs: "Transferência estadual" },
+      { tipo: "Receita", titulo: "Arrecadação IPTU", valor: 85000, setor: "Tributação", dataRef: "2026-04-05", obs: "Exercício 2026" },
+      { tipo: "Despesa", titulo: "Folha de Pagamento Servidores", valor: 380000, setor: "Administração", dataRef: "2026-04-05", obs: "Competência abril" },
+      { tipo: "Despesa", titulo: "Medicamentos UBS", valor: 95000, setor: "Saúde", dataRef: "2026-04-09", obs: "Compra emergencial" },
+      { tipo: "Convênio", titulo: "Turismo Sustentável Regional", valor: 300000, setor: "Turismo", dataRef: "2026-04-22", obs: "Governo Estadual" }
+    ];
+
+    async function inserirLote(nomeColecao, itens, chaveLog) {
+      const log = document.getElementById("log");
+      log.innerText += "\n" + t(chaveLog) + "\n";
+      let total = 0;
+
+      for (const item of itens) {
+        await addDoc(collection(db, nomeColecao), {
+          ...item,
+          data: serverTimestamp()
+        });
+
+        total++;
+        log.innerText += t('item_inserido') + (item.titulo || item.nome) + "\n";
+      }
+
+      return total;
+    }
+
+    window.executarSeedMaster = async function () {
+      const log = document.getElementById("log");
+      log.innerText = t('iniciando') + "\n";
+
+      try {
+        const totalNoticias = await inserirLote("noticias", noticias, "bloco_noticias");
+        const totalCultura = await inserirLote("cultura", cultura, "bloco_cultura");
+        const totalTurismo = await inserirLote("turismo", turismo, "bloco_turismo");
+        const totalTransparencia = await inserirLote("transparencia", transparencia, "bloco_transparencia");
+
+        const totalGeral = totalNoticias + totalCultura + totalTurismo + totalTransparencia;
+
+        log.innerText += "\n" + t('sucesso') + "\n";
+        log.innerText += t('resumo_1') + totalNoticias + "\n";
+        log.innerText += t('resumo_2') + totalCultura + "\n";
+        log.innerText += t('resumo_3') + totalTurismo + "\n";
+        log.innerText += t('resumo_4') + totalTransparencia + "\n";
+        log.innerText += t('resumo_total') + totalGeral + "\n";
+      } catch (erro) {
+        log.innerText += "\n" + t('erro') + "\n" + erro.message;
+      }
+    };
+  </script>
+</body>
+</html>
