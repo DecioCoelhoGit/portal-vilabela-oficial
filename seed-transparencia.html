@@ -1,77 +1,183 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Seed Transparência • Vila Bela MT</title>
-<style>
-body{font-family:Arial,sans-serif;background:#eef2f7;padding:30px;max-width:800px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-button{width:100%;padding:14px;border:none;border-radius:10px;background:#1b5e20;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
-button:hover{opacity:.95}
-#log{margin-top:15px;white-space:pre-line;color:#333}
-small{color:#666}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seed Transparência • Prefeitura Vila Bela MT</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08111f;
+      color: #ffffff;
+      padding: 24px;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; }
+    .card {
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    .idiomas { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; }
+    .idiomas button {
+      border: 1px solid rgba(255,255,255,.2);
+      background: transparent;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
+    h1 { margin-top: 0; font-size: 32px; color: #4ade80; }
+    p { color: #d1d5db; line-height: 1.6; }
+    button.acao {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 18px;
+      background: #168821;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    #log {
+      margin-top: 18px;
+      white-space: pre-line;
+      background: #0b1220;
+      border: 1px solid #374151;
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 120px;
+      color: #dcfce7;
+      font-size: 14px;
+    }
+    .info { margin-top: 14px; font-size: 13px; color: #9ca3af; word-break: break-word; }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="card">
+      <div class="idiomas">
+        <button type="button" onclick="definirIdioma('pt')">Português</button>
+        <button type="button" onclick="definirIdioma('en')">English</button>
+        <button type="button" onclick="definirIdioma('es')">Español</button>
+      </div>
 
-<div class="card">
-<h1>Seed Transparência</h1>
-<p>Carrega automaticamente massa de teste na coleção <b>transparencia</b>.</p>
-<button onclick="executarSeed()">Inserir Massa de Teste</button>
-<div id="log"></div>
-<small>Use uma vez. Se clicar novamente, duplicará os dados.</small>
-</div>
+      <h1 data-i18n="titulo">Seed Transparência</h1>
+      <p data-i18n="texto_1">Esta página insere automaticamente uma massa de teste na coleção transparencia do Firestore.</p>
+      <p data-i18n="texto_2">Use apenas quando quiser popular rapidamente a base. Se clicar novamente, os registros serão duplicados.</p>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-getFirestore, collection, addDoc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+      <button class="acao" onclick="executarSeed()" data-i18n="botao">Inserir Massa de Teste</button>
 
-const firebaseConfig = {
-apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-authDomain: "portal-vilabela-oficial.firebaseapp.com",
-projectId: "portal-vilabela-oficial",
-storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-messagingSenderId: "908975101824",
-appId: "1:908975101824:web:f986598784403493721365"
-};
+      <div id="log">Aguardando execução...</div>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+      <div class="info">
+        Link esperado:
+        https://deciocoelhogit.github.io/portal-vilabela-oficial/seed-transparencia.html
+      </div>
+    </div>
+  </div>
 
-const dados = [
-{tipo:"Receita",titulo:"FPM - Fundo de Participação dos Municípios",valor:450000,setor:"Finanças",dataRef:"2026-04-01",obs:"Repasse federal"},
-{tipo:"Receita",titulo:"ICMS Estadual",valor:320000,setor:"Finanças",dataRef:"2026-04-03",obs:"Transferência estadual"},
-{tipo:"Receita",titulo:"Arrecadação IPTU",valor:85000,setor:"Tributação",dataRef:"2026-04-05",obs:"Exercício 2026"},
-{tipo:"Receita",titulo:"ISSQN Municipal",valor:62000,setor:"Tributação",dataRef:"2026-04-07",obs:"Serviços locais"},
-{tipo:"Receita",titulo:"Convênio Cultura",valor:150000,setor:"Cultura",dataRef:"2026-04-10",obs:"Evento cultural"},
-{tipo:"Despesa",titulo:"Folha de Pagamento Servidores",valor:380000,setor:"Administração",dataRef:"2026-04-05",obs:"Competência abril"},
-{tipo:"Despesa",titulo:"Manutenção de Estradas Vicinais",valor:210000,setor:"Obras",dataRef:"2026-04-08",obs:"Patrolamento"},
-{tipo:"Despesa",titulo:"Medicamentos UBS",valor:95000,setor:"Saúde",dataRef:"2026-04-09",obs:"Compra emergencial"},
-{tipo:"Despesa",titulo:"Merenda Escolar",valor:120000,setor:"Educação",dataRef:"2026-04-11",obs:"Rede municipal"},
-{tipo:"Licitação",titulo:"Reforma da Praça Central",valor:260000,setor:"Obras",dataRef:"2026-04-18",obs:"Concorrência pública"},
-{tipo:"Convênio",titulo:"Turismo Sustentável Regional",valor:300000,setor:"Turismo",dataRef:"2026-04-22",obs:"Governo Estadual"}
-];
+  <script>
+    const traducoes = {
+      pt: {
+        titulo: 'Seed Transparência',
+        texto_1: 'Esta página insere automaticamente uma massa de teste na coleção transparencia do Firestore.',
+        texto_2: 'Use apenas quando quiser popular rapidamente a base. Se clicar novamente, os registros serão duplicados.',
+        botao: 'Inserir Massa de Teste',
+        aguardando: 'Aguardando execução...',
+        iniciando: 'Iniciando seed de transparência...',
+        sucesso: '✅ Seed concluída com sucesso. Total: ',
+        item_inserido: '✔ Inserido: ',
+        erro: '❌ Erro ao executar seed:'
+      },
+      en: {
+        titulo: 'Transparency Seed',
+        texto_1: 'This page automatically inserts test data into the transparencia collection in Firestore.',
+        texto_2: 'Use it only when you want to quickly populate the database. If you click again, the records will be duplicated.',
+        botao: 'Insert Test Data',
+        aguardando: 'Waiting for execution...',
+        iniciando: 'Starting transparency seed...',
+        sucesso: '✅ Seed completed successfully. Total: ',
+        item_inserido: '✔ Inserted: ',
+        erro: '❌ Error while running seed:'
+      },
+      es: {
+        titulo: 'Seed Transparencia',
+        texto_1: 'Esta página inserta automáticamente una masa de prueba en la colección transparencia de Firestore.',
+        texto_2: 'Úsela solo cuando quiera poblar rápidamente la base. Si hace clic nuevamente, los registros se duplicarán.',
+        botao: 'Insertar Datos de Prueba',
+        aguardando: 'Esperando ejecución...',
+        iniciando: 'Iniciando seed de transparencia...',
+        sucesso: '✅ Seed concluida con éxito. Total: ',
+        item_inserido: '✔ Insertado: ',
+        erro: '❌ Error al ejecutar seed:'
+      }
+    };
 
-window.executarSeed = async function(){
-const log = document.getElementById("log");
-log.innerText = "Iniciando...\n";
-let total = 0;
+    function idiomaAtual() { return localStorage.getItem('portal_idioma') || 'pt'; }
+    function t(chave) {
+      const idioma = idiomaAtual();
+      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    }
+    function definirIdioma(idioma) {
+      localStorage.setItem('portal_idioma', idioma);
+      document.documentElement.lang = idioma === 'en' ? 'en' : idioma === 'es' ? 'es' : 'pt-BR';
+      const mapa = traducoes[idioma] || traducoes.pt;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (mapa[chave]) el.textContent = mapa[chave];
+      });
+      document.getElementById('log').innerText = t('aguardando');
+    }
+    window.addEventListener('DOMContentLoaded', () => definirIdioma(idiomaAtual()));
+  </script>
 
-for(const item of dados){
-await addDoc(collection(db,"transparencia"),{
-...item,
-data: serverTimestamp()
-});
-total++;
-log.innerText += "✔ Registro inserido: " + item.titulo + "\n";
-}
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-log.innerText += "\n✅ Seed concluída. Total: " + total + " registros.";
-}
-</script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
 
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const itens = [
+      { tipo: "Receita", titulo: "FPM - Fundo de Participação dos Municípios", valor: 450000, setor: "Finanças", dataRef: "2026-04-01", obs: "Repasse federal" },
+      { tipo: "Receita", titulo: "ICMS Estadual", valor: 320000, setor: "Finanças", dataRef: "2026-04-03", obs: "Transferência estadual" },
+      { tipo: "Receita", titulo: "Arrecadação IPTU", valor: 85000, setor: "Tributação", dataRef: "2026-04-05", obs: "Exercício 2026" },
+      { tipo: "Despesa", titulo: "Folha de Pagamento Servidores", valor: 380000, setor: "Administração", dataRef: "2026-04-05", obs: "Competência abril" },
+      { tipo: "Despesa", titulo: "Medicamentos UBS", valor: 95000, setor: "Saúde", dataRef: "2026-04-09", obs: "Compra emergencial" },
+      { tipo: "Convênio", titulo: "Turismo Sustentável Regional", valor: 300000, setor: "Turismo", dataRef: "2026-04-22", obs: "Governo Estadual" }
+    ];
+
+    window.executarSeed = async function() {
+      const log = document.getElementById("log");
+      log.innerText = t('iniciando') + "\n";
+      let total = 0;
+
+      try {
+        for (const item of itens) {
+          await addDoc(collection(db, "transparencia"), { ...item, data: serverTimestamp() });
+          total++;
+          log.innerText += t('item_inserido') + item.titulo + "\n";
+        }
+        log.innerText += "\n" + t('sucesso') + total + " registros.";
+      } catch (erro) {
+        log.innerText += "\n" + t('erro') + "\n" + erro.message;
+      }
+    };
+  </script>
 </body>
 </html>
