@@ -1,170 +1,455 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Painel Admin • Notícias + Contatos</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#eef2f7;color:#222}
-header{background:#0d47a1;color:#fff;padding:18px;text-align:center;font-size:24px;font-weight:bold}
-.container{max-width:1200px;margin:auto;padding:20px}
-.card{background:#fff;padding:20px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08);margin-bottom:20px}
-input,textarea,button,select{
-width:100%;padding:12px;margin:8px 0;
-border:1px solid #ccc;border-radius:8px;font-size:16px
-}
-button{background:#0d47a1;color:#fff;border:none;font-weight:bold;cursor:pointer}
-button:hover{background:#1565c0}
-.grid{display:grid;gap:15px}
-.item{border:1px solid #ddd;border-radius:10px;padding:15px;background:#fafafa}
-.hidden{display:none}
-.small{font-size:13px;color:#666}
-.badge{padding:5px 10px;border-radius:20px;color:#fff;font-size:12px}
-.novo{background:#2e7d32}.analise{background:#ef6c00}.resolvido{background:#1565c0}
-@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Administrativo • Prefeitura Vila Bela MT</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #ffffff;
+    }
+
+    header {
+      background: #0c326f;
+      padding: 22px 18px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      line-height: 1.2;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .card {
+      background: #101826;
+      border: 1px solid #334155;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,.22);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 30px;
+      color: #f8fafc;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 22px;
+      color: #dbeafe;
+    }
+
+    p, .small {
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    input, textarea, select, button {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #475569;
+      background: #1f2937;
+      color: #ffffff;
+      padding: 14px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    button {
+      border: none;
+      background: #1351b4;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0f4aa5;
+    }
+
+    .danger {
+      background: #b91c1c !important;
+    }
+
+    .danger:hover {
+      background: #991b1b !important;
+    }
+
+    .logout {
+      background: #374151 !important;
+    }
+
+    .logout:hover {
+      background: #4b5563 !important;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1fr;
+    }
+
+    .item {
+      background: #0f172a;
+      border: 1px solid #475569;
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .item h4 {
+      margin: 0 0 10px;
+      color: #f8fafc;
+      font-size: 20px;
+      line-height: 1.3;
+    }
+
+    .item p {
+      margin: 8px 0;
+      color: #cbd5e1;
+    }
+
+    .meta {
+      font-size: 13px;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+
+    .status-msg {
+      margin-top: 12px;
+      font-weight: bold;
+      color: #86efac;
+    }
+
+    .top-actions {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+      margin-top: 12px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      background: #1d4ed8;
+      color: #fff;
+    }
+
+    .badge-novo {
+      background: #166534;
+    }
+
+    .badge-analise {
+      background: #b45309;
+    }
+
+    .badge-resolvido {
+      background: #1d4ed8;
+    }
+
+    .duas-colunas {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: 1fr;
+    }
+
+    @media (min-width: 900px) {
+      .duas-colunas {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .top-actions {
+        grid-template-columns: 180px 180px;
+        justify-content: end;
+      }
+    }
+  </style>
 </head>
 <body>
+  <header>Painel Administrativo • Portal Prefeitura Vila Bela MT</header>
 
-<header>Painel Admin • Portal Prefeitura Vila Bela MT</header>
+  <div class="container">
+    <div class="card" id="loginBox">
+      <h2>Acesso Administrativo</h2>
+      <p>Entrar com conta Google autorizada.</p>
+      <button onclick="loginGoogle()">Entrar com Google</button>
+      <div id="loginMsg" class="status-msg"></div>
+    </div>
 
-<div class="container">
+    <div id="painel" class="hidden">
+      <div class="card">
+        <h2>Área Administrativa</h2>
+        <p>Gestão de notícias e contatos recebidos pelo portal oficial.</p>
+        <div class="top-actions">
+          <button onclick="abrirNoticias()">Gerenciar Notícias</button>
+          <button class="logout" onclick="logout()">Sair</button>
+        </div>
+      </div>
 
-<div class="card" id="loginBox">
-<h2>Acesso Administrativo</h2>
-<p class="small">Entrar com conta Google autorizada</p>
-<button onclick="loginGoogle()">Entrar com Google</button>
-<div id="msg"></div>
-</div>
+      <div class="duas-colunas">
+        <div class="card">
+          <h3>Publicar Notícia</h3>
+          <input id="titulo" placeholder="Título da notícia" />
+          <input id="imagem" placeholder="URL da imagem (opcional)" />
+          <textarea id="texto" placeholder="Conteúdo da notícia"></textarea>
+          <button onclick="publicarNoticia()">Publicar Notícia</button>
+          <div id="nmsg" class="status-msg"></div>
+        </div>
 
-<div id="painel" class="hidden">
+        <div class="card">
+          <h3>Orientação</h3>
+          <p>
+            As notícias publicadas aqui aparecem automaticamente:
+          </p>
+          <p>• na seção de notícias da Home</p>
+          <p>• na página pública <strong>noticias.html</strong></p>
+          <p>
+            O campo imagem é opcional. Caso esteja vazio, a notícia será exibida sem imagem.
+          </p>
+        </div>
+      </div>
 
-<div class="card">
-<h2>Publicar Notícia</h2>
-<input id="titulo" placeholder="Título da notícia">
-<textarea id="texto" placeholder="Conteúdo da notícia"></textarea>
-<button onclick="publicarNoticia()">Publicar Notícia</button>
-<div id="nmsg"></div>
-</div>
+      <div class="card">
+        <h3>Notícias Publicadas</h3>
+        <div id="listaNoticias" class="grid"></div>
+      </div>
 
-<div class="card">
-<h2>Notícias Publicadas</h2>
-<div id="listaNoticias" class="grid"></div>
-</div>
+      <div class="card">
+        <h3>Mensagens Recebidas</h3>
+        <div id="listaContatos" class="grid"></div>
+      </div>
+    </div>
+  </div>
 
-<div class="card">
-<h2>Mensagens Recebidas</h2>
-<div id="listaContatos" class="grid"></div>
-</div>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      deleteDoc,
+      updateDoc,
+      doc,
+      serverTimestamp,
+      query,
+      orderBy
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-</div>
-</div>
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-getFirestore, collection, addDoc, getDocs, deleteDoc, updateDoc, doc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
 
-import {
-getAuth, GoogleAuthProvider, signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth(app);
 
-const firebaseConfig = {
-apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-authDomain: "portal-vilabela-oficial.firebaseapp.com",
-projectId: "portal-vilabela-oficial",
-storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-messagingSenderId: "908975101824",
-appId: "1:908975101824:web:f986598784403493721365"
-};
+    window.loginGoogle = async function () {
+      const loginMsg = document.getElementById("loginMsg");
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const auth = getAuth(app);
+      try {
+        await signInWithPopup(auth, new GoogleAuthProvider());
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("painel").classList.remove("hidden");
+        loginMsg.innerText = "";
+        carregarNoticias();
+        carregarContatos();
+      } catch (erro) {
+        loginMsg.innerText = "Erro: " + erro.message;
+      }
+    };
 
-window.loginGoogle = async function(){
-try{
-await signInWithPopup(auth,new GoogleAuthProvider());
-loginBox.classList.add("hidden");
-painel.classList.remove("hidden");
-carregarNoticias();
-carregarContatos();
-}catch(e){
-msg.innerText="Erro: "+e.message;
-}
-}
+    window.logout = async function () {
+      await signOut(auth);
+      location.reload();
+    };
 
-window.publicarNoticia = async function(){
-try{
-await addDoc(collection(db,"noticias"),{
-titulo:titulo.value,
-texto:texto.value,
-data:serverTimestamp()
-});
-nmsg.innerText="Notícia publicada!";
-titulo.value=""; texto.value="";
-carregarNoticias();
-}catch(e){
-nmsg.innerText=e.message;
-}
-}
+    window.abrirNoticias = function () {
+      location.href = "noticias.html";
+    };
 
-async function carregarNoticias(){
-const snap = await getDocs(collection(db,"noticias"));
-listaNoticias.innerHTML="";
-snap.forEach(x=>{
-const d=x.data();
-listaNoticias.innerHTML += `
-<div class="item">
-<strong>${d.titulo}</strong><br><br>
-${d.texto}<br><br>
-<button onclick="apagarNoticia('${x.id}')">Excluir</button>
-</div>`;
-});
-}
+    window.publicarNoticia = async function () {
+      const titulo = document.getElementById("titulo");
+      const imagem = document.getElementById("imagem");
+      const texto = document.getElementById("texto");
+      const nmsg = document.getElementById("nmsg");
 
-window.apagarNoticia = async function(id){
-await deleteDoc(doc(db,"noticias",id));
-carregarNoticias();
-}
+      if (!titulo.value.trim() || !texto.value.trim()) {
+        nmsg.innerText = "Preencha pelo menos título e conteúdo.";
+        return;
+      }
 
-async function carregarContatos(){
-const snap = await getDocs(collection(db,"contatos"));
-listaContatos.innerHTML="";
-snap.forEach(x=>{
-const d=x.data(), id=x.id;
-const st=d.status||"novo";
-listaContatos.innerHTML += `
-<div class="item">
-<strong>${d.nome}</strong><br>
-<span class="small">${d.email}</span><br><br>
-${d.mensagem}<br><br>
+      try {
+        await addDoc(collection(db, "noticias"), {
+          titulo: titulo.value.trim(),
+          imagem: imagem.value.trim(),
+          texto: texto.value.trim(),
+          data: serverTimestamp()
+        });
 
-<select id="s_${id}">
-<option ${st==="novo"?"selected":""}>novo</option>
-<option ${st==="em análise"?"selected":""}>em análise</option>
-<option ${st==="resolvido"?"selected":""}>resolvido</option>
-</select>
+        nmsg.innerText = "Notícia publicada com sucesso!";
+        titulo.value = "";
+        imagem.value = "";
+        texto.value = "";
+        carregarNoticias();
+      } catch (erro) {
+        nmsg.innerText = "Erro: " + erro.message;
+      }
+    };
 
-<button onclick="salvarContato('${id}')">Salvar</button>
-<button onclick="apagarContato('${id}')">Excluir</button>
-</div>`;
-});
-}
+    async function carregarNoticias() {
+      const lista = document.getElementById("listaNoticias");
+      lista.innerHTML = "Carregando notícias...";
 
-window.salvarContato = async function(id){
-const v=document.getElementById("s_"+id).value;
-await updateDoc(doc(db,"contatos",id),{status:v});
-carregarContatos();
-}
+      try {
+        const q = query(collection(db, "noticias"), orderBy("data", "desc"));
+        const snap = await getDocs(q);
 
-window.apagarContato = async function(id){
-await deleteDoc(doc(db,"contatos",id));
-carregarContatos();
-}
-</script>
+        if (snap.empty) {
+          lista.innerHTML = `
+            <div class="item">
+              <h4>Nenhuma notícia publicada</h4>
+              <p>Use o formulário acima para cadastrar a primeira notícia.</p>
+            </div>
+          `;
+          return;
+        }
 
+        lista.innerHTML = "";
+
+        snap.forEach((registro) => {
+          const d = registro.data();
+
+          lista.innerHTML += `
+            <div class="item">
+              <div class="badge">NOTÍCIA</div>
+              <h4>${d.titulo || "Sem título"}</h4>
+              <p>${d.texto || ""}</p>
+              <div class="meta">${d.imagem ? "Imagem cadastrada" : "Sem imagem"}</div>
+              <button class="danger" onclick="apagarNoticia('${registro.id}')">Excluir</button>
+            </div>
+          `;
+        });
+      } catch (erro) {
+        lista.innerHTML = `
+          <div class="item">
+            <h4>Erro ao carregar notícias</h4>
+            <p>${erro.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    window.apagarNoticia = async function (id) {
+      if (!confirm("Deseja excluir esta notícia?")) return;
+      await deleteDoc(doc(db, "noticias", id));
+      carregarNoticias();
+    };
+
+    async function carregarContatos() {
+      const lista = document.getElementById("listaContatos");
+      lista.innerHTML = "Carregando contatos...";
+
+      try {
+        const snap = await getDocs(collection(db, "contatos"));
+
+        if (snap.empty) {
+          lista.innerHTML = `
+            <div class="item">
+              <h4>Nenhum contato recebido</h4>
+              <p>As mensagens enviadas pelo portal aparecerão aqui.</p>
+            </div>
+          `;
+          return;
+        }
+
+        lista.innerHTML = "";
+
+        snap.forEach((registro) => {
+          const d = registro.data();
+          const status = d.status || "novo";
+
+          let badgeClass = "badge-novo";
+          if (status === "em análise") badgeClass = "badge-analise";
+          if (status === "resolvido") badgeClass = "badge-resolvido";
+
+          lista.innerHTML += `
+            <div class="item">
+              <div class="badge ${badgeClass}">${status}</div>
+              <h4>${d.nome || "Sem nome"}</h4>
+              <div class="meta">${d.email || ""}</div>
+              <p>${d.mensagem || ""}</p>
+
+              <select id="status_${registro.id}">
+                <option value="novo" ${status === "novo" ? "selected" : ""}>novo</option>
+                <option value="em análise" ${status === "em análise" ? "selected" : ""}>em análise</option>
+                <option value="resolvido" ${status === "resolvido" ? "selected" : ""}>resolvido</option>
+              </select>
+
+              <button onclick="salvarContato('${registro.id}')">Salvar Status</button>
+              <button class="danger" onclick="apagarContato('${registro.id}')">Excluir</button>
+            </div>
+          `;
+        });
+      } catch (erro) {
+        lista.innerHTML = `
+          <div class="item">
+            <h4>Erro ao carregar contatos</h4>
+            <p>${erro.message}</p>
+          </div>
+        `;
+      }
+    }
+
+    window.salvarContato = async function (id) {
+      const valor = document.getElementById("status_" + id).value;
+      await updateDoc(doc(db, "contatos", id), { status: valor });
+      carregarContatos();
+    };
+
+    window.apagarContato = async function (id) {
+      if (!confirm("Deseja excluir este contato?")) return;
+      await deleteDoc(doc(db, "contatos", id));
+      carregarContatos();
+    };
+  </script>
 </body>
 </html>
