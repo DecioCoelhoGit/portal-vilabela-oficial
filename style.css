@@ -96,10 +96,11 @@ a {
   background: transparent;
   border: 1px solid rgba(255,255,255,.25);
   border-radius: 999px;
-  padding: 6px 10px;
+  padding: 8px 12px;
   text-decoration: none;
   font-size: 12px;
   cursor: pointer;
+  min-height: 40px;
 }
 
 .barra-topo {
@@ -192,6 +193,7 @@ a {
   font-weight: bold;
   cursor: pointer;
   flex-shrink: 0;
+  min-height: 48px;
 }
 
 .menu {
@@ -282,6 +284,7 @@ a {
   border-radius: 14px;
   font-weight: bold;
   min-width: 180px;
+  text-align: center;
 }
 
 .botao {
@@ -384,6 +387,7 @@ a {
   color: var(--azul-900);
   text-decoration: none;
   font-weight: bold;
+  text-align: center;
 }
 
 .atalhos {
@@ -738,7 +742,7 @@ a {
   }
 
   .marca {
-    width: calc(100% - 110px);
+    width: calc(100% - 112px);
     align-items: flex-start;
   }
 
@@ -784,7 +788,7 @@ a {
   .barra-acessibilidade .inner,
   .barra-topo .inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .acessibilidade-links,
@@ -793,11 +797,24 @@ a {
     width: 100%;
   }
 
+  .acessibilidade-links {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .acessibilidade-acoes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
   .acessibilidade-links a,
   .acessibilidade-acoes button,
   .servico-chip {
-    flex: 1 1 auto;
+    width: 100%;
     justify-content: center;
+    text-align: center;
   }
 
   .hero-botoes {
@@ -808,4 +825,33 @@ a {
   .botao-secundario {
     width: 100%;
   }
-            }
+}
+
+@media (max-width: 420px) {
+  .acessibilidade-acoes {
+    grid-template-columns: 1fr;
+  }
+
+  .marca {
+    width: 100%;
+  }
+
+  .menu-toggle {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .hero h2 {
+    font-size: 24px;
+  }
+
+  .titulo-secao h3 {
+    font-size: 22px;
+  }
+
+  .bloco,
+  .hero-box,
+  .hero-painel {
+    padding: 18px;
+  }
+  }
