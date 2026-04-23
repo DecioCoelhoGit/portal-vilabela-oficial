@@ -1,46 +1,171 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Seed Notícias • Vila Bela MT</title>
-<style>
-body{font-family:Arial,sans-serif;background:#eef4ff;padding:30px;max-width:800px;margin:auto}
-.card{background:#fff;padding:25px;border-radius:14px;box-shadow:0 4px 12px rgba(0,0,0,.08)}
-button{width:100%;padding:14px;border:none;border-radius:10px;background:#1565c0;color:#fff;font-size:18px;font-weight:bold;cursor:pointer}
-button:hover{opacity:.95}
-#log{margin-top:15px;white-space:pre-line;color:#333}
-small{color:#666}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Seed Notícias • Prefeitura Vila Bela MT</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #08111f;
+      color: #ffffff;
+      padding: 24px;
+    }
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .card {
+      background: #111827;
+      border: 1px solid #374151;
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 32px;
+      color: #60a5fa;
+    }
+    p {
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 14px;
+      padding: 15px 18px;
+      background: #1351b4;
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 12px;
+    }
+    button:hover {
+      background: #0f4aa5;
+    }
+    #log {
+      margin-top: 18px;
+      white-space: pre-line;
+      background: #0b1220;
+      border: 1px solid #374151;
+      border-radius: 14px;
+      padding: 16px;
+      min-height: 120px;
+      color: #d1fae5;
+      font-size: 14px;
+    }
+    .info {
+      margin-top: 14px;
+      font-size: 13px;
+      color: #9ca3af;
+    }
+  </style>
 </head>
 <body>
+  <div class="wrap">
+    <div class="card">
+      <h1>Seed Notícias</h1>
+      <p>
+        Esta página insere automaticamente uma massa de teste na coleção
+        <strong>noticias</strong> do Firestore.
+      </p>
+      <p>
+        Use apenas quando quiser popular rapidamente a base. Se clicar novamente,
+        os registros serão duplicados.
+      </p>
 
-<div class="card">
-<h1>Seed Notícias</h1>
-<p>Carrega automaticamente notícias de teste na coleção <b>noticias</b>.</p>
-<button onclick="executarSeed()">Inserir Massa de Teste</button>
-<div id="log"></div>
-<small>Use uma vez. Se clicar novamente, duplicará os dados.</small>
-</div>
+      <button onclick="executarSeed()">Inserir Massa de Teste</button>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {
-getFirestore, collection, addDoc, serverTimestamp
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+      <div id="log">Aguardando execução...</div>
 
-const firebaseConfig = {
-apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-authDomain: "portal-vilabela-oficial.firebaseapp.com",
-projectId: "portal-vilabela-oficial",
-storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-messagingSenderId: "908975101824",
-appId: "1:908975101824:web:f986598784403493721365"
-};
+      <div class="info">
+        Link esperado:
+        https://deciocoelhogit.github.io/portal-vilabela-oficial/seed-noticias.html
+      </div>
+    </div>
+  </div>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-const dados = [
-{
-titulo:"Feira Municipal movimenta 
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const noticias = [
+      {
+        titulo: "Feira Municipal fortalece a agricultura familiar em Vila Bela",
+        texto: "A feira municipal segue como importante espaço de comercialização de produtos frescos, artesanato e alimentos regionais, promovendo renda para pequenos produtores e convivência comunitária.",
+        imagem: ""
+      },
+      {
+        titulo: "Secretaria de Cultura amplia agenda de visitas e ações educativas",
+        texto: "A Secretaria de Cultura intensificou o atendimento a escolas, grupos organizados e visitantes interessados no patrimônio histórico e cultural do município.",
+        imagem: ""
+      },
+      {
+        titulo: "Turismo registra movimentação positiva nos atrativos naturais",
+        texto: "Check-ins e visitas guiadas indicam crescimento do fluxo turístico em atrativos como city tour histórico, cânions e cachoeiras do município.",
+        imagem: ""
+      },
+      {
+        titulo: "Transparência pública avança com novos registros digitais",
+        texto: "A gestão municipal amplia a organização de receitas, despesas, licitações e convênios em ambiente digital, fortalecendo o acesso público à informação.",
+        imagem: ""
+      },
+      {
+        titulo: "Portal institucional evolui com módulos integrados de gestão",
+        texto: "A plataforma digital municipal passa a reunir notícias, cultura, turismo, transparência, contatos e painéis executivos em uma estrutura integrada.",
+        imagem: ""
+      },
+      {
+        titulo: "Patrimônio histórico-cultural ganha mais visibilidade digital",
+        texto: "A divulgação institucional do patrimônio local reforça o reconhecimento de Vila Bela da Santíssima Trindade como referência histórica, cultural e turística.",
+        imagem: ""
+      }
+    ];
+
+    window.executarSeed = async function () {
+      const log = document.getElementById("log");
+      log.innerText = "Iniciando seed de notícias...\n";
+
+      let total = 0;
+
+      try {
+        for (const item of noticias) {
+          await addDoc(collection(db, "noticias"), {
+            ...item,
+            data: serverTimestamp()
+          });
+
+          total++;
+          log.innerText += "✔ Inserida: " + item.titulo + "\n";
+        }
+
+        log.innerText += "\n✅ Seed concluída com sucesso. Total: " + total + " notícias.";
+      } catch (erro) {
+        log.innerText += "\n❌ Erro ao executar seed:\n" + erro.message;
+      }
+    };
+  </script>
+</body>
+</html>
