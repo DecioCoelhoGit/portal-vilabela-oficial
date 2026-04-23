@@ -24,6 +24,20 @@
       padding: 24px;
       box-shadow: 0 8px 24px rgba(0,0,0,.25);
     }
+    .idiomas {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+    .idiomas button {
+      border: 1px solid rgba(255,255,255,.2);
+      background: transparent;
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+    }
     h1 {
       margin-top: 0;
       font-size: 32px;
@@ -33,7 +47,7 @@
       color: #d1d5db;
       line-height: 1.6;
     }
-    button {
+    button.acao {
       width: 100%;
       border: none;
       border-radius: 14px;
@@ -45,7 +59,7 @@
       cursor: pointer;
       margin-top: 12px;
     }
-    button:hover {
+    button.acao:hover {
       background: #0f4aa5;
     }
     #log {
@@ -63,23 +77,28 @@
       margin-top: 14px;
       font-size: 13px;
       color: #9ca3af;
+      word-break: break-word;
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <h1>Seed Notícias</h1>
-      <p>
-        Esta página insere automaticamente uma massa de teste na coleção
-        <strong>noticias</strong> do Firestore.
+      <div class="idiomas">
+        <button type="button" onclick="definirIdioma('pt')">Português</button>
+        <button type="button" onclick="definirIdioma('en')">English</button>
+        <button type="button" onclick="definirIdioma('es')">Español</button>
+      </div>
+
+      <h1 data-i18n="titulo">Seed Notícias</h1>
+      <p data-i18n="texto_1">
+        Esta página insere automaticamente uma massa de teste na coleção noticias do Firestore.
       </p>
-      <p>
-        Use apenas quando quiser popular rapidamente a base. Se clicar novamente,
-        os registros serão duplicados.
+      <p data-i18n="texto_2">
+        Use apenas quando quiser popular rapidamente a base. Se clicar novamente, os registros serão duplicados.
       </p>
 
-      <button onclick="executarSeed()">Inserir Massa de Teste</button>
+      <button class="acao" onclick="executarSeed()" data-i18n="botao">Inserir Massa de Teste</button>
 
       <div id="log">Aguardando execução...</div>
 
@@ -89,6 +108,68 @@
       </div>
     </div>
   </div>
+
+  <script>
+    const traducoes = {
+      pt: {
+        titulo: 'Seed Notícias',
+        texto_1: 'Esta página insere automaticamente uma massa de teste na coleção noticias do Firestore.',
+        texto_2: 'Use apenas quando quiser popular rapidamente a base. Se clicar novamente, os registros serão duplicados.',
+        botao: 'Inserir Massa de Teste',
+        aguardando: 'Aguardando execução...',
+        iniciando: 'Iniciando seed de notícias...',
+        sucesso: '✅ Seed concluída com sucesso. Total: ',
+        noticia_inserida: '✔ Inserida: ',
+        erro: '❌ Erro ao executar seed:'
+      },
+      en: {
+        titulo: 'News Seed',
+        texto_1: 'This page automatically inserts test data into the noticias collection in Firestore.',
+        texto_2: 'Use it only when you want to quickly populate the database. If you click again, the records will be duplicated.',
+        botao: 'Insert Test Data',
+        aguardando: 'Waiting for execution...',
+        iniciando: 'Starting news seed...',
+        sucesso: '✅ Seed completed successfully. Total: ',
+        noticia_inserida: '✔ Inserted: ',
+        erro: '❌ Error while running seed:'
+      },
+      es: {
+        titulo: 'Seed Noticias',
+        texto_1: 'Esta página inserta automáticamente una masa de prueba en la colección noticias de Firestore.',
+        texto_2: 'Úsela solo cuando quiera poblar rápidamente la base. Si hace clic nuevamente, los registros se duplicarán.',
+        botao: 'Insertar Datos de Prueba',
+        aguardando: 'Esperando ejecución...',
+        iniciando: 'Iniciando seed de noticias...',
+        sucesso: '✅ Seed concluida con éxito. Total: ',
+        noticia_inserida: '✔ Insertada: ',
+        erro: '❌ Error al ejecutar seed:'
+      }
+    };
+
+    function idiomaAtual() {
+      return localStorage.getItem('portal_idioma') || 'pt';
+    }
+
+    function t(chave) {
+      const idioma = idiomaAtual();
+      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    }
+
+    function definirIdioma(idioma) {
+      localStorage.setItem('portal_idioma', idioma);
+      document.documentElement.lang = idioma === 'en' ? 'en' : idioma === 'es' ? 'es' : 'pt-BR';
+      const mapa = traducoes[idioma] || traducoes.pt;
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (mapa[chave]) el.textContent = mapa[chave];
+      });
+      document.getElementById('log').innerText = t('aguardando');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      definirIdioma(idiomaAtual());
+    });
+  </script>
 
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
@@ -146,7 +227,7 @@
 
     window.executarSeed = async function () {
       const log = document.getElementById("log");
-      log.innerText = "Iniciando seed de notícias...\n";
+      log.innerText = t('iniciando') + "\n";
 
       let total = 0;
 
@@ -158,12 +239,12 @@
           });
 
           total++;
-          log.innerText += "✔ Inserida: " + item.titulo + "\n";
+          log.innerText += t('noticia_inserida') + item.titulo + "\n";
         }
 
-        log.innerText += "\n✅ Seed concluída com sucesso. Total: " + total + " notícias.";
+        log.innerText += "\n" + t('sucesso') + total + " notícias.";
       } catch (erro) {
-        log.innerText += "\n❌ Erro ao executar seed:\n" + erro.message;
+        log.innerText += "\n" + t('erro') + "\n" + erro.message;
       }
     };
   </script>
