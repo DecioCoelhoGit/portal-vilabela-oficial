@@ -1,1 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <title>Gabinete do Prefeito • Portal Prefeitura Vila Bela MT</title>
+
+  <meta name="description" content="Módulo oficial do Gabinete do Prefeito com agenda, prioridades, demandas estratégicas e governança executiva." />
+
+  <meta property="og:title" content="Gabinete do Prefeito • Vila Bela MT" />
+  <meta property="og:description" content="Agenda oficial, demandas estratégicas, prioridades e gestão executiva do gabinete." />
+  <meta property="og:image" content="./imagens/vilabela-capa-oficial-1.jpg" />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+  <div class="barra-acessibilidade">
+    <div class="inner">
+      <div class="acessibilidade-links">
+        <a href="#conteudo-principal">Ir para o conteúdo</a>
+        <a href="#menu-principal">Ir para o menu</a>
+        <a href="#registrosGabinete">Ir para os registros</a>
+      </div>
+
+      <div class="acessibilidade-acoes">
+        <button type="button" onclick="setFonte('normal')">A normal</button>
+        <button type="button" onclick="setFonte('grande')">A+</button>
+        <button type="button" onclick="setTema('claro')">☀ Claro</button>
+        <button type="button" onclick="setTema('escuro')">🌙 Escuro</button>
+        <button type="button" onclick="setTema('contraste')">⚫ Contraste</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="barra-topo">
+    <div class="inner">
+      <div data-i18n="topo_1">Gabinete do Prefeito • Prefeitura de Vila Bela da Santíssima Trindade MT</div>
+      <div data-i18n="topo_2">Agenda oficial • Demandas estratégicas • Governança institucional</div>
+    </div>
+  </div>
+
+  <header class="cabecalho">
+    <div class="inner">
+      <div class="marca">
+        <img
+          class="brasao"
+          src="./imagens/vilabela-brasao-1.png"
+          alt="Brasão oficial da Prefeitura de Vila Bela da Santíssima Trindade MT"
+          onerror="this.src='./imagens/vilabela-brasao-web-1.jpg';"
+        />
+
+        <div class="marca-texto">
+          <small data-i18n="marca_small">Gabinete do Prefeito</small>
+          <h1>Vila Bela da Santíssima Trindade MT</h1>
+          <p data-i18n="marca_p">Agenda, prioridades, ações estratégicas e registros executivos do gabinete.</p>
+        </div>
+      </div>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" onclick="alternarMenu()">
+        ☰ Menu
+      </button>
+
+      <nav class="menu" id="menu-principal">
+        <a href="index.html" data-i18n="menu_inicio">Início</a>
+        <a href="#painelGabinete" data-i18n="menu_painel">Painel</a>
+        <a href="#cadastroGabinete" data-i18n="menu_cadastro">Cadastro</a>
+        <a href="#registrosGabinete" data-i18n="menu_registros">Registros</a>
+        <a href="admin-gabinete.html" data-i18n="menu_admin_gabinete">Admin Gabinete</a>
+        <a href="dashboard.html">Dashboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero hero-gabinete">
+    <div class="inner">
+      <div class="hero-box">
+        <div class="hero-tag" data-i18n="hero_tag">Gabinete do Prefeito</div>
+
+        <h2 data-i18n="hero_titulo">
+          Coordenação executiva, agenda institucional e prioridades da gestão em um único módulo.
+        </h2>
+
+        <p data-i18n="hero_texto">
+          Estrutura voltada ao acompanhamento de compromissos oficiais, demandas estratégicas,
+          ações prioritárias, comunicação do gabinete e governança executiva.
+        </p>
+
+        <div class="hero-botoes">
+          <a class="botao" href="#cadastroGabinete" data-i18n="hero_botao_1">Registrar ação</a>
+          <a class="botao-secundario" href="#registrosGabinete" data-i18n="hero_botao_2">Ver registros</a>
+        </div>
+      </div>
+
+      <div class="hero-painel">
+        <h3 data-i18n="painel_rapido">Painel rápido</h3>
+
+        <div class="mini-grid">
+          <div class="mini-card"><strong id="miniTotalGabinete">0</strong><span data-i18n="mini_total">Total</span></div>
+          <div class="mini-card"><strong id="miniAgendaGabinete">0</strong><span data-i18n="mini_agenda">Agenda</span></div>
+          <div class="mini-card"><strong id="miniDemandaGabinete">0</strong><span data-i18n="mini_demanda">Demandas</span></div>
+          <div class="mini-card"><strong id="miniConcluidoGabinete">0</strong><span data-i18n="mini_concluido">Concluídos</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="secao" id="conteudo-principal">
+    <div class="inner">
+
+      <section class="bloco" id="painelGabinete">
+        <div class="titulo-secao">
+          <div>
+            <h3 data-i18n="painel_titulo">Painel do gabinete</h3>
+            <p data-i18n="painel_texto">Indicadores rápidos para apoio à tomada de decisão e monitoramento executivo.</p>
+          </div>
+        </div>
+
+        <div class="mensagem-gabinete">
+          <h4 data-i18n="mensagem_titulo">Mensagem institucional do gabinete</h4>
+          <p data-i18n="mensagem_texto">
+            Este módulo registra compromissos, demandas, prioridades e entregas estratégicas,
+            fortalecendo a organização do gabinete e a coordenação entre secretarias.
+          </p>
+        </div>
+
+        <div class="gabinete-kpis">
+          <div class="gabinete-kpi">
+            <strong id="kpiTotal">0</strong>
+            <span data-i18n="kpi_total">Total de registros</span>
+          </div>
+
+          <div class="gabinete-kpi">
+            <strong id="kpiAgenda">0</strong>
+            <span data-i18n="kpi_agenda">Agenda oficial</span>
+          </div>
+
+          <div class="gabinete-kpi">
+            <strong id="kpiDemanda">0</strong>
+            <span data-i18n="kpi_demanda">Demandas</span>
+          </div>
+
+          <div class="gabinete-kpi">
+            <strong id="kpiAndamento">0</strong>
+            <span data-i18n="kpi_andamento">Em andamento</span>
+          </div>
+
+          <div class="gabinete-kpi">
+            <strong id="kpiConcluido">0</strong>
+            <span data-i18n="kpi_concluido">Concluídos</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="bloco" id="cadastroGabinete">
+        <div class="titulo-secao">
+          <div>
+            <h3 data-i18n="cadastro_titulo">Registrar agenda ou demanda</h3>
+            <p data-i18n="cadastro_texto">Primeira versão oficial para estruturação executiva do Gabinete do Prefeito.</p>
+          </div>
+        </div>
+
+        <form id="formGabinete" class="gabinete-form-grid">
+          <div>
+            <label for="tipo" data-i18n="label_tipo">Tipo</label>
+            <select id="tipo" class="campo-select" required>
+              <option value="Agenda Oficial" data-i18n="tipo_agenda">Agenda Oficial</option>
+              <option value="Demanda Estratégica" data-i18n="tipo_demanda">Demanda Estratégica</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="prioridade" data-i18n="label_prioridade">Prioridade</label>
+            <select id="prioridade" class="campo-select" required>
+              <option value="Alta" data-i18n="prioridade_alta">Alta</option>
+              <option value="Média" data-i18n="prioridade_media">Média</option>
+              <option value="Baixa" data-i18n="prioridade_baixa">Baixa</option>
+            </select>
+          </div>
+
+          <div class="campo-full">
+            <label for="titulo" data-i18n="label_titulo">Título</label>
+            <input id="titulo" class="campo" placeholder="Ex.: Reunião com secretários / Acompanhamento de obra" required />
+          </div>
+
+          <div>
+            <label for="responsavel" data-i18n="label_responsavel">Responsável</label>
+            <input id="responsavel" class="campo" placeholder="Responsável pelo registro ou ação" required />
+          </div>
+
+          <div>
+            <label for="setor" data-i18n="label_setor">Setor / Secretaria</label>
+            <input id="setor" class="campo" placeholder="Gabinete / Cultura / Turismo / Administração..." required />
+          </div>
+
+          <div>
+            <label for="dataAgenda" data-i18n="label_data">Data</label>
+            <input id="dataAgenda" class="campo" type="date" required />
+          </div>
+
+          <div>
+            <label for="statusRegistro" data-i18n="label_status">Status</label>
+            <select id="statusRegistro" class="campo-select" required>
+              <option value="Planejado" data-i18n="status_planejado">Planejado</option>
+              <option value="Em andamento" data-i18n="status_andamento">Em andamento</option>
+              <option value="Concluído" data-i18n="status_concluido">Concluído</option>
+              <option value="Arquivado" data-i18n="status_arquivado">Arquivado</option>
+            </select>
+          </div>
+
+          <div class="campo-full">
+            <label for="descricao" data-i18n="label_descricao">Descrição</label>
+            <textarea id="descricao" class="campo-area" placeholder="Descreva a pauta, a demanda, a prioridade ou a ação estratégica." required></textarea>
+          </div>
+
+          <div class="campo-full">
+            <button class="campo-botao" type="submit" data-i18n="botao_salvar">Salvar registro</button>
+          </div>
+        </form>
+
+        <div id="statusGabinete"></div>
+      </section>
+
+      <section class="bloco" id="registrosGabinete">
+        <div class="titulo-secao">
+          <div>
+            <h3 data-i18n="registros_titulo">Registros do gabinete</h3>
+            <p data-i18n="registros_texto">Lista dinâmica das agendas e demandas cadastradas no módulo.</p>
+          </div>
+        </div>
+
+        <div id="listaGabinete" class="gabinete-lista"></div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="inner">
+      <div class="grade-rodape">
+        <div>
+          <h4 data-i18n="rodape_titulo">Gabinete do Prefeito</h4>
+          <p data-i18n="rodape_texto">
+            Módulo executivo voltado à agenda institucional, demandas estratégicas,
+            prioridades da gestão e acompanhamento de ações do gabinete.
+          </p>
+
+          <div class="parcerias">
+            <h4 data-i18n="parcerias_titulo">Parcerias tecnológicas e estratégicas</h4>
+            <p data-i18n="parcerias_texto">
+              Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.
+            </p>
+
+            <span class="badge-legal">GitHub Pages</span>
+            <span class="badge-legal">Firebase</span>
+            <span class="badge-legal">Cloud Firestore</span>
+            <span class="badge-legal">OpenAI / ChatGPT</span>
+          </div>
+        </div>
+
+        <div>
+          <h4 data-i18n="tecnologias_titulo">Tecnologias</h4>
+          <ul>
+            <li>HTML5</li>
+            <li>CSS3</li>
+            <li>JavaScript ES Modules</li>
+            <li>Firebase Web SDK</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="referencias_titulo">Referências</h4>
+          <ul>
+            <li data-i18n="ref_1">Documentação Firebase</li>
+            <li data-i18n="ref_2">Arquitetura web responsiva</li>
+            <li data-i18n="ref_3">Acessibilidade digital</li>
+            <li data-i18n="ref_4">Curadoria institucional</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 data-i18n="direitos_titulo">Direitos e créditos</h4>
+          <ul>
+            <li data-i18n="dir_1">Conteúdo institucional</li>
+            <li data-i18n="dir_2">Créditos editoriais conforme publicação</li>
+            <li data-i18n="dir_3">Direitos reservados conforme normativas</li>
+            <li data-i18n="dir_4">Citações e bibliografia por seção</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="rodape-final" data-i18n="rodape_final">
+        © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Gabinete do Prefeito • Direitos reservados.
+      </div>
+    </div>
+  </footer>
+
+  <button class="access-float-btn" type="button" onclick="toggleAccessPanel()" aria-label="Abrir painel de acessibilidade">
+    ♿
+  </button>
+
+  <div class="access-panel" id="accessPanel">
+    <h3>Acessibilidade</h3>
+    <p>Personalize a visualização do portal.</p>
+
+    <div class="access-grid">
+      <button type="button" onclick="setFonte('normal')">A normal</button>
+      <button type="button" onclick="setFonte('grande')">A+</button>
+      <button type="button" onclick="setFonte('extra')">A++</button>
+      <button type="button" onclick="setTema('claro')">☀ Claro</button>
+      <button type="button" onclick="setTema('escuro')">🌙 Escuro</button>
+      <button type="button" onclick="setTema('contraste')">⚫ Contraste</button>
+      <button type="button" onclick="definirIdioma('pt')">Português</button>
+      <button type="button" onclick="definirIdioma('en')">English</button>
+      <button type="button" onclick="definirIdioma('es')">Español</button>
+    </div>
+
+    <button class="access-full" type="button" onclick="resetAcessibilidade()">Restaurar padrão</button>
+  </div>
+
+  <script>
+    function alternarMenu(){
+      const menu = document.getElementById('menu-principal');
+      const botao = document.querySelector('.menu-toggle');
+      menu.classList.toggle('menu-aberto');
+      const aberto = menu.classList.contains('menu-aberto');
+      botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    }
+
+    document.addEventListener('click', function(e){
+      const menu = document.getElementById('menu-principal');
+      const botao = document.querySelector('.menu-toggle');
+      if(!menu || !botao) return;
+      if(window.innerWidth > 700) return;
+      if(!menu.contains(e.target) && !botao.contains(e.target)){
+        menu.classList.remove('menu-aberto');
+        botao.setAttribute('aria-expanded','false');
+      }
+    });
+
+    function toggleAccessPanel() {
+      document.getElementById("accessPanel").classList.toggle("open");
+    }
+
+    function limparTemas() {
+      document.body.classList.remove("modo-claro", "modo-escuro", "alto-contraste");
+    }
+
+    function limparFontes() {
+      document.body.classList.remove("fonte-grande", "fonte-extra");
+    }
+
+    function setTema(tema) {
+      limparTemas();
+
+      if (tema === "claro") document.body.classList.add("modo-claro");
+      if (tema === "escuro") document.body.classList.add("modo-escuro");
+      if (tema === "contraste") document.body.classList.add("alto-contraste");
+
+      localStorage.setItem("tema_visual", tema);
+    }
+
+    function setFonte(fonte) {
+      limparFontes();
+
+      if (fonte === "grande") document.body.classList.add("fonte-grande");
+      if (fonte === "extra") document.body.classList.add("fonte-extra");
+
+      localStorage.setItem("fonte_visual", fonte);
+    }
+
+    function resetAcessibilidade() {
+      limparTemas();
+      limparFontes();
+      localStorage.removeItem("tema_visual");
+      localStorage.removeItem("fonte_visual");
+    }
+
+    function aplicarAcessibilidadeSalva() {
+      const tema = localStorage.getItem("tema_visual");
+      const fonte = localStorage.getItem("fonte_visual");
+
+      if (tema) setTema(tema);
+      if (fonte) setFonte(fonte);
+    }
+
+    const traducoes = {
+      pt: {
+        topo_1: 'Gabinete do Prefeito • Prefeitura de Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Agenda oficial • Demandas estratégicas • Governança institucional',
+        marca_small: 'Gabinete do Prefeito',
+        marca_p: 'Agenda, prioridades, ações estratégicas e registros executivos do gabinete.',
+        menu_inicio: 'Início',
+        menu_painel: 'Painel',
+        menu_cadastro: 'Cadastro',
+        menu_registros: 'Registros',
+        menu_admin_gabinete: 'Admin Gabinete',
+        hero_tag: 'Gabinete do Prefeito',
+        hero_titulo: 'Coordenação executiva, agenda institucional e prioridades da gestão em um único módulo.',
+        hero_texto: 'Estrutura voltada ao acompanhamento de compromissos oficiais, demandas estratégicas, ações prioritárias, comunicação do gabinete e governança executiva.',
+        hero_botao_1: 'Registrar ação',
+        hero_botao_2: 'Ver registros',
+        painel_rapido: 'Painel rápido',
+        mini_total: 'Total',
+        mini_agenda: 'Agenda',
+        mini_demanda: 'Demandas',
+        mini_concluido: 'Concluídos',
+        painel_titulo: 'Painel do gabinete',
+        painel_texto: 'Indicadores rápidos para apoio à tomada de decisão e monitoramento executivo.',
+        mensagem_titulo: 'Mensagem institucional do gabinete',
+        mensagem_texto: 'Este módulo registra compromissos, demandas, prioridades e entregas estratégicas, fortalecendo a organização do gabinete e a coordenação entre secretarias.',
+        kpi_total: 'Total de registros',
+        kpi_agenda: 'Agenda oficial',
+        kpi_demanda: 'Demandas',
+        kpi_andamento: 'Em andamento',
+        kpi_concluido: 'Concluídos',
+        cadastro_titulo: 'Registrar agenda ou demanda',
+        cadastro_texto: 'Primeira versão oficial para estruturação executiva do Gabinete do Prefeito.',
+        label_tipo: 'Tipo',
+        label_prioridade: 'Prioridade',
+        label_titulo: 'Título',
+        label_responsavel: 'Responsável',
+        label_setor: 'Setor / Secretaria',
+        label_data: 'Data',
+        label_status: 'Status',
+        label_descricao: 'Descrição',
+        botao_salvar: 'Salvar registro',
+        registros_titulo: 'Registros do gabinete',
+        registros_texto: 'Lista dinâmica das agendas e demandas cadastradas no módulo.',
+        rodape_titulo: 'Gabinete do Prefeito',
+        rodape_texto: 'Módulo executivo voltado à agenda institucional, demandas estratégicas, prioridades da gestão e acompanhamento de ações do gabinete.',
+        parcerias_titulo: 'Parcerias tecnológicas e estratégicas',
+        parcerias_texto: 'Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.',
+        tecnologias_titulo: 'Tecnologias',
+        referencias_titulo: 'Referências',
+        ref_1: 'Documentação Firebase',
+        ref_2: 'Arquitetura web responsiva',
+        ref_3: 'Acessibilidade digital',
+        ref_4: 'Curadoria institucional',
+        direitos_titulo: 'Direitos e créditos',
+        dir_1: 'Conteúdo institucional',
+        dir_2: 'Créditos editoriais conforme publicação',
+        dir_3: 'Direitos reservados conforme normativas',
+        dir_4: 'Citações e bibliografia por seção',
+        rodape_final: '© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Gabinete do Prefeito • Direitos reservados.',
+        tipo_agenda: 'Agenda Oficial',
+        tipo_demanda: 'Demanda Estratégica',
+        prioridade_alta: 'Alta',
+        prioridade_media: 'Média',
+        prioridade_baixa: 'Baixa',
+        status_planejado: 'Planejado',
+        status_andamento: 'Em andamento',
+        status_concluido: 'Concluído',
+        status_arquivado: 'Arquivado',
+        salvando: 'Salvando registro...',
+        sucesso: 'Registro salvo com sucesso!',
+        erro: 'Erro: ',
+        nenhum: 'Nenhum registro cadastrado no momento.',
+        meta_setor: 'Setor',
+        meta_responsavel: 'Responsável',
+        meta_data: 'Data',
+        meta_status: 'Status',
+        meta_prioridade: 'Prioridade'
+      },
+
+      en: {
+        topo_1: 'Mayor’s Office • Vila Bela da Santíssima Trindade MT City Hall',
+        topo_2: 'Official agenda • Strategic demands • Institutional governance',
+        marca_small: 'Mayor’s Office',
+        marca_p: 'Agenda, priorities, strategic actions and executive records of the office.',
+        menu_inicio: 'Home',
+        menu_painel: 'Panel',
+        menu_cadastro: 'Register',
+        menu_registros: 'Records',
+        menu_admin_gabinete: 'Office Admin',
+        hero_tag: 'Mayor’s Office',
+        hero_titulo: 'Executive coordination, institutional agenda and management priorities in a single module.',
+        hero_texto: 'A structure focused on monitoring official commitments, strategic demands, priority actions, office communication and executive governance.',
+        hero_botao_1: 'Register action',
+        hero_botao_2: 'View records',
+        painel_rapido: 'Quick panel',
+        mini_total: 'Total',
+        mini_agenda: 'Agenda',
+        mini_demanda: 'Demands',
+        mini_concluido: 'Completed',
+        painel_titulo: 'Office panel',
+        painel_texto: 'Quick indicators to support decision-making and executive monitoring.',
+        mensagem_titulo: 'Institutional office message',
+        mensagem_texto: 'This module registers commitments, demands, priorities and strategic deliveries, strengthening office organization and coordination among departments.',
+        kpi_total: 'Total records',
+        kpi_agenda: 'Official agenda',
+        kpi_demanda: 'Demands',
+        kpi_andamento: 'In progress',
+        kpi_concluido: 'Completed',
+        cadastro_titulo: 'Register agenda or demand',
+        cadastro_texto: 'First official version for executive structuring of the Mayor’s Office.',
+        label_tipo: 'Type',
+        label_prioridade: 'Priority',
+        label_titulo: 'Title',
+        label_responsavel: 'Responsible',
+        label_setor: 'Department / Area',
+        label_data: 'Date',
+        label_status: 'Status',
+        label_descricao: 'Description',
+        botao_salvar: 'Save record',
+        registros_titulo: 'Office records',
+        registros_texto: 'Dynamic list of agendas and demands registered in the module.',
+        rodape_titulo: 'Mayor’s Office',
+        rodape_texto: 'Executive module focused on institutional agenda, strategic demands, management priorities and follow-up of office actions.',
+        parcerias_titulo: 'Technological and strategic partnerships',
+        parcerias_texto: 'Local institutional curation • Digital strategy • Information architecture • Artificial intelligence applied to planning.',
+        tecnologias_titulo: 'Technologies',
+        referencias_titulo: 'References',
+        ref_1: 'Firebase documentation',
+        ref_2: 'Responsive web architecture',
+        ref_3: 'Digital accessibility',
+        ref_4: 'Institutional curation',
+        direitos_titulo: 'Rights and credits',
+        dir_1: 'Institutional content',
+        dir_2: 'Editorial credits according to publication',
+        dir_3: 'Rights reserved according to regulations',
+        dir_4: 'Citations and bibliography by section',
+        rodape_final: '© 2026 Vila Bela da Santíssima Trindade MT City Hall • Mayor’s Office • All rights reserved.',
+        tipo_agenda: 'Official Agenda',
+        tipo_demanda: 'Strategic Demand',
+        prioridade_alta: 'High',
+        prioridade_media: 'Medium',
+        prioridade_baixa: 'Low',
+        status_planejado: 'Planned',
+        status_andamento: 'In progress',
+        status_concluido: 'Completed',
+        status_arquivado: 'Archived',
+        salvando: 'Saving record...',
+        sucesso: 'Record saved successfully!',
+        erro: 'Error: ',
+        nenhum: 'No records registered at the moment.',
+        meta_setor: 'Department',
+        meta_responsavel: 'Responsible',
+        meta_data: 'Date',
+        meta_status: 'Status',
+        meta_prioridade: 'Priority'
+      },
+
+      es: {
+        topo_1: 'Gabinete del Alcalde • Ayuntamiento de Vila Bela da Santíssima Trindade MT',
+        topo_2: 'Agenda oficial • Demandas estratégicas • Gobernanza institucional',
+        marca_small: 'Gabinete del Alcalde',
+        marca_p: 'Agenda, prioridades, acciones estratégicas y registros ejecutivos del gabinete.',
+        menu_inicio: 'Inicio',
+        menu_painel: 'Panel',
+        menu_cadastro: 'Registro',
+        menu_registros: 'Registros',
+        menu_admin_gabinete: 'Admin Gabinete',
+        hero_tag: 'Gabinete del Alcalde',
+        hero_titulo: 'Coordinación ejecutiva, agenda institucional y prioridades de gestión en un solo módulo.',
+        hero_texto: 'Estructura orientada al acompañamiento de compromisos oficiales, demandas estratégicas, acciones prioritarias, comunicación del gabinete y gobernanza ejecutiva.',
+        hero_botao_1: 'Registrar acción',
+        hero_botao_2: 'Ver registros',
+        painel_rapido: 'Panel rápido',
+        mini_total: 'Total',
+        mini_agenda: 'Agenda',
+        mini_demanda: 'Demandas',
+        mini_concluido: 'Concluidos',
+        painel_titulo: 'Panel del gabinete',
+        painel_texto: 'Indicadores rápidos para apoyar la toma de decisiones y el monitoreo ejecutivo.',
+        mensagem_titulo: 'Mensaje institucional del gabinete',
+        mensagem_texto: 'Este módulo registra compromisos, demandas, prioridades y entregas estratégicas, fortaleciendo la organización del gabinete y la coordinación entre secretarías.',
+        kpi_total: 'Total de registros',
+        kpi_agenda: 'Agenda oficial',
+        kpi_demanda: 'Demandas',
+        kpi_andamento: 'En curso',
+        kpi_concluido: 'Concluidos',
+        cadastro_titulo: 'Registrar agenda o demanda',
+        cadastro_texto: 'Primera versión oficial para la estructuración ejecutiva del Gabinete del Alcalde.',
+        label_tipo: 'Tipo',
+        label_prioridade: 'Prioridad',
+        label_titulo: 'Título',
+        label_responsavel: 'Responsable',
+        label_setor: 'Sector / Secretaría',
+        label_data: 'Fecha',
+        label_status: 'Estado',
+        label_descricao: 'Descripción',
+        botao_salvar: 'Guardar registro',
+        registros_titulo: 'Registros del gabinete',
+        registros_texto: 'Lista dinámica de agendas y demandas registradas en el módulo.',
+        rodape_titulo: 'Gabinete del Alcalde',
+        rodape_texto: 'Módulo ejecutivo orientado a la agenda institucional, demandas estratégicas, prioridades de gestión y seguimiento de acciones del gabinete.',
+        parcerias_titulo: 'Alianzas tecnológicas y estratégicas',
+        parcerias_texto: 'Curaduría institucional local • Estrategia digital • Arquitectura de información • Inteligencia artificial aplicada a la planificación.',
+        tecnologias_titulo: 'Tecnologías',
+        referencias_titulo: 'Referencias',
+        ref_1: 'Documentación Firebase',
+        ref_2: 'Arquitectura web responsiva',
+        ref_3: 'Accesibilidad digital',
+        ref_4: 'Curaduría institucional',
+        direitos_titulo: 'Derechos y créditos',
+        dir_1: 'Contenido institucional',
+        dir_2: 'Créditos editoriales según publicación',
+        dir_3: 'Derechos reservados según normativas',
+        dir_4: 'Citas y bibliografía por sección',
+        rodape_final: '© 2026 Ayuntamiento de Vila Bela da Santíssima Trindade MT • Gabinete del Alcalde • Derechos reservados.',
+        tipo_agenda: 'Agenda Oficial',
+        tipo_demanda: 'Demanda Estratégica',
+        prioridade_alta: 'Alta',
+        prioridade_media: 'Media',
+        prioridade_baixa: 'Baja',
+        status_planejado: 'Planificado',
+        status_andamento: 'En curso',
+        status_concluido: 'Concluido',
+        status_arquivado: 'Archivado',
+        salvando: 'Guardando registro...',
+        sucesso: '¡Registro guardado con éxito!',
+        erro: 'Error: ',
+        nenhum: 'No hay registros en este momento.',
+        meta_setor: 'Sector',
+        meta_responsavel: 'Responsable',
+        meta_data: 'Fecha',
+        meta_status: 'Estado',
+        meta_prioridade: 'Prioridad'
+      }
+    };
+
+    function idiomaAtual() {
+      return localStorage.getItem('portal_idioma') || 'pt';
+    }
+
+    function t(chave) {
+      const idioma = idiomaAtual();
+      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    }
+
+    function definirIdioma(idioma){
+      const mapa = traducoes[idioma] || traducoes.pt;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const chave = el.getAttribute('data-i18n');
+        if (mapa[chave]) el.textContent = mapa[chave];
+      });
+
+      document.documentElement.lang =
+        idioma === 'en' ? 'en' :
+        idioma === 'es' ? 'es' :
+        'pt-BR';
+
+      localStorage.setItem('portal_idioma', idioma);
+    }
+
+    function badgeTipo(valor){
+      if ((valor || '').includes('Agenda')) return 'badge-agenda';
+      return 'badge-demanda';
+    }
+
+    function badgePrioridade(valor){
+      const v = (valor || '').toLowerCase();
+      if (v.includes('alta') || v.includes('high')) return 'badge-prioridade-alta';
+      if (v.includes('média') || v.includes('media') || v.includes('medium')) return 'badge-prioridade-media';
+      return 'badge-prioridade-baixa';
+    }
+
+    function badgeStatus(valor){
+      const v = (valor || '').toLowerCase();
+      if (v.includes('planejado') || v.includes('planned') || v.includes('planificado')) return 'badge-status-planejado';
+      if (v.includes('andamento') || v.includes('progress') || v.includes('curso')) return 'badge-status-andamento';
+      if (v.includes('concluído') || v.includes('completed') || v.includes('concluido')) return 'badge-status-concluido';
+      return 'badge-status-arquivado';
+    }
+
+    function formatarDataLocal(data) {
+      if (!data) return '';
+      const idioma = idiomaAtual();
+      const locale = idioma === 'en' ? 'en-US' : idioma === 'es' ? 'es-ES' : 'pt-BR';
+      return new Date(data + 'T00:00:00').toLocaleDateString(locale);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      definirIdioma(idiomaAtual());
+      aplicarAcessibilidadeSalva();
+    });
+  </script>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      getDocs,
+      query,
+      orderBy,
+      serverTimestamp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+      authDomain: "portal-vilabela-oficial.firebaseapp.com",
+      projectId: "portal-vilabela-oficial",
+      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+      messagingSenderId: "908975101824",
+      appId: "1:908975101824:web:f986598784403493721365"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("formGabinete");
+    const statusGabinete = document.getElementById("statusGabinete");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      statusGabinete.style.color = "#1351b4";
+      statusGabinete.innerText = t('salvando');
+
+      try {
+        await addDoc(collection(db, "gabinete"), {
+          tipo: document.getElementById("tipo").value,
+          prioridade: document.getElementById("prioridade").value,
+          titulo: document.getElementById("titulo").value,
+          responsavel: document.getElementById("responsavel").value,
+          setor: document.getElementById("setor").value,
+          dataAgenda: document.getElementById("dataAgenda").value,
+          status: document.getElementById("statusRegistro").value,
+          descricao: document.getElementById("descricao").value,
+          data: serverTimestamp()
+        });
+
+        statusGabinete.style.color = "green";
+        statusGabinete.innerText = t('sucesso');
+
+        form.reset();
+        carregarGabinete();
+      } catch (err) {
+        statusGabinete.style.color = "#c92a2a";
+        statusGabinete.innerText = t('erro') + err.message;
+      }
+    });
+
+    async function carregarGabinete(){
+      const lista = document.getElementById("listaGabinete");
+      const q = query(collection(db, "gabinete"), orderBy("data", "desc"));
+      const snap = await getDocs(q);
+
+      let total = 0;
+      let agenda = 0;
+      let demanda = 0;
+      let andamento = 0;
+      let concluido = 0;
+
+      if (snap.empty) {
+        lista.innerHTML = `<div class="gabinete-item"><h5>${t('nenhum')}</h5></div>`;
+
+        document.getElementById("kpiTotal").textContent = 0;
+        document.getElementById("kpiAgenda").textContent = 0;
+        document.getElementById("kpiDemanda").textContent = 0;
+        document.getElementById("kpiAndamento").textContent = 0;
+        document.getElementById("kpiConcluido").textContent = 0;
+
+        document.getElementById("miniTotalGabinete").textContent = 0;
+        document.getElementById("miniAgendaGabinete").textContent = 0;
+        document.getElementById("miniDemandaGabinete").textContent = 0;
+        document.getElementById("miniConcluidoGabinete").textContent = 0;
+        return;
+      }
+
+      lista.innerHTML = "";
+
+      snap.forEach((docItem) => {
+        const d = docItem.data();
+
+        total++;
+
+        if ((d.tipo || '').includes('Agenda')) agenda++;
+        else demanda++;
+
+        const status = (d.status || '').toLowerCase();
+
+        if (status.includes('andamento') || status.includes('progress') || status.includes('curso')) andamento++;
+        if (status.includes('concluído') || status.includes('completed') || status.includes('concluido')) concluido++;
+
+        lista.innerHTML += `
+          <div class="gabinete-item">
+            <div class="gabinete-item-topo">
+              <h5>${d.titulo || ''}</h5>
+
+              <div class="badges">
+                <span class="gabinete-badge ${badgeTipo(d.tipo)}">${d.tipo || ''}</span>
+                <span class="gabinete-badge ${badgePrioridade(d.prioridade)}">${d.prioridade || ''}</span>
+                <span class="gabinete-badge ${badgeStatus(d.status)}">${d.status || ''}</span>
+              </div>
+            </div>
+
+            <div class="gabinete-meta">
+              <div><strong>${t('meta_setor')}:</strong> ${d.setor || ''}</div>
+              <div><strong>${t('meta_responsavel')}:</strong> ${d.responsavel || ''}</div>
+              <div><strong>${t('meta_data')}:</strong> ${formatarDataLocal(d.dataAgenda)}</div>
+              <div><strong>${t('meta_status')}:</strong> ${d.status || ''}</div>
+              <div><strong>${t('meta_prioridade')}:</strong> ${d.prioridade || ''}</div>
+            </div>
+
+            <p>${d.descricao || ''}</p>
+          </div>
+        `;
+      });
+
+      document.getElementById("kpiTotal").textContent = total;
+      document.getElementById("kpiAgenda").textContent = agenda;
+      document.getElementById("kpiDemanda").textContent = demanda;
+      document.getElementById("kpiAndamento").textContent = andamento;
+      document.getElementById("kpiConcluido").textContent = concluido;
+
+      document.getElementById("miniTotalGabinete").textContent = total;
+      document.getElementById("miniAgendaGabinete").textContent = agenda;
+      document.getElementById("miniDemandaGabinete").textContent = demanda;
+      document.getElementById("miniConcluidoGabinete").textContent = concluido;
+    }
+
+    carregarGabinete();
+  </script>
+</body>
+  </html>
