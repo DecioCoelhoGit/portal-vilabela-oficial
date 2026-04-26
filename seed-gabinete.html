@@ -1,1 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Seed Gabinete • Portal Prefeitura Vila Bela MT</title>
+
+  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-a">
+
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <div>
+    <h1>Seed Gabinete</h1>
+    <p>Alimentação inicial das ações do Gabinete do Prefeito</p>
+  </div>
+</header>
+
+<nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="main-gabinete.html">Gabinete</a>
+  <a href="admin-gabinete.html">Admin Gabinete</a>
+  <a href="dashboard.html">Dashboard</a>
+</nav>
+
+<main>
+
+  <section class="card">
+    <h2>Gerar Massa de Dados do Gabinete</h2>
+    <p>
+      Este arquivo cadastra automaticamente registros iniciais na coleção
+      <strong>gabinete</strong> do Firebase.
+    </p>
+
+    <br>
+
+    <button onclick="gerarSeedGabinete()">Gerar Seed Gabinete</button>
+
+    <p id="statusSeed"></p>
+  </section>
+
+  <section class="card">
+    <h2>Registros previstos</h2>
+    <p>Serão inseridas agendas oficiais, demandas estratégicas, prioridades e status administrativos.</p>
+
+    <ul>
+      <li>Reunião com secretários</li>
+      <li>Acompanhamento de obras</li>
+      <li>Agenda institucional</li>
+      <li>Atendimento comunitário</li>
+      <li>Transparência e gestão</li>
+      <li>Turismo e cultura</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="card">
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Seed Gabinete</p>
+</footer>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+  messagingSenderId: "908975101824",
+  appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const registrosGabinete = [
+  {
+    tipo: "Agenda Oficial",
+    prioridade: "Alta",
+    titulo: "Reunião de alinhamento com secretários municipais",
+    responsavel: "Gabinete do Prefeito",
+    setor: "Gabinete",
+    dataAgenda: "2026-04-28",
+    status: "Planejado",
+    descricao: "Reunião estratégica para alinhamento das prioridades administrativas, organização das ações intersetoriais e definição de encaminhamentos da gestão."
+  },
+  {
+    tipo: "Demanda Estratégica",
+    prioridade: "Alta",
+    titulo: "Acompanhamento das obras e serviços prioritários",
+    responsavel: "Prefeito Jacob André Bringsken",
+    setor: "Gabinete / Obras",
+    dataAgenda: "2026-04-29",
+    status: "Em andamento",
+    descricao: "Monitoramento de obras, serviços urbanos, demandas estruturantes e ações de infraestrutura com impacto direto na população."
+  },
+  {
+    tipo: "Agenda Oficial",
+    prioridade: "Média",
+    titulo: "Atendimento institucional a lideranças comunitárias",
+    responsavel: "Assessoria de Gabinete",
+    setor: "Gabinete",
+    dataAgenda: "2026-04-30",
+    status: "Planejado",
+    descricao: "Agenda voltada ao atendimento de representantes comunitários, registro de solicitações e encaminhamento de demandas locais."
+  },
+  {
+    tipo: "Demanda Estratégica",
+    prioridade: "Alta",
+    titulo: "Implantação do Programa Vila Bela Inteligente",
+    responsavel: "Gabinete do Prefeito",
+    setor: "Gestão Digital",
+    dataAgenda: "2026-05-02",
+    status: "Planejado",
+    descricao: "Avaliação da proposta de modernização digital da gestão municipal, com módulos de notícias, gabinete, transparência e dashboard executivo."
+  },
+  {
+    tipo: "Agenda Oficial",
+    prioridade: "Média",
+    titulo: "Reunião sobre transparência pública e prestação de contas",
+    responsavel: "Controle Interno",
+    setor: "Transparência / Administração",
+    dataAgenda: "2026-05-03",
+    status: "Planejado",
+    descricao: "Discussão sobre melhoria da transparência ativa, organização de receitas, despesas, convênios e publicações oficiais."
+  },
+  {
+    tipo: "Demanda Estratégica",
+    prioridade: "Média",
+    titulo: "Integração entre Cultura, Turismo e Comunicação",
+    responsavel: "Gabinete / Secretarias",
+    setor: "Cultura e Turismo",
+    dataAgenda: "2026-05-04",
+    status: "Em andamento",
+    descricao: "Ação integrada para fortalecimento da agenda cultural, roteiros turísticos, eventos institucionais e divulgação pública."
+  },
+  {
+    tipo: "Agenda Oficial",
+    prioridade: "Baixa",
+    titulo: "Organização da agenda semanal do prefeito",
+    responsavel: "Assessoria Executiva",
+    setor: "Gabinete",
+    dataAgenda: "2026-05-05",
+    status: "Concluído",
+    descricao: "Registro e consolidação de compromissos oficiais, reuniões internas e atividades públicas da semana."
+  },
+  {
+    tipo: "Demanda Estratégica",
+    prioridade: "Alta",
+    titulo: "Painel executivo de indicadores municipais",
+    responsavel: "Gabinete / Tecnologia",
+    setor: "Dashboard Executivo",
+    dataAgenda: "2026-05-06",
+    status: "Planejado",
+    descricao: "Estruturação de indicadores integrados para acompanhamento de contatos, notícias, turismo, cultura, transparência e gabinete."
+  },
+  {
+    tipo: "Agenda Oficial",
+    prioridade: "Média",
+    titulo: "Reunião com equipe técnica de comunicação institucional",
+    responsavel: "Comunicação",
+    setor: "Comunicação Social",
+    dataAgenda: "2026-05-07",
+    status: "Planejado",
+    descricao: "Alinhamento das publicações oficiais, campanhas institucionais, redes sociais e comunicação direta com a população."
+  },
+  {
+    tipo: "Demanda Estratégica",
+    prioridade: "Baixa",
+    titulo: "Padronização de documentos e registros administrativos",
+    responsavel: "Administração",
+    setor: "Gestão Administrativa",
+    dataAgenda: "2026-05-08",
+    status: "Arquivado",
+    descricao: "Organização inicial de modelos, registros e fluxos administrativos para padronização de documentos internos."
+  }
+];
+
+window.gerarSeedGabinete = async function () {
+  const status = document.getElementById("statusSeed");
+
+  status.innerText = "Gerando seed do Gabinete...";
+
+  try {
+    for (const item of registrosGabinete) {
+      await addDoc(collection(db, "gabinete"), {
+        ...item,
+        data: serverTimestamp()
+      });
+    }
+
+    status.innerText = "Seed Gabinete gerada com sucesso! Registros inseridos no Firebase.";
+
+  } catch (erro) {
+    status.innerText = "Erro ao gerar seed: " + erro.message;
+  }
+};
+</script>
+
+</body>
+</html>
