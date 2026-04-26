@@ -1,550 +1,169 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Notícias Oficiais • Prefeitura de Vila Bela da Santíssima Trindade MT</title>
-  <meta name="description" content="Página oficial de notícias da Prefeitura de Vila Bela da Santíssima Trindade MT." />
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Notícias Oficiais • Prefeitura Vila Bela MT</title>
+
+  <meta property="og:title" content="Notícias Oficiais - Vila Bela MT">
+  <meta property="og:image" content="imagens/portal-og-1.jpg">
+
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
 
-  <div class="barra-acessibilidade">
-    <div class="inner">
-      <div class="acessibilidade-links">
-        <a href="#conteudo-principal">Ir para o conteúdo</a>
-        <a href="#menu-principal">Ir para o menu</a>
-        <a href="#listaNoticias">Ir para as notícias</a>
-      </div>
-      <div class="acessibilidade-acoes">
-        <button type="button" onclick="alterarFonte(1)">A+</button>
-        <button type="button" onclick="alterarFonte(-1)">A-</button>
-        <button type="button" onclick="alternarContraste()">Alto contraste</button>
-        <button type="button" onclick="definirIdioma('pt')">Português</button>
-        <button type="button" onclick="definirIdioma('en')">English</button>
-        <button type="button" onclick="definirIdioma('es')">Español</button>
-      </div>
-    </div>
+<body class="font-a">
+
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg">
+  <div>
+    <h1>Notícias Oficiais</h1>
+    <p>Prefeitura de Vila Bela da Santíssima Trindade MT</p>
   </div>
+</header>
 
-  <div class="barra-topo">
-    <div class="inner">
-      <div data-i18n="topo_1">Notícias oficiais • Prefeitura de Vila Bela da Santíssima Trindade MT</div>
-      <div data-i18n="topo_2">Informação pública • Transparência • Atualizações institucionais</div>
-    </div>
-  </div>
+<nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="transparencia.html">Transparência</a>
+  <a href="cultura.html">Cultura</a>
+  <a href="turismo.html">Turismo</a>
+  <a href="main-gabinete.html">Gabinete</a>
+</nav>
 
-  <header class="cabecalho">
-    <div class="inner">
-      <div class="marca">
-        <img class="brasao" src="imagens/brasao.png" alt="Brasão oficial da Prefeitura" />
-        <div class="marca-texto">
-          <small data-i18n="marca_small">Prefeitura Municipal</small>
-          <h1>Vila Bela da Santíssima Trindade MT</h1>
-          <p data-i18n="marca_p">Notícias, comunicados, agenda pública e publicações institucionais.</p>
-        </div>
-      </div>
+<main class="container">
 
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" onclick="alternarMenu()">☰ Menu</button>
-
-      <nav class="menu" id="menu-principal">
-        <a href="index.html" data-i18n="menu_inicio">Início</a>
-        <a href="#destaque" data-i18n="menu_destaque">Destaque</a>
-        <a href="#listaNoticiasSecao" data-i18n="menu_noticias">Notícias</a>
-        <a href="transparencia.html" data-i18n="menu_transparencia">Transparência</a>
-        <a href="cultura.html" data-i18n="menu_cultura">Cultura</a>
-        <a href="turismo.html" data-i18n="menu_turismo">Turismo</a>
-        <a href="admin.html">Admin</a>
-        <a href="dashboard.html">Dashboard</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero">
-    <div class="inner">
-      <div class="hero-box">
-        <div class="hero-tag" data-i18n="hero_tag">Notícias Oficiais</div>
-        <h2 data-i18n="hero_titulo">Acompanhe os comunicados, destaques e publicações da Prefeitura.</h2>
-        <p data-i18n="hero_texto">
-          Espaço institucional para divulgação de ações, programas, eventos, comunicados e informações públicas relevantes para a população.
-        </p>
-        <div class="hero-botoes">
-          <a class="botao" href="#listaNoticiasSecao" data-i18n="hero_botao_1">Ver notícias</a>
-          <a class="botao-secundario" href="index.html" data-i18n="hero_botao_2">Voltar ao portal</a>
-        </div>
-      </div>
-
-      <div class="hero-painel">
-        <h3 data-i18n="painel_titulo">Acesso rápido</h3>
-        <div class="mini-grid">
-          <div class="mini-card"><strong data-i18n="painel_1_t">N</strong><span data-i18n="painel_1">Notícias institucionais</span></div>
-          <div class="mini-card"><strong data-i18n="painel_2_t">T</strong><span data-i18n="painel_2">Transparência pública</span></div>
-          <div class="mini-card"><strong data-i18n="painel_3_t">C</strong><span data-i18n="painel_3">Cultura e patrimônio</span></div>
-          <div class="mini-card"><strong data-i18n="painel_4_t">G</strong><span data-i18n="painel_4">Gestão digital</span></div>
-        </div>
-      </div>
-    </div>
+  <section class="card">
+    <h2>Últimas publicações</h2>
+    <p>Atualizações oficiais da gestão municipal.</p>
   </section>
 
-  <main class="secao" id="conteudo-principal">
-    <div class="inner">
-      <section class="bloco" id="destaque">
-        <div class="titulo-secao">
-          <div>
-            <h3 data-i18n="secao_destaque_titulo">Destaque principal</h3>
-            <p data-i18n="secao_destaque_texto">Notícia mais recente publicada no portal institucional.</p>
-          </div>
-          <div><a href="index.html" data-i18n="voltar_portal">Voltar ao portal</a></div>
-        </div>
+  <section id="listaNoticias"></section>
 
-        <div id="noticiaPrincipal" class="destaque">
-          <div class="tag">DESTAQUE</div>
-          <h4 data-i18n="loading_titulo">Carregando notícia principal...</h4>
-          <p data-i18n="loading_texto">Aguarde o carregamento das publicações oficiais.</p>
-          <div class="noticia-data"></div>
-        </div>
-      </section>
+</main>
 
-      <section class="bloco" id="listaNoticiasSecao">
-        <div class="titulo-secao">
-          <div>
-            <h3 data-i18n="secao_lista_titulo">Todas as notícias</h3>
-            <p data-i18n="secao_lista_texto">Listagem dinâmica das publicações oficiais cadastradas no sistema.</p>
-          </div>
-        </div>
+<footer class="card">
+  <p>© 2026 Prefeitura Vila Bela MT • Portal institucional</p>
+</footer>
 
-        <div id="listaNoticias" class="noticias-lista"></div>
-      </section>
-    </div>
-  </main>
+<!-- ACESSIBILIDADE -->
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
 
-  <footer class="rodape">
-    <div class="inner">
-      <div class="grade-rodape">
-        <div>
-          <h4 data-i18n="rodape_titulo">Notícias Oficiais</h4>
-          <p data-i18n="rodape_texto">
-            Página pública de comunicados, agenda e publicações institucionais da Prefeitura de Vila Bela da Santíssima Trindade MT.
-          </p>
+<div class="acessibilidade-panel" id="painel">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
 
-          <div class="parcerias">
-            <h4 data-i18n="parcerias_titulo">Parcerias tecnológicas e estratégicas</h4>
-            <p data-i18n="parcerias_texto">Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.</p>
-            <span class="badge-legal">GitHub Pages</span>
-            <span class="badge-legal">Firebase</span>
-            <span class="badge-legal">Cloud Firestore</span>
-            <span class="badge-legal">OpenAI / ChatGPT</span>
-          </div>
-        </div>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
 
-        <div>
-          <h4 data-i18n="tecnologias_titulo">Tecnologias</h4>
-          <ul>
-            <li>HTML5</li>
-            <li>CSS3</li>
-            <li>JavaScript ES Modules</li>
-            <li>Firebase Web SDK</li>
-          </ul>
-        </div>
+<script>
+function toggleAcessibilidade(){
+  const p = document.getElementById("painel");
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
 
-        <div>
-          <h4 data-i18n="referencias_titulo">Referências</h4>
-          <ul>
-            <li data-i18n="ref_1">Documentação Firebase</li>
-            <li data-i18n="ref_2">Arquitetura web responsiva</li>
-            <li data-i18n="ref_3">Acessibilidade digital</li>
-            <li data-i18n="ref_4">Curadoria institucional</li>
-          </ul>
-        </div>
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
 
-        <div>
-          <h4 data-i18n="direitos_titulo">Direitos e créditos</h4>
-          <ul>
-            <li data-i18n="dir_1">Conteúdo institucional</li>
-            <li data-i18n="dir_2">Créditos editoriais conforme publicação</li>
-            <li data-i18n="dir_3">Direitos reservados conforme normativas</li>
-            <li data-i18n="dir_4">Citações e bibliografia por seção</li>
-          </ul>
-        </div>
-      </div>
+  if(tipo==="a") document.body.classList.add("font-a");
+  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
+  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
 
-      <div class="rodape-final" data-i18n="rodape_final">
-        © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Notícias oficiais • Direitos reservados.
-      </div>
-    </div>
-  </footer>
+  localStorage.setItem("fonte", tipo);
+}
 
-  <script>
-    function alternarMenu(){
-      const menu = document.getElementById('menu-principal');
-      const botao = document.querySelector('.menu-toggle');
-      menu.classList.toggle('menu-aberto');
-      const aberto = menu.classList.contains('menu-aberto');
-      botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+function setTema(tipo){
+  document.body.classList.remove("tema-claro","alto-contraste");
+
+  if(tipo==="claro") document.body.classList.add("tema-claro");
+  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+
+  localStorage.setItem("tema", tipo);
+}
+
+(function restore(){
+  const f = localStorage.getItem("fonte");
+  const t = localStorage.getItem("tema");
+
+  if(f) setFonte(f);
+  if(t) setTema(t);
+})();
+</script>
+
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {
+  getFirestore,
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+  messagingSenderId: "908975101824",
+  appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const lista = document.getElementById("listaNoticias");
+
+async function carregarNoticias(){
+
+  try{
+
+    const q = query(collection(db, "noticias"), orderBy("data","desc"));
+    const snap = await getDocs(q);
+
+    if(snap.empty){
+      lista.innerHTML = "<p class='card'>Nenhuma notícia publicada.</p>";
+      return;
     }
 
-    document.addEventListener('click', function(e){
-      const menu = document.getElementById('menu-principal');
-      const botao = document.querySelector('.menu-toggle');
-      if(!menu || !botao) return;
-      if(window.innerWidth > 700) return;
-      if(!menu.contains(e.target) && !botao.contains(e.target)){
-        menu.classList.remove('menu-aberto');
-        botao.setAttribute('aria-expanded','false');
-      }
+    lista.innerHTML = "";
+
+    snap.forEach(doc => {
+      const n = doc.data();
+
+      const imagem = n.imagem || "imagens/portal-og-1.jpg";
+      const titulo = n.titulo || "Notícia oficial";
+      const texto = n.texto || "";
+      const data = n.data?.toDate
+        ? n.data.toDate().toLocaleDateString("pt-BR")
+        : "";
+
+      lista.innerHTML += `
+        <article class="card noticia">
+
+          <img src="${imagem}" alt="${titulo}">
+
+          <h3>${titulo}</h3>
+
+          <small>${data}</small>
+
+          <p>${texto}</p>
+
+        </article>
+      `;
     });
 
-    let fonteBase = 100;
+  }catch(e){
+    lista.innerHTML = "<p class='card'>Erro ao carregar notícias</p>";
+  }
 
-    function alterarFonte(delta){
-      fonteBase = Math.max(90, Math.min(130, fonteBase + (delta * 10)));
-      document.documentElement.style.fontSize = fonteBase + '%';
-    }
+}
 
-    function alternarContraste(){
-      document.body.classList.toggle('alto-contraste');
-    }
+carregarNoticias();
+</script>
 
-    const traducoes = {
-      pt: {
-        topo_1: 'Notícias oficiais • Prefeitura de Vila Bela da Santíssima Trindade MT',
-        topo_2: 'Informação pública • Transparência • Atualizações institucionais',
-        marca_small: 'Prefeitura Municipal',
-        marca_p: 'Notícias, comunicados, agenda pública e publicações institucionais.',
-        menu_inicio: 'Início',
-        menu_destaque: 'Destaque',
-        menu_noticias: 'Notícias',
-        menu_transparencia: 'Transparência',
-        menu_cultura: 'Cultura',
-        menu_turismo: 'Turismo',
-        hero_tag: 'Notícias Oficiais',
-        hero_titulo: 'Acompanhe os comunicados, destaques e publicações da Prefeitura.',
-        hero_texto: 'Espaço institucional para divulgação de ações, programas, eventos, comunicados e informações públicas relevantes para a população.',
-        hero_botao_1: 'Ver notícias',
-        hero_botao_2: 'Voltar ao portal',
-        painel_titulo: 'Acesso rápido',
-        painel_1_t: 'N',
-        painel_1: 'Notícias institucionais',
-        painel_2_t: 'T',
-        painel_2: 'Transparência pública',
-        painel_3_t: 'C',
-        painel_3: 'Cultura e patrimônio',
-        painel_4_t: 'G',
-        painel_4: 'Gestão digital',
-        secao_destaque_titulo: 'Destaque principal',
-        secao_destaque_texto: 'Notícia mais recente publicada no portal institucional.',
-        voltar_portal: 'Voltar ao portal',
-        secao_lista_titulo: 'Todas as notícias',
-        secao_lista_texto: 'Listagem dinâmica das publicações oficiais cadastradas no sistema.',
-        loading_titulo: 'Carregando notícia principal...',
-        loading_texto: 'Aguarde o carregamento das publicações oficiais.',
-        rodape_titulo: 'Notícias Oficiais',
-        rodape_texto: 'Página pública de comunicados, agenda e publicações institucionais da Prefeitura de Vila Bela da Santíssima Trindade MT.',
-        parcerias_titulo: 'Parcerias tecnológicas e estratégicas',
-        parcerias_texto: 'Curadoria institucional local • Estratégia digital • Arquitetura de informação • Inteligência artificial aplicada ao planejamento.',
-        tecnologias_titulo: 'Tecnologias',
-        referencias_titulo: 'Referências',
-        ref_1: 'Documentação Firebase',
-        ref_2: 'Arquitetura web responsiva',
-        ref_3: 'Acessibilidade digital',
-        ref_4: 'Curadoria institucional',
-        direitos_titulo: 'Direitos e créditos',
-        dir_1: 'Conteúdo institucional',
-        dir_2: 'Créditos editoriais conforme publicação',
-        dir_3: 'Direitos reservados conforme normativas',
-        dir_4: 'Citações e bibliografia por seção',
-        rodape_final: '© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Notícias oficiais • Direitos reservados.',
-        vazio_titulo: 'Nenhuma notícia publicada no momento',
-        vazio_texto: 'Assim que novas publicações forem cadastradas, elas aparecerão aqui automaticamente.',
-        sem_lista_titulo: 'Nenhuma notícia cadastrada',
-        sem_lista_texto: 'Use o painel administrativo para publicar novas notícias.',
-        sem_outras_titulo: 'Sem outras notícias no momento',
-        sem_outras_texto: 'Há apenas uma notícia publicada nesta base.',
-        erro_titulo: 'Não foi possível carregar as notícias'
-      },
-      en: {
-        topo_1: 'Official news • Vila Bela da Santíssima Trindade MT City Hall',
-        topo_2: 'Public information • Transparency • Institutional updates',
-        marca_small: 'City Hall',
-        marca_p: 'News, notices, public agenda and institutional publications.',
-        menu_inicio: 'Home',
-        menu_destaque: 'Highlight',
-        menu_noticias: 'News',
-        menu_transparencia: 'Transparency',
-        menu_cultura: 'Culture',
-        menu_turismo: 'Tourism',
-        hero_tag: 'Official News',
-        hero_titulo: 'Follow city hall announcements, highlights and publications.',
-        hero_texto: 'Institutional space for actions, programs, events, notices and relevant public information for the population.',
-        hero_botao_1: 'View news',
-        hero_botao_2: 'Back to portal',
-        painel_titulo: 'Quick access',
-        painel_1_t: 'N',
-        painel_1: 'Institutional news',
-        painel_2_t: 'T',
-        painel_2: 'Public transparency',
-        painel_3_t: 'C',
-        painel_3: 'Culture and heritage',
-        painel_4_t: 'G',
-        painel_4: 'Digital management',
-        secao_destaque_titulo: 'Main highlight',
-        secao_destaque_texto: 'Most recent news published on the institutional portal.',
-        voltar_portal: 'Back to portal',
-        secao_lista_titulo: 'All news',
-        secao_lista_texto: 'Dynamic list of official publications stored in the system.',
-        loading_titulo: 'Loading main news...',
-        loading_texto: 'Please wait while official publications are loaded.',
-        rodape_titulo: 'Official News',
-        rodape_texto: 'Public page for notices, agenda and institutional publications of Vila Bela da Santíssima Trindade MT City Hall.',
-        parcerias_titulo: 'Technological and strategic partnerships',
-        parcerias_texto: 'Local institutional curation • Digital strategy • Information architecture • Artificial intelligence applied to planning.',
-        tecnologias_titulo: 'Technologies',
-        referencias_titulo: 'References',
-        ref_1: 'Firebase documentation',
-        ref_2: 'Responsive web architecture',
-        ref_3: 'Digital accessibility',
-        ref_4: 'Institutional curation',
-        direitos_titulo: 'Rights and credits',
-        dir_1: 'Institutional content',
-        dir_2: 'Editorial credits according to publication',
-        dir_3: 'Rights reserved according to regulations',
-        dir_4: 'Citations and bibliography by section',
-        rodape_final: '© 2026 Vila Bela da Santíssima Trindade MT City Hall • Official news • All rights reserved.',
-        vazio_titulo: 'No news published at the moment',
-        vazio_texto: 'As soon as new publications are registered, they will appear here automatically.',
-        sem_lista_titulo: 'No news registered',
-        sem_lista_texto: 'Use the administrative panel to publish new news.',
-        sem_outras_titulo: 'No other news at the moment',
-        sem_outras_texto: 'There is only one news item published in this database.',
-        erro_titulo: 'Could not load the news'
-      },
-      es: {
-        topo_1: 'Noticias oficiales • Ayuntamiento de Vila Bela da Santíssima Trindade MT',
-        topo_2: 'Información pública • Transparencia • Actualizaciones institucionales',
-        marca_small: 'Ayuntamiento Municipal',
-        marca_p: 'Noticias, comunicados, agenda pública y publicaciones institucionales.',
-        menu_inicio: 'Inicio',
-        menu_destaque: 'Destacado',
-        menu_noticias: 'Noticias',
-        menu_transparencia: 'Transparencia',
-        menu_cultura: 'Cultura',
-        menu_turismo: 'Turismo',
-        hero_tag: 'Noticias Oficiales',
-        hero_titulo: 'Siga los comunicados, destaques y publicaciones del Ayuntamiento.',
-        hero_texto: 'Espacio institucional para divulgar acciones, programas, eventos, comunicados e informaciones públicas relevantes para la población.',
-        hero_botao_1: 'Ver noticias',
-        hero_botao_2: 'Volver al portal',
-        painel_titulo: 'Acceso rápido',
-        painel_1_t: 'N',
-        painel_1: 'Noticias institucionales',
-        painel_2_t: 'T',
-        painel_2: 'Transparencia pública',
-        painel_3_t: 'C',
-        painel_3: 'Cultura y patrimonio',
-        painel_4_t: 'G',
-        painel_4: 'Gestión digital',
-        secao_destaque_titulo: 'Destacado principal',
-        secao_destaque_texto: 'Noticia más reciente publicada en el portal institucional.',
-        voltar_portal: 'Volver al portal',
-        secao_lista_titulo: 'Todas las noticias',
-        secao_lista_texto: 'Listado dinámico de las publicaciones oficiales registradas en el sistema.',
-        loading_titulo: 'Cargando noticia principal...',
-        loading_texto: 'Espere mientras se cargan las publicaciones oficiales.',
-        rodape_titulo: 'Noticias Oficiales',
-        rodape_texto: 'Página pública de comunicados, agenda y publicaciones institucionales del Ayuntamiento de Vila Bela da Santíssima Trindade MT.',
-        parcerias_titulo: 'Alianzas tecnológicas y estratégicas',
-        parcerias_texto: 'Curaduría institucional local • Estrategia digital • Arquitectura de información • Inteligencia artificial aplicada a la planificación.',
-        tecnologias_titulo: 'Tecnologías',
-        referencias_titulo: 'Referencias',
-        ref_1: 'Documentación Firebase',
-        ref_2: 'Arquitectura web responsiva',
-        ref_3: 'Accesibilidad digital',
-        ref_4: 'Curaduría institucional',
-        direitos_titulo: 'Derechos y créditos',
-        dir_1: 'Contenido institucional',
-        dir_2: 'Créditos editoriales según publicación',
-        dir_3: 'Derechos reservados según normativas',
-        dir_4: 'Citas y bibliografía por sección',
-        rodape_final: '© 2026 Ayuntamiento de Vila Bela da Santíssima Trindade MT • Noticias oficiales • Derechos reservados.',
-        vazio_titulo: 'No hay noticias publicadas en este momento',
-        vazio_texto: 'Tan pronto como se registren nuevas publicaciones, aparecerán aquí automáticamente.',
-        sem_lista_titulo: 'No hay noticias registradas',
-        sem_lista_texto: 'Use el panel administrativo para publicar nuevas noticias.',
-        sem_outras_titulo: 'No hay otras noticias en este momento',
-        sem_outras_texto: 'Solo hay una noticia publicada en esta base.',
-        erro_titulo: 'No fue posible cargar las noticias'
-      }
-    };
-
-    function definirIdioma(idioma){
-      const mapa = traducoes[idioma] || traducoes.pt;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const chave = el.getAttribute('data-i18n');
-        if (mapa[chave]) el.textContent = mapa[chave];
-      });
-
-      document.documentElement.lang =
-        idioma === 'en' ? 'en' :
-        idioma === 'es' ? 'es' :
-        'pt-BR';
-
-      localStorage.setItem('portal_idioma', idioma);
-    }
-
-    function textoIdioma(chave){
-      const idioma = localStorage.getItem('portal_idioma') || 'pt';
-      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || '';
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      definirIdioma(localStorage.getItem('portal_idioma') || 'pt');
-    });
-  </script>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      getDocs,
-      query,
-      orderBy
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-      authDomain: "portal-vilabela-oficial.firebaseapp.com",
-      projectId: "portal-vilabela-oficial",
-      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-      messagingSenderId: "908975101824",
-      appId: "1:908975101824:web:f986598784403493721365"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    function formatarData(d){
-      const idioma = localStorage.getItem('portal_idioma') || 'pt';
-      const locale =
-        idioma === 'en' ? 'en-US' :
-        idioma === 'es' ? 'es-ES' :
-        'pt-BR';
-
-      if(d && d.toDate) return d.toDate().toLocaleDateString(locale);
-      return "";
-    }
-
-    function textoIdioma(chave){
-      const idioma = localStorage.getItem('portal_idioma') || 'pt';
-      const traducoesDinamicas = {
-        pt: {
-          vazio_titulo: 'Nenhuma notícia publicada no momento',
-          vazio_texto: 'Assim que novas publicações forem cadastradas, elas aparecerão aqui automaticamente.',
-          sem_lista_titulo: 'Nenhuma notícia cadastrada',
-          sem_lista_texto: 'Use o painel administrativo para publicar novas notícias.',
-          sem_outras_titulo: 'Sem outras notícias no momento',
-          sem_outras_texto: 'Há apenas uma notícia publicada nesta base.',
-          erro_titulo: 'Não foi possível carregar as notícias'
-        },
-        en: {
-          vazio_titulo: 'No news published at the moment',
-          vazio_texto: 'As soon as new publications are registered, they will appear here automatically.',
-          sem_lista_titulo: 'No news registered',
-          sem_lista_texto: 'Use the administrative panel to publish new news.',
-          sem_outras_titulo: 'No other news at the moment',
-          sem_outras_texto: 'There is only one news item published in this database.',
-          erro_titulo: 'Could not load the news'
-        },
-        es: {
-          vazio_titulo: 'No hay noticias publicadas en este momento',
-          vazio_texto: 'Tan pronto como se registren nuevas publicaciones, aparecerán aquí automáticamente.',
-          sem_lista_titulo: 'No hay noticias registradas',
-          sem_lista_texto: 'Use el panel administrativo para publicar nuevas noticias.',
-          sem_outras_titulo: 'No hay otras noticias en este momento',
-          sem_outras_texto: 'Solo hay una noticia publicada en esta base.',
-          erro_titulo: 'No fue posible cargar las noticias'
-        }
-      };
-
-      return (traducoesDinamicas[idioma] && traducoesDinamicas[idioma][chave]) || traducoesDinamicas.pt[chave] || '';
-    }
-
-    async function carregarNoticias(){
-      const principal = document.getElementById("noticiaPrincipal");
-      const lista = document.getElementById("listaNoticias");
-
-      try {
-        const q = query(collection(db, "noticias"), orderBy("data", "desc"));
-        const snap = await getDocs(q);
-
-        if (snap.empty) {
-          principal.innerHTML = `
-            <div class="tag">DESTAQUE</div>
-            <h4>${textoIdioma('vazio_titulo')}</h4>
-            <p>${textoIdioma('vazio_texto')}</p>
-            <div class="noticia-data"></div>
-          `;
-          lista.innerHTML = `
-            <div class="noticia-card">
-              <h5>${textoIdioma('sem_lista_titulo')}</h5>
-              <p>${textoIdioma('sem_lista_texto')}</p>
-              <div class="noticia-data"></div>
-            </div>
-          `;
-          return;
-        }
-
-        const docs = [];
-        snap.forEach(doc => {
-          docs.push(doc.data());
-        });
-
-        const destaque = docs[0];
-        const outras = docs.slice(1);
-
-        principal.innerHTML = `
-          <div class="tag">DESTAQUE</div>
-          <h4>${destaque.titulo || "Sem título"}</h4>
-          <p>${destaque.texto || ""}</p>
-          <div class="noticia-data">${formatarData(destaque.data)}</div>
-        `;
-
-        lista.innerHTML = "";
-
-        if (outras.length === 0) {
-          lista.innerHTML = `
-            <div class="noticia-card">
-              <h5>${textoIdioma('sem_outras_titulo')}</h5>
-              <p>${textoIdioma('sem_outras_texto')}</p>
-              <div class="noticia-data">${formatarData(destaque.data)}</div>
-            </div>
-          `;
-          return;
-        }
-
-        outras.forEach(n => {
-          lista.innerHTML += `
-            <div class="noticia-card">
-              <h5>${n.titulo || "Sem título"}</h5>
-              <p>${n.texto || ""}</p>
-              <div class="noticia-data">${formatarData(n.data)}</div>
-            </div>
-          `;
-        });
-
-      } catch (erro) {
-        principal.innerHTML = `
-          <div class="tag">ERRO</div>
-          <h4>${textoIdioma('erro_titulo')}</h4>
-          <p>${erro.message}</p>
-          <div class="noticia-data"></div>
-        `;
-        lista.innerHTML = "";
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', carregarNoticias);
-  </script>
 </body>
 </html>
