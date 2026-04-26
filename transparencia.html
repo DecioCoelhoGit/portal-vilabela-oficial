@@ -1,1 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Transparência • Portal Prefeitura Vila Bela MT</title>
+
+  <meta name="description" content="Módulo de Transparência com registros de receitas, despesas, convênios, licitações e prestação de contas.">
+
+  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-a">
+
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <div>
+    <h1>Transparência Real</h1>
+    <p>Receitas • Despesas • Convênios • Licitações • Prestação de contas</p>
+  </div>
+</header>
+
+<nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="noticias.html">Notícias</a>
+  <a href="cultura.html">Cultura</a>
+  <a href="turismo.html">Turismo</a>
+  <a href="main-gabinete.html">Gabinete</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+<section class="hero" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.35)),url('imagens/vilabela-capa-oficial-1.jpg');">
+  <div class="card">
+    <small>TRANSPARÊNCIA PÚBLICA</small>
+    <h2>Gestão fiscal, prestação de contas e controle social em ambiente digital.</h2>
+    <p>
+      Estrutura para registrar receitas, despesas, convênios, licitações,
+      fontes de recurso, setores responsáveis e observações de acompanhamento.
+    </p>
+  </div>
+</section>
+
+<main>
+
+  <section class="card">
+    <h2>Indicadores da Transparência</h2>
+
+    <div class="kpi">
+      <span>Total de registros</span>
+      <strong id="totalRegistros">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Total de receitas</span>
+      <strong id="totalReceitas">R$ 0,00</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Total de despesas</span>
+      <strong id="totalDespesas">R$ 0,00</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Saldo demonstrativo</span>
+      <strong id="saldo">R$ 0,00</strong>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Lançar Receita / Despesa / Convênio</h2>
+    <p>Registre dados de transparência pública, classificação, setor, data e fonte de recurso.</p>
+
+    <br>
+
+    <form id="formTransparencia">
+
+      <label>Tipo de registro</label>
+      <select class="campo" id="tipo" required>
+        <option value="Receita">Receita</option>
+        <option value="Despesa">Despesa</option>
+        <option value="Convênio">Convênio</option>
+        <option value="Licitação">Licitação</option>
+        <option value="Prestação de Contas">Prestação de Contas</option>
+      </select>
+
+      <br><br>
+
+      <label>Título / Descrição resumida</label>
+      <input class="campo" id="titulo" placeholder="Ex.: Receita Corrente / Despesa Saúde / Convênio Turismo" required>
+
+      <br><br>
+
+      <label>Valor</label>
+      <input class="campo" id="valor" type="number" min="0" step="0.01" placeholder="Ex.: 100000" required>
+
+      <br><br>
+
+      <label>Setor / Secretaria</label>
+      <input class="campo" id="setor" placeholder="Ex.: Secretaria de Cultura / Saúde / Turismo / Administração" required>
+
+      <br><br>
+
+      <label>Data de referência</label>
+      <input class="campo" id="dataRef" type="date" required>
+
+      <br><br>
+
+      <label>Fonte / Observações</label>
+      <textarea class="campo-area" id="obs" placeholder="Ex.: Fonte 100 / Recurso federal / Transferência estadual / Observações do lançamento."></textarea>
+
+      <br><br>
+
+      <button type="submit">Salvar Registro</button>
+    </form>
+
+    <p id="statusTransparencia"></p>
+  </section>
+
+  <section class="card">
+    <h2>Registros Publicados</h2>
+
+    <input class="campo" id="buscaTransparencia" placeholder="Buscar por tipo, título, setor, fonte ou observação" oninput="renderizarTransparencia()">
+
+    <br><br>
+
+    <div id="listaTransparencia">Carregando registros...</div>
+  </section>
+
+</main>
+
+<footer class="card">
+  <h3>Transparência Pública</h3>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Gestão pública, controle social e prestação de contas.</p>
+</footer>
+
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
+
+<script>
+let registrosTransparencia = [];
+
+function toggleAcessibilidade(){
+  const p = document.getElementById("painelAcessibilidade");
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
+  if(tipo==="a") document.body.classList.add("font-a");
+  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
+  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+  localStorage.setItem("fonte", tipo);
+}
+
+function setTema(tipo){
+  document.body.classList.remove("tema-claro","alto-contraste");
+  if(tipo==="claro") document.body.classList.add("tema-claro");
+  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+  localStorage.setItem("tema", tipo);
+}
+
+(function restore(){
+  const f = localStorage.getItem("fonte");
+  const t = localStorage.getItem("tema");
+  if(f) setFonte(f);
+  if(t) setTema(t);
+})();
+
+function formatarData(data){
+  if(!data) return "";
+  return new Date(data + "T00:00:00").toLocaleDateString("pt-BR");
+}
+
+function formatarMoeda(valor){
+  return Number(valor || 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function classeTipo(tipo){
+  if(tipo === "Receita") return "badge-status-concluido";
+  if(tipo === "Despesa") return "badge-prioridade-alta";
+  if(tipo === "Convênio") return "badge-status-planejado";
+  if(tipo === "Licitação") return "badge-status-andamento";
+  return "badge-status-arquivado";
+}
+
+function renderizarTransparencia(){
+  const lista = document.getElementById("listaTransparencia");
+  const busca = (document.getElementById("buscaTransparencia").value || "").toLowerCase();
+
+  const filtrados = registrosTransparencia.filter(item => {
+    const d = item.data;
+    const base = `
+      ${d.tipo || ""}
+      ${d.titulo || ""}
+      ${d.setor || ""}
+      ${d.obs || ""}
+    `.toLowerCase();
+
+    return !busca || base.includes(busca);
+  });
+
+  if(filtrados.length === 0){
+    lista.innerHTML = "<p>Nenhum registro encontrado.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtrados.forEach(item => {
+    const d = item.data;
+
+    lista.innerHTML += `
+      <article class="card">
+        <h3>${d.titulo || "Sem título"}</h3>
+
+        <p>
+          <span class="gabinete-badge ${classeTipo(d.tipo)}">${d.tipo || ""}</span>
+        </p>
+
+        <p><strong>Valor:</strong> ${formatarMoeda(d.valor)}</p>
+        <p><strong>Setor:</strong> ${d.setor || ""}</p>
+        <p><strong>Data:</strong> ${formatarData(d.dataRef)}</p>
+        <p><strong>Fonte / Observações:</strong> ${d.obs || ""}</p>
+      </article>
+    `;
+  });
+}
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+  messagingSenderId: "908975101824",
+  appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+function setText(id, valor){
+  document.getElementById(id).innerText = valor;
+}
+
+document.getElementById("formTransparencia").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const status = document.getElementById("statusTransparencia");
+  status.innerText = "Salvando registro...";
+
+  try {
+    await addDoc(collection(db, "transparencia"), {
+      tipo: document.getElementById("tipo").value,
+      titulo: document.getElementById("titulo").value,
+      valor: Number(document.getElementById("valor").value || 0),
+      setor: document.getElementById("setor").value,
+      dataRef: document.getElementById("dataRef").value,
+      obs: document.getElementById("obs").value,
+      data: serverTimestamp()
+    });
+
+    status.innerText = "Registro salvo com sucesso!";
+    document.getElementById("formTransparencia").reset();
+    carregarTransparencia();
+
+  } catch(e) {
+    status.innerText = "Erro: " + e.message;
+  }
+});
+
+async function carregarTransparencia(){
+  const lista = document.getElementById("listaTransparencia");
+  lista.innerHTML = "Carregando registros...";
+
+  try {
+    const q = query(collection(db, "transparencia"), orderBy("data", "desc"));
+    const snap = await getDocs(q);
+
+    registrosTransparencia = [];
+
+    let totalRegistros = 0;
+    let totalReceitas = 0;
+    let totalDespesas = 0;
+
+    snap.forEach(item => {
+      const d = item.data();
+
+      registrosTransparencia.push({
+        id: item.id,
+        data: d
+      });
+
+      totalRegistros++;
+
+      if(d.tipo === "Receita" || d.tipo === "Convênio") {
+        totalReceitas += Number(d.valor || 0);
+      }
+
+      if(d.tipo === "Despesa") {
+        totalDespesas += Number(d.valor || 0);
+      }
+    });
+
+    const saldo = totalReceitas - totalDespesas;
+
+    setText("totalRegistros", totalRegistros);
+    setText("totalReceitas", formatarMoeda(totalReceitas));
+    setText("totalDespesas", formatarMoeda(totalDespesas));
+    setText("saldo", formatarMoeda(saldo));
+
+    renderizarTransparencia();
+
+  } catch(e) {
+    lista.innerHTML = "Erro ao carregar registros: " + e.message;
+  }
+}
+
+carregarTransparencia();
+</script>
+
+</body>
+</html>
