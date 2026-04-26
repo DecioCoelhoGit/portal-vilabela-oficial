@@ -1,992 +1,430 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Admin Gabinete • Portal Prefeitura Vila Bela MT</title>
 
-  <meta name="description" content="Painel administrativo do Gabinete do Prefeito com login Google, gestão de agenda, demandas, prioridades e status." />
-  <meta property="og:title" content="Admin Gabinete • Vila Bela MT" />
-  <meta property="og:description" content="Painel administrativo do Gabinete do Prefeito." />
-  <meta property="og:image" content="./imagens/vilabela-capa-oficial-1.jpg" />
-  <meta property="og:type" content="website" />
+  <meta name="description" content="Administração do Gabinete do Prefeito com agenda, demandas estratégicas, prioridades e status.">
 
-  <link rel="stylesheet" href="style.css" />
-
-  <style>
-    .admin-box {
-      background: #ffffff;
-      border-radius: 22px;
-      box-shadow: var(--sombra);
-      padding: 26px;
-      margin-bottom: 24px;
-    }
-
-    .admin-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .admin-full {
-      grid-column: 1 / -1;
-    }
-
-    .admin-actions {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 12px;
-    }
-
-    .admin-actions button,
-    .admin-actions a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 44px;
-      padding: 12px 16px;
-      border-radius: 14px;
-      border: none;
-      background: var(--azul-700);
-      color: #fff;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    .btn-sec {
-      background: #374151 !important;
-    }
-
-    .btn-danger {
-      background: #b91c1c !important;
-    }
-
-    .filtros {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr .8fr;
-      gap: 12px;
-      margin-top: 14px;
-    }
-
-    .admin-lista {
-      display: grid;
-      gap: 16px;
-      margin-top: 18px;
-    }
-
-    .admin-item {
-      border: 1px solid var(--cinza-200);
-      border-radius: 18px;
-      padding: 18px;
-      background: #fbfcff;
-    }
-
-    .admin-item-topo {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    .admin-item h4 {
-      margin: 0;
-      color: var(--azul-900);
-      font-size: 21px;
-    }
-
-    .admin-meta {
-      display: grid;
-      gap: 6px;
-      margin: 12px 0;
-      color: var(--cinza-700);
-      font-size: 14px;
-    }
-
-    .login-card {
-      max-width: 760px;
-      margin: 0 auto 24px;
-      text-align: center;
-    }
-
-    .login-card img {
-      width: 86px;
-      height: 86px;
-      object-fit: contain;
-      background: #fff;
-      border-radius: 18px;
-      padding: 8px;
-      box-shadow: var(--sombra);
-      margin-bottom: 12px;
-    }
-
-    .usuario-logado {
-      margin-top: 10px;
-      color: var(--cinza-700);
-      font-weight: bold;
-      word-break: break-word;
-    }
-
-    .hidden {
-      display: none !important;
-    }
-
-    @media (max-width: 800px) {
-      .admin-grid,
-      .filtros {
-        grid-template-columns: 1fr;
-      }
-
-      .admin-actions {
-        flex-direction: column;
-      }
-
-      .admin-actions button,
-      .admin-actions a {
-        width: 100%;
-      }
-    }
-  </style>
+  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-  <a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+<body class="font-a">
 
-  <div class="barra-acessibilidade">
-    <div class="inner">
-      <div class="acessibilidade-links">
-        <a href="#conteudo-principal">Ir para o conteúdo</a>
-        <a href="#menu-principal">Ir para o menu</a>
-        <a href="#listaAdminGabinete">Ir para os registros</a>
-      </div>
-
-      <div class="acessibilidade-acoes">
-        <button type="button" onclick="setFonte('normal')">A normal</button>
-        <button type="button" onclick="setFonte('grande')">A+</button>
-        <button type="button" onclick="setTema('claro')">☀ Claro</button>
-        <button type="button" onclick="setTema('escuro')">🌙 Escuro</button>
-        <button type="button" onclick="setTema('contraste')">⚫ Contraste</button>
-      </div>
-    </div>
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <div>
+    <h1>Admin Gabinete</h1>
+    <p>Gestão interna • Agenda • Demandas • Prioridades</p>
   </div>
+</header>
 
-  <div class="barra-topo">
-    <div class="inner">
-      <div data-i18n="topo_1">Admin Gabinete • Prefeitura de Vila Bela da Santíssima Trindade MT</div>
-      <div data-i18n="topo_2">Login Google • Gestão de agenda • Demandas estratégicas</div>
-    </div>
-  </div>
+<nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="main-gabinete.html">Gabinete</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="admin.html">Admin Geral</a>
+</nav>
 
-  <header class="cabecalho">
-    <div class="inner">
-      <div class="marca">
-        <img
-          class="brasao"
-          src="./imagens/vilabela-brasao-1.png"
-          alt="Brasão oficial da Prefeitura de Vila Bela da Santíssima Trindade MT"
-          onerror="this.src='./imagens/vilabela-brasao-web-1.jpg';"
-        />
+<main>
 
-        <div class="marca-texto">
-          <small data-i18n="marca_small">Administração do Gabinete</small>
-          <h1>Vila Bela da Santíssima Trindade MT</h1>
-          <p data-i18n="marca_p">Painel administrativo para agenda, demandas, prioridades e status do gabinete.</p>
-        </div>
-      </div>
-
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal" onclick="alternarMenu()">
-        ☰ Menu
-      </button>
-
-      <nav class="menu" id="menu-principal">
-        <a href="index.html" data-i18n="menu_inicio">Início</a>
-        <a href="main-gabinete.html" data-i18n="menu_gabinete">Gabinete</a>
-        <a href="#cadastroAdmin" data-i18n="menu_cadastro">Cadastro</a>
-        <a href="#listaAdminGabinete" data-i18n="menu_registros">Registros</a>
-        <a href="dashboard.html">Dashboard</a>
-      </nav>
-    </div>
-  </header>
-
-  <section class="hero hero-gabinete">
-    <div class="inner">
-      <div class="hero-box">
-        <div class="hero-tag" data-i18n="hero_tag">Admin Gabinete</div>
-
-        <h2 data-i18n="hero_titulo">
-          Gestão interna do Gabinete do Prefeito com segurança, organização e visão executiva.
-        </h2>
-
-        <p data-i18n="hero_texto">
-          Área administrativa para registrar, acompanhar, filtrar, atualizar e excluir agendas oficiais e demandas estratégicas.
-        </p>
-
-        <div class="hero-botoes">
-          <a class="botao" href="#cadastroAdmin" data-i18n="hero_botao_1">Novo registro</a>
-          <a class="botao-secundario" href="#listaAdminGabinete" data-i18n="hero_botao_2">Ver registros</a>
-        </div>
-      </div>
-
-      <div class="hero-painel">
-        <h3 data-i18n="painel_titulo">Resumo administrativo</h3>
-
-        <div class="mini-grid">
-          <div class="mini-card"><strong id="miniTotal">0</strong><span data-i18n="mini_total">Total</span></div>
-          <div class="mini-card"><strong id="miniAlta">0</strong><span data-i18n="mini_alta">Alta</span></div>
-          <div class="mini-card"><strong id="miniAndamento">0</strong><span data-i18n="mini_andamento">Em andamento</span></div>
-          <div class="mini-card"><strong id="miniConcluido">0</strong><span data-i18n="mini_concluido">Concluídos</span></div>
-        </div>
-      </div>
-    </div>
+  <section class="card" id="loginBox">
+    <h2>Acesso Administrativo</h2>
+    <p>Entre com sua conta Google para administrar o Gabinete.</p>
+    <br>
+    <button onclick="loginGoogle()">Entrar com Google</button>
+    <p id="loginMsg"></p>
   </section>
 
-  <main class="secao" id="conteudo-principal">
-    <div class="inner">
+  <section id="painelAdmin" style="display:none;">
 
-      <section class="admin-box login-card" id="loginBox">
-        <img src="./imagens/vilabela-brasao-1.png" alt="Brasão da Prefeitura" onerror="this.src='./imagens/vilabela-brasao-web-1.jpg';" />
-        <h3 data-i18n="login_titulo">Acesso Administrativo</h3>
-        <p data-i18n="login_texto">Entre com a conta Google autorizada para administrar o módulo do gabinete.</p>
+    <section class="card">
+      <h2>Área Administrativa do Gabinete</h2>
+      <p>Gerencie agendas, demandas estratégicas, prioridades e status.</p>
+      <p id="usuarioLogado"></p>
+      <br>
+      <button onclick="carregarGabinete()">Atualizar</button>
+      <a href="main-gabinete.html"><button class="secundario">Abrir página pública</button></a>
+      <button class="secundario" onclick="logout()">Sair</button>
+    </section>
 
-        <div class="admin-actions" style="justify-content:center;">
-          <button type="button" onclick="loginGoogle()" data-i18n="login_botao">Entrar com Google</button>
-          <a class="btn-sec" href="main-gabinete.html" data-i18n="voltar_gabinete">Voltar ao Gabinete</a>
-        </div>
+    <section class="card" id="cadastro">
+      <h2>Cadastrar novo registro</h2>
 
-        <div id="loginMsg" class="status-dashboard"></div>
-      </section>
+      <form id="formGabineteAdmin">
 
-      <div id="painelAdmin" class="hidden">
+        <label>Tipo</label>
+        <select class="campo" id="tipo" required>
+          <option value="Agenda Oficial">Agenda Oficial</option>
+          <option value="Demanda Estratégica">Demanda Estratégica</option>
+        </select>
 
-        <section class="bloco">
-          <div class="titulo-secao">
-            <div>
-              <h3 data-i18n="area_titulo">Área administrativa do gabinete</h3>
-              <p data-i18n="area_texto">Gerencie registros oficiais com filtros, atualização de status e controle operacional.</p>
-              <div id="usuarioLogado" class="usuario-logado"></div>
-            </div>
-          </div>
+        <br><br>
 
-          <div class="admin-actions">
-            <button type="button" onclick="carregarGabinete()" data-i18n="atualizar">Atualizar</button>
-            <a class="btn-sec" href="main-gabinete.html" data-i18n="abrir_publico">Abrir página pública</a>
-            <button class="btn-sec" type="button" onclick="logout()" data-i18n="sair">Sair</button>
-          </div>
-        </section>
+        <label>Prioridade</label>
+        <select class="campo" id="prioridade" required>
+          <option value="Alta">Alta</option>
+          <option value="Média">Média</option>
+          <option value="Baixa">Baixa</option>
+        </select>
 
-        <section class="bloco" id="cadastroAdmin">
-          <div class="titulo-secao">
-            <div>
-              <h3 data-i18n="cadastro_titulo">Cadastrar novo registro</h3>
-              <p data-i18n="cadastro_texto">Inclua agendas, demandas estratégicas, prioridades e encaminhamentos.</p>
-            </div>
-          </div>
+        <br><br>
 
-          <form id="formGabineteAdmin" class="admin-grid">
-            <div>
-              <label for="tipo" data-i18n="label_tipo">Tipo</label>
-              <select id="tipo" class="campo-select" required>
-                <option value="Agenda Oficial" data-i18n="tipo_agenda">Agenda Oficial</option>
-                <option value="Demanda Estratégica" data-i18n="tipo_demanda">Demanda Estratégica</option>
-              </select>
-            </div>
+        <label>Título</label>
+        <input class="campo" id="titulo" placeholder="Ex.: Reunião com secretários / Acompanhamento de obra" required>
 
-            <div>
-              <label for="prioridade" data-i18n="label_prioridade">Prioridade</label>
-              <select id="prioridade" class="campo-select" required>
-                <option value="Alta" data-i18n="prioridade_alta">Alta</option>
-                <option value="Média" data-i18n="prioridade_media">Média</option>
-                <option value="Baixa" data-i18n="prioridade_baixa">Baixa</option>
-              </select>
-            </div>
+        <br><br>
 
-            <div class="admin-full">
-              <label for="titulo" data-i18n="label_titulo">Título</label>
-              <input id="titulo" class="campo" placeholder="Ex.: Reunião com secretários / Acompanhamento de obra" required />
-            </div>
+        <label>Responsável</label>
+        <input class="campo" id="responsavel" placeholder="Responsável pelo registro" required>
 
-            <div>
-              <label for="responsavel" data-i18n="label_responsavel">Responsável</label>
-              <input id="responsavel" class="campo" placeholder="Responsável pelo registro" required />
-            </div>
+        <br><br>
 
-            <div>
-              <label for="setor" data-i18n="label_setor">Setor / Secretaria</label>
-              <input id="setor" class="campo" placeholder="Gabinete / Cultura / Turismo..." required />
-            </div>
+        <label>Setor / Secretaria</label>
+        <input class="campo" id="setor" placeholder="Gabinete / Cultura / Turismo / Administração..." required>
 
-            <div>
-              <label for="dataAgenda" data-i18n="label_data">Data</label>
-              <input id="dataAgenda" class="campo" type="date" required />
-            </div>
+        <br><br>
 
-            <div>
-              <label for="statusRegistro" data-i18n="label_status">Status</label>
-              <select id="statusRegistro" class="campo-select" required>
-                <option value="Planejado" data-i18n="status_planejado">Planejado</option>
-                <option value="Em andamento" data-i18n="status_andamento">Em andamento</option>
-                <option value="Concluído" data-i18n="status_concluido">Concluído</option>
-                <option value="Arquivado" data-i18n="status_arquivado">Arquivado</option>
-              </select>
-            </div>
+        <label>Data</label>
+        <input class="campo" id="dataAgenda" type="date" required>
 
-            <div class="admin-full">
-              <label for="descricao" data-i18n="label_descricao">Descrição</label>
-              <textarea id="descricao" class="campo-area" placeholder="Descreva a pauta, demanda, prioridade ou encaminhamento." required></textarea>
-            </div>
+        <br><br>
 
-            <div class="admin-full">
-              <button class="campo-botao" type="submit" data-i18n="salvar">Salvar registro</button>
-            </div>
-          </form>
+        <label>Status</label>
+        <select class="campo" id="statusRegistro" required>
+          <option value="Planejado">Planejado</option>
+          <option value="Em andamento">Em andamento</option>
+          <option value="Concluído">Concluído</option>
+          <option value="Arquivado">Arquivado</option>
+        </select>
 
-          <div id="statusGabinete" class="status-dashboard"></div>
-        </section>
+        <br><br>
 
-        <section class="bloco" id="listaAdminGabinete">
-          <div class="titulo-secao">
-            <div>
-              <h3 data-i18n="lista_titulo">Registros administrativos</h3>
-              <p data-i18n="lista_texto">Filtre, altere status/prioridade e exclua registros do gabinete.</p>
-            </div>
-          </div>
+        <label>Descrição</label>
+        <textarea class="campo-area" id="descricao" placeholder="Descreva a pauta, demanda, prioridade ou encaminhamento." required></textarea>
 
-          <div class="filtros">
-            <input id="filtroTexto" class="campo" placeholder="Buscar por título, setor ou responsável" oninput="renderizarLista()" />
-            <select id="filtroStatus" class="campo-select" onchange="renderizarLista()">
-              <option value="" data-i18n="todos_status">Todos os status</option>
-              <option value="Planejado">Planejado</option>
-              <option value="Em andamento">Em andamento</option>
-              <option value="Concluído">Concluído</option>
-              <option value="Arquivado">Arquivado</option>
-            </select>
-            <select id="filtroPrioridade" class="campo-select" onchange="renderizarLista()">
-              <option value="" data-i18n="todas_prioridades">Todas as prioridades</option>
-              <option value="Alta">Alta</option>
-              <option value="Média">Média</option>
-              <option value="Baixa">Baixa</option>
-            </select>
-          </div>
+        <br><br>
 
-          <div id="listaGabinete" class="admin-lista"></div>
-        </section>
+        <button type="submit">Salvar registro</button>
+      </form>
 
-      </div>
-    </div>
-  </main>
+      <p id="statusGabinete"></p>
+    </section>
 
-  <footer class="rodape">
-    <div class="inner">
-      <div class="rodape-final" data-i18n="rodape_final">
-        © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Admin Gabinete • Direitos reservados.
-      </div>
-    </div>
-  </footer>
+    <section class="card">
+      <h2>Filtros</h2>
 
-  <button class="access-float-btn" type="button" onclick="toggleAccessPanel()" aria-label="Abrir painel de acessibilidade">
-    ♿
-  </button>
+      <input class="campo" id="filtroTexto" placeholder="Buscar por título, setor, responsável ou descrição" oninput="renderizarLista()">
 
-  <div class="access-panel" id="accessPanel">
-    <h3>Acessibilidade</h3>
-    <p>Personalize a visualização do portal.</p>
+      <br><br>
 
-    <div class="access-grid">
-      <button type="button" onclick="setFonte('normal')">A normal</button>
-      <button type="button" onclick="setFonte('grande')">A+</button>
-      <button type="button" onclick="setFonte('extra')">A++</button>
-      <button type="button" onclick="setTema('claro')">☀ Claro</button>
-      <button type="button" onclick="setTema('escuro')">🌙 Escuro</button>
-      <button type="button" onclick="setTema('contraste')">⚫ Contraste</button>
-      <button type="button" onclick="definirIdioma('pt')">Português</button>
-      <button type="button" onclick="definirIdioma('en')">English</button>
-      <button type="button" onclick="definirIdioma('es')">Español</button>
-    </div>
+      <select class="campo" id="filtroStatus" onchange="renderizarLista()">
+        <option value="">Todos os status</option>
+        <option value="Planejado">Planejado</option>
+        <option value="Em andamento">Em andamento</option>
+        <option value="Concluído">Concluído</option>
+        <option value="Arquivado">Arquivado</option>
+      </select>
 
-    <button class="access-full" type="button" onclick="resetAcessibilidade()">Restaurar padrão</button>
-  </div>
+      <br><br>
 
-  <script>
-    let registrosGabinete = [];
+      <select class="campo" id="filtroPrioridade" onchange="renderizarLista()">
+        <option value="">Todas as prioridades</option>
+        <option value="Alta">Alta</option>
+        <option value="Média">Média</option>
+        <option value="Baixa">Baixa</option>
+      </select>
+    </section>
 
-    function alternarMenu(){
-      const menu = document.getElementById('menu-principal');
-      const botao = document.querySelector('.menu-toggle');
-      menu.classList.toggle('menu-aberto');
-      const aberto = menu.classList.contains('menu-aberto');
-      botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    <section class="card">
+      <h2>Registros Administrativos</h2>
+      <div id="listaGabinete">Carregando...</div>
+    </section>
+
+  </section>
+
+</main>
+
+<footer class="card">
+  <h3>Admin Gabinete</h3>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Administração do Gabinete.</p>
+</footer>
+
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
+
+<script>
+let registrosGabinete = [];
+
+function toggleAcessibilidade(){
+  const p = document.getElementById("painelAcessibilidade");
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
+  if(tipo==="a") document.body.classList.add("font-a");
+  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
+  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+  localStorage.setItem("fonte", tipo);
+}
+
+function setTema(tipo){
+  document.body.classList.remove("tema-claro","alto-contraste");
+  if(tipo==="claro") document.body.classList.add("tema-claro");
+  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+  localStorage.setItem("tema", tipo);
+}
+
+(function restore(){
+  const f = localStorage.getItem("fonte");
+  const t = localStorage.getItem("tema");
+  if(f) setFonte(f);
+  if(t) setTema(t);
+})();
+
+function formatarData(data){
+  if(!data) return "";
+  return new Date(data + "T00:00:00").toLocaleDateString("pt-BR");
+}
+
+function renderizarLista(){
+  const lista = document.getElementById("listaGabinete");
+
+  const texto = (document.getElementById("filtroTexto").value || "").toLowerCase();
+  const statusFiltro = document.getElementById("filtroStatus").value || "";
+  const prioridadeFiltro = document.getElementById("filtroPrioridade").value || "";
+
+  const filtrados = registrosGabinete.filter(item => {
+    const d = item.data;
+
+    const base = `
+      ${d.titulo || ""}
+      ${d.setor || ""}
+      ${d.responsavel || ""}
+      ${d.descricao || ""}
+      ${d.tipo || ""}
+    `.toLowerCase();
+
+    const okTexto = !texto || base.includes(texto);
+    const okStatus = !statusFiltro || d.status === statusFiltro;
+    const okPrioridade = !prioridadeFiltro || d.prioridade === prioridadeFiltro;
+
+    return okTexto && okStatus && okPrioridade;
+  });
+
+  if(filtrados.length === 0){
+    lista.innerHTML = "<p>Nenhum registro encontrado.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtrados.forEach(item => {
+    const d = item.data;
+
+    lista.innerHTML += `
+      <article class="card">
+        <h3>${d.titulo || "Sem título"}</h3>
+
+        <p><strong>Tipo:</strong> ${d.tipo || ""}</p>
+        <p><strong>Setor:</strong> ${d.setor || ""}</p>
+        <p><strong>Responsável:</strong> ${d.responsavel || ""}</p>
+        <p><strong>Data:</strong> ${formatarData(d.dataAgenda)}</p>
+        <p><strong>Descrição:</strong> ${d.descricao || ""}</p>
+
+        <label>Status</label>
+        <select class="campo" id="status_${item.id}">
+          <option value="Planejado" ${d.status === "Planejado" ? "selected" : ""}>Planejado</option>
+          <option value="Em andamento" ${d.status === "Em andamento" ? "selected" : ""}>Em andamento</option>
+          <option value="Concluído" ${d.status === "Concluído" ? "selected" : ""}>Concluído</option>
+          <option value="Arquivado" ${d.status === "Arquivado" ? "selected" : ""}>Arquivado</option>
+        </select>
+
+        <br><br>
+
+        <label>Prioridade</label>
+        <select class="campo" id="prioridade_${item.id}">
+          <option value="Alta" ${d.prioridade === "Alta" ? "selected" : ""}>Alta</option>
+          <option value="Média" ${d.prioridade === "Média" ? "selected" : ""}>Média</option>
+          <option value="Baixa" ${d.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
+        </select>
+
+        <br><br>
+
+        <button onclick="salvarAlteracoes('${item.id}')">Salvar alterações</button>
+        <button class="secundario" onclick="excluirRegistro('${item.id}')">Excluir</button>
+      </article>
+    `;
+  });
+}
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  doc,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+  messagingSenderId: "908975101824",
+  appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+
+function isMobile(){
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+}
+
+window.loginGoogle = async function(){
+  const msg = document.getElementById("loginMsg");
+  msg.innerText = "";
+
+  try {
+    if(isMobile()){
+      await signInWithRedirect(auth, provider);
+    } else {
+      await signInWithPopup(auth, provider);
     }
+  } catch(e){
+    msg.innerText = "Erro: " + e.message;
+  }
+};
 
-    function toggleAccessPanel() {
-      document.getElementById("accessPanel").classList.toggle("open");
-    }
+await getRedirectResult(auth).catch(e => {
+  document.getElementById("loginMsg").innerText = "Erro: " + e.message;
+});
 
-    function limparTemas() {
-      document.body.classList.remove("modo-claro", "modo-escuro", "alto-contraste");
-    }
+onAuthStateChanged(auth, user => {
+  if(user){
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("painelAdmin").style.display = "block";
+    document.getElementById("usuarioLogado").innerText =
+      "Usuário logado: " + (user.email || user.displayName || "Google");
+    carregarGabinete();
+  }
+});
 
-    function limparFontes() {
-      document.body.classList.remove("fonte-grande", "fonte-extra");
-    }
+window.logout = async function(){
+  await signOut(auth);
+  location.reload();
+};
 
-    function setTema(tema) {
-      limparTemas();
-      if (tema === "claro") document.body.classList.add("modo-claro");
-      if (tema === "escuro") document.body.classList.add("modo-escuro");
-      if (tema === "contraste") document.body.classList.add("alto-contraste");
-      localStorage.setItem("tema_visual", tema);
-    }
+document.getElementById("formGabineteAdmin").addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    function setFonte(fonte) {
-      limparFontes();
-      if (fonte === "grande") document.body.classList.add("fonte-grande");
-      if (fonte === "extra") document.body.classList.add("fonte-extra");
-      localStorage.setItem("fonte_visual", fonte);
-    }
+  const status = document.getElementById("statusGabinete");
+  status.innerText = "Salvando registro...";
 
-    function resetAcessibilidade() {
-      limparTemas();
-      limparFontes();
-      localStorage.removeItem("tema_visual");
-      localStorage.removeItem("fonte_visual");
-    }
-
-    function aplicarAcessibilidadeSalva() {
-      const tema = localStorage.getItem("tema_visual");
-      const fonte = localStorage.getItem("fonte_visual");
-      if (tema) setTema(tema);
-      if (fonte) setFonte(fonte);
-    }
-
-    const traducoes = {
-      pt: {
-        topo_1: 'Admin Gabinete • Prefeitura de Vila Bela da Santíssima Trindade MT',
-        topo_2: 'Login Google • Gestão de agenda • Demandas estratégicas',
-        marca_small: 'Administração do Gabinete',
-        marca_p: 'Painel administrativo para agenda, demandas, prioridades e status do gabinete.',
-        menu_inicio: 'Início',
-        menu_gabinete: 'Gabinete',
-        menu_cadastro: 'Cadastro',
-        menu_registros: 'Registros',
-        hero_tag: 'Admin Gabinete',
-        hero_titulo: 'Gestão interna do Gabinete do Prefeito com segurança, organização e visão executiva.',
-        hero_texto: 'Área administrativa para registrar, acompanhar, filtrar, atualizar e excluir agendas oficiais e demandas estratégicas.',
-        hero_botao_1: 'Novo registro',
-        hero_botao_2: 'Ver registros',
-        painel_titulo: 'Resumo administrativo',
-        mini_total: 'Total',
-        mini_alta: 'Alta',
-        mini_andamento: 'Em andamento',
-        mini_concluido: 'Concluídos',
-        login_titulo: 'Acesso Administrativo',
-        login_texto: 'Entre com a conta Google autorizada para administrar o módulo do gabinete.',
-        login_botao: 'Entrar com Google',
-        voltar_gabinete: 'Voltar ao Gabinete',
-        area_titulo: 'Área administrativa do gabinete',
-        area_texto: 'Gerencie registros oficiais com filtros, atualização de status e controle operacional.',
-        atualizar: 'Atualizar',
-        abrir_publico: 'Abrir página pública',
-        sair: 'Sair',
-        cadastro_titulo: 'Cadastrar novo registro',
-        cadastro_texto: 'Inclua agendas, demandas estratégicas, prioridades e encaminhamentos.',
-        label_tipo: 'Tipo',
-        label_prioridade: 'Prioridade',
-        label_titulo: 'Título',
-        label_responsavel: 'Responsável',
-        label_setor: 'Setor / Secretaria',
-        label_data: 'Data',
-        label_status: 'Status',
-        label_descricao: 'Descrição',
-        salvar: 'Salvar registro',
-        lista_titulo: 'Registros administrativos',
-        lista_texto: 'Filtre, altere status/prioridade e exclua registros do gabinete.',
-        todos_status: 'Todos os status',
-        todas_prioridades: 'Todas as prioridades',
-        tipo_agenda: 'Agenda Oficial',
-        tipo_demanda: 'Demanda Estratégica',
-        prioridade_alta: 'Alta',
-        prioridade_media: 'Média',
-        prioridade_baixa: 'Baixa',
-        status_planejado: 'Planejado',
-        status_andamento: 'Em andamento',
-        status_concluido: 'Concluído',
-        status_arquivado: 'Arquivado',
-        salvando: 'Salvando registro...',
-        sucesso: 'Registro salvo com sucesso!',
-        carregando: 'Carregando registros...',
-        nenhum: 'Nenhum registro encontrado.',
-        erro: 'Erro: ',
-        excluir: 'Excluir',
-        salvar_alteracoes: 'Salvar alterações',
-        confirmar_excluir: 'Deseja excluir este registro?',
-        alterado: 'Registro atualizado.',
-        excluido: 'Registro excluído.',
-        meta_setor: 'Setor',
-        meta_responsavel: 'Responsável',
-        meta_data: 'Data',
-        rodape_final: '© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Admin Gabinete • Direitos reservados.'
-      },
-      en: {
-        topo_1: 'Office Admin • Vila Bela da Santíssima Trindade MT City Hall',
-        topo_2: 'Google login • Agenda management • Strategic demands',
-        marca_small: 'Office Administration',
-        marca_p: 'Administrative panel for agenda, demands, priorities and office status.',
-        menu_inicio: 'Home',
-        menu_gabinete: 'Mayor’s Office',
-        menu_cadastro: 'Register',
-        menu_registros: 'Records',
-        hero_tag: 'Office Admin',
-        hero_titulo: 'Internal management of the Mayor’s Office with security, organization and executive vision.',
-        hero_texto: 'Administrative area to register, monitor, filter, update and delete official agendas and strategic demands.',
-        hero_botao_1: 'New record',
-        hero_botao_2: 'View records',
-        painel_titulo: 'Administrative summary',
-        mini_total: 'Total',
-        mini_alta: 'High',
-        mini_andamento: 'In progress',
-        mini_concluido: 'Completed',
-        login_titulo: 'Administrative Access',
-        login_texto: 'Sign in with an authorized Google account to manage the office module.',
-        login_botao: 'Sign in with Google',
-        voltar_gabinete: 'Back to Office',
-        area_titulo: 'Office administrative area',
-        area_texto: 'Manage official records with filters, status updates and operational control.',
-        atualizar: 'Refresh',
-        abrir_publico: 'Open public page',
-        sair: 'Sign out',
-        cadastro_titulo: 'Create new record',
-        cadastro_texto: 'Add agendas, strategic demands, priorities and referrals.',
-        label_tipo: 'Type',
-        label_prioridade: 'Priority',
-        label_titulo: 'Title',
-        label_responsavel: 'Responsible',
-        label_setor: 'Department / Area',
-        label_data: 'Date',
-        label_status: 'Status',
-        label_descricao: 'Description',
-        salvar: 'Save record',
-        lista_titulo: 'Administrative records',
-        lista_texto: 'Filter, update status/priority and delete office records.',
-        todos_status: 'All statuses',
-        todas_prioridades: 'All priorities',
-        tipo_agenda: 'Official Agenda',
-        tipo_demanda: 'Strategic Demand',
-        prioridade_alta: 'High',
-        prioridade_media: 'Medium',
-        prioridade_baixa: 'Low',
-        status_planejado: 'Planned',
-        status_andamento: 'In progress',
-        status_concluido: 'Completed',
-        status_arquivado: 'Archived',
-        salvando: 'Saving record...',
-        sucesso: 'Record saved successfully!',
-        carregando: 'Loading records...',
-        nenhum: 'No records found.',
-        erro: 'Error: ',
-        excluir: 'Delete',
-        salvar_alteracoes: 'Save changes',
-        confirmar_excluir: 'Do you want to delete this record?',
-        alterado: 'Record updated.',
-        excluido: 'Record deleted.',
-        meta_setor: 'Department',
-        meta_responsavel: 'Responsible',
-        meta_data: 'Date',
-        rodape_final: '© 2026 Vila Bela da Santíssima Trindade MT City Hall • Office Admin • All rights reserved.'
-      },
-      es: {
-        topo_1: 'Admin Gabinete • Ayuntamiento de Vila Bela da Santíssima Trindade MT',
-        topo_2: 'Login Google • Gestión de agenda • Demandas estratégicas',
-        marca_small: 'Administración del Gabinete',
-        marca_p: 'Panel administrativo para agenda, demandas, prioridades y estado del gabinete.',
-        menu_inicio: 'Inicio',
-        menu_gabinete: 'Gabinete',
-        menu_cadastro: 'Registro',
-        menu_registros: 'Registros',
-        hero_tag: 'Admin Gabinete',
-        hero_titulo: 'Gestión interna del Gabinete del Alcalde con seguridad, organización y visión ejecutiva.',
-        hero_texto: 'Área administrativa para registrar, acompañar, filtrar, actualizar y eliminar agendas oficiales y demandas estratégicas.',
-        hero_botao_1: 'Nuevo registro',
-        hero_botao_2: 'Ver registros',
-        painel_titulo: 'Resumen administrativo',
-        mini_total: 'Total',
-        mini_alta: 'Alta',
-        mini_andamento: 'En curso',
-        mini_concluido: 'Concluidos',
-        login_titulo: 'Acceso Administrativo',
-        login_texto: 'Entre con la cuenta Google autorizada para administrar el módulo del gabinete.',
-        login_botao: 'Entrar con Google',
-        voltar_gabinete: 'Volver al Gabinete',
-        area_titulo: 'Área administrativa del gabinete',
-        area_texto: 'Gestione registros oficiales con filtros, actualización de estado y control operativo.',
-        atualizar: 'Actualizar',
-        abrir_publico: 'Abrir página pública',
-        sair: 'Salir',
-        cadastro_titulo: 'Crear nuevo registro',
-        cadastro_texto: 'Incluya agendas, demandas estratégicas, prioridades y encaminamientos.',
-        label_tipo: 'Tipo',
-        label_prioridade: 'Prioridad',
-        label_titulo: 'Título',
-        label_responsavel: 'Responsable',
-        label_setor: 'Sector / Secretaría',
-        label_data: 'Fecha',
-        label_status: 'Estado',
-        label_descricao: 'Descripción',
-        salvar: 'Guardar registro',
-        lista_titulo: 'Registros administrativos',
-        lista_texto: 'Filtre, cambie estado/prioridad y elimine registros del gabinete.',
-        todos_status: 'Todos los estados',
-        todas_prioridades: 'Todas las prioridades',
-        tipo_agenda: 'Agenda Oficial',
-        tipo_demanda: 'Demanda Estratégica',
-        prioridade_alta: 'Alta',
-        prioridade_media: 'Media',
-        prioridade_baixa: 'Baja',
-        status_planejado: 'Planificado',
-        status_andamento: 'En curso',
-        status_concluido: 'Concluido',
-        status_arquivado: 'Archivado',
-        salvando: 'Guardando registro...',
-        sucesso: '¡Registro guardado con éxito!',
-        carregando: 'Cargando registros...',
-        nenhum: 'No se encontraron registros.',
-        erro: 'Error: ',
-        excluir: 'Eliminar',
-        salvar_alteracoes: 'Guardar cambios',
-        confirmar_excluir: '¿Desea eliminar este registro?',
-        alterado: 'Registro actualizado.',
-        excluido: 'Registro eliminado.',
-        meta_setor: 'Sector',
-        meta_responsavel: 'Responsable',
-        meta_data: 'Fecha',
-        rodape_final: '© 2026 Ayuntamiento de Vila Bela da Santíssima Trindade MT • Admin Gabinete • Derechos reservados.'
-      }
-    };
-
-    function idiomaAtual() {
-      return localStorage.getItem('portal_idioma') || 'pt';
-    }
-
-    function t(chave) {
-      const idioma = idiomaAtual();
-      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
-    }
-
-    function definirIdioma(idioma){
-      const mapa = traducoes[idioma] || traducoes.pt;
-
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const chave = el.getAttribute('data-i18n');
-        if (mapa[chave]) el.textContent = mapa[chave];
-      });
-
-      document.documentElement.lang =
-        idioma === 'en' ? 'en' :
-        idioma === 'es' ? 'es' :
-        'pt-BR';
-
-      localStorage.setItem('portal_idioma', idioma);
-      renderizarLista();
-    }
-
-    function badgeTipo(valor){
-      if ((valor || '').includes('Agenda')) return 'badge-agenda';
-      return 'badge-demanda';
-    }
-
-    function badgePrioridade(valor){
-      const v = (valor || '').toLowerCase();
-      if (v.includes('alta') || v.includes('high')) return 'badge-prioridade-alta';
-      if (v.includes('média') || v.includes('media') || v.includes('medium')) return 'badge-prioridade-media';
-      return 'badge-prioridade-baixa';
-    }
-
-    function badgeStatus(valor){
-      const v = (valor || '').toLowerCase();
-      if (v.includes('planejado') || v.includes('planned') || v.includes('planificado')) return 'badge-status-planejado';
-      if (v.includes('andamento') || v.includes('progress') || v.includes('curso')) return 'badge-status-andamento';
-      if (v.includes('concluído') || v.includes('completed') || v.includes('concluido')) return 'badge-status-concluido';
-      return 'badge-status-arquivado';
-    }
-
-    function formatarDataLocal(data) {
-      if (!data) return '';
-      const idioma = idiomaAtual();
-      const locale = idioma === 'en' ? 'en-US' : idioma === 'es' ? 'es-ES' : 'pt-BR';
-      return new Date(data + 'T00:00:00').toLocaleDateString(locale);
-    }
-
-    function renderizarLista() {
-      const lista = document.getElementById("listaGabinete");
-      if (!lista) return;
-
-      const texto = (document.getElementById("filtroTexto")?.value || "").toLowerCase();
-      const statusFiltro = document.getElementById("filtroStatus")?.value || "";
-      const prioridadeFiltro = document.getElementById("filtroPrioridade")?.value || "";
-
-      const filtrados = registrosGabinete.filter(item => {
-        const d = item.data;
-        const base = `${d.titulo || ""} ${d.setor || ""} ${d.responsavel || ""} ${d.descricao || ""}`.toLowerCase();
-
-        const okTexto = !texto || base.includes(texto);
-        const okStatus = !statusFiltro || d.status === statusFiltro;
-        const okPrioridade = !prioridadeFiltro || d.prioridade === prioridadeFiltro;
-
-        return okTexto && okStatus && okPrioridade;
-      });
-
-      if (filtrados.length === 0) {
-        lista.innerHTML = `<div class="admin-item"><h4>${t('nenhum')}</h4></div>`;
-        return;
-      }
-
-      lista.innerHTML = "";
-
-      filtrados.forEach(item => {
-        const d = item.data;
-
-        lista.innerHTML += `
-          <div class="admin-item">
-            <div class="admin-item-topo">
-              <h4>${d.titulo || ""}</h4>
-              <div class="badges">
-                <span class="gabinete-badge ${badgeTipo(d.tipo)}">${d.tipo || ""}</span>
-                <span class="gabinete-badge ${badgePrioridade(d.prioridade)}">${d.prioridade || ""}</span>
-                <span class="gabinete-badge ${badgeStatus(d.status)}">${d.status || ""}</span>
-              </div>
-            </div>
-
-            <div class="admin-meta">
-              <div><strong>${t('meta_setor')}:</strong> ${d.setor || ""}</div>
-              <div><strong>${t('meta_responsavel')}:</strong> ${d.responsavel || ""}</div>
-              <div><strong>${t('meta_data')}:</strong> ${formatarDataLocal(d.dataAgenda)}</div>
-            </div>
-
-            <p>${d.descricao || ""}</p>
-
-            <div class="admin-grid">
-              <div>
-                <label>${t('label_status')}</label>
-                <select class="campo-select" id="status_${item.id}">
-                  <option value="Planejado" ${d.status === "Planejado" ? "selected" : ""}>Planejado</option>
-                  <option value="Em andamento" ${d.status === "Em andamento" ? "selected" : ""}>Em andamento</option>
-                  <option value="Concluído" ${d.status === "Concluído" ? "selected" : ""}>Concluído</option>
-                  <option value="Arquivado" ${d.status === "Arquivado" ? "selected" : ""}>Arquivado</option>
-                </select>
-              </div>
-
-              <div>
-                <label>${t('label_prioridade')}</label>
-                <select class="campo-select" id="prioridade_${item.id}">
-                  <option value="Alta" ${d.prioridade === "Alta" ? "selected" : ""}>Alta</option>
-                  <option value="Média" ${d.prioridade === "Média" ? "selected" : ""}>Média</option>
-                  <option value="Baixa" ${d.prioridade === "Baixa" ? "selected" : ""}>Baixa</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="admin-actions">
-              <button type="button" onclick="salvarAlteracoes('${item.id}')">${t('salvar_alteracoes')}</button>
-              <button type="button" class="btn-danger" onclick="excluirRegistro('${item.id}')">${t('excluir')}</button>
-            </div>
-          </div>
-        `;
-      });
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      definirIdioma(idiomaAtual());
-      aplicarAcessibilidadeSalva();
-    });
-  </script>
-
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      deleteDoc,
-      updateDoc,
-      doc,
-      query,
-      orderBy,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup,
-      signInWithRedirect,
-      getRedirectResult,
-      signOut,
-      onAuthStateChanged
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-      authDomain: "portal-vilabela-oficial.firebaseapp.com",
-      projectId: "portal-vilabela-oficial",
-      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-      messagingSenderId: "908975101824",
-      appId: "1:908975101824:web:f986598784403493721365"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    function isMobile() {
-      return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-    }
-
-    function mostrarPainel(user) {
-      document.getElementById("loginBox").classList.add("hidden");
-      document.getElementById("painelAdmin").classList.remove("hidden");
-
-      document.getElementById("usuarioLogado").innerText =
-        `${user.displayName || ""} • ${user.email || ""}`;
-
-      carregarGabinete();
-    }
-
-    async function tratarRedirect() {
-      const loginMsg = document.getElementById("loginMsg");
-      try {
-        await getRedirectResult(auth);
-      } catch (erro) {
-        loginMsg.innerText = t('erro') + erro.message;
-      }
-    }
-
-    window.loginGoogle = async function () {
-      const loginMsg = document.getElementById("loginMsg");
-      loginMsg.innerText = "";
-
-      try {
-        if (isMobile()) {
-          await signInWithRedirect(auth, provider);
-        } else {
-          await signInWithPopup(auth, provider);
-        }
-      } catch (erro) {
-        loginMsg.innerText = t('erro') + erro.message;
-      }
-    };
-
-    window.logout = async function () {
-      await signOut(auth);
-      location.reload();
-    };
-
-    onAuthStateChanged(auth, (user) => {
-      if (user) mostrarPainel(user);
+  try {
+    await addDoc(collection(db, "gabinete"), {
+      tipo: document.getElementById("tipo").value,
+      prioridade: document.getElementById("prioridade").value,
+      titulo: document.getElementById("titulo").value,
+      responsavel: document.getElementById("responsavel").value,
+      setor: document.getElementById("setor").value,
+      dataAgenda: document.getElementById("dataAgenda").value,
+      status: document.getElementById("statusRegistro").value,
+      descricao: document.getElementById("descricao").value,
+      data: serverTimestamp()
     });
 
-    await tratarRedirect();
+    status.innerText = "Registro salvo com sucesso!";
+    document.getElementById("formGabineteAdmin").reset();
+    carregarGabinete();
 
-    const form = document.getElementById("formGabineteAdmin");
-    const statusGabinete = document.getElementById("statusGabinete");
+  } catch(e) {
+    status.innerText = "Erro: " + e.message;
+  }
+});
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+window.carregarGabinete = async function(){
+  const lista = document.getElementById("listaGabinete");
+  lista.innerHTML = "Carregando registros...";
 
-      statusGabinete.style.color = "#1351b4";
-      statusGabinete.innerText = t('salvando');
+  try {
+    const q = query(collection(db, "gabinete"), orderBy("data", "desc"));
+    const snap = await getDocs(q);
 
-      try {
-        await addDoc(collection(db, "gabinete"), {
-          tipo: document.getElementById("tipo").value,
-          prioridade: document.getElementById("prioridade").value,
-          titulo: document.getElementById("titulo").value,
-          responsavel: document.getElementById("responsavel").value,
-          setor: document.getElementById("setor").value,
-          dataAgenda: document.getElementById("dataAgenda").value,
-          status: document.getElementById("statusRegistro").value,
-          descricao: document.getElementById("descricao").value,
-          data: serverTimestamp()
-        });
+    registrosGabinete = [];
 
-        statusGabinete.style.color = "green";
-        statusGabinete.innerText = t('sucesso');
-
-        form.reset();
-        carregarGabinete();
-      } catch (err) {
-        statusGabinete.style.color = "#c92a2a";
-        statusGabinete.innerText = t('erro') + err.message;
-      }
+    snap.forEach(item => {
+      registrosGabinete.push({
+        id: item.id,
+        data: item.data()
+      });
     });
 
-    window.carregarGabinete = async function () {
-      const lista = document.getElementById("listaGabinete");
-      lista.innerHTML = `<div class="admin-item"><h4>${t('carregando')}</h4></div>`;
+    renderizarLista();
 
-      try {
-        const q = query(collection(db, "gabinete"), orderBy("data", "desc"));
-        const snap = await getDocs(q);
+  } catch(e) {
+    lista.innerHTML = "Erro ao carregar registros: " + e.message;
+  }
+};
 
-        registrosGabinete = [];
+window.salvarAlteracoes = async function(id){
+  const novoStatus = document.getElementById("status_" + id).value;
+  const novaPrioridade = document.getElementById("prioridade_" + id).value;
 
-        let total = 0;
-        let alta = 0;
-        let andamento = 0;
-        let concluido = 0;
+  await updateDoc(doc(db, "gabinete", id), {
+    status: novoStatus,
+    prioridade: novaPrioridade,
+    atualizadoEm: serverTimestamp()
+  });
 
-        snap.forEach((docItem) => {
-          const data = docItem.data();
+  alert("Registro atualizado.");
+  carregarGabinete();
+};
 
-          registrosGabinete.push({
-            id: docItem.id,
-            data
-          });
+window.excluirRegistro = async function(id){
+  if(!confirm("Deseja excluir este registro?")) return;
 
-          total++;
+  await deleteDoc(doc(db, "gabinete", id));
 
-          if (data.prioridade === "Alta") alta++;
-          if (data.status === "Em andamento") andamento++;
-          if (data.status === "Concluído") concluido++;
-        });
+  alert("Registro excluído.");
+  carregarGabinete();
+};
+</script>
 
-        document.getElementById("miniTotal").textContent = total;
-        document.getElementById("miniAlta").textContent = alta;
-        document.getElementById("miniAndamento").textContent = andamento;
-        document.getElementById("miniConcluido").textContent = concluido;
-
-        renderizarLista();
-      } catch (erro) {
-        lista.innerHTML = `<div class="admin-item"><h4>${t('erro')}${erro.message}</h4></div>`;
-      }
-    };
-
-    window.salvarAlteracoes = async function (id) {
-      const novoStatus = document.getElementById("status_" + id).value;
-      const novaPrioridade = document.getElementById("prioridade_" + id).value;
-
-      await updateDoc(doc(db, "gabinete", id), {
-        status: novoStatus,
-        prioridade: novaPrioridade,
-        atualizadoEm: serverTimestamp()
-      });
-
-      alert(t('alterado'));
-      carregarGabinete();
-    };
-
-    window.excluirRegistro = async function (id) {
-      if (!confirm(t('confirmar_excluir'))) return;
-
-      await deleteDoc(doc(db, "gabinete", id));
-
-      alert(t('excluido'));
-      carregarGabinete();
-    };
-  </script>
 </body>
-                </html>
+</html>
