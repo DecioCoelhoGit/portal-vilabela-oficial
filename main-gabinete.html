@@ -1,176 +1,110 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Gabinete do Prefeito • Portal Prefeitura Vila Bela MT</title>
+  <title>Gabinete do Prefeito • Vila Bela MT</title>
 
-  <meta name="description" content="Módulo do Gabinete do Prefeito com agenda oficial, demandas estratégicas, prioridades e governança executiva.">
+  <meta name="description" content="Gestão estratégica, ações do gabinete e acompanhamento institucional do Prefeito de Vila Bela da Santíssima Trindade MT." />
 
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="imagens/favicon.ico" />
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
 
+<!-- ACESSIBILIDADE -->
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
+
+<!-- HEADER -->
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT">
   <div>
     <h1>Gabinete do Prefeito</h1>
-    <p>Agenda oficial • Demandas estratégicas • Governança executiva</p>
+    <p>Gestão estratégica e ações institucionais</p>
   </div>
 </header>
 
-<nav class="menu">
+<!-- MENU -->
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
-  <a href="#painel">Painel</a>
-  <a href="#cadastro">Cadastro</a>
-  <a href="#registros">Registros</a>
-  <a href="admin-gabinete.html">Admin Gabinete</a>
   <a href="dashboard.html">Dashboard</a>
+  <a href="noticias.html">Notícias</a>
+  <a href="cultura.html">Cultura</a>
+  <a href="turismo.html">Turismo</a>
+  <a href="transparencia.html">Transparência</a>
+  <a href="admin-gabinete.html">Admin</a>
 </nav>
 
-<section class="hero" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.35)),url('imagens/gabinete-banner-1.jpg');">
+<!-- HERO COM BANNER -->
+<section class="hero"
+  style="background-image: linear-gradient(90deg, rgba(7,29,65,0.9), rgba(7,29,65,0.4)), url('imagens/gabinete-banner-1.jpg');">
+
   <div class="card">
-    <small>GABINETE DO PREFEITO</small>
-    <h2>Coordenação executiva, agenda institucional e prioridades da gestão.</h2>
+    <small>GESTÃO EXECUTIVA</small>
+    <h2>Coordenação estratégica das ações do município</h2>
+
     <p>
-      Estrutura para acompanhamento de compromissos oficiais, demandas estratégicas,
-      ações prioritárias, comunicação institucional e governança executiva.
+      O Gabinete do Prefeito atua na articulação das políticas públicas,
+      coordenação institucional e acompanhamento das ações prioritárias
+      do município.
     </p>
-    <br>
-    <a href="#cadastro"><button>Registrar ação</button></a>
-    <a href="#registros"><button class="secundario">Ver registros</button></a>
+
+    <div class="actions">
+      <a href="dashboard.html" class="btn">Ver Dashboard</a>
+      <a href="transparencia.html" class="btn ghost">Transparência</a>
+    </div>
   </div>
 </section>
 
-<main>
+<!-- CONTEÚDO -->
+<main id="conteudo">
 
-  <section class="card" id="painel">
-    <h2>Painel rápido do Gabinete</h2>
-    <p>Indicadores para apoio à tomada de decisão e acompanhamento executivo.</p>
+  <!-- RESUMO -->
+  <section class="card">
+    <h2>Visão Geral do Gabinete</h2>
 
-    <br>
-
-    <div class="kpi">
-      <span>Total de registros</span>
-      <strong id="kpiTotal">0</strong>
-    </div>
-
-    <div class="kpi">
-      <span>Agenda oficial</span>
-      <strong id="kpiAgenda">0</strong>
-    </div>
+    <p>
+      O gabinete é responsável pela gestão estratégica, articulação política,
+      acompanhamento de projetos e tomada de decisões executivas que impactam
+      diretamente a população.
+    </p>
 
     <div class="kpi">
-      <span>Demandas estratégicas</span>
-      <strong id="kpiDemanda">0</strong>
-    </div>
-
-    <div class="kpi">
-      <span>Em andamento</span>
+      <span>Ações em andamento</span>
       <strong id="kpiAndamento">0</strong>
     </div>
 
     <div class="kpi">
-      <span>Concluídos</span>
+      <span>Ações concluídas</span>
       <strong id="kpiConcluido">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Alta prioridade</span>
+      <strong id="kpiAlta">0</strong>
     </div>
   </section>
 
+  <!-- LISTA DE AÇÕES -->
   <section class="card">
-    <h2>Mensagem institucional do Gabinete</h2>
-    <p>
-      Este módulo registra compromissos, demandas, prioridades e entregas estratégicas,
-      fortalecendo a organização do gabinete e a coordenação entre secretarias.
-    </p>
-  </section>
+    <h2>Ações do Gabinete</h2>
+    <p>Acompanhamento das ações estratégicas cadastradas.</p>
 
-  <section class="card" id="cadastro">
-    <h2>Registrar agenda ou demanda</h2>
-    <p>Primeira versão oficial para estruturação executiva do Gabinete do Prefeito.</p>
-
-    <br>
-
-    <form id="formGabinete">
-
-      <label>Tipo</label>
-      <select class="campo" id="tipo" required>
-        <option value="Agenda Oficial">Agenda Oficial</option>
-        <option value="Demanda Estratégica">Demanda Estratégica</option>
-      </select>
-
-      <br><br>
-
-      <label>Prioridade</label>
-      <select class="campo" id="prioridade" required>
-        <option value="Alta">Alta</option>
-        <option value="Média">Média</option>
-        <option value="Baixa">Baixa</option>
-      </select>
-
-      <br><br>
-
-      <label>Título</label>
-      <input class="campo" id="titulo" placeholder="Ex.: Reunião com secretários / Acompanhamento de obra" required>
-
-      <br><br>
-
-      <label>Responsável</label>
-      <input class="campo" id="responsavel" placeholder="Responsável pelo registro" required>
-
-      <br><br>
-
-      <label>Setor / Secretaria</label>
-      <input class="campo" id="setor" placeholder="Gabinete / Cultura / Turismo / Administração..." required>
-
-      <br><br>
-
-      <label>Data</label>
-      <input class="campo" id="dataAgenda" type="date" required>
-
-      <br><br>
-
-      <label>Status</label>
-      <select class="campo" id="statusRegistro" required>
-        <option value="Planejado">Planejado</option>
-        <option value="Em andamento">Em andamento</option>
-        <option value="Concluído">Concluído</option>
-        <option value="Arquivado">Arquivado</option>
-      </select>
-
-      <br><br>
-
-      <label>Descrição</label>
-      <textarea class="campo-area" id="descricao" placeholder="Descreva a pauta, demanda, prioridade ou ação estratégica." required></textarea>
-
-      <br><br>
-
-      <button type="submit">Salvar registro</button>
-    </form>
-
-    <p id="statusGabinete"></p>
-  </section>
-
-  <section class="card" id="registros">
-    <h2>Registros do Gabinete</h2>
-    <p>Lista dinâmica das agendas e demandas cadastradas.</p>
-
-    <br>
-
-    <div id="listaGabinete">Carregando registros...</div>
+    <div id="listaGabinete"></div>
   </section>
 
 </main>
 
+<!-- RODAPÉ -->
 <footer class="card">
   <h3>Gabinete do Prefeito</h3>
-  <p>
-    © 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Módulo executivo do Gabinete.
-  </p>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT</p>
 </footer>
 
+<!-- ACESSIBILIDADE -->
 <button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
 
 <div class="acessibilidade-panel" id="painelAcessibilidade">
@@ -182,46 +116,48 @@
   <button onclick="setTema('contraste')">⚫ Contraste</button>
 </div>
 
+<!-- SCRIPTS -->
 <script>
 function toggleAcessibilidade(){
-  const p = document.getElementById("painelAcessibilidade");
-  p.style.display = p.style.display === "block" ? "none" : "block";
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
 }
 
 function setFonte(tipo){
   document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
+
   if(tipo==="a") document.body.classList.add("font-a");
   if(tipo==="a-plus") document.body.classList.add("font-a-plus");
   if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
   localStorage.setItem("fonte", tipo);
 }
 
 function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
   if(tipo==="claro") document.body.classList.add("tema-claro");
+  if(tipo==="escuro") document.body.classList.add("tema-escuro");
   if(tipo==="contraste") document.body.classList.add("alto-contraste");
+
   localStorage.setItem("tema", tipo);
 }
 
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
-  if(f) setFonte(f);
-  if(t) setTema(t);
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
 </script>
 
+<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
 import {
   getFirestore,
   collection,
-  addDoc,
-  getDocs,
-  query,
-  orderBy,
-  serverTimestamp
+  getDocs
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -236,119 +172,44 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-function setText(id, valor){
-  document.getElementById(id).innerText = valor;
-}
-
-function formatarData(data){
-  if(!data) return "";
-  return new Date(data + "T00:00:00").toLocaleDateString("pt-BR");
-}
-
-function classePrioridade(valor){
-  if(valor === "Alta") return "badge-prioridade-alta";
-  if(valor === "Média") return "badge-prioridade-media";
-  return "badge-prioridade-baixa";
-}
-
-function classeStatus(valor){
-  if(valor === "Planejado") return "badge-status-planejado";
-  if(valor === "Em andamento") return "badge-status-andamento";
-  if(valor === "Concluído") return "badge-status-concluido";
-  return "badge-status-arquivado";
-}
-
-document.getElementById("formGabinete").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const status = document.getElementById("statusGabinete");
-  status.innerText = "Salvando registro...";
-
-  try {
-    await addDoc(collection(db, "gabinete"), {
-      tipo: document.getElementById("tipo").value,
-      prioridade: document.getElementById("prioridade").value,
-      titulo: document.getElementById("titulo").value,
-      responsavel: document.getElementById("responsavel").value,
-      setor: document.getElementById("setor").value,
-      dataAgenda: document.getElementById("dataAgenda").value,
-      status: document.getElementById("statusRegistro").value,
-      descricao: document.getElementById("descricao").value,
-      data: serverTimestamp()
-    });
-
-    status.innerText = "Registro salvo com sucesso!";
-    document.getElementById("formGabinete").reset();
-    carregarGabinete();
-
-  } catch(e) {
-    status.innerText = "Erro: " + e.message;
-  }
-});
-
 async function carregarGabinete(){
-  const lista = document.getElementById("listaGabinete");
+  const container = document.getElementById("listaGabinete");
 
   try {
-    const q = query(collection(db, "gabinete"), orderBy("data", "desc"));
-    const snap = await getDocs(q);
+    const snap = await getDocs(collection(db, "gabinete"));
 
-    let total = 0;
-    let agenda = 0;
-    let demanda = 0;
     let andamento = 0;
     let concluido = 0;
+    let alta = 0;
 
-    if(snap.empty){
-      lista.innerHTML = "<p>Nenhum registro cadastrado no momento.</p>";
-
-      setText("kpiTotal", 0);
-      setText("kpiAgenda", 0);
-      setText("kpiDemanda", 0);
-      setText("kpiAndamento", 0);
-      setText("kpiConcluido", 0);
-      return;
-    }
-
-    lista.innerHTML = "";
+    container.innerHTML = "";
 
     snap.forEach(doc => {
       const d = doc.data();
 
-      total++;
+      if((d.status||"").toLowerCase().includes("andamento")) andamento++;
+      if((d.status||"").toLowerCase().includes("concluido")) concluido++;
+      if((d.prioridade||"").toLowerCase().includes("alta")) alta++;
 
-      if(d.tipo === "Agenda Oficial") agenda++;
-      if(d.tipo === "Demanda Estratégica") demanda++;
-      if(d.status === "Em andamento") andamento++;
-      if(d.status === "Concluído") concluido++;
+      const card = document.createElement("article");
+      card.className = "noticia";
 
-      lista.innerHTML += `
-        <article class="card">
-          <h3>${d.titulo || "Sem título"}</h3>
-
-          <p><strong>Tipo:</strong> ${d.tipo || ""}</p>
-          <p><strong>Setor:</strong> ${d.setor || ""}</p>
-          <p><strong>Responsável:</strong> ${d.responsavel || ""}</p>
-          <p><strong>Data:</strong> ${formatarData(d.dataAgenda)}</p>
-
-          <p>
-            <span class="gabinete-badge ${classePrioridade(d.prioridade)}">${d.prioridade || ""}</span>
-            <span class="gabinete-badge ${classeStatus(d.status)}">${d.status || ""}</span>
-          </p>
-
-          <p>${d.descricao || ""}</p>
-        </article>
+      card.innerHTML = `
+        <h3>${d.titulo || "Ação"}</h3>
+        <p>${d.descricao || ""}</p>
+        <small>Status: ${d.status || "-"} | Prioridade: ${d.prioridade || "-"}</small>
       `;
+
+      container.appendChild(card);
     });
 
-    setText("kpiTotal", total);
-    setText("kpiAgenda", agenda);
-    setText("kpiDemanda", demanda);
-    setText("kpiAndamento", andamento);
-    setText("kpiConcluido", concluido);
+    document.getElementById("kpiAndamento").innerText = andamento;
+    document.getElementById("kpiConcluido").innerText = concluido;
+    document.getElementById("kpiAlta").innerText = alta;
 
-  } catch(e) {
-    lista.innerHTML = "<p>Erro ao carregar registros: " + e.message + "</p>";
+  } catch(e){
+    container.innerHTML = "<p>Erro ao carregar dados do gabinete.</p>";
+    console.error(e);
   }
 }
 
