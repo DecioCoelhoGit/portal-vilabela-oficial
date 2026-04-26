@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Dashboard Executivo • Portal Prefeitura Vila Bela MT</title>
 
-  <meta name="description" content="Dashboard executivo do Portal Prefeitura Vila Bela MT com indicadores integrados de contatos, notícias, cultura, turismo, transparência e gabinete.">
+  <meta name="description" content="Dashboard Executivo do Portal Prefeitura Vila Bela MT com indicadores, gráficos e dados integrados." />
 
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="style.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão de Vila Bela da Santíssima Trindade MT" />
   <div>
     <h1>Dashboard Executivo</h1>
-    <p>Portal Prefeitura Vila Bela MT</p>
+    <p>Portal Prefeitura Vila Bela MT • Indicadores integrados</p>
   </div>
 </header>
 
-<nav class="menu">
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
   <a href="noticias.html">Notícias</a>
   <a href="cultura.html">Cultura</a>
@@ -32,23 +37,21 @@
   <a href="admin.html">Admin</a>
 </nav>
 
-<main>
+<section class="hero" style="background-image:linear-gradient(90deg,rgba(7,29,65,.88),rgba(7,29,65,.35)),url('imagens/portal-og-1.jpg');">
+  <div class="card">
+    <small>DASHBOARD EXECUTIVO</small>
+    <h2>Indicadores, gráficos e dados consolidados da plataforma.</h2>
+    <p>
+      Painel de acompanhamento com informações integradas de notícias, turismo,
+      cultura, transparência e gabinete do prefeito.
+    </p>
+  </div>
+</section>
+
+<main id="conteudo">
 
   <section class="card">
-    <h2>Indicadores Gerais</h2>
-    <p>Atualização em tempo real das principais coleções do portal.</p>
-    <br>
-    <button onclick="carregarDashboard()">Atualizar Dashboard</button>
-    <p id="statusDashboard"></p>
-  </section>
-
-  <section class="card">
-    <h2>Resumo Consolidado</h2>
-
-    <div class="kpi">
-      <span>Contatos</span>
-      <strong id="totalContatos">0</strong>
-    </div>
+    <h2>Resumo Geral</h2>
 
     <div class="kpi">
       <span>Notícias</span>
@@ -75,81 +78,100 @@
       <strong id="totalGabinete">0</strong>
     </div>
 
-    <hr style="margin:15px 0; border-color:rgba(255,255,255,.15);">
-
     <div class="kpi">
-      <span><strong>Total Geral</strong></span>
+      <span>Total Geral</span>
       <strong id="totalGeral">0</strong>
     </div>
   </section>
 
   <section class="card">
-    <h2>Status dos Contatos</h2>
-
-    <div class="kpi">
-      <span>Novos</span>
-      <strong id="contatosNovos">0</strong>
-    </div>
-
-    <div class="kpi">
-      <span>Em análise</span>
-      <strong id="contatosAnalise">0</strong>
-    </div>
-
-    <div class="kpi">
-      <span>Resolvidos</span>
-      <strong id="contatosResolvidos">0</strong>
-    </div>
+    <h2>Gráfico Geral da Plataforma</h2>
+    <p>Distribuição dos registros por módulo.</p>
+    <canvas id="graficoGeral"></canvas>
   </section>
 
   <section class="card">
-    <h2>Status do Gabinete</h2>
+    <h2>Dashboard do Gabinete</h2>
 
     <div class="kpi">
       <span>Planejados</span>
-      <strong id="gabinetePlanejado">0</strong>
+      <strong id="gabPlanejado">0</strong>
     </div>
 
     <div class="kpi">
       <span>Em andamento</span>
-      <strong id="gabineteAndamento">0</strong>
+      <strong id="gabAndamento">0</strong>
     </div>
 
     <div class="kpi">
       <span>Concluídos</span>
-      <strong id="gabineteConcluido">0</strong>
+      <strong id="gabConcluido">0</strong>
     </div>
 
     <div class="kpi">
-      <span>Arquivados</span>
-      <strong id="gabineteArquivado">0</strong>
+      <span>Alta prioridade</span>
+      <strong id="gabAlta">0</strong>
     </div>
   </section>
 
   <section class="card">
-    <h2>Prioridade do Gabinete</h2>
+    <h2>Gráfico do Gabinete</h2>
+    <p>Status das ações registradas no gabinete.</p>
+    <canvas id="graficoGabinete"></canvas>
+  </section>
+
+  <section class="card">
+    <h2>Transparência Pública</h2>
 
     <div class="kpi">
-      <span>Alta</span>
-      <strong id="gabineteAlta">0</strong>
+      <span>Total de receitas</span>
+      <strong id="totalReceitas">R$ 0,00</strong>
     </div>
 
     <div class="kpi">
-      <span>Média</span>
-      <strong id="gabineteMedia">0</strong>
+      <span>Total de despesas</span>
+      <strong id="totalDespesas">R$ 0,00</strong>
     </div>
 
     <div class="kpi">
-      <span>Baixa</span>
-      <strong id="gabineteBaixa">0</strong>
+      <span>Saldo demonstrativo</span>
+      <strong id="saldoTransparencia">R$ 0,00</strong>
     </div>
+  </section>
+
+  <section class="card">
+    <h2>Gráfico da Transparência</h2>
+    <p>Comparativo entre receitas e despesas cadastradas.</p>
+    <canvas id="graficoTransparencia"></canvas>
+  </section>
+
+  <section class="card">
+    <h2>Capas Institucionais</h2>
+
+    <article class="noticia">
+      <img src="imagens/vilabela-capa-oficial-1.jpg" alt="Capa oficial do Portal Vila Bela MT" />
+      <h3>Portal Prefeitura Vila Bela MT</h3>
+      <p>Capa oficial da plataforma institucional.</p>
+    </article>
+
+    <article class="noticia">
+      <img src="imagens/gabinete-banner-1.jpg" alt="Banner do Gabinete do Prefeito" />
+      <h3>Gabinete do Prefeito</h3>
+      <p>Banner institucional do módulo de gabinete.</p>
+    </article>
+
+    <article class="noticia">
+      <img src="imagens/portal-og-1.jpg" alt="Imagem de compartilhamento do portal" />
+      <h3>Imagem de Compartilhamento</h3>
+      <p>Imagem padrão para WhatsApp, redes sociais e prévia de link.</p>
+    </article>
   </section>
 
 </main>
 
 <footer class="card">
   <h3>Dashboard Executivo</h3>
-  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Indicadores institucionais.</p>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Plataforma institucional em evolução.</p>
 </footer>
 
 <button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
@@ -164,32 +186,142 @@
 </div>
 
 <script>
+let chartGeral = null;
+let chartGabinete = null;
+let chartTransparencia = null;
+
 function toggleAcessibilidade(){
-  const p = document.getElementById("painelAcessibilidade");
-  p.style.display = p.style.display === "block" ? "none" : "block";
+  const painel = document.getElementById("painelAcessibilidade");
+  painel.classList.toggle("open");
 }
 
 function setFonte(tipo){
   document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
-  if(tipo==="a") document.body.classList.add("font-a");
-  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
-  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
   localStorage.setItem("fonte", tipo);
 }
 
 function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste","modo-claro","modo-escuro","contrast");
+
+  if(tipo === "claro") document.body.classList.add("tema-claro");
+  if(tipo === "escuro") document.body.classList.add("tema-escuro");
+  if(tipo === "contraste") document.body.classList.add("alto-contraste");
+
   localStorage.setItem("tema", tipo);
 }
 
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
-  if(f) setFonte(f);
-  if(t) setTema(t);
+(function restaurarPreferencias(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
+
+function moeda(valor){
+  return Number(valor || 0).toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
+}
+
+function setText(id, valor){
+  const el = document.getElementById(id);
+  if(el) el.innerText = valor;
+}
+
+function criarGraficoGeral(dados){
+  const ctx = document.getElementById("graficoGeral");
+
+  if(chartGeral) chartGeral.destroy();
+
+  chartGeral = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Notícias", "Cultura", "Turismo", "Transparência", "Gabinete"],
+      datasets: [{
+        label: "Registros",
+        data: [
+          dados.noticias,
+          dados.cultura,
+          dados.turismo,
+          dados.transparencia,
+          dados.gabinete
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: "Registros por módulo" }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
+
+function criarGraficoGabinete(dados){
+  const ctx = document.getElementById("graficoGabinete");
+
+  if(chartGabinete) chartGabinete.destroy();
+
+  chartGabinete = new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: ["Planejado", "Em andamento", "Concluído", "Arquivado"],
+      datasets: [{
+        label: "Status",
+        data: [
+          dados.planejado,
+          dados.andamento,
+          dados.concluido,
+          dados.arquivado
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        title: { display: true, text: "Status das ações do gabinete" }
+      }
+    }
+  });
+}
+
+function criarGraficoTransparencia(receitas, despesas){
+  const ctx = document.getElementById("graficoTransparencia");
+
+  if(chartTransparencia) chartTransparencia.destroy();
+
+  chartTransparencia = new Chart(ctx, {
+    type: "bar",
+    data: {
+      labels: ["Receitas", "Despesas"],
+      datasets: [{
+        label: "Valores em R$",
+        data: [receitas, despesas],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: "Receitas x Despesas" }
+      },
+      scales: {
+        y: { beginAtZero: true }
+      }
+    }
+  });
+}
 </script>
 
 <script type="module">
@@ -214,103 +346,127 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 async function contarColecao(nome){
-  const snap = await getDocs(collection(db, nome));
-  return snap;
+  try {
+    const snap = await getDocs(collection(db, nome));
+    return snap.size;
+  } catch(e) {
+    console.warn("Erro ao contar coleção:", nome, e.message);
+    return 0;
+  }
 }
 
-function setText(id, valor){
-  document.getElementById(id).innerText = valor;
-}
-
-window.carregarDashboard = async function(){
-
-  const status = document.getElementById("statusDashboard");
-  status.innerText = "Carregando indicadores...";
+async function analisarGabinete(){
+  const dados = {
+    total: 0,
+    planejado: 0,
+    andamento: 0,
+    concluido: 0,
+    arquivado: 0,
+    alta: 0
+  };
 
   try {
+    const snap = await getDocs(collection(db, "gabinete"));
 
-    const contatosSnap = await contarColecao("contatos");
-    const noticiasSnap = await contarColecao("noticias");
-    const culturaSnap = await contarColecao("cultura");
-    const turismoSnap = await contarColecao("turismo");
-    const transparenciaSnap = await contarColecao("transparencia");
-    const gabineteSnap = await contarColecao("gabinete");
-
-    let contatosNovos = 0;
-    let contatosAnalise = 0;
-    let contatosResolvidos = 0;
-
-    contatosSnap.forEach(doc => {
+    snap.forEach(doc => {
       const d = doc.data();
-      if(d.status === "novo") contatosNovos++;
-      if(d.status === "em análise") contatosAnalise++;
-      if(d.status === "resolvido") contatosResolvidos++;
+      dados.total++;
+
+      const status = (d.status || "").toLowerCase();
+      const prioridade = (d.prioridade || "").toLowerCase();
+
+      if(status.includes("planejado")) dados.planejado++;
+      if(status.includes("andamento")) dados.andamento++;
+      if(status.includes("concluído") || status.includes("concluido")) dados.concluido++;
+      if(status.includes("arquivado")) dados.arquivado++;
+
+      if(prioridade.includes("alta")) dados.alta++;
     });
 
-    let gabinetePlanejado = 0;
-    let gabineteAndamento = 0;
-    let gabineteConcluido = 0;
-    let gabineteArquivado = 0;
-
-    let gabineteAlta = 0;
-    let gabineteMedia = 0;
-    let gabineteBaixa = 0;
-
-    gabineteSnap.forEach(doc => {
-      const d = doc.data();
-
-      if(d.status === "Planejado") gabinetePlanejado++;
-      if(d.status === "Em andamento") gabineteAndamento++;
-      if(d.status === "Concluído") gabineteConcluido++;
-      if(d.status === "Arquivado") gabineteArquivado++;
-
-      if(d.prioridade === "Alta") gabineteAlta++;
-      if(d.prioridade === "Média") gabineteMedia++;
-      if(d.prioridade === "Baixa") gabineteBaixa++;
-    });
-
-    const totalContatos = contatosSnap.size;
-    const totalNoticias = noticiasSnap.size;
-    const totalCultura = culturaSnap.size;
-    const totalTurismo = turismoSnap.size;
-    const totalTransparencia = transparenciaSnap.size;
-    const totalGabinete = gabineteSnap.size;
-
-    const totalGeral =
-      totalContatos +
-      totalNoticias +
-      totalCultura +
-      totalTurismo +
-      totalTransparencia +
-      totalGabinete;
-
-    setText("totalContatos", totalContatos);
-    setText("totalNoticias", totalNoticias);
-    setText("totalCultura", totalCultura);
-    setText("totalTurismo", totalTurismo);
-    setText("totalTransparencia", totalTransparencia);
-    setText("totalGabinete", totalGabinete);
-    setText("totalGeral", totalGeral);
-
-    setText("contatosNovos", contatosNovos);
-    setText("contatosAnalise", contatosAnalise);
-    setText("contatosResolvidos", contatosResolvidos);
-
-    setText("gabinetePlanejado", gabinetePlanejado);
-    setText("gabineteAndamento", gabineteAndamento);
-    setText("gabineteConcluido", gabineteConcluido);
-    setText("gabineteArquivado", gabineteArquivado);
-
-    setText("gabineteAlta", gabineteAlta);
-    setText("gabineteMedia", gabineteMedia);
-    setText("gabineteBaixa", gabineteBaixa);
-
-    status.innerText = "Dashboard atualizado com sucesso.";
+    return dados;
 
   } catch(e) {
-    status.innerText = "Erro ao carregar dashboard: " + e.message;
+    console.warn("Erro gabinete:", e.message);
+    return dados;
   }
-};
+}
+
+async function analisarTransparencia(){
+  const dados = {
+    total: 0,
+    receitas: 0,
+    despesas: 0
+  };
+
+  try {
+    const snap = await getDocs(collection(db, "transparencia"));
+
+    snap.forEach(doc => {
+      const d = doc.data();
+      dados.total++;
+
+      const tipo = (d.tipo || "").toLowerCase();
+      const valor = Number(d.valor || 0);
+
+      if(tipo.includes("receita") || tipo.includes("convênio") || tipo.includes("convenio")) {
+        dados.receitas += valor;
+      }
+
+      if(tipo.includes("despesa")) {
+        dados.despesas += valor;
+      }
+    });
+
+    return dados;
+
+  } catch(e) {
+    console.warn("Erro transparência:", e.message);
+    return dados;
+  }
+}
+
+async function carregarDashboard(){
+  const noticias = await contarColecao("noticias");
+  const cultura = await contarColecao("cultura");
+  const turismo = await contarColecao("turismo");
+
+  const gabinete = await analisarGabinete();
+  const transparencia = await analisarTransparencia();
+
+  const totalGeral =
+    noticias +
+    cultura +
+    turismo +
+    transparencia.total +
+    gabinete.total;
+
+  setText("totalNoticias", noticias);
+  setText("totalCultura", cultura);
+  setText("totalTurismo", turismo);
+  setText("totalTransparencia", transparencia.total);
+  setText("totalGabinete", gabinete.total);
+  setText("totalGeral", totalGeral);
+
+  setText("gabPlanejado", gabinete.planejado);
+  setText("gabAndamento", gabinete.andamento);
+  setText("gabConcluido", gabinete.concluido);
+  setText("gabAlta", gabinete.alta);
+
+  setText("totalReceitas", moeda(transparencia.receitas));
+  setText("totalDespesas", moeda(transparencia.despesas));
+  setText("saldoTransparencia", moeda(transparencia.receitas - transparencia.despesas));
+
+  criarGraficoGeral({
+    noticias,
+    cultura,
+    turismo,
+    transparencia: transparencia.total,
+    gabinete: gabinete.total
+  });
+
+  criarGraficoGabinete(gabinete);
+  criarGraficoTransparencia(transparencia.receitas, transparencia.despesas);
+}
 
 carregarDashboard();
 </script>
