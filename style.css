@@ -815,3 +815,205 @@ body.contrast .btn {
     flex-direction: column;
   }
    }
+/* =========================================================
+   PATCH V5.1 • BOTÕES + CONTRASTE FINAL
+   Cole no FINAL do style.css
+========================================================= */
+
+/* Botão ghost usado em main-gabinete.html */
+.btn.ghost,
+.botao.ghost,
+a.ghost {
+  background: transparent !important;
+  color: var(--link) !important;
+  border: 2px solid var(--link) !important;
+}
+
+/* Botões mais limpos no tema claro */
+body.tema-claro button,
+body.tema-claro .btn,
+body.tema-claro .botao,
+body.tema-claro .campo-botao {
+  background: var(--azul-700);
+  color: #ffffff;
+  border: 1px solid var(--azul-700);
+}
+
+/* Botões refinados no tema escuro */
+body.tema-escuro button,
+body.tema-escuro .btn,
+body.tema-escuro .botao,
+body.tema-escuro .campo-botao {
+  background: #1351b4;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,.28);
+}
+
+/* Painel de acessibilidade no tema escuro */
+body.tema-escuro .acessibilidade-panel,
+body.tema-escuro .access-panel {
+  background: #0b0f1a !important;
+  border: 2px solid rgba(255,255,255,.35) !important;
+}
+
+body.tema-escuro .acessibilidade-panel button,
+body.tema-escuro .access-panel button,
+body.tema-escuro .access-grid button,
+body.tema-escuro .access-full {
+  background: #111827 !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(255,255,255,.35) !important;
+}
+
+/* Contraste: fundo realmente preto */
+body.alto-contraste,
+body.contrast {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* Contraste: blocos principais */
+body.alto-contraste header,
+body.alto-contraste nav,
+body.alto-contraste main,
+body.alto-contraste section,
+body.alto-contraste footer,
+body.alto-contraste .card,
+body.alto-contraste .bloco,
+body.alto-contraste .noticia,
+body.contrast header,
+body.contrast nav,
+body.contrast main,
+body.contrast section,
+body.contrast footer,
+body.contrast .card,
+body.contrast .bloco,
+body.contrast .noticia {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* Contraste: títulos e links em amarelo */
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste h4,
+body.alto-contraste a,
+body.alto-contraste strong,
+body.contrast h1,
+body.contrast h2,
+body.contrast h3,
+body.contrast h4,
+body.contrast a,
+body.contrast strong {
+  color: #ffff00 !important;
+}
+
+/* Contraste: textos em branco */
+body.alto-contraste p,
+body.alto-contraste span,
+body.alto-contraste small,
+body.alto-contraste li,
+body.alto-contraste label,
+body.contrast p,
+body.contrast span,
+body.contrast small,
+body.contrast li,
+body.contrast label {
+  color: #ffffff !important;
+}
+
+/* Contraste: botões premium acessíveis */
+body.alto-contraste button,
+body.alto-contraste .btn,
+body.alto-contraste .botao,
+body.alto-contraste .campo-botao,
+body.alto-contraste .menu a,
+body.contrast button,
+body.contrast .btn,
+body.contrast .botao,
+body.contrast .campo-botao,
+body.contrast .menu a {
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 3px solid #ffffff !important;
+  box-shadow: none !important;
+  font-weight: 900 !important;
+}
+
+/* Contraste: hover simples */
+body.alto-contraste button:hover,
+body.alto-contraste .btn:hover,
+body.alto-contraste .botao:hover,
+body.alto-contraste .menu a:hover,
+body.contrast button:hover,
+body.contrast .btn:hover,
+body.contrast .botao:hover,
+body.contrast .menu a:hover {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* Contraste: campos */
+body.alto-contraste input,
+body.alto-contraste textarea,
+body.alto-contraste select,
+body.alto-contraste .campo,
+body.alto-contraste .campo-area,
+body.alto-contraste .campo-select,
+body.contrast input,
+body.contrast textarea,
+body.contrast select,
+body.contrast .campo,
+body.contrast .campo-area,
+body.contrast .campo-select {
+  background: #000000 !important;
+  color: #ffffff !important;
+  border: 2px solid #ffffff !important;
+}
+
+/* Contraste: botão flutuante */
+body.alto-contraste .acessibilidade-btn,
+body.alto-contraste .access-float-btn,
+body.contrast .acessibilidade-btn,
+body.contrast .access-float-btn {
+  background: #ffff00 !important;
+  color: #000000 !important;
+  border: 3px solid #ffffff !important;
+}
+
+/* Contraste: painel de acessibilidade */
+body.alto-contraste .acessibilidade-panel,
+body.alto-contraste .access-panel,
+body.contrast .acessibilidade-panel,
+body.contrast .access-panel {
+  background: #000000 !important;
+  border: 3px solid #ffffff !important;
+}
+
+/* Contraste: imagens mantidas visíveis */
+body.alto-contraste img,
+body.contrast img {
+  background: #ffffff !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 14px;
+}
+
+/* Mobile: botões com toque confortável */
+@media (max-width: 760px) {
+  button,
+  .btn,
+  .botao,
+  .campo-botao,
+  .menu a {
+    min-height: 52px;
+    font-size: 1rem;
+  }
+
+  .acessibilidade-panel button,
+  .access-panel button {
+    min-height: 54px;
+  }
+}
