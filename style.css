@@ -1,6 +1,6 @@
 /* =========================================================
-   PORTAL VILA BELA OFICIAL • STYLE.CSS V4 ULTRA PREMIUM
-   Padrão GOV.FEDERAL + Viracopos Global
+   PORTAL VILA BELA OFICIAL • STYLE.CSS V5 MASTER DEFINITIVO
+   GOV.FEDERAL + Viracopos Global + Temas Corrigidos
 ========================================================= */
 
 * {
@@ -21,7 +21,7 @@ html { scroll-behavior: smooth; }
   --verde-050: #e9f7ec;
 
   --dourado: #cfae3d;
-  --dourado-050: #fff7d6;
+  --amarelo: #ffcc00;
 
   --vermelho: #b91c1c;
 
@@ -31,12 +31,10 @@ html { scroll-behavior: smooth; }
   --text: #1f2937;
   --muted: #64748b;
   --border: #d9e2ef;
-
-  --dark-bg: #05070d;
-  --dark-surface: #0f172a;
-  --dark-text: #f8fafc;
-  --dark-muted: #cbd5e1;
-  --dark-border: rgba(255,255,255,.16);
+  --link: #1351b4;
+  --button: #1351b4;
+  --button-text: #ffffff;
+  --title: #071d41;
 
   --shadow-sm: 0 4px 14px rgba(15, 23, 42, .08);
   --shadow-md: 0 14px 34px rgba(15, 23, 42, .14);
@@ -48,12 +46,60 @@ html { scroll-behavior: smooth; }
   --max: 1180px;
 }
 
-/* BASE */
+/* =========================
+   TEMAS DEFINITIVOS
+========================= */
+
+body.tema-claro,
+body.modo-claro {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text: #1f2937;
+  --muted: #64748b;
+  --border: #d9e2ef;
+  --link: #1351b4;
+  --button: #1351b4;
+  --button-text: #ffffff;
+  --title: #071d41;
+}
+
+body.tema-escuro,
+body.modo-escuro {
+  --bg: #05070d;
+  --surface: #0f172a;
+  --surface-2: #111827;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --border: rgba(255,255,255,.18);
+  --link: #7dd3fc;
+  --button: #1351b4;
+  --button-text: #ffffff;
+  --title: #ffffff;
+}
+
+body.alto-contraste,
+body.contrast {
+  --bg: #000000;
+  --surface: #000000;
+  --surface-2: #000000;
+  --text: #ffffff;
+  --muted: #ffffff;
+  --border: #ffffff;
+  --link: #ffff00;
+  --button: #000000;
+  --button-text: #ffffff;
+  --title: #ffff00;
+}
+
+/* =========================
+   BASE
+========================= */
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
+  background: var(--bg) !important;
+  color: var(--text) !important;
   line-height: 1.65;
   min-height: 100vh;
   font-size: 16px;
@@ -65,7 +111,7 @@ img {
 }
 
 a {
-  color: var(--azul-700);
+  color: var(--link);
   text-decoration: none;
   font-weight: 700;
 }
@@ -83,14 +129,24 @@ main {
   margin: 0 auto;
 }
 
-/* ACESSIBILIDADE */
+p, span, small, li, label {
+  color: var(--muted);
+}
+
+h1, h2, h3, h4, h5, h6, strong {
+  color: var(--title);
+}
+
+/* =========================
+   ACESSIBILIDADE
+========================= */
 
 .skip-link {
   position: absolute;
   top: -90px;
   left: 14px;
-  background: #fff;
-  color: #000;
+  background: var(--surface);
+  color: var(--text);
   padding: 12px 16px;
   border-radius: 10px;
   z-index: 99999;
@@ -100,17 +156,18 @@ main {
 .skip-link:focus { top: 14px; }
 
 .acessibilidade-links {
-  background: #000;
+  background: var(--surface);
   display: flex;
   gap: 10px;
   justify-content: center;
   flex-wrap: wrap;
   padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
 }
 
 .acessibilidade-links a {
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.35);
+  color: var(--link);
+  border: 1px solid var(--border);
   padding: 8px 14px;
   border-radius: 999px;
   font-size: 13px;
@@ -124,9 +181,9 @@ main {
   width: 62px;
   height: 62px;
   border-radius: 50%;
-  border: 3px solid rgba(255,255,255,.45);
-  background: var(--azul-700);
-  color: #fff;
+  border: 3px solid var(--border);
+  background: var(--button);
+  color: var(--button-text);
   font-size: 28px;
   z-index: 9999;
   box-shadow: var(--shadow-md);
@@ -139,9 +196,9 @@ main {
   right: 18px;
   bottom: 96px;
   width: min(92vw, 420px);
-  background: #ffffff;
+  background: var(--surface);
   color: var(--text);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 24px;
   padding: 18px;
   z-index: 9998;
@@ -163,7 +220,7 @@ main {
   border-radius: 14px;
   border: 1px solid var(--border);
   background: var(--surface-2);
-  color: var(--azul-900);
+  color: var(--text);
   font-weight: 800;
   cursor: pointer;
 }
@@ -176,7 +233,9 @@ main {
 
 .access-full { grid-column: 1 / -1; }
 
-/* FONTES */
+/* =========================
+   FONTES
+========================= */
 
 .font-a,
 body.font-a { font-size: 16px; }
@@ -189,180 +248,9 @@ body.font-a-plus,
 body.font-a-plus-plus,
 .fonte-extra { font-size: 20px; }
 
-/* TEMA ESCURO */
-
-body.tema-escuro,
-body.modo-escuro {
-  background: var(--dark-bg);
-  color: var(--dark-text);
-}
-
-body.tema-escuro header,
-body.modo-escuro header,
-body.tema-escuro .card,
-body.modo-escuro .card,
-body.tema-escuro .bloco,
-body.modo-escuro .bloco,
-body.tema-escuro footer,
-body.modo-escuro footer {
-  background: var(--dark-surface);
-  color: var(--dark-text);
-  border-color: var(--dark-border);
-}
-
-body.tema-escuro p,
-body.modo-escuro p,
-body.tema-escuro small,
-body.modo-escuro small {
-  color: var(--dark-muted);
-}
-
-body.tema-escuro input,
-body.tema-escuro textarea,
-body.tema-escuro select,
-body.modo-escuro input,
-body.modo-escuro textarea,
-body.modo-escuro select {
-  background: #111827;
-  color: #fff;
-  border-color: var(--dark-border);
-}
-
-/* TEMA CLARO — CORRIGIDO */
-
-body.tema-claro,
-body.modo-claro {
-  background: var(--bg) !important;
-  color: var(--text) !important;
-}
-
-body.tema-claro header,
-body.modo-claro header {
-  background: #ffffff !important;
-  color: var(--text) !important;
-  border-bottom: 1px solid var(--border);
-}
-
-body.tema-claro header h1,
-body.tema-claro header p,
-body.modo-claro header h1,
-body.modo-claro header p {
-  color: var(--text) !important;
-}
-
-body.tema-claro .card,
-body.tema-claro .bloco,
-body.tema-claro footer,
-body.modo-claro .card,
-body.modo-claro .bloco,
-body.modo-claro footer {
-  background: #ffffff !important;
-  color: var(--text) !important;
-  border-color: var(--border) !important;
-}
-
-body.tema-claro p,
-body.tema-claro small,
-body.tema-claro span,
-body.tema-claro label,
-body.tema-claro li,
-body.modo-claro p,
-body.modo-claro small,
-body.modo-claro span,
-body.modo-claro label,
-body.modo-claro li {
-  color: var(--muted) !important;
-}
-
-body.tema-claro h1,
-body.tema-claro h2,
-body.tema-claro h3,
-body.tema-claro h4,
-body.modo-claro h1,
-body.modo-claro h2,
-body.modo-claro h3,
-body.modo-claro h4 {
-  color: var(--azul-900) !important;
-}
-
-body.tema-claro .menu a,
-body.modo-claro .menu a {
-  background: #ffffff !important;
-  color: var(--azul-700) !important;
-  border-color: var(--border) !important;
-}
-
-body.tema-claro input,
-body.tema-claro textarea,
-body.tema-claro select,
-body.modo-claro input,
-body.modo-claro textarea,
-body.modo-claro select {
-  background: #ffffff !important;
-  color: var(--text) !important;
-  border-color: var(--border) !important;
-}
-
-/* ALTO CONTRASTE */
-
-body.alto-contraste {
-  background: #000 !important;
-  color: #fff !important;
-}
-
-body.alto-contraste * {
-  background-image: none !important;
-  box-shadow: none !important;
-}
-
-body.alto-contraste header,
-body.alto-contraste nav,
-body.alto-contraste section,
-body.alto-contraste footer,
-body.alto-contraste .card,
-body.alto-contraste .bloco,
-body.alto-contraste .access-panel,
-body.alto-contraste .acessibilidade-panel {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #fff !important;
-}
-
-body.alto-contraste h1,
-body.alto-contraste h2,
-body.alto-contraste h3,
-body.alto-contraste h4,
-body.alto-contraste a,
-body.alto-contraste strong {
-  color: #ffff00 !important;
-}
-
-body.alto-contraste p,
-body.alto-contraste span,
-body.alto-contraste small,
-body.alto-contraste label,
-body.alto-contraste li {
-  color: #fff !important;
-}
-
-body.alto-contraste button,
-body.alto-contraste .botao,
-body.alto-contraste .campo-botao,
-body.alto-contraste .menu a {
-  background: #000 !important;
-  color: #fff !important;
-  border: 2px solid #fff !important;
-}
-
-body.alto-contraste input,
-body.alto-contraste textarea,
-body.alto-contraste select {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #fff !important;
-}
-
-/* HEADER */
+/* =========================
+   HEADER
+========================= */
 
 header {
   background: linear-gradient(135deg, var(--azul-900), var(--azul-700));
@@ -371,7 +259,7 @@ header {
   display: flex;
   align-items: center;
   gap: 18px;
-  border-bottom: 1px solid rgba(255,255,255,.16);
+  border-bottom: 1px solid var(--border);
 }
 
 header img {
@@ -386,17 +274,34 @@ header img {
 }
 
 header h1 {
-  color: #fff;
+  color: #fff !important;
   font-size: clamp(24px, 4.8vw, 42px);
   line-height: 1.08;
 }
 
 header p {
-  color: rgba(255,255,255,.86);
+  color: rgba(255,255,255,.88) !important;
   margin-top: 5px;
 }
 
-/* MENU */
+body.tema-claro header,
+body.modo-claro header {
+  background: #ffffff !important;
+}
+
+body.tema-claro header h1,
+body.modo-claro header h1 {
+  color: var(--azul-900) !important;
+}
+
+body.tema-claro header p,
+body.modo-claro header p {
+  color: var(--muted) !important;
+}
+
+/* =========================
+   MENU
+========================= */
 
 .menu {
   width: min(100% - 28px, var(--max));
@@ -415,18 +320,30 @@ header p {
   padding: 11px 16px;
   border-radius: 999px;
   border: 1px solid var(--border);
-  background: #ffffff;
-  color: var(--azul-700);
+  background: var(--surface);
+  color: var(--link);
   font-weight: 800;
   box-shadow: var(--shadow-sm);
 }
 
 .menu a:hover {
-  background: var(--azul-050);
+  background: var(--surface-2);
   text-decoration: none;
 }
 
-/* HERO */
+.menu-toggle {
+  width: 100%;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 14px;
+  font-weight: 800;
+}
+
+/* =========================
+   HERO / CAPA
+========================= */
 
 .hero {
   width: 100%;
@@ -441,9 +358,9 @@ header p {
 .hero .card {
   max-width: 780px;
   margin: 0 auto;
-  background: rgba(7,29,65,.82) !important;
+  background: rgba(7,29,65,.86) !important;
   color: #fff !important;
-  border-color: rgba(255,255,255,.22);
+  border-color: rgba(255,255,255,.25);
   backdrop-filter: blur(8px);
 }
 
@@ -464,14 +381,17 @@ header p {
 }
 
 .hero p {
-  color: rgba(255,255,255,.88) !important;
+  color: rgba(255,255,255,.90) !important;
   font-size: 1.1em;
 }
 
-/* CARDS */
+/* =========================
+   CARDS
+========================= */
 
 .card,
-.bloco {
+.bloco,
+section {
   background: var(--surface);
   color: var(--text);
   border: 1px solid var(--border);
@@ -483,39 +403,45 @@ header p {
 }
 
 .card h2,
-.bloco h2 {
+.bloco h2,
+section h2 {
   font-size: clamp(26px, 4.6vw, 40px);
-  color: var(--azul-900);
+  color: var(--title);
   line-height: 1.15;
   margin-bottom: 12px;
 }
 
 .card h3,
-.bloco h3 {
+.bloco h3,
+section h3 {
   font-size: clamp(22px, 3.8vw, 30px);
-  color: var(--azul-900);
+  color: var(--title);
   margin-bottom: 10px;
 }
 
 .card p,
-.bloco p {
+.bloco p,
+section p {
   color: var(--muted);
 }
 
-/* BOTÕES */
+/* =========================
+   BOTÕES
+========================= */
 
 button,
 .botao,
-.campo-botao {
+.campo-botao,
+.btn {
   min-height: 48px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 13px 20px;
   border-radius: 14px;
-  border: none;
-  background: var(--azul-700);
-  color: #fff;
+  border: 1px solid var(--border);
+  background: var(--button);
+  color: var(--button-text);
   font-weight: 900;
   cursor: pointer;
   text-decoration: none;
@@ -523,15 +449,17 @@ button,
 }
 
 button:hover,
-.botao:hover {
+.botao:hover,
+.btn:hover {
   filter: brightness(1.08);
   text-decoration: none;
 }
 
 button.secundario,
-.botao-secundario {
-  background: #ffffff;
-  color: var(--azul-700);
+.botao-secundario,
+.btn-secundario {
+  background: var(--surface);
+  color: var(--link);
   border: 1px solid var(--border);
 }
 
@@ -540,7 +468,9 @@ button.secundario,
   color: #fff !important;
 }
 
-/* CAMPOS */
+/* =========================
+   CAMPOS
+========================= */
 
 input,
 textarea,
@@ -552,7 +482,7 @@ select,
   padding: 14px;
   border-radius: 14px;
   border: 1px solid var(--border);
-  background: #ffffff;
+  background: var(--surface-2);
   color: var(--text);
   font-size: 1rem;
   outline: none;
@@ -564,8 +494,8 @@ select:focus,
 .campo:focus,
 .campo-area:focus,
 .campo-select:focus {
-  border-color: var(--azul-700);
-  box-shadow: 0 0 0 3px rgba(19,81,180,.16);
+  border-color: var(--link);
+  box-shadow: 0 0 0 3px rgba(19,81,180,.18);
 }
 
 textarea,
@@ -577,11 +507,13 @@ textarea,
 label {
   display: block;
   font-weight: 900;
-  color: var(--azul-900);
+  color: var(--title);
   margin-bottom: 7px;
 }
 
-/* KPIs */
+/* =========================
+   KPIs
+========================= */
 
 .kpi,
 .mini-card {
@@ -595,7 +527,7 @@ label {
 
 .kpi strong,
 .mini-card strong {
-  color: var(--azul-700);
+  color: var(--link);
   font-size: 1.8em;
 }
 
@@ -605,7 +537,9 @@ label {
   font-weight: 800;
 }
 
-/* NOTÍCIAS */
+/* =========================
+   NOTÍCIAS
+========================= */
 
 .noticia {
   overflow: hidden;
@@ -627,7 +561,9 @@ label {
   margin: 8px 0;
 }
 
-/* BADGES */
+/* =========================
+   BADGES
+========================= */
 
 .gabinete-badge {
   display: inline-flex;
@@ -647,7 +583,9 @@ label {
 .badge-status-concluido { background: #dcfce7; color: #166534; }
 .badge-status-arquivado { background: #e5e7eb; color: #374151; }
 
-/* LOGO RESPONSIVA */
+/* =========================
+   LOGO RESPONSIVA
+========================= */
 
 .logo-sistema {
   display: inline-flex;
@@ -672,7 +610,7 @@ label {
 }
 
 .logo-texto strong {
-  color: var(--azul-700);
+  color: var(--link);
   font-size: .82rem;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -681,12 +619,14 @@ label {
 .logo-texto em {
   font-style: normal;
   font-weight: 900;
-  color: var(--azul-900);
+  color: var(--title);
   font-size: clamp(20px, 3vw, 34px);
   line-height: 1.1;
 }
 
-/* CAPA DINÂMICA */
+/* =========================
+   CAPA DINÂMICA
+========================= */
 
 .hero-dinamica {
   position: relative;
@@ -726,23 +666,101 @@ label {
   border-radius: 999px;
 }
 
-/* RODAPÉ */
+/* =========================
+   RODAPÉ
+========================= */
 
+footer,
 footer.card {
-  background: var(--azul-900);
-  color: #fff;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
 }
 
-footer.card h3,
-footer.card h2 {
-  color: #fff;
+footer h3,
+footer h2 {
+  color: var(--title);
 }
 
-footer.card p {
-  color: rgba(255,255,255,.84);
+footer p {
+  color: var(--muted);
 }
 
-/* RESPONSIVO */
+/* =========================
+   ALTO CONTRASTE FORÇADO
+========================= */
+
+body.alto-contraste * ,
+body.contrast * {
+  box-shadow: none !important;
+  text-shadow: none !important;
+}
+
+body.alto-contraste h1,
+body.alto-contraste h2,
+body.alto-contraste h3,
+body.alto-contraste h4,
+body.alto-contraste a,
+body.alto-contraste strong,
+body.contrast h1,
+body.contrast h2,
+body.contrast h3,
+body.contrast h4,
+body.contrast a,
+body.contrast strong {
+  color: #ffff00 !important;
+}
+
+body.alto-contraste p,
+body.alto-contraste span,
+body.alto-contraste small,
+body.alto-contraste label,
+body.alto-contraste li,
+body.contrast p,
+body.contrast span,
+body.contrast small,
+body.contrast label,
+body.contrast li {
+  color: #ffffff !important;
+}
+
+body.alto-contraste .card,
+body.alto-contraste .bloco,
+body.alto-contraste section,
+body.alto-contraste footer,
+body.alto-contraste header,
+body.alto-contraste .menu a,
+body.alto-contraste input,
+body.alto-contraste textarea,
+body.alto-contraste select,
+body.contrast .card,
+body.contrast .bloco,
+body.contrast section,
+body.contrast footer,
+body.contrast header,
+body.contrast .menu a,
+body.contrast input,
+body.contrast textarea,
+body.contrast select {
+  background: #000 !important;
+  color: #fff !important;
+  border-color: #fff !important;
+}
+
+body.alto-contraste button,
+body.alto-contraste .botao,
+body.alto-contraste .btn,
+body.contrast button,
+body.contrast .botao,
+body.contrast .btn {
+  background: #000 !important;
+  color: #fff !important;
+  border: 2px solid #fff !important;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
 
 @media (max-width: 760px) {
   header {
@@ -772,7 +790,8 @@ footer.card p {
   }
 
   .card,
-  .bloco {
+  .bloco,
+  section {
     padding: 22px;
     border-radius: 22px;
   }
@@ -795,4 +814,4 @@ footer.card p {
     align-items: flex-start;
     flex-direction: column;
   }
-     }
+   }
