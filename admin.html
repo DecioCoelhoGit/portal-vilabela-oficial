@@ -1,655 +1,361 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Painel Administrativo • Prefeitura Vila Bela MT</title>
-  <style>
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #07111f;
-      color: #ffffff;
-    }
-
-    header {
-      background: #0c326f;
-      padding: 22px 18px;
-      text-align: center;
-      font-size: 30px;
-      font-weight: bold;
-      line-height: 1.2;
-    }
-
-    .barra-idiomas {
-      background: #000;
-      padding: 10px 16px;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .barra-idiomas button {
-      border: 1px solid rgba(255,255,255,.25);
-      background: transparent;
-      color: #fff;
-      padding: 10px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 13px;
-    }
-
-    .container {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: #101826;
-      border: 1px solid #334155;
-      border-radius: 18px;
-      padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,.22);
-    }
-
-    h2 {
-      margin-top: 0;
-      font-size: 30px;
-      color: #f8fafc;
-    }
-
-    h3 {
-      margin-top: 0;
-      font-size: 22px;
-      color: #dbeafe;
-    }
-
-    p, .small {
-      color: #cbd5e1;
-      line-height: 1.6;
-    }
-
-    input, textarea, select, button {
-      width: 100%;
-      border-radius: 12px;
-      border: 1px solid #475569;
-      background: #1f2937;
-      color: #ffffff;
-      padding: 14px;
-      font-size: 16px;
-      margin-top: 10px;
-    }
-
-    textarea {
-      min-height: 130px;
-      resize: vertical;
-    }
-
-    button {
-      border: none;
-      background: #1351b4;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #0f4aa5;
-    }
-
-    .danger {
-      background: #b91c1c !important;
-    }
-
-    .danger:hover {
-      background: #991b1b !important;
-    }
-
-    .logout {
-      background: #374151 !important;
-    }
-
-    .logout:hover {
-      background: #4b5563 !important;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: 1fr;
-    }
-
-    .item {
-      background: #0f172a;
-      border: 1px solid #475569;
-      border-radius: 16px;
-      padding: 18px;
-    }
-
-    .item h4 {
-      margin: 0 0 10px;
-      color: #f8fafc;
-      font-size: 20px;
-      line-height: 1.3;
-      word-break: break-word;
-    }
-
-    .item p {
-      margin: 8px 0;
-      color: #cbd5e1;
-      word-break: break-word;
-    }
-
-    .meta {
-      font-size: 13px;
-      color: #94a3b8;
-      margin-bottom: 8px;
-      word-break: break-word;
-    }
-
-    .status-msg {
-      margin-top: 12px;
-      font-weight: bold;
-      color: #86efac;
-      word-break: break-word;
-    }
-
-    .top-actions {
-      display: grid;
-      gap: 12px;
-      grid-template-columns: 1fr;
-      margin-top: 12px;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: bold;
-      margin-bottom: 10px;
-      background: #1d4ed8;
-      color: #fff;
-    }
-
-    .badge-novo {
-      background: #166534;
-    }
-
-    .badge-analise {
-      background: #b45309;
-    }
-
-    .badge-resolvido {
-      background: #1d4ed8;
-    }
-
-    .duas-colunas {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: 1fr;
-    }
-
-    @media (min-width: 900px) {
-      .duas-colunas {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .top-actions {
-        grid-template-columns: 180px 180px;
-        justify-content: end;
-      }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin • Portal Prefeitura Vila Bela MT</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <div class="barra-idiomas">
-    <button type="button" onclick="definirIdioma('pt')">Português</button>
-    <button type="button" onclick="definirIdioma('en')">English</button>
-    <button type="button" onclick="definirIdioma('es')">Español</button>
+
+<body class="font-a">
+
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <div>
+    <h1>Painel Administrativo</h1>
+    <p>Portal Prefeitura Vila Bela MT</p>
   </div>
+</header>
 
-  <header data-i18n="header_titulo">Painel Administrativo • Portal Prefeitura Vila Bela MT</header>
+<nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="noticias.html">Notícias</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="main-gabinete.html">Gabinete</a>
+</nav>
 
-  <div class="container">
-    <div class="card" id="loginBox">
-      <h2 data-i18n="login_titulo">Acesso Administrativo</h2>
-      <p data-i18n="login_texto">Entrar com conta Google autorizada.</p>
-      <button onclick="loginGoogle()" data-i18n="login_botao">Entrar com Google</button>
-      <div id="loginMsg" class="status-msg"></div>
-    </div>
+<main>
 
-    <div id="painel" class="hidden">
-      <div class="card">
-        <h2 data-i18n="painel_titulo">Área Administrativa</h2>
-        <p data-i18n="painel_texto">Gestão de notícias e contatos recebidos pelo portal oficial.</p>
-        <div class="top-actions">
-          <button onclick="abrirNoticias()" data-i18n="painel_botao_1">Abrir Notícias</button>
-          <button class="logout" onclick="logout()" data-i18n="painel_botao_2">Sair</button>
-        </div>
-      </div>
+  <section class="card" id="loginBox">
+    <h2>Acesso Administrativo</h2>
+    <p>Entre com sua conta Google para publicar notícias.</p>
+    <button onclick="loginGoogle()">Entrar com Google</button>
+    <p id="loginMsg"></p>
+  </section>
 
-      <div class="duas-colunas">
-        <div class="card">
-          <h3 data-i18n="publicar_titulo">Publicar Notícia</h3>
+  <section id="painelAdmin" style="display:none;">
 
-          <label for="titulo" data-i18n="label_titulo">Título da notícia</label>
-          <input id="titulo" placeholder="Título da notícia" />
+    <section class="card">
+      <h2>Publicar notícia com imagem</h2>
 
-          <label for="imagem" data-i18n="label_imagem">URL da imagem (opcional)</label>
-          <input id="imagem" placeholder="URL da imagem (opcional)" />
+      <input class="campo" id="titulo" placeholder="Título da notícia">
 
-          <label for="texto" data-i18n="label_texto">Conteúdo da notícia</label>
-          <textarea id="texto" placeholder="Conteúdo da notícia"></textarea>
+      <br><br>
 
-          <button onclick="publicarNoticia()" data-i18n="publicar_botao">Publicar Notícia</button>
-          <div id="nmsg" class="status-msg"></div>
-        </div>
+      <textarea class="campo-area" id="texto" placeholder="Conteúdo da notícia"></textarea>
 
-        <div class="card">
-          <h3 data-i18n="orientacao_titulo">Orientação</h3>
-          <p data-i18n="orientacao_1">As notícias publicadas aqui aparecem automaticamente:</p>
-          <p data-i18n="orientacao_2">• na seção de notícias da Home</p>
-          <p data-i18n="orientacao_3">• na página pública noticias.html</p>
-          <p data-i18n="orientacao_4">O campo imagem é opcional. Caso esteja vazio, a notícia será exibida sem imagem.</p>
-        </div>
-      </div>
+      <br><br>
 
-      <div class="card">
-        <h3 data-i18n="noticias_publicadas_titulo">Notícias Publicadas</h3>
-        <div id="listaNoticias" class="grid"></div>
-      </div>
+      <input class="campo" id="imagemUrl" placeholder="URL da imagem externa opcional">
 
-      <div class="card">
-        <h3 data-i18n="contatos_titulo">Mensagens Recebidas</h3>
-        <div id="listaContatos" class="grid"></div>
-      </div>
-    </div>
-  </div>
+      <br><br>
 
-  <script>
-    const traducoes = {
-      pt: {
-        header_titulo: 'Painel Administrativo • Portal Prefeitura Vila Bela MT',
-        login_titulo: 'Acesso Administrativo',
-        login_texto: 'Entrar com conta Google autorizada.',
-        login_botao: 'Entrar com Google',
-        painel_titulo: 'Área Administrativa',
-        painel_texto: 'Gestão de notícias e contatos recebidos pelo portal oficial.',
-        painel_botao_1: 'Abrir Notícias',
-        painel_botao_2: 'Sair',
-        publicar_titulo: 'Publicar Notícia',
-        label_titulo: 'Título da notícia',
-        label_imagem: 'URL da imagem (opcional)',
-        label_texto: 'Conteúdo da notícia',
-        publicar_botao: 'Publicar Notícia',
-        orientacao_titulo: 'Orientação',
-        orientacao_1: 'As notícias publicadas aqui aparecem automaticamente:',
-        orientacao_2: '• na seção de notícias da Home',
-        orientacao_3: '• na página pública noticias.html',
-        orientacao_4: 'O campo imagem é opcional. Caso esteja vazio, a notícia será exibida sem imagem.',
-        noticias_publicadas_titulo: 'Notícias Publicadas',
-        contatos_titulo: 'Mensagens Recebidas',
-        abrir_noticias: 'Abrir Notícias',
-        noticia_publicada: 'Notícia publicada com sucesso!',
-        preencher_campos: 'Preencha pelo menos título e conteúdo.',
-        carregando_noticias: 'Carregando notícias...',
-        nenhuma_noticia_titulo: 'Nenhuma notícia publicada',
-        nenhuma_noticia_texto: 'Use o formulário acima para cadastrar a primeira notícia.',
-        imagem_cadastrada: 'Imagem cadastrada',
-        sem_imagem: 'Sem imagem',
-        excluir: 'Excluir',
-        erro_carregar_noticias: 'Erro ao carregar notícias',
-        carregar_contatos: 'Carregando contatos...',
-        nenhum_contato_titulo: 'Nenhum contato recebido',
-        nenhum_contato_texto: 'As mensagens enviadas pelo portal aparecerão aqui.',
-        salvar_status: 'Salvar Status',
-        erro_carregar_contatos: 'Erro ao carregar contatos',
-        confirmar_excluir_noticia: 'Deseja excluir esta notícia?',
-        confirmar_excluir_contato: 'Deseja excluir este contato?',
-        novo: 'novo',
-        em_analise: 'em análise',
-        resolvido: 'resolvido',
-        sem_nome: 'Sem nome',
-        sem_titulo: 'Sem título',
-        erro_prefixo: 'Erro: '
-      },
-      en: {
-        header_titulo: 'Administrative Panel • Vila Bela MT City Hall Portal',
-        login_titulo: 'Administrative Access',
-        login_texto: 'Sign in with an authorized Google account.',
-        login_botao: 'Sign in with Google',
-        painel_titulo: 'Administrative Area',
-        painel_texto: 'News and contacts management from the official portal.',
-        painel_botao_1: 'Open News',
-        painel_botao_2: 'Sign out',
-        publicar_titulo: 'Publish News',
-        label_titulo: 'News title',
-        label_imagem: 'Image URL (optional)',
-        label_texto: 'News content',
-        publicar_botao: 'Publish News',
-        orientacao_titulo: 'Guidance',
-        orientacao_1: 'News published here automatically appears:',
-        orientacao_2: '• in the Home news section',
-        orientacao_3: '• on the public page noticias.html',
-        orientacao_4: 'The image field is optional. If empty, the news will be displayed without image.',
-        noticias_publicadas_titulo: 'Published News',
-        contatos_titulo: 'Received Messages',
-        abrir_noticias: 'Open News',
-        noticia_publicada: 'News published successfully!',
-        preencher_campos: 'Fill in at least title and content.',
-        carregando_noticias: 'Loading news...',
-        nenhuma_noticia_titulo: 'No news published',
-        nenhuma_noticia_texto: 'Use the form above to register the first news item.',
-        imagem_cadastrada: 'Image registered',
-        sem_imagem: 'No image',
-        excluir: 'Delete',
-        erro_carregar_noticias: 'Error loading news',
-        carregar_contatos: 'Loading contacts...',
-        nenhum_contato_titulo: 'No contacts received',
-        nenhum_contato_texto: 'Messages sent through the portal will appear here.',
-        salvar_status: 'Save Status',
-        erro_carregar_contatos: 'Error loading contacts',
-        confirmar_excluir_noticia: 'Do you want to delete this news item?',
-        confirmar_excluir_contato: 'Do you want to delete this contact?',
-        novo: 'new',
-        em_analise: 'under review',
-        resolvido: 'resolved',
-        sem_nome: 'No name',
-        sem_titulo: 'Untitled',
-        erro_prefixo: 'Error: '
-      },
-      es: {
-        header_titulo: 'Panel Administrativo • Portal Ayuntamiento Vila Bela MT',
-        login_titulo: 'Acceso Administrativo',
-        login_texto: 'Entrar con cuenta Google autorizada.',
-        login_botao: 'Entrar con Google',
-        painel_titulo: 'Área Administrativa',
-        painel_texto: 'Gestión de noticias y contactos recibidos del portal oficial.',
-        painel_botao_1: 'Abrir Noticias',
-        painel_botao_2: 'Salir',
-        publicar_titulo: 'Publicar Noticia',
-        label_titulo: 'Título de la noticia',
-        label_imagem: 'URL de la imagen (opcional)',
-        label_texto: 'Contenido de la noticia',
-        publicar_botao: 'Publicar Noticia',
-        orientacao_titulo: 'Orientación',
-        orientacao_1: 'Las noticias publicadas aquí aparecen automáticamente:',
-        orientacao_2: '• en la sección de noticias de la Home',
-        orientacao_3: '• en la página pública noticias.html',
-        orientacao_4: 'El campo imagen es opcional. Si está vacío, la noticia se mostrará sin imagen.',
-        noticias_publicadas_titulo: 'Noticias Publicadas',
-        contatos_titulo: 'Mensajes Recibidos',
-        abrir_noticias: 'Abrir Noticias',
-        noticia_publicada: '¡Noticia publicada con éxito!',
-        preencher_campos: 'Complete al menos título y contenido.',
-        carregando_noticias: 'Cargando noticias...',
-        nenhuma_noticia_titulo: 'No hay noticias publicadas',
-        nenhuma_noticia_texto: 'Use el formulario de arriba para registrar la primera noticia.',
-        imagem_cadastrada: 'Imagen registrada',
-        sem_imagem: 'Sin imagen',
-        excluir: 'Eliminar',
-        erro_carregar_noticias: 'Error al cargar noticias',
-        carregar_contatos: 'Cargando contactos...',
-        nenhum_contato_titulo: 'No se recibieron contactos',
-        nenhum_contato_texto: 'Los mensajes enviados por el portal aparecerán aquí.',
-        salvar_status: 'Guardar Estado',
-        erro_carregar_contatos: 'Error al cargar contactos',
-        confirmar_excluir_noticia: '¿Desea eliminar esta noticia?',
-        confirmar_excluir_contato: '¿Desea eliminar este contacto?',
-        novo: 'nuevo',
-        em_analise: 'en análisis',
-        resolvido: 'resuelto',
-        sem_nome: 'Sin nombre',
-        sem_titulo: 'Sin título',
-        erro_prefixo: 'Error: '
-      }
-    };
+      <label><strong>Ou envie uma imagem do celular:</strong></label>
+      <input class="campo" id="imagemArquivo" type="file" accept="image/*">
 
-    function idiomaAtual() {
-      return localStorage.getItem('portal_idioma') || 'pt';
+      <br><br>
+
+      <button onclick="publicarNoticia()">Publicar Notícia</button>
+      <button class="secundario" onclick="logout()">Sair</button>
+
+      <p id="statusPublicacao"></p>
+    </section>
+
+    <section class="card">
+      <h2>Notícias Publicadas</h2>
+      <div id="listaNoticias">Carregando...</div>
+    </section>
+
+    <section class="card">
+      <h2>Mensagens Recebidas</h2>
+      <div id="listaContatos">Carregando...</div>
+    </section>
+
+  </section>
+
+</main>
+
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
+
+<script>
+function toggleAcessibilidade(){
+  const p = document.getElementById("painelAcessibilidade");
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
+
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
+  if(tipo==="a") document.body.classList.add("font-a");
+  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
+  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+  localStorage.setItem("fonte", tipo);
+}
+
+function setTema(tipo){
+  document.body.classList.remove("tema-claro","alto-contraste");
+  if(tipo==="claro") document.body.classList.add("tema-claro");
+  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+  localStorage.setItem("tema", tipo);
+}
+
+(function restore(){
+  const f = localStorage.getItem("fonte");
+  const t = localStorage.getItem("tema");
+  if(f) setFonte(f);
+  if(t) setTema(t);
+})();
+</script>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  deleteDoc,
+  updateDoc,
+  doc,
+  query,
+  orderBy,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
+  signOut,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+  messagingSenderId: "908975101824",
+  appId: "1:908975101824:web:f986598784403493721365"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const storage = getStorage(app);
+const provider = new GoogleAuthProvider();
+
+function isMobile(){
+  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile/i.test(navigator.userAgent);
+}
+
+window.loginGoogle = async function(){
+  const msg = document.getElementById("loginMsg");
+  msg.innerText = "";
+
+  try {
+    if(isMobile()){
+      await signInWithRedirect(auth, provider);
+    } else {
+      await signInWithPopup(auth, provider);
+    }
+  } catch(e){
+    msg.innerText = "Erro: " + e.message;
+  }
+};
+
+await getRedirectResult(auth).catch(e => {
+  document.getElementById("loginMsg").innerText = "Erro: " + e.message;
+});
+
+onAuthStateChanged(auth, user => {
+  if(user){
+    document.getElementById("loginBox").style.display = "none";
+    document.getElementById("painelAdmin").style.display = "block";
+    carregarNoticias();
+    carregarContatos();
+  }
+});
+
+window.logout = async function(){
+  await signOut(auth);
+  location.reload();
+};
+
+async function uploadImagem(){
+  const arquivo = document.getElementById("imagemArquivo").files[0];
+
+  if(!arquivo) return "";
+
+  const nomeSeguro = Date.now() + "-" + arquivo.name.replace(/\s+/g, "-").toLowerCase();
+  const caminho = "noticias/" + nomeSeguro;
+
+  const storageRef = ref(storage, caminho);
+  await uploadBytes(storageRef, arquivo);
+
+  return await getDownloadURL(storageRef);
+}
+
+window.publicarNoticia = async function(){
+  const titulo = document.getElementById("titulo").value.trim();
+  const texto = document.getElementById("texto").value.trim();
+  const imagemUrl = document.getElementById("imagemUrl").value.trim();
+  const status = document.getElementById("statusPublicacao");
+
+  if(!titulo || !texto){
+    status.innerText = "Preencha título e conteúdo.";
+    return;
+  }
+
+  status.innerText = "Publicando...";
+
+  try {
+    let imagemFinal = imagemUrl;
+
+    const arquivo = document.getElementById("imagemArquivo").files[0];
+    if(arquivo){
+      status.innerText = "Enviando imagem...";
+      imagemFinal = await uploadImagem();
     }
 
-    function t(chave) {
-      const idioma = idiomaAtual();
-      return (traducoes[idioma] && traducoes[idioma][chave]) || traducoes.pt[chave] || chave;
+    if(!imagemFinal){
+      imagemFinal = "imagens/portal-og-1.jpg";
     }
 
-    function definirIdioma(idioma) {
-      const mapa = traducoes[idioma] || traducoes.pt;
-      document.querySelectorAll('[data-i18n]').forEach(el => {
-        const chave = el.getAttribute('data-i18n');
-        if (mapa[chave]) el.textContent = mapa[chave];
-      });
-
-      document.documentElement.lang =
-        idioma === 'en' ? 'en' :
-        idioma === 'es' ? 'es' :
-        'pt-BR';
-
-      localStorage.setItem('portal_idioma', idioma);
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      definirIdioma(idiomaAtual());
+    await addDoc(collection(db, "noticias"), {
+      titulo,
+      texto,
+      imagem: imagemFinal,
+      data: serverTimestamp()
     });
-  </script>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      deleteDoc,
-      updateDoc,
-      doc,
-      serverTimestamp,
-      query,
-      orderBy
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+    document.getElementById("titulo").value = "";
+    document.getElementById("texto").value = "";
+    document.getElementById("imagemUrl").value = "";
+    document.getElementById("imagemArquivo").value = "";
 
-    import {
-      getAuth,
-      GoogleAuthProvider,
-      signInWithPopup,
-      signOut
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+    status.innerText = "Notícia publicada com sucesso!";
+    carregarNoticias();
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-      authDomain: "portal-vilabela-oficial.firebaseapp.com",
-      projectId: "portal-vilabela-oficial",
-      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-      messagingSenderId: "908975101824",
-      appId: "1:908975101824:web:f986598784403493721365"
-    };
+  } catch(e){
+    status.innerText = "Erro: " + e.message;
+  }
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const auth = getAuth(app);
+async function carregarNoticias(){
+  const lista = document.getElementById("listaNoticias");
 
-    window.loginGoogle = async function () {
-      const loginMsg = document.getElementById("loginMsg");
+  try {
+    const q = query(collection(db, "noticias"), orderBy("data", "desc"));
+    const snap = await getDocs(q);
 
-      try {
-        await signInWithPopup(auth, new GoogleAuthProvider());
-        document.getElementById("loginBox").classList.add("hidden");
-        document.getElementById("painel").classList.remove("hidden");
-        loginMsg.innerText = "";
-        carregarNoticias();
-        carregarContatos();
-      } catch (erro) {
-        loginMsg.innerText = t('erro_prefixo') + erro.message;
-      }
-    };
-
-    window.logout = async function () {
-      await signOut(auth);
-      location.reload();
-    };
-
-    window.abrirNoticias = function () {
-      location.href = "noticias.html";
-    };
-
-    window.publicarNoticia = async function () {
-      const titulo = document.getElementById("titulo");
-      const imagem = document.getElementById("imagem");
-      const texto = document.getElementById("texto");
-      const nmsg = document.getElementById("nmsg");
-
-      if (!titulo.value.trim() || !texto.value.trim()) {
-        nmsg.innerText = t('preencher_campos');
-        return;
-      }
-
-      try {
-        await addDoc(collection(db, "noticias"), {
-          titulo: titulo.value.trim(),
-          imagem: imagem.value.trim(),
-          texto: texto.value.trim(),
-          data: serverTimestamp()
-        });
-
-        nmsg.innerText = t('noticia_publicada');
-        titulo.value = "";
-        imagem.value = "";
-        texto.value = "";
-        carregarNoticias();
-      } catch (erro) {
-        nmsg.innerText = t('erro_prefixo') + erro.message;
-      }
-    };
-
-    async function carregarNoticias() {
-      const lista = document.getElementById("listaNoticias");
-      lista.innerHTML = t('carregando_noticias');
-
-      try {
-        const q = query(collection(db, "noticias"), orderBy("data", "desc"));
-        const snap = await getDocs(q);
-
-        if (snap.empty) {
-          lista.innerHTML = `
-            <div class="item">
-              <h4>${t('nenhuma_noticia_titulo')}</h4>
-              <p>${t('nenhuma_noticia_texto')}</p>
-            </div>
-          `;
-          return;
-        }
-
-        lista.innerHTML = "";
-
-        snap.forEach((registro) => {
-          const d = registro.data();
-
-          lista.innerHTML += `
-            <div class="item">
-              <div class="badge">NOTÍCIA</div>
-              <h4>${d.titulo || t('sem_titulo')}</h4>
-              <p>${d.texto || ""}</p>
-              <div class="meta">${d.imagem ? t('imagem_cadastrada') : t('sem_imagem')}</div>
-              <button class="danger" onclick="apagarNoticia('${registro.id}')">${t('excluir')}</button>
-            </div>
-          `;
-        });
-      } catch (erro) {
-        lista.innerHTML = `
-          <div class="item">
-            <h4>${t('erro_carregar_noticias')}</h4>
-            <p>${erro.message}</p>
-          </div>
-        `;
-      }
+    if(snap.empty){
+      lista.innerHTML = "<p>Nenhuma notícia publicada.</p>";
+      return;
     }
 
-    window.apagarNoticia = async function (id) {
-      if (!confirm(t('confirmar_excluir_noticia'))) return;
-      await deleteDoc(doc(db, "noticias", id));
-      carregarNoticias();
-    };
+    lista.innerHTML = "";
 
-    async function carregarContatos() {
-      const lista = document.getElementById("listaContatos");
-      lista.innerHTML = t('carregar_contatos');
+    snap.forEach(item => {
+      const n = item.data();
+      const imagem = n.imagem || "imagens/portal-og-1.jpg";
+      const data = n.data?.toDate ? n.data.toDate().toLocaleDateString("pt-BR") : "";
 
-      try {
-        const snap = await getDocs(collection(db, "contatos"));
+      lista.innerHTML += `
+        <article class="noticia card">
+          <img src="${imagem}" alt="${n.titulo || 'Notícia'}">
+          <h3>${n.titulo || "Sem título"}</h3>
+          <small>${data}</small>
+          <p>${n.texto || ""}</p>
+          <br>
+          <button class="secundario" onclick="excluirNoticia('${item.id}')">Excluir</button>
+        </article>
+      `;
+    });
 
-        if (snap.empty) {
-          lista.innerHTML = `
-            <div class="item">
-              <h4>${t('nenhum_contato_titulo')}</h4>
-              <p>${t('nenhum_contato_texto')}</p>
-            </div>
-          `;
-          return;
-        }
+  } catch(e){
+    lista.innerHTML = "<p>Erro ao carregar notícias: " + e.message + "</p>";
+  }
+}
 
-        lista.innerHTML = "";
+window.excluirNoticia = async function(id){
+  if(!confirm("Deseja excluir esta notícia?")) return;
 
-        snap.forEach((registro) => {
-          const d = registro.data();
-          const status = d.status || "novo";
+  await deleteDoc(doc(db, "noticias", id));
+  carregarNoticias();
+};
 
-          let badgeClass = "badge-novo";
-          if (status === "em análise") badgeClass = "badge-analise";
-          if (status === "resolvido") badgeClass = "badge-resolvido";
+async function carregarContatos(){
+  const lista = document.getElementById("listaContatos");
 
-          lista.innerHTML += `
-            <div class="item">
-              <div class="badge ${badgeClass}">${status === 'novo' ? t('novo') : status === 'em análise' ? t('em_analise') : t('resolvido')}</div>
-              <h4>${d.nome || t('sem_nome')}</h4>
-              <div class="meta">${d.email || ""}</div>
-              <p>${d.mensagem || ""}</p>
+  try {
+    const snap = await getDocs(collection(db, "contatos"));
 
-              <select id="status_${registro.id}">
-                <option value="novo" ${status === "novo" ? "selected" : ""}>${t('novo')}</option>
-                <option value="em análise" ${status === "em análise" ? "selected" : ""}>${t('em_analise')}</option>
-                <option value="resolvido" ${status === "resolvido" ? "selected" : ""}>${t('resolvido')}</option>
-              </select>
-
-              <button onclick="salvarContato('${registro.id}')">${t('salvar_status')}</button>
-              <button class="danger" onclick="apagarContato('${registro.id}')">${t('excluir')}</button>
-            </div>
-          `;
-        });
-      } catch (erro) {
-        lista.innerHTML = `
-          <div class="item">
-            <h4>${t('erro_carregar_contatos')}</h4>
-            <p>${erro.message}</p>
-          </div>
-        `;
-      }
+    if(snap.empty){
+      lista.innerHTML = "<p>Nenhuma mensagem recebida.</p>";
+      return;
     }
 
-    window.salvarContato = async function (id) {
-      const valor = document.getElementById("status_" + id).value;
-      await updateDoc(doc(db, "contatos", id), { status: valor });
-      carregarContatos();
-    };
+    lista.innerHTML = "";
 
-    window.apagarContato = async function (id) {
-      if (!confirm(t('confirmar_excluir_contato'))) return;
-      await deleteDoc(doc(db, "contatos", id));
-      carregarContatos();
-    };
-  </script>
+    snap.forEach(item => {
+      const c = item.data();
+
+      lista.innerHTML += `
+        <div class="card">
+          <h3>${c.nome || "Sem nome"}</h3>
+          <p><strong>Email:</strong> ${c.email || ""}</p>
+          <p>${c.mensagem || ""}</p>
+
+          <select class="campo" id="status_${item.id}">
+            <option value="novo" ${c.status === "novo" ? "selected" : ""}>novo</option>
+            <option value="em análise" ${c.status === "em análise" ? "selected" : ""}>em análise</option>
+            <option value="resolvido" ${c.status === "resolvido" ? "selected" : ""}>resolvido</option>
+          </select>
+
+          <br><br>
+
+          <button onclick="salvarContato('${item.id}')">Salvar</button>
+          <button class="secundario" onclick="excluirContato('${item.id}')">Excluir</button>
+        </div>
+      `;
+    });
+
+  } catch(e){
+    lista.innerHTML = "<p>Erro ao carregar contatos: " + e.message + "</p>";
+  }
+}
+
+window.salvarContato = async function(id){
+  const valor = document.getElementById("status_" + id).value;
+  await updateDoc(doc(db, "contatos", id), { status: valor });
+  carregarContatos();
+};
+
+window.excluirContato = async function(id){
+  if(!confirm("Deseja excluir esta mensagem?")) return;
+  await deleteDoc(doc(db, "contatos", id));
+  carregarContatos();
+};
+</script>
+
 </body>
 </html>
