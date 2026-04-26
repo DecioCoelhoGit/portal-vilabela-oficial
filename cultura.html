@@ -1,167 +1,342 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Módulo Cultura • Vila Bela MT</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#eef2f7;color:#222}
-header{
-background:#6a1b9a;color:#fff;
-padding:18px;text-align:center;
-font-size:24px;font-weight:bold
-}
-.container{max-width:1200px;margin:auto;padding:20px}
-.card{
-background:#fff;padding:20px;border-radius:14px;
-box-shadow:0 4px 12px rgba(0,0,0,.08);
-margin-bottom:20px
-}
-input,select,textarea,button{
-width:100%;padding:12px;margin:8px 0;
-border:1px solid #ccc;border-radius:8px;font-size:16px
-}
-button{
-background:#6a1b9a;color:#fff;border:none;
-font-weight:bold;cursor:pointer
-}
-button:hover{opacity:.92}
-.grid{display:grid;gap:15px}
-.item{
-border:1px solid #ddd;border-radius:10px;
-padding:15px;background:#fafafa
-}
-.small{font-size:13px;color:#666}
-.hidden{display:none}
-@media(min-width:768px){.grid{grid-template-columns:1fr 1fr}}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cultura • Portal Prefeitura Vila Bela MT</title>
+
+  <meta name="description" content="Módulo Cultura com registros de visitas ao museu, eventos culturais, grupos, instituições e trabalhos de campo.">
+
+  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-<header>Módulo Cultura • Portal Prefeitura Vila Bela MT</header>
+<body class="font-a">
 
-<div class="container">
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <div>
+    <h1>Módulo Cultura</h1>
+    <p>Visitas ao museu • Eventos • Grupos • Trabalhos de campo</p>
+  </div>
+</header>
 
-<div class="card" id="loginBox">
-<h2>Acesso Administrativo</h2>
-<p class="small">Entrar com Google</p>
-<button onclick="loginGoogle()">Entrar com Google</button>
-<div id="msg"></div>
+<nav class="menu">
+  <a href="index.html">Início</a>
+  <a href="noticias.html">Notícias</a>
+  <a href="turismo.html">Turismo</a>
+  <a href="transparencia.html">Transparência</a>
+  <a href="main-gabinete.html">Gabinete</a>
+  <a href="dashboard.html">Dashboard</a>
+  <a href="admin.html">Admin</a>
+</nav>
+
+<section class="hero" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.35)),url('imagens/vilabela-capa-oficial-1.jpg');">
+  <div class="card">
+    <small>CULTURA E PATRIMÔNIO</small>
+    <h2>Registro institucional de visitas, eventos culturais e atividades educativas.</h2>
+    <p>
+      Controle simples e dinâmico para visitas ao museu, grupos escolares, instituições,
+      eventos culturais, trabalhos de campo e ações de valorização do patrimônio.
+    </p>
+  </div>
+</section>
+
+<main>
+
+  <section class="card">
+    <h2>Indicadores da Cultura</h2>
+
+    <div class="kpi">
+      <span>Total de registros</span>
+      <strong id="totalCultura">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Total de pessoas</span>
+      <strong id="totalPessoas">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Visitas ao Museu</span>
+      <strong id="totalMuseu">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Eventos Culturais</span>
+      <strong id="totalEventos">0</strong>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Registrar Visita / Evento Cultural</h2>
+    <p>Cadastre visitas ao museu, atividades da secretaria, eventos culturais, grupos e trabalhos de campo.</p>
+
+    <br>
+
+    <form id="formCultura">
+
+      <label>Nome do visitante / grupo</label>
+      <input class="campo" id="nome" placeholder="Ex.: Escola Estadual / Grupo de visitantes / Família" required>
+
+      <br><br>
+
+      <label>Cidade / Estado / País</label>
+      <input class="campo" id="cidade" placeholder="Ex.: Cuiabá MT Brasil" required>
+
+      <br><br>
+
+      <label>Escola / Grupo / Instituição</label>
+      <input class="campo" id="grupo" placeholder="Ex.: Escola, universidade, associação, secretaria...">
+
+      <br><br>
+
+      <label>Quantidade de pessoas</label>
+      <input class="campo" id="qtd" type="number" min="1" placeholder="Ex.: 25" required>
+
+      <br><br>
+
+      <label>Tipo de atividade</label>
+      <select class="campo" id="tipo" required>
+        <option value="Visita ao Museu">Visita ao Museu</option>
+        <option value="Evento Cultural">Evento Cultural</option>
+        <option value="Atendimento Secretaria">Atendimento Secretaria</option>
+        <option value="Trabalho de Campo">Trabalho de Campo</option>
+        <option value="Aula de Campo">Aula de Campo</option>
+        <option value="Oficina Cultural">Oficina Cultural</option>
+      </select>
+
+      <br><br>
+
+      <label>Responsável / Guia / Servidor</label>
+      <input class="campo" id="responsavel" placeholder="Ex.: Responsável pelo atendimento" required>
+
+      <br><br>
+
+      <label>Data da atividade</label>
+      <input class="campo" id="dataAtividade" type="date" required>
+
+      <br><br>
+
+      <label>Observações</label>
+      <textarea class="campo-area" id="obs" placeholder="Descreva o objetivo da visita, evento, roteiro, observações ou encaminhamentos."></textarea>
+
+      <br><br>
+
+      <button type="submit">Salvar Registro</button>
+    </form>
+
+    <p id="statusCultura"></p>
+  </section>
+
+  <section class="card">
+    <h2>Registros Realizados</h2>
+
+    <input class="campo" id="buscaCultura" placeholder="Buscar por nome, cidade, grupo, tipo ou responsável" oninput="renderizarCultura()">
+
+    <br><br>
+
+    <div id="listaCultura">Carregando registros...</div>
+  </section>
+
+</main>
+
+<footer class="card">
+  <h3>Secretaria de Cultura</h3>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Cultura, memória e patrimônio.</p>
+</footer>
+
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
 </div>
 
-<div id="painel" class="hidden">
+<script>
+let registrosCultura = [];
 
-<div class="card">
-<h2>Registrar Visita ao Museu / Secretaria</h2>
+function toggleAcessibilidade(){
+  const p = document.getElementById("painelAcessibilidade");
+  p.style.display = p.style.display === "block" ? "none" : "block";
+}
 
-<input id="nome" placeholder="Nome do visitante">
-<input id="cidade" placeholder="Cidade / Estado">
-<input id="grupo" placeholder="Escola / Grupo / Instituição">
-<input id="qtd" type="number" placeholder="Quantidade de pessoas">
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
+  if(tipo==="a") document.body.classList.add("font-a");
+  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
+  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+  localStorage.setItem("fonte", tipo);
+}
 
-<select id="tipo">
-<option>Visita ao Museu</option>
-<option>Atendimento Secretaria</option>
-<option>Evento Cultural</option>
-<option>Trabalho de Campo</option>
-</select>
+function setTema(tipo){
+  document.body.classList.remove("tema-claro","alto-contraste");
+  if(tipo==="claro") document.body.classList.add("tema-claro");
+  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+  localStorage.setItem("tema", tipo);
+}
 
-<input id="responsavel" placeholder="Responsável / Guia">
-<textarea id="obs" placeholder="Observações"></textarea>
+(function restore(){
+  const f = localStorage.getItem("fonte");
+  const t = localStorage.getItem("tema");
+  if(f) setFonte(f);
+  if(t) setTema(t);
+})();
 
-<button onclick="salvarRegistro()">Salvar Registro</button>
-<div id="status"></div>
-</div>
+function formatarData(data){
+  if(!data) return "";
+  return new Date(data + "T00:00:00").toLocaleDateString("pt-BR");
+}
 
-<div class="card">
-<h2>Registros Realizados</h2>
-<div id="lista" class="grid"></div>
-</div>
+function renderizarCultura(){
+  const lista = document.getElementById("listaCultura");
+  const busca = (document.getElementById("buscaCultura").value || "").toLowerCase();
 
-</div>
-</div>
+  const filtrados = registrosCultura.filter(item => {
+    const d = item.data;
+    const base = `
+      ${d.nome || ""}
+      ${d.cidade || ""}
+      ${d.grupo || ""}
+      ${d.tipo || ""}
+      ${d.responsavel || ""}
+      ${d.obs || ""}
+    `.toLowerCase();
+
+    return !busca || base.includes(busca);
+  });
+
+  if(filtrados.length === 0){
+    lista.innerHTML = "<p>Nenhum registro encontrado.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtrados.forEach(item => {
+    const d = item.data;
+
+    lista.innerHTML += `
+      <article class="card">
+        <h3>${d.nome || "Sem nome"}</h3>
+        <p><strong>Cidade:</strong> ${d.cidade || ""}</p>
+        <p><strong>Grupo / Instituição:</strong> ${d.grupo || ""}</p>
+        <p><strong>Tipo:</strong> ${d.tipo || ""}</p>
+        <p><strong>Quantidade:</strong> ${d.qtd || 0}</p>
+        <p><strong>Responsável:</strong> ${d.responsavel || ""}</p>
+        <p><strong>Data:</strong> ${formatarData(d.dataAtividade)}</p>
+        <p>${d.obs || ""}</p>
+      </article>
+    `;
+  });
+}
+</script>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
-getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-import {
-getAuth, GoogleAuthProvider, signInWithPopup
-} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
 const firebaseConfig = {
-apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-authDomain: "portal-vilabela-oficial.firebaseapp.com",
-projectId: "portal-vilabela-oficial",
-storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-messagingSenderId: "908975101824",
-appId: "1:908975101824:web:f986598784403493721365"
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
+  messagingSenderId: "908975101824",
+  appId: "1:908975101824:web:f986598784403493721365"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-const auth = getAuth(app);
 
-window.loginGoogle = async function(){
-try{
-await signInWithPopup(auth,new GoogleAuthProvider());
-loginBox.classList.add("hidden");
-painel.classList.remove("hidden");
-carregar();
-}catch(e){
-msg.innerText=e.message;
-}
+function setText(id, valor){
+  document.getElementById(id).innerText = valor;
 }
 
-window.salvarRegistro = async function(){
-try{
-await addDoc(collection(db,"cultura"),{
-nome:nome.value,
-cidade:cidade.value,
-grupo:grupo.value,
-qtd:Number(qtd.value||0),
-tipo:tipo.value,
-responsavel:responsavel.value,
-obs:obs.value,
-data:serverTimestamp()
+document.getElementById("formCultura").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const status = document.getElementById("statusCultura");
+  status.innerText = "Salvando registro...";
+
+  try {
+    await addDoc(collection(db, "cultura"), {
+      nome: document.getElementById("nome").value,
+      cidade: document.getElementById("cidade").value,
+      grupo: document.getElementById("grupo").value,
+      qtd: Number(document.getElementById("qtd").value || 0),
+      tipo: document.getElementById("tipo").value,
+      responsavel: document.getElementById("responsavel").value,
+      dataAtividade: document.getElementById("dataAtividade").value,
+      obs: document.getElementById("obs").value,
+      data: serverTimestamp()
+    });
+
+    status.innerText = "Registro salvo com sucesso!";
+    document.getElementById("formCultura").reset();
+    carregarCultura();
+
+  } catch(e) {
+    status.innerText = "Erro: " + e.message;
+  }
 });
-status.innerText="Registro salvo com sucesso!";
-nome.value="";cidade.value="";grupo.value="";
-qtd.value="";responsavel.value="";obs.value="";
-carregar();
-}catch(e){
-status.innerText=e.message;
-}
+
+async function carregarCultura(){
+  const lista = document.getElementById("listaCultura");
+  lista.innerHTML = "Carregando registros...";
+
+  try {
+    const q = query(collection(db, "cultura"), orderBy("data", "desc"));
+    const snap = await getDocs(q);
+
+    registrosCultura = [];
+
+    let total = 0;
+    let totalPessoas = 0;
+    let totalMuseu = 0;
+    let totalEventos = 0;
+
+    snap.forEach(item => {
+      const d = item.data();
+
+      registrosCultura.push({
+        id: item.id,
+        data: d
+      });
+
+      total++;
+      totalPessoas += Number(d.qtd || 0);
+
+      if(d.tipo === "Visita ao Museu") totalMuseu++;
+      if(d.tipo === "Evento Cultural") totalEventos++;
+    });
+
+    setText("totalCultura", total);
+    setText("totalPessoas", totalPessoas);
+    setText("totalMuseu", totalMuseu);
+    setText("totalEventos", totalEventos);
+
+    renderizarCultura();
+
+  } catch(e) {
+    lista.innerHTML = "Erro ao carregar registros: " + e.message;
+  }
 }
 
-async function carregar(){
-const snap = await getDocs(collection(db,"cultura"));
-lista.innerHTML="";
-
-snap.forEach(x=>{
-const d=x.data();
-lista.innerHTML += `
-<div class="item">
-<strong>${d.nome}</strong><br>
-<span class="small">${d.cidade}</span><br><br>
-Tipo: ${d.tipo}<br>
-Grupo: ${d.grupo}<br>
-Qtd: ${d.qtd}<br>
-Responsável: ${d.responsavel}<br><br>
-${d.obs || ""}
-<br><br>
-<button onclick="apagar('${x.id}')">Excluir</button>
-</div>`;
-});
-}
-
-window.apagar = async function(id){
-await deleteDoc(doc(db,"cultura",id));
-carregar();
-}
+carregarCultura();
 </script>
 
 </body>
