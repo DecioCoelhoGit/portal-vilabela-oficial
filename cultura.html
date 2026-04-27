@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Cultura • Portal Prefeitura Vila Bela MT</title>
+  <title>Cultura • Vila Bela MT</title>
 
-  <meta name="description" content="Módulo Cultura com registros de visitas ao museu, eventos culturais, grupos, instituições e trabalhos de campo.">
+  <meta name="description" content="Módulo Cultura do Portal Prefeitura Vila Bela MT." />
 
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="imagens/favicon.ico"/>
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT"/>
   <div>
-    <h1>Módulo Cultura</h1>
-    <p>Visitas ao museu • Eventos • Grupos • Trabalhos de campo</p>
+    <h1>Cultura</h1>
+    <p>Patrimônio, memória, eventos e identidade cultural</p>
   </div>
 </header>
 
-<nav class="menu">
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
+  <a href="dashboard.html">Dashboard</a>
   <a href="noticias.html">Notícias</a>
   <a href="turismo.html">Turismo</a>
   <a href="transparencia.html">Transparência</a>
   <a href="main-gabinete.html">Gabinete</a>
-  <a href="dashboard.html">Dashboard</a>
   <a href="admin.html">Admin</a>
 </nav>
 
-<section class="hero" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.35)),url('imagens/vilabela-capa-oficial-1.jpg');">
+<section class="hero"
+style="background-image:linear-gradient(90deg,rgba(7,29,65,.9),rgba(7,29,65,.4)),url('imagens/vilabela-capa-oficial-1.jpg');">
   <div class="card">
     <small>CULTURA E PATRIMÔNIO</small>
-    <h2>Registro institucional de visitas, eventos culturais e atividades educativas.</h2>
+    <h2>Valorização da história, memória e manifestações culturais</h2>
     <p>
-      Controle simples e dinâmico para visitas ao museu, grupos escolares, instituições,
-      eventos culturais, trabalhos de campo e ações de valorização do patrimônio.
+      Registro de visitas, eventos, ações culturais, grupos, oficinas,
+      atividades educativas e preservação do patrimônio vilabelense.
     </p>
   </div>
 </section>
 
-<main>
+<main id="conteudo">
 
   <section class="card">
     <h2>Indicadores da Cultura</h2>
@@ -70,73 +74,71 @@
   </section>
 
   <section class="card">
-    <h2>Registrar Visita / Evento Cultural</h2>
-    <p>Cadastre visitas ao museu, atividades da secretaria, eventos culturais, grupos e trabalhos de campo.</p>
+    <h2>Registrar Atividade Cultural</h2>
 
-    <br>
+    <label>Nome do visitante / grupo</label>
+    <input class="campo" id="nome" placeholder="Ex.: Escola Estadual / Grupo Cultural">
 
-    <form id="formCultura">
+    <br><br>
 
-      <label>Nome do visitante / grupo</label>
-      <input class="campo" id="nome" placeholder="Ex.: Escola Estadual / Grupo de visitantes / Família" required>
+    <label>Cidade / Estado / País</label>
+    <input class="campo" id="cidade" placeholder="Ex.: Cuiabá MT Brasil">
 
-      <br><br>
+    <br><br>
 
-      <label>Cidade / Estado / País</label>
-      <input class="campo" id="cidade" placeholder="Ex.: Cuiabá MT Brasil" required>
+    <label>Grupo / Instituição</label>
+    <input class="campo" id="grupo" placeholder="Ex.: Escola, associação, secretaria">
 
-      <br><br>
+    <br><br>
 
-      <label>Escola / Grupo / Instituição</label>
-      <input class="campo" id="grupo" placeholder="Ex.: Escola, universidade, associação, secretaria...">
+    <label>Quantidade de pessoas</label>
+    <input class="campo" id="qtd" type="number" min="1" placeholder="Ex.: 25">
 
-      <br><br>
+    <br><br>
 
-      <label>Quantidade de pessoas</label>
-      <input class="campo" id="qtd" type="number" min="1" placeholder="Ex.: 25" required>
+    <label>Tipo de atividade</label>
+    <select class="campo" id="tipo">
+      <option value="Visita ao Museu">Visita ao Museu</option>
+      <option value="Evento Cultural">Evento Cultural</option>
+      <option value="Atendimento Secretaria">Atendimento Secretaria</option>
+      <option value="Trabalho de Campo">Trabalho de Campo</option>
+      <option value="Aula de Campo">Aula de Campo</option>
+      <option value="Oficina Cultural">Oficina Cultural</option>
+    </select>
 
-      <br><br>
+    <br><br>
 
-      <label>Tipo de atividade</label>
-      <select class="campo" id="tipo" required>
-        <option value="Visita ao Museu">Visita ao Museu</option>
-        <option value="Evento Cultural">Evento Cultural</option>
-        <option value="Atendimento Secretaria">Atendimento Secretaria</option>
-        <option value="Trabalho de Campo">Trabalho de Campo</option>
-        <option value="Aula de Campo">Aula de Campo</option>
-        <option value="Oficina Cultural">Oficina Cultural</option>
-      </select>
+    <label>Responsável</label>
+    <input class="campo" id="responsavel" placeholder="Responsável pelo atendimento">
 
-      <br><br>
+    <br><br>
 
-      <label>Responsável / Guia / Servidor</label>
-      <input class="campo" id="responsavel" placeholder="Ex.: Responsável pelo atendimento" required>
+    <label>Data da atividade</label>
+    <input class="campo" id="dataAtividade" type="date">
 
-      <br><br>
+    <br><br>
 
-      <label>Data da atividade</label>
-      <input class="campo" id="dataAtividade" type="date" required>
+    <label>Observações</label>
+    <textarea class="campo-area" id="obs" placeholder="Descreva o objetivo da visita, evento ou atividade."></textarea>
 
-      <br><br>
+    <br><br>
 
-      <label>Observações</label>
-      <textarea class="campo-area" id="obs" placeholder="Descreva o objetivo da visita, evento, roteiro, observações ou encaminhamentos."></textarea>
-
-      <br><br>
-
-      <button type="submit">Salvar Registro</button>
-    </form>
-
+    <button onclick="salvarCultura()">Salvar Registro</button>
     <p id="statusCultura"></p>
   </section>
 
   <section class="card">
-    <h2>Registros Realizados</h2>
+    <h2>Buscar Registros</h2>
+    <input
+      class="campo"
+      id="buscaCultura"
+      placeholder="Buscar por nome, cidade, grupo, tipo ou responsável"
+      oninput="renderizarCultura()"
+    />
+  </section>
 
-    <input class="campo" id="buscaCultura" placeholder="Buscar por nome, cidade, grupo, tipo ou responsável" oninput="renderizarCultura()">
-
-    <br><br>
-
+  <section class="card">
+    <h2>Registros Culturais</h2>
     <div id="listaCultura">Carregando registros...</div>
   </section>
 
@@ -147,89 +149,49 @@
   <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Cultura, memória e patrimônio.</p>
 </footer>
 
- <script>
-function aplicarTemaV6(tema) {
-  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
 
-  if (tema === "claro") {
-    document.body.classList.add("tema-claro");
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-
-  if (tema === "escuro") {
-    document.body.classList.add("tema-escuro");
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-
-  if (tema === "contraste") {
-    document.body.classList.add("alto-contraste");
-    document.documentElement.setAttribute("data-theme", "contrast");
-  }
-
-  localStorage.setItem("tema", tema);
-}
-
-function setTema(tema) {
-  aplicarTemaV6(tema);
-}
-
-function setFonte(tipo) {
-  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
-
-  if (tipo === "a") document.body.classList.add("font-a");
-  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
-  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
-
-  localStorage.setItem("fonte", tipo);
-}
-
-function toggleAcessibilidade() {
-  const painel = document.getElementById("painelAcessibilidade");
-  if (painel) painel.classList.toggle("open");
-}
-
-(function iniciarPreferencias() {
-  const fonteSalva = localStorage.getItem("fonte") || "a";
-  const temaSalvo = localStorage.getItem("tema");
-
-  const prefereEscuro = window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
-
-  setFonte(fonteSalva);
-  aplicarTemaV6(temaInicial);
-})();
-</script> 
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
 
 <script>
 let registrosCultura = [];
 
 function toggleAcessibilidade(){
-  const p = document.getElementById("painelAcessibilidade");
-  p.style.display = p.style.display === "block" ? "none" : "block";
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
 }
 
 function setFonte(tipo){
   document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
-  if(tipo==="a") document.body.classList.add("font-a");
-  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
-  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
   localStorage.setItem("fonte", tipo);
 }
 
-function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
-  localStorage.setItem("tema", tipo);
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
+  if(tema === "claro") document.body.classList.add("tema-claro");
+  if(tema === "escuro") document.body.classList.add("tema-escuro");
+  if(tema === "contraste") document.body.classList.add("alto-contraste");
+
+  localStorage.setItem("tema", tema);
 }
 
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
-  if(f) setFonte(f);
-  if(t) setTema(t);
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
 
 function formatarData(data){
@@ -243,6 +205,7 @@ function renderizarCultura(){
 
   const filtrados = registrosCultura.filter(item => {
     const d = item.data;
+
     const base = `
       ${d.nome || ""}
       ${d.cidade || ""}
@@ -267,7 +230,7 @@ function renderizarCultura(){
 
     lista.innerHTML += `
       <article class="card">
-        <h3>${d.nome || "Sem nome"}</h3>
+        <h3>${d.nome || "Registro cultural"}</h3>
         <p><strong>Cidade:</strong> ${d.cidade || ""}</p>
         <p><strong>Grupo / Instituição:</strong> ${d.grupo || ""}</p>
         <p><strong>Tipo:</strong> ${d.tipo || ""}</p>
@@ -289,8 +252,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  query,
-  orderBy,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -310,41 +271,52 @@ function setText(id, valor){
   document.getElementById(id).innerText = valor;
 }
 
-document.getElementById("formCultura").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
+window.salvarCultura = async function(){
   const status = document.getElementById("statusCultura");
+
+  const nome = document.getElementById("nome").value.trim();
+
+  if(!nome){
+    status.innerText = "Informe o nome do visitante ou grupo.";
+    return;
+  }
+
   status.innerText = "Salvando registro...";
 
   try {
     await addDoc(collection(db, "cultura"), {
-      nome: document.getElementById("nome").value,
-      cidade: document.getElementById("cidade").value,
-      grupo: document.getElementById("grupo").value,
+      nome,
+      cidade: document.getElementById("cidade").value.trim(),
+      grupo: document.getElementById("grupo").value.trim(),
       qtd: Number(document.getElementById("qtd").value || 0),
       tipo: document.getElementById("tipo").value,
-      responsavel: document.getElementById("responsavel").value,
+      responsavel: document.getElementById("responsavel").value.trim(),
       dataAtividade: document.getElementById("dataAtividade").value,
-      obs: document.getElementById("obs").value,
+      obs: document.getElementById("obs").value.trim(),
       data: serverTimestamp()
     });
 
+    document.getElementById("nome").value = "";
+    document.getElementById("cidade").value = "";
+    document.getElementById("grupo").value = "";
+    document.getElementById("qtd").value = "";
+    document.getElementById("responsavel").value = "";
+    document.getElementById("dataAtividade").value = "";
+    document.getElementById("obs").value = "";
+
     status.innerText = "Registro salvo com sucesso!";
-    document.getElementById("formCultura").reset();
     carregarCultura();
 
-  } catch(e) {
-    status.innerText = "Erro: " + e.message;
+  } catch(e){
+    status.innerText = "Erro ao salvar: " + e.message;
   }
-});
+};
 
 async function carregarCultura(){
   const lista = document.getElementById("listaCultura");
-  lista.innerHTML = "Carregando registros...";
 
   try {
-    const q = query(collection(db, "cultura"), orderBy("data", "desc"));
-    const snap = await getDocs(q);
+    const snap = await getDocs(collection(db, "cultura"));
 
     registrosCultura = [];
 
@@ -375,8 +347,8 @@ async function carregarCultura(){
 
     renderizarCultura();
 
-  } catch(e) {
-    lista.innerHTML = "Erro ao carregar registros: " + e.message;
+  } catch(e){
+    lista.innerHTML = "<p>Erro ao carregar registros.</p>";
   }
 }
 
