@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Dashboard Executivo • Portal Prefeitura Vila Bela MT</title>
+  <title>Dashboard Executivo • Vila Bela MT</title>
 
   <meta name="description" content="Dashboard Executivo do Portal Prefeitura Vila Bela MT com indicadores, gráficos e dados integrados." />
 
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="imagens/favicon.ico" />
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -20,10 +20,10 @@
 <a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão de Vila Bela da Santíssima Trindade MT" />
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT" />
   <div>
     <h1>Dashboard Executivo</h1>
-    <p>Portal Prefeitura Vila Bela MT • Indicadores integrados</p>
+    <p>Indicadores integrados da plataforma institucional</p>
   </div>
 </header>
 
@@ -37,13 +37,15 @@
   <a href="admin.html">Admin</a>
 </nav>
 
-<section class="hero" style="background-image:linear-gradient(90deg,rgba(7,29,65,.88),rgba(7,29,65,.35)),url('imagens/portal-og-1.jpg');">
+<section class="hero"
+style="background-image:linear-gradient(90deg,rgba(7,29,65,.9),rgba(7,29,65,.35)),url('imagens/portal-og-1.jpg');">
+
   <div class="card">
     <small>DASHBOARD EXECUTIVO</small>
-    <h2>Indicadores, gráficos e dados consolidados da plataforma.</h2>
+    <h2>Indicadores, gráficos e dados consolidados</h2>
     <p>
-      Painel de acompanhamento com informações integradas de notícias, turismo,
-      cultura, transparência e gabinete do prefeito.
+      Painel de acompanhamento em tempo real com informações de notícias,
+      cultura, turismo, transparência e gabinete.
     </p>
   </div>
 </section>
@@ -85,13 +87,13 @@
   </section>
 
   <section class="card">
-    <h2>Gráfico Geral da Plataforma</h2>
+    <h2>Gráfico Geral</h2>
     <p>Distribuição dos registros por módulo.</p>
     <canvas id="graficoGeral"></canvas>
   </section>
 
   <section class="card">
-    <h2>Dashboard do Gabinete</h2>
+    <h2>Gabinete do Prefeito</h2>
 
     <div class="kpi">
       <span>Planejados</span>
@@ -109,6 +111,11 @@
     </div>
 
     <div class="kpi">
+      <span>Arquivados</span>
+      <strong id="gabArquivado">0</strong>
+    </div>
+
+    <div class="kpi">
       <span>Alta prioridade</span>
       <strong id="gabAlta">0</strong>
     </div>
@@ -116,7 +123,7 @@
 
   <section class="card">
     <h2>Gráfico do Gabinete</h2>
-    <p>Status das ações registradas no gabinete.</p>
+    <p>Status das ações registradas.</p>
     <canvas id="graficoGabinete"></canvas>
   </section>
 
@@ -141,7 +148,7 @@
 
   <section class="card">
     <h2>Gráfico da Transparência</h2>
-    <p>Comparativo entre receitas e despesas cadastradas.</p>
+    <p>Comparativo entre receitas e despesas.</p>
     <canvas id="graficoTransparencia"></canvas>
   </section>
 
@@ -149,19 +156,19 @@
     <h2>Capas Institucionais</h2>
 
     <article class="noticia">
-      <img src="imagens/vilabela-capa-oficial-1.jpg" alt="Capa oficial do Portal Vila Bela MT" />
+      <img src="imagens/vilabela-capa-oficial-1.jpg" alt="Capa oficial do Portal Vila Bela MT">
       <h3>Portal Prefeitura Vila Bela MT</h3>
       <p>Capa oficial da plataforma institucional.</p>
     </article>
 
     <article class="noticia">
-      <img src="imagens/gabinete-banner-1.jpg" alt="Banner do Gabinete do Prefeito" />
+      <img src="imagens/gabinete-banner-1.jpg" alt="Banner do Gabinete do Prefeito">
       <h3>Gabinete do Prefeito</h3>
       <p>Banner institucional do módulo de gabinete.</p>
     </article>
 
     <article class="noticia">
-      <img src="imagens/portal-og-1.jpg" alt="Imagem de compartilhamento do portal" />
+      <img src="imagens/portal-og-1.jpg" alt="Imagem de compartilhamento do Portal">
       <h3>Imagem de Compartilhamento</h3>
       <p>Imagem padrão para WhatsApp, redes sociais e prévia de link.</p>
     </article>
@@ -174,80 +181,47 @@
   <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Plataforma institucional em evolução.</p>
 </footer>
 
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
+
 <script>
-function aplicarTemaV6(tema) {
-  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
+let chartGeral = null;
+let chartGabinete = null;
+let chartTransparencia = null;
 
-  if (tema === "claro") {
-    document.body.classList.add("tema-claro");
-    document.documentElement.setAttribute("data-theme", "light");
-  }
+function toggleAcessibilidade(){
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
+}
 
-  if (tema === "escuro") {
-    document.body.classList.add("tema-escuro");
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
 
-  if (tema === "contraste") {
-    document.body.classList.add("alto-contraste");
-    document.documentElement.setAttribute("data-theme", "contrast");
-  }
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
+  localStorage.setItem("fonte", tipo);
+}
+
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
+  if(tema === "claro") document.body.classList.add("tema-claro");
+  if(tema === "escuro") document.body.classList.add("tema-escuro");
+  if(tema === "contraste") document.body.classList.add("alto-contraste");
 
   localStorage.setItem("tema", tema);
 }
 
-function setTema(tema) {
-  aplicarTemaV6(tema);
-}
-
-function setFonte(tipo) {
-  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
-
-  if (tipo === "a") document.body.classList.add("font-a");
-  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
-  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
-
-  localStorage.setItem("fonte", tipo);
-}
-
-function toggleAcessibilidade() {
-  const painel = document.getElementById("painelAcessibilidade");
-  if (painel) painel.classList.toggle("open");
-}
-
-(function iniciarPreferencias() {
-  const fonteSalva = localStorage.getItem("fonte") || "a";
-  const temaSalvo = localStorage.getItem("tema");
-
-  const prefereEscuro = window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
-
-  setFonte(fonteSalva);
-  aplicarTemaV6(temaInicial);
-})();
-</script>
-
-function setFonte(tipo){
-  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
-  if(tipo === "a") document.body.classList.add("font-a");
-  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
-  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
-  localStorage.setItem("fonte", tipo);
-}
-
-function setTema(tipo){
-  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste","modo-claro","modo-escuro","contrast");
-
-  if(tipo === "claro") document.body.classList.add("tema-claro");
-  if(tipo === "escuro") document.body.classList.add("tema-escuro");
-  if(tipo === "contraste") document.body.classList.add("alto-contraste");
-
-  localStorage.setItem("tema", tipo);
-}
-
-(function restaurarPreferencias(){
+(function(){
   const fonte = localStorage.getItem("fonte") || "a";
   const tema = localStorage.getItem("tema") || "claro";
   setFonte(fonte);
@@ -268,7 +242,6 @@ function setText(id, valor){
 
 function criarGraficoGeral(dados){
   const ctx = document.getElementById("graficoGeral");
-
   if(chartGeral) chartGeral.destroy();
 
   chartGeral = new Chart(ctx, {
@@ -302,7 +275,6 @@ function criarGraficoGeral(dados){
 
 function criarGraficoGabinete(dados){
   const ctx = document.getElementById("graficoGabinete");
-
   if(chartGabinete) chartGabinete.destroy();
 
   chartGabinete = new Chart(ctx, {
@@ -331,7 +303,6 @@ function criarGraficoGabinete(dados){
 
 function criarGraficoTransparencia(receitas, despesas){
   const ctx = document.getElementById("graficoTransparencia");
-
   if(chartTransparencia) chartTransparencia.destroy();
 
   chartTransparencia = new Chart(ctx, {
@@ -384,7 +355,6 @@ async function contarColecao(nome){
     const snap = await getDocs(collection(db, nome));
     return snap.size;
   } catch(e) {
-    console.warn("Erro ao contar coleção:", nome, e.message);
     return 0;
   }
 }
@@ -418,9 +388,7 @@ async function analisarGabinete(){
     });
 
     return dados;
-
   } catch(e) {
-    console.warn("Erro gabinete:", e.message);
     return dados;
   }
 }
@@ -452,9 +420,7 @@ async function analisarTransparencia(){
     });
 
     return dados;
-
   } catch(e) {
-    console.warn("Erro transparência:", e.message);
     return dados;
   }
 }
@@ -484,6 +450,7 @@ async function carregarDashboard(){
   setText("gabPlanejado", gabinete.planejado);
   setText("gabAndamento", gabinete.andamento);
   setText("gabConcluido", gabinete.concluido);
+  setText("gabArquivado", gabinete.arquivado);
   setText("gabAlta", gabinete.alta);
 
   setText("totalReceitas", moeda(transparencia.receitas));
