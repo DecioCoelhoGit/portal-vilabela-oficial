@@ -46,52 +46,61 @@
 </footer>
 
 <!-- ACESSIBILIDADE -->
-<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
-
-<div class="acessibilidade-panel" id="painel">
-  <button onclick="setFonte('a')">A normal</button>
-  <button onclick="setFonte('a-plus')">A+</button>
-  <button onclick="setFonte('a-plus-plus')">A++</button>
-
-  <button onclick="setTema('claro')">☀ Claro</button>
-  <button onclick="setTema('escuro')">🌙 Escuro</button>
-  <button onclick="setTema('contraste')">⚫ Contraste</button>
-</div>
-
 <script>
-function toggleAcessibilidade(){
-  const p = document.getElementById("painel");
-  p.style.display = p.style.display === "block" ? "none" : "block";
+function aplicarTemaV6(tema) {
+  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
+
+  if (tema === "claro") {
+    document.body.classList.add("tema-claro");
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+
+  if (tema === "escuro") {
+    document.body.classList.add("tema-escuro");
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+
+  if (tema === "contraste") {
+    document.body.classList.add("alto-contraste");
+    document.documentElement.setAttribute("data-theme", "contrast");
+  }
+
+  localStorage.setItem("tema", tema);
 }
 
-function setFonte(tipo){
-  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
+function setTema(tema) {
+  aplicarTemaV6(tema);
+}
 
-  if(tipo==="a") document.body.classList.add("font-a");
-  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
-  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+function setFonte(tipo) {
+  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
+
+  if (tipo === "a") document.body.classList.add("font-a");
+  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
 
   localStorage.setItem("fonte", tipo);
 }
 
-function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
-
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
-
-  localStorage.setItem("tema", tipo);
+function toggleAcessibilidade() {
+  const painel = document.getElementById("painelAcessibilidade");
+  if (painel) painel.classList.toggle("open");
 }
 
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
+(function iniciarPreferencias() {
+  const fonteSalva = localStorage.getItem("fonte") || "a";
+  const temaSalvo = localStorage.getItem("tema");
 
-  if(f) setFonte(f);
-  if(t) setTema(t);
+  const prefereEscuro = window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
+
+  setFonte(fonteSalva);
+  aplicarTemaV6(temaInicial);
 })();
 </script>
-
+  
 <!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
