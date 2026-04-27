@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin • Portal Prefeitura Vila Bela MT</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Admin Geral • Portal Vila Bela MT</title>
+
+  <meta name="description" content="Painel administrativo do Portal Prefeitura Vila Bela MT." />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="imagens/favicon.ico" />
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT" />
   <div>
-    <h1>Painel Administrativo</h1>
-    <p>Portal Prefeitura Vila Bela MT</p>
+    <h1>Admin Geral</h1>
+    <p>Painel administrativo • Portal Prefeitura Vila Bela MT</p>
   </div>
 </header>
 
-<nav class="menu">
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
   <a href="noticias.html">Notícias</a>
   <a href="dashboard.html">Dashboard</a>
+  <a href="cultura.html">Cultura</a>
+  <a href="turismo.html">Turismo</a>
+  <a href="transparencia.html">Transparência</a>
   <a href="main-gabinete.html">Gabinete</a>
 </nav>
 
-<main>
+<main id="conteudo">
 
   <section class="card" id="loginBox">
     <h2>Acesso Administrativo</h2>
-    <p>Entre com sua conta Google para publicar notícias.</p>
+    <p>Entre com sua conta Google para administrar notícias e contatos do portal.</p>
+    <br />
     <button onclick="loginGoogle()">Entrar com Google</button>
     <p id="loginMsg"></p>
   </section>
@@ -36,44 +48,72 @@
   <section id="painelAdmin" style="display:none;">
 
     <section class="card">
-      <h2>Publicar notícia com imagem</h2>
+      <h2>Painel Administrativo</h2>
+      <p id="usuarioLogado">Usuário logado</p>
+      <br />
+      <button onclick="carregarNoticias()">Atualizar Notícias</button>
+      <button onclick="carregarContatos()">Atualizar Contatos</button>
+      <button class="secundario" onclick="logout()">Sair</button>
+    </section>
 
-      <input class="campo" id="titulo" placeholder="Título da notícia">
+    <section class="card">
+      <h2>Publicar Notícia</h2>
+      <p>Cadastre uma nova notícia oficial com imagem.</p>
 
-      <br><br>
+      <br />
 
+      <label>Título</label>
+      <input class="campo" id="titulo" placeholder="Título da notícia" />
+
+      <br /><br />
+
+      <label>Texto da notícia</label>
       <textarea class="campo-area" id="texto" placeholder="Conteúdo da notícia"></textarea>
 
-      <br><br>
+      <br /><br />
 
-      <input class="campo" id="imagemUrl" placeholder="URL da imagem externa opcional">
+      <label>URL de imagem externa</label>
+      <input class="campo" id="imagemUrl" placeholder="https://..." />
 
-      <br><br>
+      <br /><br />
 
-      <label><strong>Ou envie uma imagem do celular:</strong></label>
-      <input class="campo" id="imagemArquivo" type="file" accept="image/*">
+      <label>Ou envie uma imagem do celular</label>
+      <input class="campo" id="imagemArquivo" type="file" accept="image/*" />
 
-      <br><br>
+      <br /><br />
 
       <button onclick="publicarNoticia()">Publicar Notícia</button>
-      <button class="secundario" onclick="logout()">Sair</button>
-
       <p id="statusPublicacao"></p>
     </section>
 
     <section class="card">
       <h2>Notícias Publicadas</h2>
-      <div id="listaNoticias">Carregando...</div>
+
+      <input
+        class="campo"
+        id="buscaNoticias"
+        placeholder="Buscar notícia"
+        oninput="renderizarNoticiasAdmin()"
+      />
+
+      <br /><br />
+
+      <div id="listaNoticiasAdmin">Carregando notícias...</div>
     </section>
 
     <section class="card">
       <h2>Mensagens Recebidas</h2>
-      <div id="listaContatos">Carregando...</div>
+      <div id="listaContatos">Carregando mensagens...</div>
     </section>
 
   </section>
 
 </main>
+
+<footer class="card">
+  <h3>Admin Geral</h3>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Portal institucional.</p>
+</footer>
 
 <button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
 
@@ -87,32 +127,86 @@
 </div>
 
 <script>
+let registrosNoticiasAdmin = [];
+
 function toggleAcessibilidade(){
-  const p = document.getElementById("painelAcessibilidade");
-  p.style.display = p.style.display === "block" ? "none" : "block";
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
 }
 
 function setFonte(tipo){
   document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
-  if(tipo==="a") document.body.classList.add("font-a");
-  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
-  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
   localStorage.setItem("fonte", tipo);
 }
 
-function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
-  localStorage.setItem("tema", tipo);
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
+  if(tema === "claro") document.body.classList.add("tema-claro");
+  if(tema === "escuro") document.body.classList.add("tema-escuro");
+  if(tema === "contraste") document.body.classList.add("alto-contraste");
+
+  localStorage.setItem("tema", tema);
 }
 
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
-  if(f) setFonte(f);
-  if(t) setTema(t);
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
+
+function formatarDataFirebase(data){
+  try {
+    if(data && data.toDate) return data.toDate().toLocaleDateString("pt-BR");
+    return "";
+  } catch(e) {
+    return "";
+  }
+}
+
+function limitarTexto(texto, limite = 260){
+  if(!texto) return "";
+  return texto.length > limite ? texto.substring(0, limite) + "..." : texto;
+}
+
+function renderizarNoticiasAdmin(){
+  const lista = document.getElementById("listaNoticiasAdmin");
+  const busca = (document.getElementById("buscaNoticias").value || "").toLowerCase();
+
+  const filtradas = registrosNoticiasAdmin.filter(item => {
+    const n = item.data;
+    const base = `${n.titulo || ""} ${n.texto || ""} ${n.dataFormatada || ""}`.toLowerCase();
+    return !busca || base.includes(busca);
+  });
+
+  if(filtradas.length === 0){
+    lista.innerHTML = "<p>Nenhuma notícia encontrada.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtradas.forEach(item => {
+    const n = item.data;
+    const imagem = n.imagem || "imagens/portal-og-1.jpg";
+
+    lista.innerHTML += `
+      <article class="noticia card">
+        <img src="${imagem}" alt="${n.titulo || 'Notícia'}" onerror="this.src='imagens/portal-og-1.jpg'">
+        <h3>${n.titulo || "Sem título"}</h3>
+        <small>${n.dataFormatada || ""}</small>
+        <p>${limitarTexto(n.texto || "", 420)}</p>
+        <br>
+        <button class="btn-danger" onclick="excluirNoticia('${item.id}')">Excluir notícia</button>
+      </article>
+    `;
+  });
+}
 </script>
 
 <script type="module">
@@ -190,6 +284,9 @@ onAuthStateChanged(auth, user => {
   if(user){
     document.getElementById("loginBox").style.display = "none";
     document.getElementById("painelAdmin").style.display = "block";
+    document.getElementById("usuarioLogado").innerText =
+      "Usuário logado: " + (user.email || user.displayName || "Google");
+
     carregarNoticias();
     carregarContatos();
   }
@@ -225,12 +322,13 @@ window.publicarNoticia = async function(){
     return;
   }
 
-  status.innerText = "Publicando...";
+  status.innerText = "Publicando notícia...";
 
   try {
     let imagemFinal = imagemUrl;
 
     const arquivo = document.getElementById("imagemArquivo").files[0];
+
     if(arquivo){
       status.innerText = "Enviando imagem...";
       imagemFinal = await uploadImagem();
@@ -256,45 +354,38 @@ window.publicarNoticia = async function(){
     carregarNoticias();
 
   } catch(e){
-    status.innerText = "Erro: " + e.message;
+    status.innerText = "Erro ao publicar: " + e.message;
   }
 };
 
-async function carregarNoticias(){
-  const lista = document.getElementById("listaNoticias");
+window.carregarNoticias = async function(){
+  const lista = document.getElementById("listaNoticiasAdmin");
+  lista.innerHTML = "Carregando notícias...";
 
   try {
     const q = query(collection(db, "noticias"), orderBy("data", "desc"));
     const snap = await getDocs(q);
 
-    if(snap.empty){
-      lista.innerHTML = "<p>Nenhuma notícia publicada.</p>";
-      return;
-    }
-
-    lista.innerHTML = "";
+    registrosNoticiasAdmin = [];
 
     snap.forEach(item => {
-      const n = item.data();
-      const imagem = n.imagem || "imagens/portal-og-1.jpg";
-      const data = n.data?.toDate ? n.data.toDate().toLocaleDateString("pt-BR") : "";
+      const d = item.data();
 
-      lista.innerHTML += `
-        <article class="noticia card">
-          <img src="${imagem}" alt="${n.titulo || 'Notícia'}">
-          <h3>${n.titulo || "Sem título"}</h3>
-          <small>${data}</small>
-          <p>${n.texto || ""}</p>
-          <br>
-          <button class="secundario" onclick="excluirNoticia('${item.id}')">Excluir</button>
-        </article>
-      `;
+      registrosNoticiasAdmin.push({
+        id: item.id,
+        data: {
+          ...d,
+          dataFormatada: formatarDataFirebase(d.data)
+        }
+      });
     });
+
+    renderizarNoticiasAdmin();
 
   } catch(e){
     lista.innerHTML = "<p>Erro ao carregar notícias: " + e.message + "</p>";
   }
-}
+};
 
 window.excluirNoticia = async function(id){
   if(!confirm("Deseja excluir esta notícia?")) return;
@@ -303,8 +394,9 @@ window.excluirNoticia = async function(id){
   carregarNoticias();
 };
 
-async function carregarContatos(){
+window.carregarContatos = async function(){
   const lista = document.getElementById("listaContatos");
+  lista.innerHTML = "Carregando mensagens...";
 
   try {
     const snap = await getDocs(collection(db, "contatos"));
@@ -320,11 +412,14 @@ async function carregarContatos(){
       const c = item.data();
 
       lista.innerHTML += `
-        <div class="card">
+        <article class="card">
           <h3>${c.nome || "Sem nome"}</h3>
           <p><strong>Email:</strong> ${c.email || ""}</p>
           <p>${c.mensagem || ""}</p>
 
+          <br>
+
+          <label>Status</label>
           <select class="campo" id="status_${item.id}">
             <option value="novo" ${c.status === "novo" ? "selected" : ""}>novo</option>
             <option value="em análise" ${c.status === "em análise" ? "selected" : ""}>em análise</option>
@@ -333,25 +428,30 @@ async function carregarContatos(){
 
           <br><br>
 
-          <button onclick="salvarContato('${item.id}')">Salvar</button>
-          <button class="secundario" onclick="excluirContato('${item.id}')">Excluir</button>
-        </div>
+          <button onclick="salvarContato('${item.id}')">Salvar status</button>
+          <button class="btn-danger" onclick="excluirContato('${item.id}')">Excluir</button>
+        </article>
       `;
     });
 
   } catch(e){
     lista.innerHTML = "<p>Erro ao carregar contatos: " + e.message + "</p>";
   }
-}
+};
 
 window.salvarContato = async function(id){
   const valor = document.getElementById("status_" + id).value;
-  await updateDoc(doc(db, "contatos", id), { status: valor });
+
+  await updateDoc(doc(db, "contatos", id), {
+    status: valor
+  });
+
   carregarContatos();
 };
 
 window.excluirContato = async function(id){
   if(!confirm("Deseja excluir esta mensagem?")) return;
+
   await deleteDoc(doc(db, "contatos", id));
   carregarContatos();
 };
