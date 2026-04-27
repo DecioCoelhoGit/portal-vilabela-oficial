@@ -149,79 +149,8 @@
     <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Direitos reservados conforme normativas e publicações institucionais.</p>
   </footer>
 
-  <button class="acessibilidade-btn" onclick="abrirAcessibilidade()">♿</button>
-
-  <div class="acessibilidade-panel" id="painelAcessibilidade">
-    <button onclick="fonteNormal()">A normal</button>
-    <button onclick="fonteMais()">A+</button>
-    <button onclick="fonteMaisMais()">A++</button>
-    <button onclick="temaClaro()">☀ Claro</button>
-    <button onclick="temaEscuro()">🌙 Escuro</button>
-    <button onclick="altoContraste()">⚫ Contraste</button>
-  </div>
-
-  <script>
-    function abrirAcessibilidade() {
-      const painel = document.getElementById("painelAcessibilidade");
-      painel.style.display = painel.style.display === "block" ? "none" : "block";
-    }
-
-    function limparFontes() {
-      document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
-    }
-
-    function fonteNormal() {
-      limparFontes();
-      document.body.classList.add("font-a");
-      localStorage.setItem("fonte", "normal");
-    }
-
-    function fonteMais() {
-      limparFontes();
-      document.body.classList.add("font-a-plus");
-      localStorage.setItem("fonte", "mais");
-    }
-
-    function fonteMaisMais() {
-      limparFontes();
-      document.body.classList.add("font-a-plus-plus");
-      localStorage.setItem("fonte", "maismais");
-    }
-
-    function limparTemas() {
-      document.body.classList.remove("tema-claro", "alto-contraste");
-    }
-
-    function temaClaro() {
-      limparTemas();
-      document.body.classList.add("tema-claro");
-      localStorage.setItem("tema", "claro");
-    }
-
-    function temaEscuro() {
-      limparTemas();
-      localStorage.setItem("tema", "escuro");
-    }
-
-    function altoContraste() {
-      limparTemas();
-      document.body.classList.add("alto-contraste");
-      localStorage.setItem("tema", "contraste");
-    }
-
-    function restaurarAcessibilidade() {
-      const tema = localStorage.getItem("tema");
-      const fonte = localStorage.getItem("fonte");
-
-      if (tema === "claro") temaClaro();
-      if (tema === "contraste") altoContraste();
-      if (tema === "escuro") temaEscuro();
-
-      if (fonte === "normal") fonteNormal();
-      if (fonte === "mais") fonteMais();
-      if (fonte === "maismais") fonteMaisMais();
-    }
-
+  
+Implementa V6 Temas Inteligentes
     const capas = [
       {
         img: "imagens/vilabela-capa-oficial-1.jpg",
