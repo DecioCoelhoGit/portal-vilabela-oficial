@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Admin Gabinete • Portal Prefeitura Vila Bela MT</title>
+  <title>Admin Gabinete • Vila Bela MT</title>
 
-  <meta name="description" content="Administração do Gabinete do Prefeito com agenda, demandas estratégicas, prioridades e status.">
+  <meta name="description" content="Painel administrativo do Gabinete do Prefeito de Vila Bela MT." />
 
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="imagens/favicon.ico"/>
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT"/>
   <div>
     <h1>Admin Gabinete</h1>
-    <p>Gestão interna • Agenda • Demandas • Prioridades</p>
+    <p>Gestão das ações estratégicas do Gabinete do Prefeito</p>
   </div>
 </header>
 
-<nav class="menu">
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
   <a href="main-gabinete.html">Gabinete</a>
   <a href="dashboard.html">Dashboard</a>
+  <a href="noticias.html">Notícias</a>
+  <a href="transparencia.html">Transparência</a>
   <a href="admin.html">Admin Geral</a>
 </nav>
 
-<main>
+<main id="conteudo">
 
   <section class="card" id="loginBox">
     <h2>Acesso Administrativo</h2>
-    <p>Entre com sua conta Google para administrar o Gabinete.</p>
+    <p>Entre com sua conta Google para administrar as ações do gabinete.</p>
     <br>
     <button onclick="loginGoogle()">Entrar com Google</button>
     <p id="loginMsg"></p>
@@ -42,87 +47,52 @@
   <section id="painelAdmin" style="display:none;">
 
     <section class="card">
-      <h2>Área Administrativa do Gabinete</h2>
-      <p>Gerencie agendas, demandas estratégicas, prioridades e status.</p>
-      <p id="usuarioLogado"></p>
+      <h2>Painel Administrativo do Gabinete</h2>
+      <p id="usuarioLogado">Usuário logado</p>
       <br>
       <button onclick="carregarGabinete()">Atualizar</button>
-      <a href="main-gabinete.html"><button class="secundario">Abrir página pública</button></a>
+      <a href="main-gabinete.html" class="btn secundario">Ver página pública</a>
       <button class="secundario" onclick="logout()">Sair</button>
     </section>
 
-    <section class="card" id="cadastro">
-      <h2>Cadastrar novo registro</h2>
-
-      <form id="formGabineteAdmin">
-
-        <label>Tipo</label>
-        <select class="campo" id="tipo" required>
-          <option value="Agenda Oficial">Agenda Oficial</option>
-          <option value="Demanda Estratégica">Demanda Estratégica</option>
-        </select>
-
-        <br><br>
-
-        <label>Prioridade</label>
-        <select class="campo" id="prioridade" required>
-          <option value="Alta">Alta</option>
-          <option value="Média">Média</option>
-          <option value="Baixa">Baixa</option>
-        </select>
-
-        <br><br>
-
-        <label>Título</label>
-        <input class="campo" id="titulo" placeholder="Ex.: Reunião com secretários / Acompanhamento de obra" required>
-
-        <br><br>
-
-        <label>Responsável</label>
-        <input class="campo" id="responsavel" placeholder="Responsável pelo registro" required>
-
-        <br><br>
-
-        <label>Setor / Secretaria</label>
-        <input class="campo" id="setor" placeholder="Gabinete / Cultura / Turismo / Administração..." required>
-
-        <br><br>
-
-        <label>Data</label>
-        <input class="campo" id="dataAgenda" type="date" required>
-
-        <br><br>
-
-        <label>Status</label>
-        <select class="campo" id="statusRegistro" required>
-          <option value="Planejado">Planejado</option>
-          <option value="Em andamento">Em andamento</option>
-          <option value="Concluído">Concluído</option>
-          <option value="Arquivado">Arquivado</option>
-        </select>
-
-        <br><br>
-
-        <label>Descrição</label>
-        <textarea class="campo-area" id="descricao" placeholder="Descreva a pauta, demanda, prioridade ou encaminhamento." required></textarea>
-
-        <br><br>
-
-        <button type="submit">Salvar registro</button>
-      </form>
-
-      <p id="statusGabinete"></p>
-    </section>
-
     <section class="card">
-      <h2>Filtros</h2>
+      <h2>Cadastrar Nova Ação</h2>
 
-      <input class="campo" id="filtroTexto" placeholder="Buscar por título, setor, responsável ou descrição" oninput="renderizarLista()">
+      <label>Título da ação</label>
+      <input class="campo" id="titulo" placeholder="Ex.: Reunião com secretários municipais">
 
       <br><br>
 
-      <select class="campo" id="filtroStatus" onchange="renderizarLista()">
-        <option value="">Todos os status</option>
+      <label>Descrição</label>
+      <textarea class="campo-area" id="descricao" placeholder="Descreva a ação, demanda, reunião ou encaminhamento."></textarea>
+
+      <br><br>
+
+      <label>Responsável</label>
+      <input class="campo" id="responsavel" placeholder="Ex.: Gabinete do Prefeito">
+
+      <br><br>
+
+      <label>Setor / Secretaria</label>
+      <input class="campo" id="setor" placeholder="Ex.: Gabinete / Obras / Turismo">
+
+      <br><br>
+
+      <label>Data da agenda</label>
+      <input class="campo" id="dataAgenda" type="date">
+
+      <br><br>
+
+      <label>Tipo</label>
+      <select class="campo" id="tipo">
+        <option value="Agenda Oficial">Agenda Oficial</option>
+        <option value="Demanda Estratégica">Demanda Estratégica</option>
+      </select>
+
+      <br><br>
+
+      <label>Status</label>
+      <select class="campo" id="status">
         <option value="Planejado">Planejado</option>
         <option value="Em andamento">Em andamento</option>
         <option value="Concluído">Concluído</option>
@@ -131,17 +101,32 @@
 
       <br><br>
 
-      <select class="campo" id="filtroPrioridade" onchange="renderizarLista()">
-        <option value="">Todas as prioridades</option>
+      <label>Prioridade</label>
+      <select class="campo" id="prioridade">
         <option value="Alta">Alta</option>
         <option value="Média">Média</option>
         <option value="Baixa">Baixa</option>
       </select>
+
+      <br><br>
+
+      <button onclick="salvarNovaAcao()">Salvar Ação</button>
+      <p id="statusCadastro"></p>
     </section>
 
     <section class="card">
-      <h2>Registros Administrativos</h2>
-      <div id="listaGabinete">Carregando...</div>
+      <h2>Buscar Ações</h2>
+      <input
+        class="campo"
+        id="buscaGabineteAdmin"
+        placeholder="Buscar por título, setor, status ou prioridade"
+        oninput="renderizarGabineteAdmin()"
+      />
+    </section>
+
+    <section class="card">
+      <h2>Ações Cadastradas</h2>
+      <div id="listaGabineteAdmin">Carregando ações...</div>
     </section>
 
   </section>
@@ -150,84 +135,52 @@
 
 <footer class="card">
   <h3>Admin Gabinete</h3>
-  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Administração do Gabinete.</p>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Gestão institucional.</p>
 </footer>
 
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
+
 <script>
-function aplicarTemaV6(tema) {
-  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
+let registrosGabineteAdmin = [];
 
-  if (tema === "claro") {
-    document.body.classList.add("tema-claro");
-    document.documentElement.setAttribute("data-theme", "light");
-  }
+function toggleAcessibilidade(){
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
+}
 
-  if (tema === "escuro") {
-    document.body.classList.add("tema-escuro");
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
 
-  if (tema === "contraste") {
-    document.body.classList.add("alto-contraste");
-    document.documentElement.setAttribute("data-theme", "contrast");
-  }
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
+  localStorage.setItem("fonte", tipo);
+}
+
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
+  if(tema === "claro") document.body.classList.add("tema-claro");
+  if(tema === "escuro") document.body.classList.add("tema-escuro");
+  if(tema === "contraste") document.body.classList.add("alto-contraste");
 
   localStorage.setItem("tema", tema);
 }
 
-function setTema(tema) {
-  aplicarTemaV6(tema);
-}
-
-function setFonte(tipo) {
-  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
-
-  if (tipo === "a") document.body.classList.add("font-a");
-  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
-  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
-
-  localStorage.setItem("fonte", tipo);
-}
-
-function toggleAcessibilidade() {
-  const painel = document.getElementById("painelAcessibilidade");
-  if (painel) painel.classList.toggle("open");
-}
-
-(function iniciarPreferencias() {
-  const fonteSalva = localStorage.getItem("fonte") || "a";
-  const temaSalvo = localStorage.getItem("tema");
-
-  const prefereEscuro = window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
-
-  setFonte(fonteSalva);
-  aplicarTemaV6(temaInicial);
-})();
-</script>
-
-function setFonte(tipo){
-  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
-  if(tipo==="a") document.body.classList.add("font-a");
-  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
-  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
-  localStorage.setItem("fonte", tipo);
-}
-
-function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
-  localStorage.setItem("tema", tipo);
-}
-
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
-  if(f) setFonte(f);
-  if(t) setTema(t);
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
 
 function formatarData(data){
@@ -235,33 +188,49 @@ function formatarData(data){
   return new Date(data + "T00:00:00").toLocaleDateString("pt-BR");
 }
 
-function renderizarLista(){
-  const lista = document.getElementById("listaGabinete");
+function classeStatus(status){
+  const s = (status || "").toLowerCase();
 
-  const texto = (document.getElementById("filtroTexto").value || "").toLowerCase();
-  const statusFiltro = document.getElementById("filtroStatus").value || "";
-  const prioridadeFiltro = document.getElementById("filtroPrioridade").value || "";
+  if(s.includes("planejado")) return "badge-status-planejado";
+  if(s.includes("andamento")) return "badge-status-andamento";
+  if(s.includes("concluído") || s.includes("concluido")) return "badge-status-concluido";
+  if(s.includes("arquivado")) return "badge-status-arquivado";
 
-  const filtrados = registrosGabinete.filter(item => {
+  return "badge-status-planejado";
+}
+
+function classePrioridade(prioridade){
+  const p = (prioridade || "").toLowerCase();
+
+  if(p.includes("alta")) return "badge-prioridade-alta";
+  if(p.includes("média") || p.includes("media")) return "badge-prioridade-media";
+  if(p.includes("baixa")) return "badge-prioridade-baixa";
+
+  return "badge-prioridade-baixa";
+}
+
+function renderizarGabineteAdmin(){
+  const lista = document.getElementById("listaGabineteAdmin");
+  const busca = (document.getElementById("buscaGabineteAdmin").value || "").toLowerCase();
+
+  const filtrados = registrosGabineteAdmin.filter(item => {
     const d = item.data;
 
     const base = `
       ${d.titulo || ""}
-      ${d.setor || ""}
-      ${d.responsavel || ""}
       ${d.descricao || ""}
+      ${d.responsavel || ""}
+      ${d.setor || ""}
       ${d.tipo || ""}
+      ${d.status || ""}
+      ${d.prioridade || ""}
     `.toLowerCase();
 
-    const okTexto = !texto || base.includes(texto);
-    const okStatus = !statusFiltro || d.status === statusFiltro;
-    const okPrioridade = !prioridadeFiltro || d.prioridade === prioridadeFiltro;
-
-    return okTexto && okStatus && okPrioridade;
+    return !busca || base.includes(busca);
   });
 
   if(filtrados.length === 0){
-    lista.innerHTML = "<p>Nenhum registro encontrado.</p>";
+    lista.innerHTML = "<p>Nenhuma ação encontrada.</p>";
     return;
   }
 
@@ -272,13 +241,21 @@ function renderizarLista(){
 
     lista.innerHTML += `
       <article class="card">
-        <h3>${d.titulo || "Sem título"}</h3>
+        <h3>${d.titulo || "Ação sem título"}</h3>
 
-        <p><strong>Tipo:</strong> ${d.tipo || ""}</p>
-        <p><strong>Setor:</strong> ${d.setor || ""}</p>
+        <p>${d.descricao || ""}</p>
+
         <p><strong>Responsável:</strong> ${d.responsavel || ""}</p>
+        <p><strong>Setor:</strong> ${d.setor || ""}</p>
+        <p><strong>Tipo:</strong> ${d.tipo || ""}</p>
         <p><strong>Data:</strong> ${formatarData(d.dataAgenda)}</p>
-        <p><strong>Descrição:</strong> ${d.descricao || ""}</p>
+
+        <p>
+          <span class="gabinete-badge ${classeStatus(d.status)}">${d.status || "Status"}</span>
+          <span class="gabinete-badge ${classePrioridade(d.prioridade)}">${d.prioridade || "Prioridade"}</span>
+        </p>
+
+        <br>
 
         <label>Status</label>
         <select class="campo" id="status_${item.id}">
@@ -299,8 +276,8 @@ function renderizarLista(){
 
         <br><br>
 
-        <button onclick="salvarAlteracoes('${item.id}')">Salvar alterações</button>
-        <button class="secundario" onclick="excluirRegistro('${item.id}')">Excluir</button>
+        <button onclick="atualizarAcao('${item.id}')">Salvar alterações</button>
+        <button class="btn-danger" onclick="excluirAcao('${item.id}')">Excluir</button>
       </article>
     `;
   });
@@ -318,8 +295,6 @@ import {
   updateDoc,
   deleteDoc,
   doc,
-  query,
-  orderBy,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -344,7 +319,6 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const auth = getAuth(app);
 const provider = new GoogleAuthProvider();
 
@@ -375,8 +349,10 @@ onAuthStateChanged(auth, user => {
   if(user){
     document.getElementById("loginBox").style.display = "none";
     document.getElementById("painelAdmin").style.display = "block";
+
     document.getElementById("usuarioLogado").innerText =
       "Usuário logado: " + (user.email || user.displayName || "Google");
+
     carregarGabinete();
   }
 });
@@ -386,59 +362,70 @@ window.logout = async function(){
   location.reload();
 };
 
-document.getElementById("formGabineteAdmin").addEventListener("submit", async (e) => {
-  e.preventDefault();
+window.salvarNovaAcao = async function(){
+  const statusCadastro = document.getElementById("statusCadastro");
 
-  const status = document.getElementById("statusGabinete");
-  status.innerText = "Salvando registro...";
+  const titulo = document.getElementById("titulo").value.trim();
+  const descricao = document.getElementById("descricao").value.trim();
+
+  if(!titulo || !descricao){
+    statusCadastro.innerText = "Preencha título e descrição.";
+    return;
+  }
+
+  statusCadastro.innerText = "Salvando ação...";
 
   try {
     await addDoc(collection(db, "gabinete"), {
-      tipo: document.getElementById("tipo").value,
-      prioridade: document.getElementById("prioridade").value,
-      titulo: document.getElementById("titulo").value,
-      responsavel: document.getElementById("responsavel").value,
-      setor: document.getElementById("setor").value,
+      titulo,
+      descricao,
+      responsavel: document.getElementById("responsavel").value.trim(),
+      setor: document.getElementById("setor").value.trim(),
       dataAgenda: document.getElementById("dataAgenda").value,
-      status: document.getElementById("statusRegistro").value,
-      descricao: document.getElementById("descricao").value,
+      tipo: document.getElementById("tipo").value,
+      status: document.getElementById("status").value,
+      prioridade: document.getElementById("prioridade").value,
       data: serverTimestamp()
     });
 
-    status.innerText = "Registro salvo com sucesso!";
-    document.getElementById("formGabineteAdmin").reset();
+    document.getElementById("titulo").value = "";
+    document.getElementById("descricao").value = "";
+    document.getElementById("responsavel").value = "";
+    document.getElementById("setor").value = "";
+    document.getElementById("dataAgenda").value = "";
+
+    statusCadastro.innerText = "Ação salva com sucesso!";
     carregarGabinete();
 
-  } catch(e) {
-    status.innerText = "Erro: " + e.message;
+  } catch(e){
+    statusCadastro.innerText = "Erro ao salvar: " + e.message;
   }
-});
+};
 
 window.carregarGabinete = async function(){
-  const lista = document.getElementById("listaGabinete");
-  lista.innerHTML = "Carregando registros...";
+  const lista = document.getElementById("listaGabineteAdmin");
+  lista.innerHTML = "Carregando ações...";
 
   try {
-    const q = query(collection(db, "gabinete"), orderBy("data", "desc"));
-    const snap = await getDocs(q);
+    const snap = await getDocs(collection(db, "gabinete"));
 
-    registrosGabinete = [];
+    registrosGabineteAdmin = [];
 
     snap.forEach(item => {
-      registrosGabinete.push({
+      registrosGabineteAdmin.push({
         id: item.id,
         data: item.data()
       });
     });
 
-    renderizarLista();
+    renderizarGabineteAdmin();
 
-  } catch(e) {
-    lista.innerHTML = "Erro ao carregar registros: " + e.message;
+  } catch(e){
+    lista.innerHTML = "<p>Erro ao carregar ações: " + e.message + "</p>";
   }
 };
 
-window.salvarAlteracoes = async function(id){
+window.atualizarAcao = async function(id){
   const novoStatus = document.getElementById("status_" + id).value;
   const novaPrioridade = document.getElementById("prioridade_" + id).value;
 
@@ -448,16 +435,13 @@ window.salvarAlteracoes = async function(id){
     atualizadoEm: serverTimestamp()
   });
 
-  alert("Registro atualizado.");
   carregarGabinete();
 };
 
-window.excluirRegistro = async function(id){
-  if(!confirm("Deseja excluir este registro?")) return;
+window.excluirAcao = async function(id){
+  if(!confirm("Deseja excluir esta ação?")) return;
 
   await deleteDoc(doc(db, "gabinete", id));
-
-  alert("Registro excluído.");
   carregarGabinete();
 };
 </script>
