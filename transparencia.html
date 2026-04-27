@@ -136,16 +136,60 @@
   <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Gestão pública, controle social e prestação de contas.</p>
 </footer>
 
-<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+<script>
+function aplicarTemaV6(tema) {
+  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
 
-<div class="acessibilidade-panel" id="painelAcessibilidade">
-  <button onclick="setFonte('a')">A normal</button>
-  <button onclick="setFonte('a-plus')">A+</button>
-  <button onclick="setFonte('a-plus-plus')">A++</button>
-  <button onclick="setTema('claro')">☀ Claro</button>
-  <button onclick="setTema('escuro')">🌙 Escuro</button>
-  <button onclick="setTema('contraste')">⚫ Contraste</button>
-</div>
+  if (tema === "claro") {
+    document.body.classList.add("tema-claro");
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+
+  if (tema === "escuro") {
+    document.body.classList.add("tema-escuro");
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
+
+  if (tema === "contraste") {
+    document.body.classList.add("alto-contraste");
+    document.documentElement.setAttribute("data-theme", "contrast");
+  }
+
+  localStorage.setItem("tema", tema);
+}
+
+function setTema(tema) {
+  aplicarTemaV6(tema);
+}
+
+function setFonte(tipo) {
+  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
+
+  if (tipo === "a") document.body.classList.add("font-a");
+  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
+  localStorage.setItem("fonte", tipo);
+}
+
+function toggleAcessibilidade() {
+  const painel = document.getElementById("painelAcessibilidade");
+  if (painel) painel.classList.toggle("open");
+}
+
+(function iniciarPreferencias() {
+  const fonteSalva = localStorage.getItem("fonte") || "a";
+  const temaSalvo = localStorage.getItem("tema");
+
+  const prefereEscuro = window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
+
+  setFonte(fonteSalva);
+  aplicarTemaV6(temaInicial);
+})();
+</script>
 
 <script>
 let registrosTransparencia = [];
