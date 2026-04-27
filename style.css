@@ -1017,3 +1017,122 @@ body.contrast img {
     min-height: 54px;
   }
 }
+/* =========================================================
+   V6 • SISTEMA DE TEMAS INTELIGENTES
+========================================================= */
+
+html[data-theme="light"] body,
+body.tema-claro {
+  --bg: #f5f7fa;
+  --surface: #ffffff;
+  --surface-2: #f8fafc;
+  --text: #1f2937;
+  --muted: #475569;
+  --border: #d0d7de;
+  --link: #1351b4;
+  --button: #1351b4;
+  --button-text: #ffffff;
+  --title: #071d41;
+}
+
+html[data-theme="dark"] body,
+body.tema-escuro {
+  --bg: #05070d;
+  --surface: #0f172a;
+  --surface-2: #111827;
+  --text: #f8fafc;
+  --muted: #cbd5e1;
+  --border: rgba(255,255,255,.20);
+  --link: #39d353;
+  --button: #1351b4;
+  --button-text: #ffffff;
+  --title: #ffffff;
+}
+
+html[data-theme="contrast"] body,
+body.alto-contraste {
+  --bg: #000000;
+  --surface: #000000;
+  --surface-2: #000000;
+  --text: #ffffff;
+  --muted: #ffffff;
+  --border: #ffffff;
+  --link: #ffff00;
+  --button: #000000;
+  --button-text: #ffff00;
+  --title: #ffff00;
+}
+
+body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+.card,
+.bloco,
+section,
+footer,
+nav,
+.acessibilidade-panel,
+.access-panel {
+  background: var(--surface) !important;
+  color: var(--text) !important;
+  border-color: var(--border) !important;
+}
+
+p, span, small, li, label {
+  color: var(--muted) !important;
+}
+
+h1, h2, h3, h4, strong {
+  color: var(--title) !important;
+}
+
+a {
+  color: var(--link) !important;
+}
+
+button,
+.btn,
+.botao,
+.campo-botao,
+.menu a {
+  background: var(--button) !important;
+  color: var(--button-text) !important;
+  border: 1px solid var(--border) !important;
+}
+
+/* contraste ultra legível */
+html[data-theme="contrast"] button,
+html[data-theme="contrast"] .btn,
+html[data-theme="contrast"] .botao,
+html[data-theme="contrast"] .menu a,
+body.alto-contraste button,
+body.alto-contraste .btn,
+body.alto-contraste .botao,
+body.alto-contraste .menu a {
+  border: 3px solid #ffffff !important;
+  color: #ffff00 !important;
+  background: #000000 !important;
+}
+
+html[data-theme="contrast"] button:hover,
+html[data-theme="contrast"] .btn:hover,
+html[data-theme="contrast"] .botao:hover,
+html[data-theme="contrast"] .menu a:hover {
+  background: #ffff00 !important;
+  color: #000000 !important;
+}
+
+/* mantém hero institucional */
+.hero .card {
+  background: rgba(7,29,65,.86) !important;
+}
+
+.hero .card h1,
+.hero .card h2,
+.hero .card h3,
+.hero .card p,
+.hero .card small {
+  color: #ffffff !important;
+}
