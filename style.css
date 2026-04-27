@@ -1,28 +1,37 @@
 /* =========================================================
-   PORTAL VILA BELA OFICIAL • STYLE.CSS V5 MASTER DEFINITIVO
-   GOV.FEDERAL + Viracopos Global + Temas Corrigidos
+   STYLE.CSS TOTAL FINAL DOCUMENTADO
+   Portal Prefeitura Vila Bela MT
+   Padrão GOV + Viracopos Global
 ========================================================= */
 
+
+/* ===== INÍCIO: RESET GLOBAL ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+}
 
+img {
+  max-width: 100%;
+  display: block;
+}
+/* ===== FIM: RESET GLOBAL ===== */
+
+
+/* ===== INÍCIO: VARIÁVEIS GLOBAIS ===== */
 :root {
   --azul-900: #071d41;
-  --azul-800: #0b2f63;
   --azul-700: #1351b4;
   --azul-050: #eaf2ff;
 
-  --verde-700: #168821;
-  --verde-050: #e9f7ec;
-
+  --verde: #168821;
   --dourado: #cfae3d;
   --amarelo: #ffcc00;
-
   --vermelho: #b91c1c;
 
   --bg: #f4f7fb;
@@ -39,17 +48,14 @@ html { scroll-behavior: smooth; }
   --shadow-sm: 0 4px 14px rgba(15, 23, 42, .08);
   --shadow-md: 0 14px 34px rgba(15, 23, 42, .14);
 
-  --radius-sm: 12px;
   --radius-md: 18px;
   --radius-lg: 26px;
-
   --max: 1180px;
 }
+/* ===== FIM: VARIÁVEIS GLOBAIS ===== */
 
-/* =========================
-   TEMAS DEFINITIVOS
-========================= */
 
+/* ===== INÍCIO: TEMAS ===== */
 body.tema-claro,
 body.modo-claro {
   --bg: #f4f7fb;
@@ -71,7 +77,7 @@ body.modo-escuro {
   --surface-2: #111827;
   --text: #f8fafc;
   --muted: #cbd5e1;
-  --border: rgba(255,255,255,.18);
+  --border: rgba(255,255,255,.20);
   --link: #7dd3fc;
   --button: #1351b4;
   --button-text: #ffffff;
@@ -88,14 +94,13 @@ body.contrast {
   --border: #ffffff;
   --link: #ffff00;
   --button: #000000;
-  --button-text: #ffffff;
+  --button-text: #ffff00;
   --title: #ffff00;
 }
+/* ===== FIM: TEMAS ===== */
 
-/* =========================
-   BASE
-========================= */
 
+/* ===== INÍCIO: BASE DO SITE ===== */
 body {
   font-family: Arial, Helvetica, sans-serif;
   background: var(--bg) !important;
@@ -104,19 +109,6 @@ body {
   min-height: 100vh;
   font-size: 16px;
 }
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-a {
-  color: var(--link);
-  text-decoration: none;
-  font-weight: 700;
-}
-
-a:hover { text-decoration: underline; }
 
 main {
   width: min(100% - 28px, var(--max));
@@ -129,18 +121,37 @@ main {
   margin: 0 auto;
 }
 
-p, span, small, li, label {
+a {
+  color: var(--link);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+p,
+span,
+small,
+li,
+label {
   color: var(--muted);
 }
 
-h1, h2, h3, h4, h5, h6, strong {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
   color: var(--title);
 }
+/* ===== FIM: BASE DO SITE ===== */
 
-/* =========================
-   ACESSIBILIDADE
-========================= */
 
+/* ===== INÍCIO: ACESSIBILIDADE ===== */
 .skip-link {
   position: absolute;
   top: -90px;
@@ -153,7 +164,9 @@ h1, h2, h3, h4, h5, h6, strong {
   box-shadow: var(--shadow-md);
 }
 
-.skip-link:focus { top: 14px; }
+.skip-link:focus {
+  top: 14px;
+}
 
 .acessibilidade-links {
   background: var(--surface);
@@ -207,54 +220,43 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 .acessibilidade-panel.open,
-.access-panel.open { display: block; }
+.access-panel.open {
+  display: block;
+}
 
 .acessibilidade-panel button,
-.access-panel button,
-.access-grid button,
-.access-full {
+.access-panel button {
   width: 100%;
   min-height: 46px;
   margin: 5px 0;
-  padding: 12px 14px;
-  border-radius: 14px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  color: var(--text);
-  font-weight: 800;
-  cursor: pointer;
 }
+/* ===== FIM: ACESSIBILIDADE ===== */
 
-.access-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
 
-.access-full { grid-column: 1 / -1; }
-
-/* =========================
-   FONTES
-========================= */
-
+/* ===== INÍCIO: FONTES ===== */
 .font-a,
-body.font-a { font-size: 16px; }
+body.font-a {
+  font-size: 16px;
+}
 
 .font-a-plus,
 body.font-a-plus,
-.fonte-grande { font-size: 18px; }
+.fonte-grande {
+  font-size: 18px;
+}
 
 .font-a-plus-plus,
 body.font-a-plus-plus,
-.fonte-extra { font-size: 20px; }
+.fonte-extra {
+  font-size: 20px;
+}
+/* ===== FIM: FONTES ===== */
 
-/* =========================
-   HEADER
-========================= */
 
+/* ===== INÍCIO: HEADER ===== */
 header {
   background: linear-gradient(135deg, var(--azul-900), var(--azul-700));
-  color: #fff;
+  color: #ffffff;
   padding: 22px;
   display: flex;
   align-items: center;
@@ -266,7 +268,7 @@ header img {
   width: 72px;
   height: 72px;
   object-fit: contain;
-  background: #fff;
+  background: #ffffff;
   border-radius: 16px;
   padding: 7px;
   box-shadow: var(--shadow-md);
@@ -274,7 +276,7 @@ header img {
 }
 
 header h1 {
-  color: #fff !important;
+  color: #ffffff !important;
   font-size: clamp(24px, 4.8vw, 42px);
   line-height: 1.08;
 }
@@ -298,11 +300,10 @@ body.tema-claro header p,
 body.modo-claro header p {
   color: var(--muted) !important;
 }
+/* ===== FIM: HEADER ===== */
 
-/* =========================
-   MENU
-========================= */
 
+/* ===== INÍCIO: MENU ===== */
 .menu {
   width: min(100% - 28px, var(--max));
   margin: 16px auto;
@@ -330,21 +331,10 @@ body.modo-claro header p {
   background: var(--surface-2);
   text-decoration: none;
 }
+/* ===== FIM: MENU ===== */
 
-.menu-toggle {
-  width: 100%;
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 14px;
-  font-weight: 800;
-}
 
-/* =========================
-   HERO / CAPA
-========================= */
-
+/* ===== INÍCIO: HERO / CAPAS ===== */
 .hero {
   width: 100%;
   min-height: 430px;
@@ -359,7 +349,7 @@ body.modo-claro header p {
   max-width: 780px;
   margin: 0 auto;
   background: rgba(7,29,65,.86) !important;
-  color: #fff !important;
+  color: #ffffff !important;
   border-color: rgba(255,255,255,.25);
   backdrop-filter: blur(8px);
 }
@@ -374,7 +364,7 @@ body.modo-claro header p {
 }
 
 .hero h2 {
-  color: #fff !important;
+  color: #ffffff !important;
   font-size: clamp(30px, 5.8vw, 56px);
   line-height: 1.08;
   margin-bottom: 16px;
@@ -384,11 +374,10 @@ body.modo-claro header p {
   color: rgba(255,255,255,.90) !important;
   font-size: 1.1em;
 }
+/* ===== FIM: HERO / CAPAS ===== */
 
-/* =========================
-   CARDS
-========================= */
 
+/* ===== INÍCIO: CARDS E SEÇÕES ===== */
 .card,
 .bloco,
 section {
@@ -424,15 +413,14 @@ section h3 {
 section p {
   color: var(--muted);
 }
+/* ===== FIM: CARDS E SEÇÕES ===== */
 
-/* =========================
-   BOTÕES
-========================= */
 
+/* ===== INÍCIO: BOTÕES ===== */
 button,
 .botao,
-.campo-botao,
-.btn {
+.btn,
+.campo-botao {
   min-height: 48px;
   display: inline-flex;
   align-items: center;
@@ -446,6 +434,8 @@ button,
   cursor: pointer;
   text-decoration: none;
   margin: 4px 4px 4px 0;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 button:hover,
@@ -457,7 +447,9 @@ button:hover,
 
 button.secundario,
 .botao-secundario,
-.btn-secundario {
+.btn-secundario,
+.btn.ghost,
+a.ghost {
   background: var(--surface);
   color: var(--link);
   border: 1px solid var(--border);
@@ -465,13 +457,12 @@ button.secundario,
 
 .btn-danger {
   background: var(--vermelho) !important;
-  color: #fff !important;
+  color: #ffffff !important;
 }
+/* ===== FIM: BOTÕES ===== */
 
-/* =========================
-   CAMPOS
-========================= */
 
+/* ===== INÍCIO: CAMPOS ===== */
 input,
 textarea,
 select,
@@ -490,10 +481,7 @@ select,
 
 input:focus,
 textarea:focus,
-select:focus,
-.campo:focus,
-.campo-area:focus,
-.campo-select:focus {
+select:focus {
   border-color: var(--link);
   box-shadow: 0 0 0 3px rgba(19,81,180,.18);
 }
@@ -510,11 +498,10 @@ label {
   color: var(--title);
   margin-bottom: 7px;
 }
+/* ===== FIM: CAMPOS ===== */
 
-/* =========================
-   KPIs
-========================= */
 
+/* ===== INÍCIO: KPIs E DASHBOARD ===== */
 .kpi,
 .mini-card {
   display: flex;
@@ -537,10 +524,14 @@ label {
   font-weight: 800;
 }
 
-/* =========================
-   NOTÍCIAS
-========================= */
+canvas {
+  max-width: 100%;
+  background: var(--surface);
+}
+/* ===== FIM: KPIs E DASHBOARD ===== */
 
+
+/* ===== INÍCIO: NOTÍCIAS E IMAGENS ===== */
 .noticia {
   overflow: hidden;
 }
@@ -560,11 +551,10 @@ label {
   font-weight: 900;
   margin: 8px 0;
 }
+/* ===== FIM: NOTÍCIAS E IMAGENS ===== */
 
-/* =========================
-   BADGES
-========================= */
 
+/* ===== INÍCIO: BADGES ===== */
 .gabinete-badge {
   display: inline-flex;
   padding: 7px 12px;
@@ -574,102 +564,44 @@ label {
   margin: 4px 4px 4px 0;
 }
 
-.badge-prioridade-alta { background: #fee2e2; color: #991b1b; }
-.badge-prioridade-media { background: #fef3c7; color: #92400e; }
-.badge-prioridade-baixa { background: #dcfce7; color: #166534; }
-
-.badge-status-planejado { background: #dbeafe; color: #1e40af; }
-.badge-status-andamento { background: #fef3c7; color: #92400e; }
-.badge-status-concluido { background: #dcfce7; color: #166534; }
-.badge-status-arquivado { background: #e5e7eb; color: #374151; }
-
-/* =========================
-   LOGO RESPONSIVA
-========================= */
-
-.logo-sistema {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  text-decoration: none;
-  color: inherit;
+.badge-prioridade-alta {
+  background: #fee2e2;
+  color: #991b1b;
 }
 
-.logo-img {
-  width: clamp(54px, 8vw, 88px);
-  height: clamp(54px, 8vw, 88px);
-  object-fit: contain;
-  background: #fff;
-  border-radius: 14px;
-  padding: 6px;
-  box-shadow: var(--shadow-sm);
+.badge-prioridade-media {
+  background: #fef3c7;
+  color: #92400e;
 }
 
-.logo-texto {
-  display: grid;
+.badge-prioridade-baixa {
+  background: #dcfce7;
+  color: #166534;
 }
 
-.logo-texto strong {
-  color: var(--link);
-  font-size: .82rem;
-  text-transform: uppercase;
-  letter-spacing: .08em;
+.badge-status-planejado {
+  background: #dbeafe;
+  color: #1e40af;
 }
 
-.logo-texto em {
-  font-style: normal;
-  font-weight: 900;
-  color: var(--title);
-  font-size: clamp(20px, 3vw, 34px);
-  line-height: 1.1;
+.badge-status-andamento {
+  background: #fef3c7;
+  color: #92400e;
 }
 
-/* =========================
-   CAPA DINÂMICA
-========================= */
-
-.hero-dinamica {
-  position: relative;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  transition: background-image .8s ease-in-out;
+.badge-status-concluido {
+  background: #dcfce7;
+  color: #166534;
 }
 
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, rgba(7,29,65,.90), rgba(7,29,65,.56), rgba(7,29,65,.12));
+.badge-status-arquivado {
+  background: #e5e7eb;
+  color: #374151;
 }
+/* ===== FIM: BADGES ===== */
 
-.hero-dinamica .inner,
-.hero-dinamica .card {
-  position: relative;
-  z-index: 2;
-}
 
-.hero-controles {
-  position: absolute;
-  left: 50%;
-  bottom: 20px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 10px;
-  z-index: 3;
-  flex-wrap: wrap;
-}
-
-.hero-controles button {
-  background: rgba(7,29,65,.82);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,.45);
-  border-radius: 999px;
-}
-
-/* =========================
-   RODAPÉ
-========================= */
-
+/* ===== INÍCIO: RODAPÉ ===== */
 footer,
 footer.card {
   background: var(--surface);
@@ -685,12 +617,11 @@ footer h2 {
 footer p {
   color: var(--muted);
 }
+/* ===== FIM: RODAPÉ ===== */
 
-/* =========================
-   ALTO CONTRASTE FORÇADO
-========================= */
 
-body.alto-contraste * ,
+/* ===== INÍCIO: CONTRASTE FORÇADO ===== */
+body.alto-contraste *,
 body.contrast * {
   box-shadow: none !important;
   text-shadow: none !important;
@@ -742,9 +673,9 @@ body.contrast .menu a,
 body.contrast input,
 body.contrast textarea,
 body.contrast select {
-  background: #000 !important;
-  color: #fff !important;
-  border-color: #fff !important;
+  background: #000000 !important;
+  color: #ffffff !important;
+  border-color: #ffffff !important;
 }
 
 body.alto-contraste button,
@@ -753,15 +684,14 @@ body.alto-contraste .btn,
 body.contrast button,
 body.contrast .botao,
 body.contrast .btn {
-  background: #000 !important;
-  color: #fff !important;
-  border: 2px solid #fff !important;
+  background: #000000 !important;
+  color: #ffff00 !important;
+  border: 3px solid #ffffff !important;
 }
+/* ===== FIM: CONTRASTE FORÇADO ===== */
 
-/* =========================
-   RESPONSIVO
-========================= */
 
+/* ===== INÍCIO: RESPONSIVO ===== */
 @media (max-width: 760px) {
   header {
     align-items: flex-start;
@@ -796,213 +726,12 @@ body.contrast .btn {
     border-radius: 22px;
   }
 
-  .access-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-controles {
-    width: calc(100% - 28px);
-  }
-
-  .hero-controles button {
-    flex: 1;
-    min-width: 120px;
-  }
-
   .kpi,
   .mini-card {
     align-items: flex-start;
     flex-direction: column;
   }
-   }
-/* =========================================================
-   PATCH V5.1 • BOTÕES + CONTRASTE FINAL
-   Cole no FINAL do style.css
-========================================================= */
 
-/* Botão ghost usado em main-gabinete.html */
-.btn.ghost,
-.botao.ghost,
-a.ghost {
-  background: transparent !important;
-  color: var(--link) !important;
-  border: 2px solid var(--link) !important;
-}
-
-/* Botões mais limpos no tema claro */
-body.tema-claro button,
-body.tema-claro .btn,
-body.tema-claro .botao,
-body.tema-claro .campo-botao {
-  background: var(--azul-700);
-  color: #ffffff;
-  border: 1px solid var(--azul-700);
-}
-
-/* Botões refinados no tema escuro */
-body.tema-escuro button,
-body.tema-escuro .btn,
-body.tema-escuro .botao,
-body.tema-escuro .campo-botao {
-  background: #1351b4;
-  color: #ffffff;
-  border: 1px solid rgba(255,255,255,.28);
-}
-
-/* Painel de acessibilidade no tema escuro */
-body.tema-escuro .acessibilidade-panel,
-body.tema-escuro .access-panel {
-  background: #0b0f1a !important;
-  border: 2px solid rgba(255,255,255,.35) !important;
-}
-
-body.tema-escuro .acessibilidade-panel button,
-body.tema-escuro .access-panel button,
-body.tema-escuro .access-grid button,
-body.tema-escuro .access-full {
-  background: #111827 !important;
-  color: #ffffff !important;
-  border: 1px solid rgba(255,255,255,.35) !important;
-}
-
-/* Contraste: fundo realmente preto */
-body.alto-contraste,
-body.contrast {
-  background: #000000 !important;
-  color: #ffffff !important;
-}
-
-/* Contraste: blocos principais */
-body.alto-contraste header,
-body.alto-contraste nav,
-body.alto-contraste main,
-body.alto-contraste section,
-body.alto-contraste footer,
-body.alto-contraste .card,
-body.alto-contraste .bloco,
-body.alto-contraste .noticia,
-body.contrast header,
-body.contrast nav,
-body.contrast main,
-body.contrast section,
-body.contrast footer,
-body.contrast .card,
-body.contrast .bloco,
-body.contrast .noticia {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-  box-shadow: none !important;
-}
-
-/* Contraste: títulos e links em amarelo */
-body.alto-contraste h1,
-body.alto-contraste h2,
-body.alto-contraste h3,
-body.alto-contraste h4,
-body.alto-contraste a,
-body.alto-contraste strong,
-body.contrast h1,
-body.contrast h2,
-body.contrast h3,
-body.contrast h4,
-body.contrast a,
-body.contrast strong {
-  color: #ffff00 !important;
-}
-
-/* Contraste: textos em branco */
-body.alto-contraste p,
-body.alto-contraste span,
-body.alto-contraste small,
-body.alto-contraste li,
-body.alto-contraste label,
-body.contrast p,
-body.contrast span,
-body.contrast small,
-body.contrast li,
-body.contrast label {
-  color: #ffffff !important;
-}
-
-/* Contraste: botões premium acessíveis */
-body.alto-contraste button,
-body.alto-contraste .btn,
-body.alto-contraste .botao,
-body.alto-contraste .campo-botao,
-body.alto-contraste .menu a,
-body.contrast button,
-body.contrast .btn,
-body.contrast .botao,
-body.contrast .campo-botao,
-body.contrast .menu a {
-  background: #000000 !important;
-  color: #ffff00 !important;
-  border: 3px solid #ffffff !important;
-  box-shadow: none !important;
-  font-weight: 900 !important;
-}
-
-/* Contraste: hover simples */
-body.alto-contraste button:hover,
-body.alto-contraste .btn:hover,
-body.alto-contraste .botao:hover,
-body.alto-contraste .menu a:hover,
-body.contrast button:hover,
-body.contrast .btn:hover,
-body.contrast .botao:hover,
-body.contrast .menu a:hover {
-  background: #ffff00 !important;
-  color: #000000 !important;
-}
-
-/* Contraste: campos */
-body.alto-contraste input,
-body.alto-contraste textarea,
-body.alto-contraste select,
-body.alto-contraste .campo,
-body.alto-contraste .campo-area,
-body.alto-contraste .campo-select,
-body.contrast input,
-body.contrast textarea,
-body.contrast select,
-body.contrast .campo,
-body.contrast .campo-area,
-body.contrast .campo-select {
-  background: #000000 !important;
-  color: #ffffff !important;
-  border: 2px solid #ffffff !important;
-}
-
-/* Contraste: botão flutuante */
-body.alto-contraste .acessibilidade-btn,
-body.alto-contraste .access-float-btn,
-body.contrast .acessibilidade-btn,
-body.contrast .access-float-btn {
-  background: #ffff00 !important;
-  color: #000000 !important;
-  border: 3px solid #ffffff !important;
-}
-
-/* Contraste: painel de acessibilidade */
-body.alto-contraste .acessibilidade-panel,
-body.alto-contraste .access-panel,
-body.contrast .acessibilidade-panel,
-body.contrast .access-panel {
-  background: #000000 !important;
-  border: 3px solid #ffffff !important;
-}
-
-/* Contraste: imagens mantidas visíveis */
-body.alto-contraste img,
-body.contrast img {
-  background: #ffffff !important;
-  border: 2px solid #ffffff !important;
-  border-radius: 14px;
-}
-
-/* Mobile: botões com toque confortável */
-@media (max-width: 760px) {
   button,
   .btn,
   .botao,
@@ -1011,128 +740,5 @@ body.contrast img {
     min-height: 52px;
     font-size: 1rem;
   }
-
-  .acessibilidade-panel button,
-  .access-panel button {
-    min-height: 54px;
-  }
 }
-/* =========================================================
-   V6 • SISTEMA DE TEMAS INTELIGENTES
-========================================================= */
-
-html[data-theme="light"] body,
-body.tema-claro {
-  --bg: #f5f7fa;
-  --surface: #ffffff;
-  --surface-2: #f8fafc;
-  --text: #1f2937;
-  --muted: #475569;
-  --border: #d0d7de;
-  --link: #1351b4;
-  --button: #1351b4;
-  --button-text: #ffffff;
-  --title: #071d41;
-}
-
-html[data-theme="dark"] body,
-body.tema-escuro {
-  --bg: #05070d;
-  --surface: #0f172a;
-  --surface-2: #111827;
-  --text: #f8fafc;
-  --muted: #cbd5e1;
-  --border: rgba(255,255,255,.20);
-  --link: #39d353;
-  --button: #1351b4;
-  --button-text: #ffffff;
-  --title: #ffffff;
-}
-
-html[data-theme="contrast"] body,
-body.alto-contraste {
-  --bg: #000000;
-  --surface: #000000;
-  --surface-2: #000000;
-  --text: #ffffff;
-  --muted: #ffffff;
-  --border: #ffffff;
-  --link: #ffff00;
-  --button: #000000;
-  --button-text: #ffff00;
-  --title: #ffff00;
-}
-
-body {
-  background: var(--bg) !important;
-  color: var(--text) !important;
-}
-
-.card,
-.bloco,
-section,
-footer,
-nav,
-.acessibilidade-panel,
-.access-panel {
-  background: var(--surface) !important;
-  color: var(--text) !important;
-  border-color: var(--border) !important;
-}
-
-p, span, small, li, label {
-  color: var(--muted) !important;
-}
-
-h1, h2, h3, h4, strong {
-  color: var(--title) !important;
-}
-
-a {
-  color: var(--link) !important;
-}
-
-button,
-.btn,
-.botao,
-.campo-botao,
-.menu a {
-  background: var(--button) !important;
-  color: var(--button-text) !important;
-  border: 1px solid var(--border) !important;
-}
-
-/* contraste ultra legível */
-html[data-theme="contrast"] button,
-html[data-theme="contrast"] .btn,
-html[data-theme="contrast"] .botao,
-html[data-theme="contrast"] .menu a,
-body.alto-contraste button,
-body.alto-contraste .btn,
-body.alto-contraste .botao,
-body.alto-contraste .menu a {
-  border: 3px solid #ffffff !important;
-  color: #ffff00 !important;
-  background: #000000 !important;
-}
-
-html[data-theme="contrast"] button:hover,
-html[data-theme="contrast"] .btn:hover,
-html[data-theme="contrast"] .botao:hover,
-html[data-theme="contrast"] .menu a:hover {
-  background: #ffff00 !important;
-  color: #000000 !important;
-}
-
-/* mantém hero institucional */
-.hero .card {
-  background: rgba(7,29,65,.86) !important;
-}
-
-.hero .card h1,
-.hero .card h2,
-.hero .card h3,
-.hero .card p,
-.hero .card small {
-  color: #ffffff !important;
-}
+/* ===== FIM: RESPONSIVO ===== */
