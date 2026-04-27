@@ -1,282 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Portal Prefeitura Vila Bela MT</title>
+  <title>Portal Prefeitura • Vila Bela MT</title>
 
-  <meta name="description" content="Portal institucional da Prefeitura de Vila Bela da Santíssima Trindade MT com notícias, turismo, cultura, transparência e serviços digitais.">
+  <meta name="description" content="Portal Oficial da Prefeitura de Vila Bela da Santíssima Trindade MT - notícias, turismo, transparência e gestão institucional." />
 
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="imagens/favicon.ico"/>
+
+  <!-- Open Graph -->
   <meta property="og:title" content="Portal Prefeitura Vila Bela MT">
-  <meta property="og:description" content="Gestão pública digital, serviços ao cidadão, notícias, cultura, turismo e transparência.">
-  <meta property="og:image" content="https://deciocoelhogit.github.io/portal-vilabela-oficial/imagens/portal-og-1.jpg">
-  <meta property="og:url" content="https://deciocoelhogit.github.io/portal-vilabela-oficial/">
-  <meta property="og:type" content="website">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://deciocoelhogit.github.io/portal-vilabela-oficial/imagens/portal-og-1.jpg">
-
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <meta property="og:description" content="Gestão, transparência e inovação digital">
+  <meta property="og:image" content="imagens/portal-og-1.jpg">
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
 
-  <a href="#conteudo" class="skip-link">Pular para o conteúdo</a>
+<!-- ACESSIBILIDADE -->
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
-  <div class="menu acessibilidade-links">
-    <a href="#conteudo">Ir para o conteúdo</a>
-    <a href="#menu">Ir para o menu</a>
-    <a href="#contato">Ir para o contato</a>
+<!-- HEADER -->
+<header>
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT"/>
+  <div>
+    <h1>Portal Prefeitura</h1>
+    <p>Vila Bela da Santíssima Trindade • MT</p>
   </div>
+</header>
 
-  <header>
-    <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+<!-- MENU -->
+<nav class="menu" id="menu">
+  <a href="dashboard.html">Dashboard</a>
+  <a href="noticias.html">Notícias</a>
+  <a href="cultura.html">Cultura</a>
+  <a href="turismo.html">Turismo</a>
+  <a href="transparencia.html">Transparência</a>
+  <a href="main-gabinete.html">Gabinete</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero"
+style="background-image: linear-gradient(90deg, rgba(7,29,65,0.9), rgba(7,29,65,0.4)), url('imagens/vilabela-capa-oficial-1.jpg');">
+
+  <div class="card">
+    <small>PORTAL INSTITUCIONAL</small>
+    <h2>Gestão, transparência e inovação digital</h2>
+
+    <p>
+      Plataforma oficial com acesso às informações públicas, ações do governo,
+      turismo, cultura e transparência municipal.
+    </p>
+
     <div>
-      <h1>Prefeitura Municipal de Vila Bela da Santíssima Trindade MT</h1>
-      <p>Portal institucional em evolução</p>
+      <a href="dashboard.html" class="btn">Acessar Dashboard</a>
+      <a href="transparencia.html" class="btn secundario">Transparência</a>
     </div>
-  </header>
+  </div>
+</section>
 
-  <nav class="menu" id="menu">
-    <a href="#servicos">Serviços</a>
-    <a href="#secretarias">Secretarias</a>
-    <a href="noticias.html">Notícias</a>
-    <a href="transparencia.html">Transparência</a>
-    <a href="cultura.html">Cultura</a>
-    <a href="turismo.html">Turismo</a>
-    <a href="main-gabinete.html">Gabinete</a>
-    <a href="dashboard.html">Dashboard</a>
-    <a href="admin.html">Admin</a>
-  </nav>
+<!-- CONTEÚDO -->
+<main id="conteudo">
 
-  <section class="hero" id="heroDinamica" style="background-image:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.35)),url('imagens/vilabela-capa-oficial-1.jpg');">
-    <div class="card">
-      <small id="heroTag">PORTAL OFICIAL</small>
-      <h2 id="heroTitulo">Gestão pública digital com identidade institucional e acesso cidadão.</h2>
-      <p id="heroTexto">Serviços, notícias, cultura, turismo, transparência, gabinete e indicadores executivos.</p>
-      <br>
-      <a href="#secretarias"><button>Acessar módulos</button></a>
-      <a href="noticias.html"><button class="secundario">Notícias oficiais</button></a>
-    </div>
+  <!-- SOBRE -->
+  <section class="card">
+    <h2>Portal Oficial</h2>
+
+    <p>
+      O Portal da Prefeitura de Vila Bela da Santíssima Trindade foi desenvolvido
+      para integrar informações públicas, facilitar o acesso do cidadão e modernizar
+      a gestão municipal.
+    </p>
   </section>
 
-  <main id="conteudo">
+  <!-- NOTÍCIAS -->
+  <section class="card">
+    <h2>Últimas Notícias</h2>
 
-    <section class="card" id="servicos">
-      <h2>Barra de serviços</h2>
-      <p>Acesso rápido às principais áreas públicas do portal.</p>
+    <div id="listaNoticias"></div>
+  </section>
 
-      <div class="menu">
-        <a href="#contato">Ouvidoria</a>
-        <a href="transparencia.html">Receitas e despesas</a>
-        <a href="noticias.html">Publicações oficiais</a>
-        <a href="cultura.html">Agenda cultural</a>
-        <a href="turismo.html">Check-in turístico</a>
-        <a href="main-gabinete.html">Gabinete do Prefeito</a>
-        <a href="dashboard.html">Indicadores</a>
-      </div>
-    </section>
+</main>
 
-    <section class="card">
-      <h2>Serviços digitais e atendimento</h2>
-      <p>
-        Portal projetado para reunir módulos públicos e administrativos com navegação simples,
-        identidade institucional e base tecnológica escalável.
-      </p>
-    </section>
+<!-- RODAPÉ -->
+<footer class="card">
+  <h3>Prefeitura de Vila Bela MT</h3>
+  <p>© 2026 Portal Institucional • Todos os direitos reservados</p>
+</footer>
 
-    <section class="card" id="secretarias">
-      <h2>Secretarias e módulos</h2>
+<!-- ACESSIBILIDADE -->
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
 
-      <div class="menu">
-        <a href="noticias.html">📰 Notícias Oficiais</a>
-        <a href="cultura.html">🎭 Secretaria de Cultura</a>
-        <a href="turismo.html">🌿 Secretaria de Turismo</a>
-        <a href="transparencia.html">💰 Transparência Real</a>
-        <a href="main-gabinete.html">🏛️ Gabinete do Prefeito</a>
-        <a href="admin.html">⚙️ Painel Administrativo</a>
-        <a href="dashboard.html">📊 Dashboard Executivo</a>
-      </div>
-    </section>
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
 
-    <section class="card" id="noticias">
-      <h2>Notícias oficiais</h2>
-      <p>Publicações carregadas diretamente da base institucional.</p>
-      <br>
-      <div id="listaNoticias">
-        <p>Carregando notícias...</p>
-      </div>
-    </section>
+<!-- JS TEMAS -->
+<script>
+function toggleAcessibilidade(){
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
+}
 
-    <section class="card" id="transparencia">
-      <h2>Transparência pública</h2>
-      <p>
-        Estrutura para receitas, despesas, convênios, licitações, relatórios, evidências documentais e prestação de contas.
-      </p>
-      <br>
-      <a href="transparencia.html"><button>Acessar transparência</button></a>
-    </section>
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
 
-    <section class="card" id="contato">
-      <h2>Fale conosco</h2>
+  if(tipo==="a") document.body.classList.add("font-a");
+  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
+  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
 
-      <form id="formContato">
-        <input class="campo" id="nome" placeholder="Seu nome" required><br><br>
-        <input class="campo" id="email" type="email" placeholder="Seu e-mail" required><br><br>
-        <textarea class="campo-area" id="mensagem" placeholder="Sua mensagem" required></textarea><br><br>
-        <button type="submit">Enviar mensagem</button>
-      </form>
+  localStorage.setItem("fonte", tipo);
+}
 
-      <p id="status"></p>
-    </section>
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
 
-  </main>
+  if(tema==="claro") document.body.classList.add("tema-claro");
+  if(tema==="escuro") document.body.classList.add("tema-escuro");
+  if(tema==="contraste") document.body.classList.add("alto-contraste");
 
-  <footer class="card">
-    <h3>Portal Prefeitura Vila Bela MT</h3>
-    <p>Plataforma digital institucional em evolução.</p>
+  localStorage.setItem("tema", tema);
+}
 
-    <br>
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
 
-    <h4>Parcerias tecnológicas e estratégicas</h4>
-    <p>Curadoria institucional local • Firebase • GitHub Pages • OpenAI / ChatGPT • Inteligência aplicada à gestão pública.</p>
+  setFonte(fonte);
+  setTema(tema);
+})();
+</script>
 
-    <br>
+<!-- FIREBASE -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
-    <h4>Direitos e créditos</h4>
-    <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Direitos reservados conforme normativas e publicações institucionais.</p>
-  </footer>
+import {
+  getFirestore,
+  collection,
+  getDocs
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-  
-Implementa V6 Temas Inteligentes
-    const capas = [
-      {
-        img: "imagens/vilabela-capa-oficial-1.jpg",
-        tag: "PORTAL OFICIAL",
-        titulo: "Gestão pública digital com identidade institucional e acesso cidadão.",
-        texto: "Serviços, notícias, cultura, turismo, transparência, gabinete e indicadores executivos."
-      },
-      {
-        img: "imagens/gabinete-banner-1.jpg",
-        tag: "GABINETE DO PREFEITO",
-        titulo: "Agenda oficial, demandas estratégicas e governança executiva.",
-        texto: "Organização do gabinete, prioridades da gestão e acompanhamento institucional."
-      },
-      {
-        img: "imagens/portal-og-1.jpg",
-        tag: "CAMPANHAS E EVENTOS",
-        titulo: "Comunicação pública, campanhas oficiais e ações institucionais.",
-        texto: "Espaço preparado para campanhas, eventos, cultura, turismo e comunicação com a população."
-      }
-    ];
+const firebaseConfig = {
+  apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
+  authDomain: "portal-vilabela-oficial.firebaseapp.com",
+  projectId: "portal-vilabela-oficial",
+};
 
-    let capaAtual = 0;
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    function trocarCapa() {
-      capaAtual = (capaAtual + 1) % capas.length;
-      const c = capas[capaAtual];
+async function carregarNoticias(){
+  const container = document.getElementById("listaNoticias");
 
-      const hero = document.getElementById("heroDinamica");
-      hero.style.backgroundImage = `linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.35)),url('${c.img}')`;
+  try {
+    const snap = await getDocs(collection(db, "noticias"));
 
-      document.getElementById("heroTag").innerText = c.tag;
-      document.getElementById("heroTitulo").innerText = c.titulo;
-      document.getElementById("heroTexto").innerText = c.texto;
-    }
+    container.innerHTML = "";
 
-    setInterval(trocarCapa, 8000);
+    snap.forEach(doc => {
+      const d = doc.data();
 
-    restaurarAcessibilidade();
-  </script>
+      const item = document.createElement("article");
+      item.className = "noticia";
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import {
-      getFirestore,
-      collection,
-      addDoc,
-      getDocs,
-      query,
-      orderBy,
-      serverTimestamp
-    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+      item.innerHTML = `
+        <h3>${d.titulo || "Notícia"}</h3>
+        <p>${d.descricao || ""}</p>
+      `;
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
-      authDomain: "portal-vilabela-oficial.firebaseapp.com",
-      projectId: "portal-vilabela-oficial",
-      storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-      messagingSenderId: "908975101824",
-      appId: "1:908975101824:web:f986598784403493721365"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    document.getElementById("formContato").addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      const status = document.getElementById("status");
-      status.innerText = "Enviando...";
-
-      try {
-        await addDoc(collection(db, "contatos"), {
-          nome: document.getElementById("nome").value,
-          email: document.getElementById("email").value,
-          mensagem: document.getElementById("mensagem").value,
-          status: "novo",
-          data: serverTimestamp()
-        });
-
-        status.innerText = "Mensagem enviada com sucesso!";
-        document.getElementById("formContato").reset();
-
-      } catch (erro) {
-        status.innerText = "Erro: " + erro.message;
-      }
+      container.appendChild(item);
     });
 
-    async function carregarNoticias() {
-      const lista = document.getElementById("listaNoticias");
+  } catch(e){
+    container.innerHTML = "<p>Erro ao carregar notícias.</p>";
+  }
+}
 
-      try {
-        const q = query(collection(db, "noticias"), orderBy("data", "desc"));
-        const snap = await getDocs(q);
-
-        if (snap.empty) {
-          lista.innerHTML = "<p>Nenhuma notícia publicada no momento.</p>";
-          return;
-        }
-
-        lista.innerHTML = "";
-
-        snap.forEach((doc) => {
-          const n = doc.data();
-
-          const imagem = n.imagem || n.image || "imagens/portal-og-1.jpg";
-          const titulo = n.titulo || "Notícia oficial";
-          const texto = n.texto || n.conteudo || "";
-          const data = n.data?.toDate ? n.data.toDate().toLocaleDateString("pt-BR") : "";
-
-          lista.innerHTML += `
-            <article class="noticia card">
-              <img src="${imagem}" alt="${titulo}">
-              <h3>${titulo}</h3>
-              <p>${texto}</p>
-              <small>${data}</small>
-            </article>
-          `;
-        });
-
-      } catch (erro) {
-        lista.innerHTML = "<p>Erro ao carregar notícias: " + erro.message + "</p>";
-      }
-    }
-
-    carregarNoticias();
-  </script>
+carregarNoticias();
+</script>
 
 </body>
 </html>
