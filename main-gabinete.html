@@ -2,85 +2,29 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
   <title>Gabinete do Prefeito • Vila Bela MT</title>
 
-  <meta name="description" content="Gestão estratégica, ações do gabinete e acompanhamento institucional do Prefeito de Vila Bela da Santíssima Trindade MT." />
+  <meta name="description" content="Gestão estratégica e acompanhamento das ações do gabinete do prefeito." />
 
-  <link rel="stylesheet" href="style.css" />
-  <link rel="icon" href="imagens/favicon.ico" />
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="imagens/favicon.ico"/>
 </head>
 
 <body class="font-a tema-claro">
 
-<!-- ACESSIBILIDADE -->
-<script>
-function aplicarTemaV6(tema) {
-  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
-  if (tema === "claro") {
-    document.body.classList.add("tema-claro");
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-
-  if (tema === "escuro") {
-    document.body.classList.add("tema-escuro");
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-
-  if (tema === "contraste") {
-    document.body.classList.add("alto-contraste");
-    document.documentElement.setAttribute("data-theme", "contrast");
-  }
-
-  localStorage.setItem("tema", tema);
-}
-
-function setTema(tema) {
-  aplicarTemaV6(tema);
-}
-
-function setFonte(tipo) {
-  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
-
-  if (tipo === "a") document.body.classList.add("font-a");
-  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
-  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
-
-  localStorage.setItem("fonte", tipo);
-}
-
-function toggleAcessibilidade() {
-  const painel = document.getElementById("painelAcessibilidade");
-  if (painel) painel.classList.toggle("open");
-}
-
-(function iniciarPreferencias() {
-  const fonteSalva = localStorage.getItem("fonte") || "a";
-  const temaSalvo = localStorage.getItem("tema");
-
-  const prefereEscuro = window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
-
-  setFonte(fonteSalva);
-  aplicarTemaV6(temaInicial);
-})();
-</script>
-
-  
-<!-- HEADER -->
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT"/>
   <div>
     <h1>Gabinete do Prefeito</h1>
     <p>Gestão estratégica e ações institucionais</p>
   </div>
 </header>
 
-<!-- MENU -->
 <nav class="menu" id="menu">
   <a href="index.html">Início</a>
   <a href="dashboard.html">Dashboard</a>
@@ -91,47 +35,48 @@ function toggleAcessibilidade() {
   <a href="admin-gabinete.html">Admin</a>
 </nav>
 
-<!-- HERO COM BANNER -->
 <section class="hero"
-  style="background-image: linear-gradient(90deg, rgba(7,29,65,0.9), rgba(7,29,65,0.4)), url('imagens/gabinete-banner-1.jpg');">
+style="background-image: linear-gradient(90deg, rgba(7,29,65,.9), rgba(7,29,65,.4)), url('imagens/gabinete-banner-1.jpg');">
 
   <div class="card">
     <small>GESTÃO EXECUTIVA</small>
     <h2>Coordenação estratégica das ações do município</h2>
 
     <p>
-      O Gabinete do Prefeito atua na articulação das políticas públicas,
-      coordenação institucional e acompanhamento das ações prioritárias
-      do município.
+      O gabinete do prefeito articula políticas públicas, coordena projetos
+      estratégicos e acompanha as ações prioritárias da gestão municipal.
     </p>
 
-    <div class="actions">
+    <div>
       <a href="dashboard.html" class="btn">Ver Dashboard</a>
-      <a href="transparencia.html" class="btn ghost">Transparência</a>
+      <a href="transparencia.html" class="btn secundario">Transparência</a>
     </div>
   </div>
 </section>
 
-<!-- CONTEÚDO -->
 <main id="conteudo">
 
-  <!-- RESUMO -->
+  <!-- KPIs -->
   <section class="card">
-    <h2>Visão Geral do Gabinete</h2>
-
-    <p>
-      O gabinete é responsável pela gestão estratégica, articulação política,
-      acompanhamento de projetos e tomada de decisões executivas que impactam
-      diretamente a população.
-    </p>
+    <h2>Indicadores do Gabinete</h2>
 
     <div class="kpi">
-      <span>Ações em andamento</span>
+      <span>Total de ações</span>
+      <strong id="kpiTotal">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Planejadas</span>
+      <strong id="kpiPlanejado">0</strong>
+    </div>
+
+    <div class="kpi">
+      <span>Em andamento</span>
       <strong id="kpiAndamento">0</strong>
     </div>
 
     <div class="kpi">
-      <span>Ações concluídas</span>
+      <span>Concluídas</span>
       <strong id="kpiConcluido">0</strong>
     </div>
 
@@ -141,23 +86,30 @@ function toggleAcessibilidade() {
     </div>
   </section>
 
-  <!-- LISTA DE AÇÕES -->
+  <!-- BUSCA -->
+  <section class="card">
+    <h2>Buscar ações</h2>
+    <input
+      class="campo"
+      id="buscaGabinete"
+      placeholder="Buscar por título, status ou prioridade"
+      oninput="renderizarGabinete()"
+    />
+  </section>
+
+  <!-- LISTA -->
   <section class="card">
     <h2>Ações do Gabinete</h2>
-    <p>Acompanhamento das ações estratégicas cadastradas.</p>
-
-    <div id="listaGabinete"></div>
+    <div id="listaGabinete">Carregando ações...</div>
   </section>
 
 </main>
 
-<!-- RODAPÉ -->
 <footer class="card">
   <h3>Gabinete do Prefeito</h3>
   <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT</p>
 </footer>
 
-<!-- ACESSIBILIDADE -->
 <button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
 
 <div class="acessibilidade-panel" id="painelAcessibilidade">
@@ -169,8 +121,9 @@ function toggleAcessibilidade() {
   <button onclick="setTema('contraste')">⚫ Contraste</button>
 </div>
 
-<!-- SCRIPTS -->
 <script>
+let registrosGabinete = [];
+
 function toggleAcessibilidade(){
   document.getElementById("painelAcessibilidade").classList.toggle("open");
 }
@@ -185,14 +138,14 @@ function setFonte(tipo){
   localStorage.setItem("fonte", tipo);
 }
 
-function setTema(tipo){
+function setTema(tema){
   document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
 
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="escuro") document.body.classList.add("tema-escuro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
+  if(tema==="claro") document.body.classList.add("tema-claro");
+  if(tema==="escuro") document.body.classList.add("tema-escuro");
+  if(tema==="contraste") document.body.classList.add("alto-contraste");
 
-  localStorage.setItem("tema", tipo);
+  localStorage.setItem("tema", tema);
 }
 
 (function(){
@@ -201,9 +154,52 @@ function setTema(tipo){
   setFonte(fonte);
   setTema(tema);
 })();
+
+function renderizarGabinete(){
+  const lista = document.getElementById("listaGabinete");
+  const busca = (document.getElementById("buscaGabinete").value || "").toLowerCase();
+
+  const filtrados = registrosGabinete.filter(item => {
+    const base = `
+      ${item.titulo || ""}
+      ${item.descricao || ""}
+      ${item.status || ""}
+      ${item.prioridade || ""}
+    `.toLowerCase();
+
+    return !busca || base.includes(busca);
+  });
+
+  if(filtrados.length === 0){
+    lista.innerHTML = "<p>Nenhuma ação encontrada.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtrados.forEach(a => {
+
+    lista.innerHTML += `
+      <article class="noticia card">
+        <h3>${a.titulo || "Ação"}</h3>
+
+        <p>${a.descricao || ""}</p>
+
+        <br>
+
+        <span class="gabinete-badge badge-status-${(a.status || "").toLowerCase().replace(" ", "-")}">
+          ${a.status || "Status"}
+        </span>
+
+        <span class="gabinete-badge badge-prioridade-${(a.prioridade || "").toLowerCase()}">
+          ${a.prioridade || "Prioridade"}
+        </span>
+      </article>
+    `;
+  });
+}
 </script>
 
-<!-- FIREBASE -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 
@@ -216,53 +212,47 @@ import {
 const firebaseConfig = {
   apiKey: "AIzaSyBbGWBKp_LlO546yM-2IXIAuvHnK9q1mlI",
   authDomain: "portal-vilabela-oficial.firebaseapp.com",
-  projectId: "portal-vilabela-oficial",
-  storageBucket: "portal-vilabela-oficial.firebasestorage.app",
-  messagingSenderId: "908975101824",
-  appId: "1:908975101824:web:f986598784403493721365"
+  projectId: "portal-vilabela-oficial"
 };
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 async function carregarGabinete(){
-  const container = document.getElementById("listaGabinete");
+  const lista = document.getElementById("listaGabinete");
 
   try {
     const snap = await getDocs(collection(db, "gabinete"));
 
-    let andamento = 0;
-    let concluido = 0;
-    let alta = 0;
+    registrosGabinete = [];
 
-    container.innerHTML = "";
+    let total=0, planejado=0, andamento=0, concluido=0, alta=0;
 
     snap.forEach(doc => {
       const d = doc.data();
+      registrosGabinete.push(d);
 
-      if((d.status||"").toLowerCase().includes("andamento")) andamento++;
-      if((d.status||"").toLowerCase().includes("concluido")) concluido++;
-      if((d.prioridade||"").toLowerCase().includes("alta")) alta++;
+      total++;
 
-      const card = document.createElement("article");
-      card.className = "noticia";
+      const status = (d.status || "").toLowerCase();
+      const prioridade = (d.prioridade || "").toLowerCase();
 
-      card.innerHTML = `
-        <h3>${d.titulo || "Ação"}</h3>
-        <p>${d.descricao || ""}</p>
-        <small>Status: ${d.status || "-"} | Prioridade: ${d.prioridade || "-"}</small>
-      `;
-
-      container.appendChild(card);
+      if(status.includes("planejado")) planejado++;
+      if(status.includes("andamento")) andamento++;
+      if(status.includes("concluido")) concluido++;
+      if(prioridade.includes("alta")) alta++;
     });
 
+    document.getElementById("kpiTotal").innerText = total;
+    document.getElementById("kpiPlanejado").innerText = planejado;
     document.getElementById("kpiAndamento").innerText = andamento;
     document.getElementById("kpiConcluido").innerText = concluido;
     document.getElementById("kpiAlta").innerText = alta;
 
+    renderizarGabinete();
+
   } catch(e){
-    container.innerHTML = "<p>Erro ao carregar dados do gabinete.</p>";
-    console.error(e);
+    lista.innerHTML = "<p>Erro ao carregar dados.</p>";
   }
 }
 
