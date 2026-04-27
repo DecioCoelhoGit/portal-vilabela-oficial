@@ -1,109 +1,189 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Notícias Oficiais • Prefeitura Vila Bela MT</title>
+  <title>Notícias Oficiais • Vila Bela MT</title>
 
-  <meta property="og:title" content="Notícias Oficiais - Vila Bela MT">
-  <meta property="og:image" content="imagens/portal-og-1.jpg">
+  <meta name="description" content="Notícias oficiais da Prefeitura de Vila Bela da Santíssima Trindade MT." />
 
-  <link rel="stylesheet" href="style.css">
+  <meta property="og:title" content="Notícias Oficiais • Vila Bela MT" />
+  <meta property="og:description" content="Publicações oficiais, comunicados e informações institucionais." />
+  <meta property="og:image" content="imagens/portal-og-1.jpg" />
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="imagens/favicon.ico" />
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT" />
   <div>
     <h1>Notícias Oficiais</h1>
-    <p>Prefeitura de Vila Bela da Santíssima Trindade MT</p>
+    <p>Comunicação institucional • Prefeitura de Vila Bela MT</p>
   </div>
 </header>
 
-<nav class="menu">
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
-  <a href="transparencia.html">Transparência</a>
+  <a href="dashboard.html">Dashboard</a>
   <a href="cultura.html">Cultura</a>
   <a href="turismo.html">Turismo</a>
+  <a href="transparencia.html">Transparência</a>
   <a href="main-gabinete.html">Gabinete</a>
+  <a href="admin.html">Admin</a>
 </nav>
 
-<main class="container">
+<section class="hero"
+style="background-image: linear-gradient(90deg, rgba(7,29,65,0.9), rgba(7,29,65,0.4)), url('imagens/portal-og-1.jpg');">
+  <div class="card">
+    <small>NOTÍCIAS OFICIAIS</small>
+    <h2>Informação pública, comunicados e ações institucionais</h2>
+    <p>
+      Acompanhe as publicações oficiais, comunicados da gestão municipal,
+      campanhas, eventos e atualizações do portal.
+    </p>
+  </div>
+</section>
+
+<main id="conteudo">
 
   <section class="card">
-    <h2>Últimas publicações</h2>
-    <p>Atualizações oficiais da gestão municipal.</p>
+    <h2>Últimas Publicações</h2>
+    <p>Notícias carregadas automaticamente da base institucional.</p>
   </section>
 
-  <section id="listaNoticias"></section>
+  <section class="card">
+    <h2>Buscar notícias</h2>
+    <input
+      class="campo"
+      id="buscaNoticias"
+      placeholder="Buscar por título, texto ou data"
+      oninput="renderizarNoticias()"
+    />
+  </section>
+
+  <section class="card">
+    <h2>Lista de Notícias</h2>
+    <div id="listaNoticias">Carregando notícias...</div>
+  </section>
 
 </main>
 
 <footer class="card">
-  <p>© 2026 Prefeitura Vila Bela MT • Portal institucional</p>
+  <h3>Notícias Oficiais</h3>
+  <p>© 2026 Prefeitura de Vila Bela da Santíssima Trindade MT • Portal institucional.</p>
 </footer>
 
-<!-- ACESSIBILIDADE -->
+<button class="acessibilidade-btn" onclick="toggleAcessibilidade()">♿</button>
+
+<div class="acessibilidade-panel" id="painelAcessibilidade">
+  <button onclick="setFonte('a')">A normal</button>
+  <button onclick="setFonte('a-plus')">A+</button>
+  <button onclick="setFonte('a-plus-plus')">A++</button>
+  <button onclick="setTema('claro')">☀ Claro</button>
+  <button onclick="setTema('escuro')">🌙 Escuro</button>
+  <button onclick="setTema('contraste')">⚫ Contraste</button>
+</div>
+
 <script>
-function aplicarTemaV6(tema) {
-  document.body.classList.remove("tema-claro", "tema-escuro", "alto-contraste");
+let registrosNoticias = [];
 
-  if (tema === "claro") {
-    document.body.classList.add("tema-claro");
-    document.documentElement.setAttribute("data-theme", "light");
-  }
-
-  if (tema === "escuro") {
-    document.body.classList.add("tema-escuro");
-    document.documentElement.setAttribute("data-theme", "dark");
-  }
-
-  if (tema === "contraste") {
-    document.body.classList.add("alto-contraste");
-    document.documentElement.setAttribute("data-theme", "contrast");
-  }
-
-  localStorage.setItem("tema", tema);
+function toggleAcessibilidade(){
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
 }
 
-function setTema(tema) {
-  aplicarTemaV6(tema);
-}
+function setFonte(tipo){
+  document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
 
-function setFonte(tipo) {
-  document.body.classList.remove("font-a", "font-a-plus", "font-a-plus-plus");
-
-  if (tipo === "a") document.body.classList.add("font-a");
-  if (tipo === "a-plus") document.body.classList.add("font-a-plus");
-  if (tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
 
   localStorage.setItem("fonte", tipo);
 }
 
-function toggleAcessibilidade() {
-  const painel = document.getElementById("painelAcessibilidade");
-  if (painel) painel.classList.toggle("open");
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
+  if(tema === "claro") document.body.classList.add("tema-claro");
+  if(tema === "escuro") document.body.classList.add("tema-escuro");
+  if(tema === "contraste") document.body.classList.add("alto-contraste");
+
+  localStorage.setItem("tema", tema);
 }
 
-(function iniciarPreferencias() {
-  const fonteSalva = localStorage.getItem("fonte") || "a";
-  const temaSalvo = localStorage.getItem("tema");
-
-  const prefereEscuro = window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-
-  const temaInicial = temaSalvo || (prefereEscuro ? "escuro" : "claro");
-
-  setFonte(fonteSalva);
-  aplicarTemaV6(temaInicial);
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
+
+function formatarDataFirebase(data){
+  try {
+    if(data && data.toDate) {
+      return data.toDate().toLocaleDateString("pt-BR");
+    }
+    return "";
+  } catch(e) {
+    return "";
+  }
+}
+
+function limitarTexto(texto, limite = 280){
+  if(!texto) return "";
+  return texto.length > limite ? texto.substring(0, limite) + "..." : texto;
+}
+
+function renderizarNoticias(){
+  const lista = document.getElementById("listaNoticias");
+  const busca = (document.getElementById("buscaNoticias").value || "").toLowerCase();
+
+  const filtradas = registrosNoticias.filter(item => {
+    const base = `
+      ${item.titulo || ""}
+      ${item.texto || ""}
+      ${item.descricao || ""}
+      ${item.dataFormatada || ""}
+    `.toLowerCase();
+
+    return !busca || base.includes(busca);
+  });
+
+  if(filtradas.length === 0){
+    lista.innerHTML = "<p>Nenhuma notícia encontrada.</p>";
+    return;
+  }
+
+  lista.innerHTML = "";
+
+  filtradas.forEach(n => {
+    const imagem = n.imagem || n.image || "imagens/portal-og-1.jpg";
+    const titulo = n.titulo || "Notícia oficial";
+    const texto = n.texto || n.descricao || n.conteudo || "";
+    const data = n.dataFormatada || "";
+
+    lista.innerHTML += `
+      <article class="noticia card">
+        <img src="${imagem}" alt="${titulo}" onerror="this.src='imagens/portal-og-1.jpg'">
+        <h3>${titulo}</h3>
+        <small>${data}</small>
+        <p>${limitarTexto(texto, 420)}</p>
+      </article>
+    `;
+  });
+}
 </script>
-  
-<!-- FIREBASE -->
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
 import {
   getFirestore,
   collection,
@@ -124,51 +204,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const lista = document.getElementById("listaNoticias");
-
 async function carregarNoticias(){
+  const lista = document.getElementById("listaNoticias");
+  lista.innerHTML = "Carregando notícias...";
 
-  try{
-
-    const q = query(collection(db, "noticias"), orderBy("data","desc"));
+  try {
+    const q = query(collection(db, "noticias"), orderBy("data", "desc"));
     const snap = await getDocs(q);
 
-    if(snap.empty){
-      lista.innerHTML = "<p class='card'>Nenhuma notícia publicada.</p>";
-      return;
-    }
-
-    lista.innerHTML = "";
+    registrosNoticias = [];
 
     snap.forEach(doc => {
-      const n = doc.data();
+      const d = doc.data();
 
-      const imagem = n.imagem || "imagens/portal-og-1.jpg";
-      const titulo = n.titulo || "Notícia oficial";
-      const texto = n.texto || "";
-      const data = n.data?.toDate
-        ? n.data.toDate().toLocaleDateString("pt-BR")
-        : "";
-
-      lista.innerHTML += `
-        <article class="card noticia">
-
-          <img src="${imagem}" alt="${titulo}">
-
-          <h3>${titulo}</h3>
-
-          <small>${data}</small>
-
-          <p>${texto}</p>
-
-        </article>
-      `;
+      registrosNoticias.push({
+        ...d,
+        dataFormatada: formatarDataFirebase(d.data)
+      });
     });
 
-  }catch(e){
-    lista.innerHTML = "<p class='card'>Erro ao carregar notícias</p>";
-  }
+    renderizarNoticias();
 
+  } catch(e) {
+    lista.innerHTML = "<p>Erro ao carregar notícias: " + e.message + "</p>";
+  }
 }
 
 carregarNoticias();
