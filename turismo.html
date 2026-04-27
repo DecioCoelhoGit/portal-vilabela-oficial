@@ -1,49 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-  <title>Turismo • Portal Prefeitura Vila Bela MT</title>
+  <title>Turismo • Vila Bela MT</title>
 
-  <meta name="description" content="Módulo Turismo com check-in turístico, agendamento de visitantes, atrativos, guias responsáveis e registros de visitação.">
+  <meta name="description" content="Módulo Turismo do Portal Prefeitura Vila Bela MT." />
 
-  <link rel="icon" href="imagens/favicon.ico" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="imagens/favicon.ico"/>
 </head>
 
-<body class="font-a">
+<body class="font-a tema-claro">
+
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<a class="skip-link" href="#menu">Ir para o menu</a>
 
 <header>
-  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela">
+  <img src="imagens/vilabela-brasao-web-1.jpg" alt="Brasão Vila Bela MT"/>
   <div>
-    <h1>Módulo Turismo</h1>
-    <p>Check-in turístico • Agendamentos • Atrativos • Guias</p>
+    <h1>Turismo</h1>
+    <p>Check-in turístico, roteiros, atrativos e visitação</p>
   </div>
 </header>
 
-<nav class="menu">
+<nav class="menu" id="menu">
   <a href="index.html">Início</a>
+  <a href="dashboard.html">Dashboard</a>
   <a href="noticias.html">Notícias</a>
   <a href="cultura.html">Cultura</a>
   <a href="transparencia.html">Transparência</a>
   <a href="main-gabinete.html">Gabinete</a>
-  <a href="dashboard.html">Dashboard</a>
   <a href="admin.html">Admin</a>
 </nav>
 
-<section class="hero" style="background-image:linear-gradient(90deg,rgba(0,0,0,.78),rgba(0,0,0,.35)),url('imagens/vilabela-capa-oficial-1.jpg');">
+<section class="hero"
+style="background-image:linear-gradient(90deg,rgba(7,29,65,.9),rgba(7,29,65,.4)),url('imagens/vilabela-capa-oficial-1.jpg');">
   <div class="card">
     <small>TURISMO E RECEPTIVO</small>
-    <h2>Check-in, agendamento e acompanhamento da visitação turística.</h2>
+    <h2>Gestão da visitação turística em Vila Bela MT</h2>
     <p>
-      Módulo para registrar visitantes, grupos, atrativos, guias responsáveis,
-      datas de visitação e observações operacionais.
+      Controle de check-ins, agendamentos, visitantes, atrativos turísticos,
+      guias responsáveis e observações operacionais.
     </p>
   </div>
 </section>
 
-<main>
+<main id="conteudo">
 
   <section class="card">
     <h2>Indicadores do Turismo</h2>
@@ -71,80 +75,78 @@
 
   <section class="card">
     <h2>Check-in / Agendamento Turístico</h2>
-    <p>Cadastre visitantes, grupos turísticos, atrativos, guias e observações da visita.</p>
 
-    <br>
+    <label>Nome do visitante / grupo</label>
+    <input class="campo" id="nome" placeholder="Ex.: Família Souza / Grupo de visitantes">
 
-    <form id="formTurismo">
+    <br><br>
 
-      <label>Nome do visitante / grupo</label>
-      <input class="campo" id="nome" placeholder="Ex.: Família Souza / Grupo de visitantes / Excursão" required>
+    <label>Cidade / Estado / País</label>
+    <input class="campo" id="origem" placeholder="Ex.: Cuiabá MT Brasil">
 
-      <br><br>
+    <br><br>
 
-      <label>Cidade / Estado / País</label>
-      <input class="campo" id="origem" placeholder="Ex.: Cuiabá MT Brasil" required>
+    <label>Quantidade de pessoas</label>
+    <input class="campo" id="qtd" type="number" min="1" placeholder="Ex.: 15">
 
-      <br><br>
+    <br><br>
 
-      <label>Quantidade de pessoas</label>
-      <input class="campo" id="qtd" type="number" min="1" placeholder="Ex.: 15" required>
+    <label>Atrativo / Roteiro</label>
+    <select class="campo" id="atrativo">
+      <option value="City Tour Histórico">City Tour Histórico</option>
+      <option value="Cânion do Jatobá">Cânion do Jatobá</option>
+      <option value="Cascata dos Namorados">Cascata dos Namorados</option>
+      <option value="Cascatinha dos Namorados">Cascatinha dos Namorados</option>
+      <option value="Piscina Esmeralda da Cirila">Piscina Esmeralda da Cirila</option>
+      <option value="Cachoeira do Capivary">Cachoeira do Capivary</option>
+      <option value="Cachoeira do Viracopos">Cachoeira do Viracopos</option>
+      <option value="Museu / Centro Histórico">Museu / Centro Histórico</option>
+      <option value="Outro">Outro</option>
+    </select>
 
-      <br><br>
+    <br><br>
 
-      <label>Atrativo / Roteiro</label>
-      <select class="campo" id="atrativo" required>
-        <option value="City Tour Histórico">City Tour Histórico</option>
-        <option value="Cânion do Jatobá">Cânion do Jatobá</option>
-        <option value="Cascata dos Namorados">Cascata dos Namorados</option>
-        <option value="Cascatinha dos Namorados">Cascatinha dos Namorados</option>
-        <option value="Piscina Esmeralda da Cirila">Piscina Esmeralda da Cirila</option>
-        <option value="Cachoeira do Capivary">Cachoeira do Capivary</option>
-        <option value="Cachoeira do Viracopos">Cachoeira do Viracopos</option>
-        <option value="Museu / Centro Histórico">Museu / Centro Histórico</option>
-        <option value="Outro">Outro</option>
-      </select>
+    <label>Data da visita</label>
+    <input class="campo" id="dataVisita" type="date">
 
-      <br><br>
+    <br><br>
 
-      <label>Data da visita</label>
-      <input class="campo" id="dataVisita" type="date" required>
+    <label>Guia responsável</label>
+    <input class="campo" id="guia" placeholder="Ex.: Décio Coelho">
 
-      <br><br>
+    <br><br>
 
-      <label>Guia responsável</label>
-      <input class="campo" id="guia" placeholder="Ex.: Décio Coelho / Guia responsável" required>
+    <label>Status</label>
+    <select class="campo" id="statusVisita">
+      <option value="Agendado">Agendado</option>
+      <option value="Confirmado">Confirmado</option>
+      <option value="Realizado">Realizado</option>
+      <option value="Cancelado">Cancelado</option>
+    </select>
 
-      <br><br>
+    <br><br>
 
-      <label>Status</label>
-      <select class="campo" id="statusVisita" required>
-        <option value="Agendado">Agendado</option>
-        <option value="Confirmado">Confirmado</option>
-        <option value="Realizado">Realizado</option>
-        <option value="Cancelado">Cancelado</option>
-      </select>
+    <label>Observações</label>
+    <textarea class="campo-area" id="obs" placeholder="Descreva pacote, roteiro, necessidades especiais ou observações."></textarea>
 
-      <br><br>
+    <br><br>
 
-      <label>Observações</label>
-      <textarea class="campo-area" id="obs" placeholder="Descreva o pacote, roteiro, necessidade especial, alimentação, hospedagem ou observações operacionais."></textarea>
-
-      <br><br>
-
-      <button type="submit">Salvar Check-in</button>
-    </form>
-
+    <button onclick="salvarTurismo()">Salvar Check-in</button>
     <p id="statusTurismo"></p>
   </section>
 
   <section class="card">
+    <h2>Buscar Registros</h2>
+    <input
+      class="campo"
+      id="buscaTurismo"
+      placeholder="Buscar por visitante, origem, atrativo, guia ou status"
+      oninput="renderizarTurismo()"
+    />
+  </section>
+
+  <section class="card">
     <h2>Registros Turísticos</h2>
-
-    <input class="campo" id="buscaTurismo" placeholder="Buscar por visitante, origem, atrativo, guia ou status" oninput="renderizarTurismo()">
-
-    <br><br>
-
     <div id="listaTurismo">Carregando registros...</div>
   </section>
 
@@ -170,30 +172,34 @@
 let registrosTurismo = [];
 
 function toggleAcessibilidade(){
-  const p = document.getElementById("painelAcessibilidade");
-  p.style.display = p.style.display === "block" ? "none" : "block";
+  document.getElementById("painelAcessibilidade").classList.toggle("open");
 }
 
 function setFonte(tipo){
   document.body.classList.remove("font-a","font-a-plus","font-a-plus-plus");
-  if(tipo==="a") document.body.classList.add("font-a");
-  if(tipo==="a-plus") document.body.classList.add("font-a-plus");
-  if(tipo==="a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
+  if(tipo === "a") document.body.classList.add("font-a");
+  if(tipo === "a-plus") document.body.classList.add("font-a-plus");
+  if(tipo === "a-plus-plus") document.body.classList.add("font-a-plus-plus");
+
   localStorage.setItem("fonte", tipo);
 }
 
-function setTema(tipo){
-  document.body.classList.remove("tema-claro","alto-contraste");
-  if(tipo==="claro") document.body.classList.add("tema-claro");
-  if(tipo==="contraste") document.body.classList.add("alto-contraste");
-  localStorage.setItem("tema", tipo);
+function setTema(tema){
+  document.body.classList.remove("tema-claro","tema-escuro","alto-contraste");
+
+  if(tema === "claro") document.body.classList.add("tema-claro");
+  if(tema === "escuro") document.body.classList.add("tema-escuro");
+  if(tema === "contraste") document.body.classList.add("alto-contraste");
+
+  localStorage.setItem("tema", tema);
 }
 
-(function restore(){
-  const f = localStorage.getItem("fonte");
-  const t = localStorage.getItem("tema");
-  if(f) setFonte(f);
-  if(t) setTema(t);
+(function(){
+  const fonte = localStorage.getItem("fonte") || "a";
+  const tema = localStorage.getItem("tema") || "claro";
+  setFonte(fonte);
+  setTema(tema);
 })();
 
 function formatarData(data){
@@ -202,16 +208,14 @@ function formatarData(data){
 }
 
 function isNatureza(atrativo){
-  const lista = [
+  return [
     "Cânion do Jatobá",
     "Cascata dos Namorados",
     "Cascatinha dos Namorados",
     "Piscina Esmeralda da Cirila",
     "Cachoeira do Capivary",
     "Cachoeira do Viracopos"
-  ];
-
-  return lista.includes(atrativo);
+  ].includes(atrativo);
 }
 
 function renderizarTurismo(){
@@ -220,6 +224,7 @@ function renderizarTurismo(){
 
   const filtrados = registrosTurismo.filter(item => {
     const d = item.data;
+
     const base = `
       ${d.nome || ""}
       ${d.origem || ""}
@@ -244,7 +249,7 @@ function renderizarTurismo(){
 
     lista.innerHTML += `
       <article class="card">
-        <h3>${d.nome || "Sem nome"}</h3>
+        <h3>${d.nome || "Registro turístico"}</h3>
         <p><strong>Origem:</strong> ${d.origem || ""}</p>
         <p><strong>Atrativo:</strong> ${d.atrativo || ""}</p>
         <p><strong>Data:</strong> ${formatarData(d.dataVisita)}</p>
@@ -266,8 +271,6 @@ import {
   collection,
   addDoc,
   getDocs,
-  query,
-  orderBy,
   serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -287,41 +290,51 @@ function setText(id, valor){
   document.getElementById(id).innerText = valor;
 }
 
-document.getElementById("formTurismo").addEventListener("submit", async (e) => {
-  e.preventDefault();
-
+window.salvarTurismo = async function(){
   const status = document.getElementById("statusTurismo");
+
+  const nome = document.getElementById("nome").value.trim();
+
+  if(!nome){
+    status.innerText = "Informe o nome do visitante ou grupo.";
+    return;
+  }
+
   status.innerText = "Salvando check-in...";
 
   try {
     await addDoc(collection(db, "turismo"), {
-      nome: document.getElementById("nome").value,
-      origem: document.getElementById("origem").value,
+      nome,
+      origem: document.getElementById("origem").value.trim(),
       qtd: Number(document.getElementById("qtd").value || 0),
       atrativo: document.getElementById("atrativo").value,
       dataVisita: document.getElementById("dataVisita").value,
-      guia: document.getElementById("guia").value,
+      guia: document.getElementById("guia").value.trim(),
       statusVisita: document.getElementById("statusVisita").value,
-      obs: document.getElementById("obs").value,
+      obs: document.getElementById("obs").value.trim(),
       data: serverTimestamp()
     });
 
+    document.getElementById("nome").value = "";
+    document.getElementById("origem").value = "";
+    document.getElementById("qtd").value = "";
+    document.getElementById("dataVisita").value = "";
+    document.getElementById("guia").value = "";
+    document.getElementById("obs").value = "";
+
     status.innerText = "Check-in salvo com sucesso!";
-    document.getElementById("formTurismo").reset();
     carregarTurismo();
 
-  } catch(e) {
-    status.innerText = "Erro: " + e.message;
+  } catch(e){
+    status.innerText = "Erro ao salvar: " + e.message;
   }
-});
+};
 
 async function carregarTurismo(){
   const lista = document.getElementById("listaTurismo");
-  lista.innerHTML = "Carregando registros...";
 
   try {
-    const q = query(collection(db, "turismo"), orderBy("data", "desc"));
-    const snap = await getDocs(q);
+    const snap = await getDocs(collection(db, "turismo"));
 
     registrosTurismo = [];
 
@@ -352,8 +365,8 @@ async function carregarTurismo(){
 
     renderizarTurismo();
 
-  } catch(e) {
-    lista.innerHTML = "Erro ao carregar registros: " + e.message;
+  } catch(e){
+    lista.innerHTML = "<p>Erro ao carregar registros.</p>";
   }
 }
 
